@@ -1,2 +1,10 @@
 *
 !.gitignore
+!certificates/
+!certificates/**
+!project/
+!project/**
+!projects/
+!projects/**
+!profile/
+!profile/**
