@@ -1,25 +1,23 @@
 /* ==========================================================================
    Luxury Butter.video & Noth.in Inspired Fluid Cursor
+   Full Light Mode & Dark Mode Support + Bulletproof OS Cursor Hiding
    ========================================================================== */
 
 @media (hover: hover) and (pointer: fine) {
-  /* 1. Hide default OS cursor to prevent double-cursor conflict */
+  /* 1. Bulletproof OS Cursor Hiding on Desktop */
   html.has-custom-cursor,
-  html.has-custom-cursor body,
-  html.has-custom-cursor a,
-  html.has-custom-cursor button,
-  html.has-custom-cursor [role="button"] {
+  html.has-custom-cursor * {
     cursor: none !important;
   }
 
-  /* Keep standard cursor for inputs & text fields */
-  html.cursor-over-input,
-  html.cursor-over-input input,
-  html.cursor-over-input textarea {
-    cursor: auto !important;
+  /* Only allow native text cursor for text editing inputs & textareas */
+  html.has-custom-cursor input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
+  html.has-custom-cursor textarea,
+  html.has-custom-cursor [contenteditable="true"] {
+    cursor: text !important;
   }
 
-  /* 2. Precision Core Dot */
+  /* 2. Precision Core Dot (Dark Mode Default) */
   #cursor-dot {
     width: 6px;
     height: 6px;
@@ -31,35 +29,50 @@
     pointer-events: none;
     z-index: 99999;
     will-change: transform;
-    transition: opacity 0.2s ease, width 0.2s ease, height 0.2s ease, transform 0.05s ease;
+    transition: 
+      opacity 0.2s ease, 
+      width 0.2s ease, 
+      height 0.2s ease, 
+      background-color 0.3s ease, 
+      box-shadow 0.3s ease;
+  }
+
+  /* Precision Core Dot (Light Mode) */
+  html.light #cursor-dot {
+    background-color: #0284c7;
+    box-shadow: 
+      0 0 8px rgba(2, 132, 199, 0.9),
+      0 0 16px rgba(37, 99, 235, 0.45);
   }
 
   #cursor-dot.dot-mode-link,
   #cursor-dot.dot-mode-project,
   #cursor-dot.dot-mode-stack,
   #cursor-dot.dot-mode-media {
-    opacity: 0.3 !important;
-    width: 3px;
-    height: 3px;
+    opacity: 0.35 !important;
+    width: 3.5px;
+    height: 3.5px;
   }
 
   #cursor-dot.dot-mode-text {
-    opacity: 0 !important;
+    opacity: 0.4 !important;
+    width: 4px;
+    height: 4px;
   }
 
-  /* 3. Fluid Frosted Follower Bubble */
+  /* 3. Fluid Frosted Follower Bubble (Dark Mode Default) */
   #cursor-follower {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     border-radius: 9999px;
-    border: 1px solid rgba(0, 240, 255, 0.35);
+    border: 1.5px solid rgba(0, 240, 255, 0.4);
     background: radial-gradient(
       circle at 40% 40%,
       rgba(0, 240, 255, 0.16) 0%,
       rgba(168, 85, 247, 0.08) 55%,
       rgba(0, 240, 255, 0.02) 100%
     );
-    box-shadow: 0 0 16px rgba(0, 240, 255, 0.2);
+    box-shadow: 0 0 16px rgba(0, 240, 255, 0.25);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
     pointer-events: none;
@@ -70,7 +83,22 @@
       height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
       background 0.3s ease,
       border-color 0.3s ease,
-      box-shadow 0.3s ease;
+      box-shadow 0.3s ease,
+      opacity 0.2s ease;
+  }
+
+  /* Fluid Frosted Follower Bubble (Light Mode) */
+  html.light #cursor-follower {
+    border: 1.5px solid rgba(2, 132, 199, 0.65);
+    background: radial-gradient(
+      circle at 40% 40%,
+      rgba(2, 132, 199, 0.18) 0%,
+      rgba(99, 102, 241, 0.1) 55%,
+      rgba(15, 23, 42, 0.04) 100%
+    );
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.12), 0 0 14px rgba(2, 132, 199, 0.25);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
 
   /* Label inside pill */
@@ -83,23 +111,32 @@
     transition: opacity 0.2s ease;
   }
 
-  /* 4. Link & Button Magnetic State */
+  /* 4. Link & Button Magnetic State (Dark Mode) */
   #cursor-follower.mode-link {
     width: 48px;
     height: 48px;
     border-color: rgba(0, 240, 255, 0.85);
-    background: rgba(0, 240, 255, 0.18);
+    background: rgba(0, 240, 255, 0.2);
     box-shadow: 
       0 0 25px rgba(0, 240, 255, 0.45),
       inset 0 0 12px rgba(0, 240, 255, 0.2);
   }
 
-  /* 5. Stack / Butter Card Mode */
+  /* Link & Button Magnetic State (Light Mode) */
+  html.light #cursor-follower.mode-link {
+    border-color: rgba(2, 132, 199, 0.95);
+    background: rgba(2, 132, 199, 0.22);
+    box-shadow: 
+      0 0 25px rgba(2, 132, 199, 0.35),
+      inset 0 0 12px rgba(2, 132, 199, 0.15);
+  }
+
+  /* 5. Stack / Butter Card Mode (Dark Mode) */
   #cursor-follower.mode-stack {
     width: 76px;
     height: 76px;
     border: 1.5px solid rgba(0, 240, 255, 0.7);
-    background: rgba(8, 12, 26, 0.88);
+    background: rgba(8, 12, 26, 0.9);
     box-shadow: 
       0 15px 35px -5px rgba(0, 240, 255, 0.35),
       inset 0 1px 1px rgba(255, 255, 255, 0.3);
@@ -108,12 +145,22 @@
     -webkit-backdrop-filter: blur(8px);
   }
 
-  /* 6. Project Card Mode */
+  /* Stack / Butter Card Mode (Light Mode) */
+  html.light #cursor-follower.mode-stack {
+    border: 1.5px solid rgba(2, 132, 199, 0.8);
+    background: rgba(15, 23, 42, 0.92);
+    box-shadow: 
+      0 15px 35px -5px rgba(15, 23, 42, 0.3),
+      inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    color: #38bdf8;
+  }
+
+  /* 6. Project Card Mode (Dark Mode) */
   #cursor-follower.mode-project {
     width: 80px;
     height: 80px;
     border: 1.5px solid rgba(56, 189, 248, 0.7);
-    background: rgba(8, 12, 26, 0.88);
+    background: rgba(8, 12, 26, 0.9);
     box-shadow: 
       0 15px 35px -5px rgba(56, 189, 248, 0.35),
       inset 0 1px 1px rgba(255, 255, 255, 0.3);
@@ -122,12 +169,22 @@
     -webkit-backdrop-filter: blur(8px);
   }
 
-  /* 7. Certificate Mode */
+  /* Project Card Mode (Light Mode) */
+  html.light #cursor-follower.mode-project {
+    border: 1.5px solid rgba(2, 132, 199, 0.8);
+    background: rgba(15, 23, 42, 0.92);
+    box-shadow: 
+      0 15px 35px -5px rgba(15, 23, 42, 0.3),
+      inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    color: #38bdf8;
+  }
+
+  /* 7. Certificate Mode (Dark Mode) */
   #cursor-follower.mode-media {
     width: 74px;
     height: 74px;
     border: 1.5px solid rgba(168, 85, 247, 0.7);
-    background: rgba(8, 12, 26, 0.88);
+    background: rgba(8, 12, 26, 0.9);
     box-shadow: 
       0 15px 35px -5px rgba(168, 85, 247, 0.35),
       inset 0 1px 1px rgba(255, 255, 255, 0.3);
@@ -136,16 +193,33 @@
     -webkit-backdrop-filter: blur(8px);
   }
 
-  /* 8. Text Invert Mode (Noth.in Signature) */
+  /* Certificate Mode (Light Mode) */
+  html.light #cursor-follower.mode-media {
+    border: 1.5px solid rgba(147, 51, 234, 0.8);
+    background: rgba(15, 23, 42, 0.92);
+    box-shadow: 
+      0 15px 35px -5px rgba(15, 23, 42, 0.3),
+      inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    color: #c084fc;
+  }
+
+  /* 8. Heading / Text Glow Lens Mode */
   #cursor-follower.mode-text {
-    width: 50px;
-    height: 50px;
-    border: none;
-    background: #ffffff;
-    mix-blend-mode: difference;
-    box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    width: 52px;
+    height: 52px;
+    border: 1.5px solid rgba(0, 240, 255, 0.65);
+    background: rgba(0, 240, 255, 0.14);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.28);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  html.light #cursor-follower.mode-text {
+    border: 1.5px solid rgba(2, 132, 199, 0.75);
+    background: rgba(2, 132, 199, 0.16);
+    box-shadow: 0 4px 20px rgba(2, 132, 199, 0.25);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
 
   /* 9. Click Compression Pulse */

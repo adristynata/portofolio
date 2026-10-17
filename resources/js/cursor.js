@@ -3,9 +3,10 @@
  * Features:
  * - 60fps GPU translate3d with spring interpolation
  * - Velocity-based fluid squish & stretch (Jelly / Butter deformation)
- * - Frosted glass iridescent aura with micro-blur
- * - Contextual morphing (Pill, Magnetic, Difference Text Invert)
- * - Pure desktop pointer replacement with safe text-input fallback
+ * - Frosted glass iridescent aura with light/dark adaptive theming
+ * - Contextual morphing (Pill, Magnetic, Text Lens)
+ * - Bulletproof desktop OS cursor suppression with instant input restoration
+ * - Smooth scroll & text-entry recovery
  */
 
 export function initInteractiveCursor() {
@@ -37,7 +38,7 @@ export function initInteractiveCursor() {
     const spotlight = document.getElementById('cursor-ambient-spotlight');
     const label = document.getElementById('cursor-label');
 
-    // Hide default OS cursor on body when inside the page
+    // Hide default OS cursor globally on desktop
     document.documentElement.classList.add('has-custom-cursor');
 
     // Physics & State Variables
@@ -57,12 +58,12 @@ export function initInteractiveCursor() {
 
     let isVisible = false;
     let isClicking = false;
-    let isHoveringText = false;
+    let isOverTextInput = false;
     let targetMode = 'default'; // 'default', 'link', 'project', 'stack', 'media', 'text'
 
     const lerp = (a, b, n) => (1 - n) * a + n * b;
 
-    // Mouse Movement
+    // Mouse Movement Handler
     window.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
@@ -73,16 +74,36 @@ export function initInteractiveCursor() {
             prevMouseX = mouseX;
             prevMouseY = mouseY;
             isVisible = true;
-            dot.style.opacity = '1';
-            follower.style.opacity = '1';
+            if (!isOverTextInput) {
+                dot.style.opacity = '1';
+                follower.style.opacity = '1';
+            }
             spotlight.style.opacity = '1';
         }
 
         // 0-latency instant positioning for the center precision dot
         dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
 
-        // Ambient spotlight glow following cursor
-        spotlight.style.background = `radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(0, 240, 255, 0.045), rgba(168, 85, 247, 0.02) 40%, transparent 70%)`;
+        // Ambient spotlight glow following cursor (theme adaptive)
+        const isLight = document.documentElement.classList.contains('light');
+        if (isLight) {
+            spotlight.style.background = `radial-gradient(550px circle at ${mouseX}px ${mouseY}px, rgba(2, 132, 199, 0.05), rgba(99, 102, 241, 0.025) 40%, transparent 70%)`;
+        } else {
+            spotlight.style.background = `radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(0, 240, 255, 0.045), rgba(168, 85, 247, 0.02) 40%, transparent 70%)`;
+        }
+
+        // Evaluate target under cursor
+        updateTarget(e.target);
+    }, { passive: true });
+
+    // Scroll Handler: restore/update cursor state when scrolling past elements
+    window.addEventListener('scroll', () => {
+        if (mouseX >= 0 && mouseY >= 0) {
+            const el = document.elementFromPoint(mouseX, mouseY);
+            if (el) {
+                updateTarget(el);
+            }
+        }
     }, { passive: true });
 
     // Window In/Out Handlers
@@ -95,6 +116,7 @@ export function initInteractiveCursor() {
 
     document.addEventListener('mouseenter', () => {
         isVisible = true;
+        isOverTextInput = false;
         dot.style.opacity = '1';
         follower.style.opacity = '1';
         spotlight.style.opacity = '1';
@@ -161,7 +183,7 @@ export function initInteractiveCursor() {
         if (targetMode === mode && label.textContent === text) return;
         targetMode = mode;
 
-        follower.className = 'pointer-events-none fixed top-0 left-0 z-[99998] rounded-full opacity-1 flex items-center justify-center';
+        follower.className = 'pointer-events-none fixed top-0 left-0 z-[99998] rounded-full flex items-center justify-center';
 
         if (text) {
             label.textContent = text;
@@ -173,15 +195,39 @@ export function initInteractiveCursor() {
 
         if (mode !== 'default') {
             follower.classList.add(`mode-${mode}`);
-            dot.classList.add(`dot-mode-${mode}`);
+            dot.className = `pointer-events-none fixed top-0 left-0 z-[99999] rounded-full dot-mode-${mode}`;
         } else {
-            dot.className = 'pointer-events-none fixed top-0 left-0 z-[99999] rounded-full opacity-1';
+            dot.className = 'pointer-events-none fixed top-0 left-0 z-[99999] rounded-full';
         }
     }
 
-    // Event Delegation for Interactive Elements
-    document.addEventListener('mouseover', (e) => {
-        const target = e.target;
+    // Unified Target Detection (Inputs, Hover states, and Interactive elements)
+    function updateTarget(target) {
+        if (!target) return;
+
+        // Check if cursor is over a text entry input / textarea
+        const isTextInput = !!target.closest('input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]), textarea, [contenteditable="true"]');
+
+        if (isTextInput) {
+            if (!isOverTextInput) {
+                isOverTextInput = true;
+                dot.style.opacity = '0';
+                follower.style.opacity = '0';
+            }
+            return;
+        }
+
+        // When not over a text input, ensure custom cursor is restored
+        if (isOverTextInput) {
+            isOverTextInput = false;
+            if (isVisible) {
+                dot.style.opacity = '1';
+                follower.style.opacity = '1';
+            }
+        } else if (isVisible && (dot.style.opacity === '0' || follower.style.opacity === '0')) {
+            dot.style.opacity = '1';
+            follower.style.opacity = '1';
+        }
 
         // 1. Butter Skills Cards Deck
         const butterCard = target.closest('.butter-card');
@@ -204,14 +250,14 @@ export function initInteractiveCursor() {
             return;
         }
 
-        // 4. Clickable Links, Buttons, Inputs
-        const clickable = target.closest('a, button, input[type="submit"], input[type="button"], [role="button"], .interactive-pill');
+        // 4. Clickable Links, Buttons, Inputs, Labels
+        const clickable = target.closest('a, button, input[type="submit"], input[type="button"], [role="button"], .interactive-pill, label, select');
         if (clickable) {
             setMode('link');
             return;
         }
 
-        // 5. Inverted Headings (Noth.in signature)
+        // 5. Headings
         const heading = target.closest('h1, h2, .invert-hover-text');
         if (heading) {
             setMode('text');
@@ -220,18 +266,11 @@ export function initInteractiveCursor() {
 
         // Default normal floating droplet
         setMode('default');
-    });
+    }
 
-    // Restore text cursor over inputs and textareas
+    // Event Delegation for Interactive Hover Elements
     document.addEventListener('mouseover', (e) => {
-        const isInput = e.target.closest('input:not([type="submit"]):not([type="button"]), textarea, [contenteditable="true"]');
-        if (isInput) {
-            dot.style.opacity = '0';
-            follower.style.opacity = '0';
-            document.documentElement.classList.add('cursor-over-input');
-        } else {
-            document.documentElement.classList.remove('cursor-over-input');
-        }
+        updateTarget(e.target);
     });
 
     // Card Spotlight Highlight Effect
