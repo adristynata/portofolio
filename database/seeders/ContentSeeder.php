@@ -38,6 +38,8 @@ class ContentSeeder extends Seeder
             Skill::create(['name' => 'JavaScript', 'level' => 'Beginner', 'percentage' => 65, 'category' => 'Frontend Development']);
             Skill::create(['name' => 'PHP', 'level' => 'Beginner', 'percentage' => 70, 'category' => 'Backend Development']);
             Skill::create(['name' => 'MySQL', 'level' => 'Beginner', 'percentage' => 75, 'category' => 'Database']);
+            Skill::create(['name' => 'Figma', 'level' => 'Intermediate', 'percentage' => 85, 'category' => 'UI/UX Design']);
+            Skill::create(['name' => 'MongoDB', 'level' => 'Beginner', 'percentage' => 70, 'category' => 'Database']);
         }
 
         // Seed Experiences if empty

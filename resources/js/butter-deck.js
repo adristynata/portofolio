@@ -53,8 +53,8 @@ export function initButterDeck() {
     function setPlayheadPosition(index) {
         activeIndex = index;
         const progress = (index / Math.max(1, totalCards - 1));
-        const minPercent = 6;
-        const maxPercent = 88;
+        const minPercent = 4;
+        const maxPercent = 94;
         const targetPercent = minPercent + progress * (maxPercent - minPercent);
 
         if (playhead) {
