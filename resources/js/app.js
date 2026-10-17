@@ -2,14 +2,19 @@ import './bootstrap';
 import 'flowbite';
 import Alpine from 'alpinejs';
 import { initInteractiveCursor } from './cursor';
+import { initButterDeck } from './butter-deck';
 
 window.Alpine = Alpine;
 
 Alpine.start();
 
-// Initialize Butter.video & Noth.in inspired cursor and spotlight
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => initInteractiveCursor());
-} else {
+function initCreativeInteractions() {
     initInteractiveCursor();
+    initButterDeck();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCreativeInteractions);
+} else {
+    initCreativeInteractions();
 }

@@ -1,0 +1,127 @@
+/* ==========================================================================
+   Butter.video Inspired 3D Squircle Timeline Deck for Skills
+   ========================================================================== */
+
+/* Outer Studio Deck Container */
+.butter-deck {
+  background: radial-gradient(120% 120% at 50% 0%, #11172e 0%, #080c1b 50%, #050711 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.8),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.5);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Deck Timeline Ticks */
+.timeline-ticks {
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.15) 0,
+    rgba(255, 255, 255, 0.15) 1px,
+    transparent 1px,
+    transparent 12px
+  );
+}
+
+/* 3D Squircle Pillow Cards */
+.butter-card {
+  border-radius: 30px;
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Pillow 3D Glossy Highlights & Deep Shadow */
+.butter-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.05) 45%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Subtle Glass Surface Reflection */
+.butter-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 65%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Card Floating Wave Undulation (Butter Organic Motion) */
+@keyframes butter-undulate-1 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(0.8deg); }
+}
+
+@keyframes butter-undulate-2 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-9px) rotate(-1deg); }
+}
+
+@keyframes butter-undulate-3 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(0.6deg); }
+}
+
+.butter-wave-1 {
+  animation: butter-undulate-1 4.5s ease-in-out infinite;
+}
+.butter-wave-2 {
+  animation: butter-undulate-2 5.2s ease-in-out infinite 0.6s;
+}
+.butter-wave-3 {
+  animation: butter-undulate-3 4.8s ease-in-out infinite 1.2s;
+}
+
+/* Pause wave on card hover or when container hovered */
+.butter-card:hover {
+  animation-play-state: paused !important;
+  z-index: 20;
+}
+
+/* 3D Depth on Logo inside Card */
+.butter-card-content {
+  transform: translateZ(30px);
+  transform-style: preserve-3d;
+}
+
+.butter-card-logo {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.5));
+}
+
+.butter-card:hover .butter-card-logo {
+  transform: scale(1.15) translateZ(40px);
+  filter: drop-shadow(0 15px 25px rgba(0, 240, 255, 0.4));
+}
+
+/* Scrubber Playhead Glow */
+.butter-playhead {
+  transition: left 0.28s cubic-bezier(0.16, 1, 0.3, 1), width 0.28s ease;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+}

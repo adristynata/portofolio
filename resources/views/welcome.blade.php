@@ -277,45 +277,159 @@
                 </p>
             </div>
 
-            {{-- Dynamic Skill Cards Grid (Clean & Modern without Percentages) --}}
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                @forelse ($skills as $skill)
-                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 hover:-translate-y-1 transition-all duration-300 flex items-center justify-between group">
-                        <div class="flex items-center gap-3.5 sm:gap-4">
-                            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500/20 group-hover:border-cyan-400/60 transition-all shrink-0">
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                            </div>
-                            <div>
-                                <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">
-                                    {{ $skill->name }}
-                                </h3>
-                                <span class="text-xs text-slate-400 font-medium">
-                                    {{ $skill->category ?? 'Web Development' }}
-                                </span>
-                            </div>
+            {{-- Butter.video Inspired Interactive Skills Deck --}}
+            <div id="butter-skills-deck" class="butter-deck rounded-[32px] sm:rounded-[38px] p-5 sm:p-8 lg:p-10 border border-white/10 shadow-2xl relative">
+                
+                {{-- Deck Header Bar with Timecode & Controls --}}
+                <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10">
+                    <div class="flex items-center gap-3 sm:gap-4">
+                        {{-- Play / Pause Button --}}
+                        <button type="button" id="butter-play-btn" title="Toggle Timeline Movement" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 active:scale-95 text-white flex items-center justify-center transition border border-white/10 shadow-md">
+                            {{-- Pause Icon (Playing) --}}
+                            <svg id="butter-pause-icon" class="w-4 h-4 text-cyan-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M6.75 5.25a.75.75 0 01.75.75v12a.75.75 0 01-1.5 0v-12a.75.75 0 01.75-.75zm10.5 0a.75.75 0 01.75.75v12a.75.75 0 01-1.5 0v-12a.75.75 0 01.75-.75z" clip-rule="evenodd" />
+                            </svg>
+                            {{-- Play Icon (Paused) --}}
+                            <svg id="butter-play-icon" class="w-4 h-4 text-cyan-400 hidden" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+
+                        {{-- Digital Timecode Readout --}}
+                        <div class="font-mono text-xs sm:text-sm font-extrabold text-white tracking-wider flex items-center gap-2">
+                            <span id="butter-timecode" class="text-cyan-400">00:01.00 / 00:06.00</span>
                         </div>
-                        @if(!empty($skill->level))
-                            <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-900/90 border border-slate-700/80 text-cyan-400 group-hover:border-cyan-500/40 shrink-0">
-                                {{ $skill->level }}
-                            </span>
-                        @endif
+
+                        {{-- Duration Badge --}}
+                        <div class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono font-bold text-slate-300 flex items-center gap-1">
+                            <span class="text-slate-500">Dur</span>
+                            <span class="text-cyan-300 font-extrabold">{{ count($skills) ?: 6 }}s</span>
+                            <span class="text-slate-500">stack</span>
+                        </div>
                     </div>
-                @empty
-                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition duration-300 flex items-center justify-between">
-                        <div class="flex items-center gap-3.5 sm:gap-4">
-                            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                            </div>
-                            <div>
-                                <h3 class="text-base font-bold text-white">Laravel</h3>
-                                <span class="text-xs text-slate-400">Backend Development</span>
-                            </div>
-                        </div>
-                        <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 border border-slate-700 text-cyan-400">
-                            Beginner
+
+                    {{-- Right Status Pill --}}
+                    <div class="flex items-center gap-2">
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-widest uppercase bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
+                            ACTIVE TECH STACK
                         </span>
                     </div>
-                @endforelse
+                </div>
+
+                {{-- Interactive Timeline Ruler & Scrubber --}}
+                <div class="relative py-4 my-2">
+                    {{-- Ruler Marks --}}
+                    <div class="h-6 w-full timeline-ticks relative flex items-center justify-between text-[10px] font-mono text-slate-500 select-none px-2">
+                        <span>0s</span>
+                        <span>1s</span>
+                        <span>2s</span>
+                        <span>3s</span>
+                        <span>4s</span>
+                        <span>5s</span>
+                        <span>6s</span>
+                    </div>
+
+                    {{-- Dynamic Scrubber Playhead Capsule --}}
+                    <div id="butter-playhead" class="butter-playhead absolute top-1/2 -translate-y-1/2 h-8 w-20 sm:w-24 rounded-full bg-slate-900/90 border border-cyan-400/80 backdrop-blur-md flex items-center justify-center pointer-events-none select-none -translate-x-1/2 z-10" style="left: 8%;">
+                        <div class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse mr-1.5"></div>
+                        <span class="text-[10px] font-mono font-bold text-white tracking-widest">LIVE</span>
+                    </div>
+                </div>
+
+                {{-- Squircle 3D Pillow Cards Track (Butter.video Deck) --}}
+                @php
+                    $techConfigs = [
+                        'laravel' => [
+                            'theme' => 'from-rose-500/30 via-[#200c14] to-[#0a0409] border-rose-500/40 hover:border-rose-400 hover:shadow-[0_25px_45px_-10px_rgba(244,63,94,0.45)]',
+                            'accent' => 'text-rose-400',
+                            'badge' => 'bg-rose-500/15 text-rose-300 border-rose-500/30',
+                            'icon' => '<svg class="w-12 h-12 sm:w-14 sm:h-14" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 22V12" stroke="#f43f5e" stroke-width="2" stroke-linecap="round"/></svg>'
+                        ],
+                        'html & css' => [
+                            'theme' => 'from-orange-500/30 via-[#261206] to-[#0c0502] border-orange-500/40 hover:border-orange-400 hover:shadow-[0_25px_45px_-10px_rgba(249,115,22,0.45)]',
+                            'accent' => 'text-orange-400',
+                            'badge' => 'bg-orange-500/15 text-orange-300 border-orange-500/30',
+                            'icon' => '<svg class="w-12 h-12 sm:w-14 sm:h-14" viewBox="0 0 24 24" fill="none"><path d="M4 3l1.8 16.2L12 21l6.2-1.8L20 3H4z" stroke="#f97316" stroke-width="2" stroke-linejoin="round"/><path d="M7.5 7h9M7.5 11h8.5l-.5 4.5-3.5 1-3.5-1-.2-2" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+                        ],
+                        'tailwind css' => [
+                            'theme' => 'from-cyan-500/30 via-[#071926] to-[#020b12] border-cyan-500/40 hover:border-cyan-400 hover:shadow-[0_25px_45px_-10px_rgba(6,182,212,0.45)]',
+                            'accent' => 'text-cyan-400',
+                            'badge' => 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',
+                            'icon' => '<svg class="w-12 h-12 sm:w-14 sm:h-14" viewBox="0 0 24 24" fill="none"><path d="M12 6C9.33 6 7.67 7.33 7 10c1-1.33 2.33-1.83 4-1.5 1.05.21 1.8 1 2.63 1.87C14.98 11.75 16.8 13.67 21 13.67c2.67 0 4.33-1.33 5-4-1 1.33-2.33 1.83-4 1.5-1.05-.21-1.8-1-2.63-1.87C17.02 7.92 15.2 6 12 6zM3 13.67C.33 13.67-1.33 15-2 17.67c1-1.33 2.33-1.83 4-1.5 1.05.21 1.8 1 2.63 1.87C6.98 19.42 8.8 21.33 13 21.33c2.67 0 4.33-1.33 5-4-1 1.33-2.33 1.83-4 1.5-1.05-.21-1.8-1-2.63-1.87C9.02 15.58 7.2 13.67 3 13.67z" fill="#06b6d4"/></svg>'
+                        ],
+                        'javascript' => [
+                            'theme' => 'from-amber-400/30 via-[#251d07] to-[#0c0902] border-amber-400/40 hover:border-amber-300 hover:shadow-[0_25px_45px_-10px_rgba(251,191,36,0.45)]',
+                            'accent' => 'text-amber-400',
+                            'badge' => 'bg-amber-400/15 text-amber-300 border-amber-400/30',
+                            'icon' => '<svg class="w-12 h-12 sm:w-14 sm:h-14" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" fill="#fbbf24" fill-opacity="0.15" stroke="#fbbf24" stroke-width="2"/><path d="M8.5 13.5v3.5c0 .8-.7 1.5-1.5 1.5H6.5M14 13.8c.4-.3.9-.5 1.5-.5 1 0 1.8.6 1.8 1.5 0 .7-.4 1.2-1.2 1.4l-.8.3c-.5.2-.8.4-.8.7 0 .4.4.7.9.7.5 0 1-.2 1.4-.4M14 18.5v-4.7" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/></svg>'
+                        ],
+                        'php' => [
+                            'theme' => 'from-indigo-500/30 via-[#181938] to-[#080816] border-indigo-500/40 hover:border-indigo-400 hover:shadow-[0_25px_45px_-10px_rgba(99,102,241,0.45)]',
+                            'accent' => 'text-indigo-400',
+                            'badge' => 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30',
+                            'icon' => '<svg class="w-12 h-12 sm:w-14 sm:h-14" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="10" ry="6" stroke="#818cf8" stroke-width="2"/><path d="M7 14V10h2a1.5 1.5 0 011.5 1.5v0A1.5 1.5 0 019 13H7M15 14V10h2a1.5 1.5 0 011.5 1.5v0A1.5 1.5 0 0117 13h-2" stroke="#818cf8" stroke-width="1.8" stroke-linecap="round"/><path d="M12 14v-4" stroke="#818cf8" stroke-width="1.8" stroke-linecap="round"/></svg>'
+                        ],
+                        'mysql' => [
+                            'theme' => 'from-blue-500/30 via-[#07162e] to-[#020814] border-blue-500/40 hover:border-blue-400 hover:shadow-[0_25px_45px_-10px_rgba(59,130,246,0.45)]',
+                            'accent' => 'text-blue-400',
+                            'badge' => 'bg-blue-500/15 text-blue-300 border-blue-500/30',
+                            'icon' => '<svg class="w-12 h-12 sm:w-14 sm:h-14" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="6" rx="8" ry="3" stroke="#60a5fa" stroke-width="2"/><path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6" stroke="#60a5fa" stroke-width="2"/><path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" stroke="#60a5fa" stroke-width="2"/></svg>'
+                        ]
+                    ];
+                @endphp
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5 pt-3">
+                    @forelse ($skills as $index => $skill)
+                        @php
+                            $key = strtolower(trim($skill->name));
+                            $conf = $techConfigs[$key] ?? [
+                                'theme' => 'from-cyan-500/25 via-[#0e172e] to-[#050914] border-cyan-500/40 hover:border-cyan-400 hover:shadow-[0_25px_45px_-10px_rgba(6,182,212,0.45)]',
+                                'accent' => 'text-cyan-400',
+                                'badge' => 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',
+                                'icon' => '<svg class="w-12 h-12 sm:w-14 sm:h-14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>'
+                            ];
+                            $waveClass = 'butter-wave-' . (($index % 3) + 1);
+                        @endphp
+
+                        <div class="butter-card {{ $waveClass }} bg-gradient-to-b {{ $conf['theme'] }} border p-5 sm:p-6 flex flex-col justify-between items-center text-center min-h-[220px] sm:min-h-[240px] shadow-xl group"
+                             data-skill-index="{{ $index }}">
+                            
+                            {{-- Top Meta Badges --}}
+                            <div class="w-full flex items-center justify-between gap-1 text-[10px] font-bold">
+                                <span class="px-2 py-0.5 rounded-full {{ $conf['badge'] }} truncate border">
+                                    {{ $skill->level ?? 'Skill' }}
+                                </span>
+                                <span class="font-mono text-slate-500 text-[10px]">
+                                    0{{ $index + 1 }}
+                                </span>
+                            </div>
+
+                            {{-- Center 3D Brand Logo with Floating Depth --}}
+                            <div class="butter-card-content py-3 flex items-center justify-center">
+                                <div class="butter-card-logo">
+                                    {!! $conf['icon'] !!}
+                                </div>
+                            </div>
+
+                            {{-- Bottom Title & Category --}}
+                            <div class="w-full pt-2 border-t border-white/5">
+                                <h3 class="text-sm sm:text-base font-extrabold text-white group-hover:{{ $conf['accent'] }} transition-colors truncate">
+                                    {{ $skill->name }}
+                                </h3>
+                                <span class="text-[11px] text-slate-400 font-medium truncate block">
+                                    {{ $skill->category ?? 'Tech Stack' }}
+                                </span>
+                            </div>
+
+                        </div>
+                    @empty
+                        <div class="col-span-full py-12 text-center text-slate-500 text-sm">
+                            Belum ada keahlian teknis yang ditambahkan.
+                        </div>
+                    @endforelse
+                </div>
+
             </div>
         </div>
     </section>

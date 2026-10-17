@@ -136,6 +136,13 @@ export function initInteractiveCursor() {
             return;
         }
 
+        // 1b. Butter Skills Cards (Butter.video style)
+        const butterCard = target.closest('.butter-card');
+        if (butterCard) {
+            updateCursorMode('project', 'STACK');
+            return;
+        }
+
         // 2. Certificate cards
         const certCard = target.closest('#sertifikat .dark-glass-card');
         if (certCard) {
