@@ -2,7 +2,7 @@
    Butter.video Inspired 3D Squircle Timeline Deck for Skills
    ========================================================================== */
 
-/* Outer Studio Deck Container */
+/* Outer Studio Deck Container (Default: Dark Mode) */
 .butter-deck {
   background: radial-gradient(120% 120% at 50% 0%, #11172e 0%, #080c1b 50%, #050711 100%);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -13,6 +13,18 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Light Mode Deck Container */
+html.light .butter-deck {
+  background: radial-gradient(120% 120% at 50% 0%, #ffffff 0%, #f8fafc 55%, #edf2f7 100%) !important;
+  border: 1px solid rgba(203, 213, 225, 0.9) !important;
+  box-shadow: 
+    0 20px 45px -12px rgba(15, 23, 42, 0.08),
+    0 4px 12px -2px rgba(15, 23, 42, 0.03),
+    inset 0 1px 2px rgba(255, 255, 255, 1),
+    inset 0 -1px 2px rgba(203, 213, 225, 0.4) !important;
 }
 
 /* Deck Timeline Ticks */
@@ -24,20 +36,54 @@
     transparent 1px,
     transparent 12px
   );
+  color: #64748b;
+  transition: background-image 0.3s ease, color 0.3s ease;
+}
+
+/* Light Mode Timeline Ticks & Scrubber */
+html.light .timeline-ticks {
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(148, 163, 184, 0.45) 0,
+    rgba(148, 163, 184, 0.45) 1px,
+    transparent 1px,
+    transparent 12px
+  ) !important;
+  color: #64748b !important;
+}
+
+/* Scrubber Playhead */
+.butter-playhead {
+  transition: left 0.28s cubic-bezier(0.16, 1, 0.3, 1), width 0.28s ease, background-color 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+}
+
+html.light .butter-playhead {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 4px 16px -2px rgba(2, 132, 199, 0.35) !important;
+}
+
+html.light .butter-playhead span {
+  color: #0f172a !important;
+}
+
+html.light .butter-playhead div {
+  background-color: #0284c7 !important;
 }
 
 /* 3D Squircle Pillow Cards */
 .butter-card {
   border-radius: 30px;
   position: relative;
-  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
   transform-style: preserve-3d;
   will-change: transform;
   cursor: pointer;
   user-select: none;
 }
 
-/* Pillow 3D Glossy Highlights & Deep Shadow */
+/* Pillow 3D Glossy Highlights & Deep Shadow (Dark Mode) */
 .butter-card::before {
   content: "";
   position: absolute;
@@ -57,7 +103,7 @@
   z-index: 2;
 }
 
-/* Subtle Glass Surface Reflection */
+/* Subtle Glass Surface Reflection (Dark Mode) */
 .butter-card::after {
   content: "";
   position: absolute;
@@ -70,6 +116,28 @@
   );
   pointer-events: none;
   z-index: 1;
+}
+
+/* Light Mode 3D Squircle Bevel and Reflections */
+html.light .butter-card {
+  box-shadow: 0 10px 25px -8px rgba(15, 23, 42, 0.07), 0 2px 6px -1px rgba(15, 23, 42, 0.03) !important;
+}
+
+html.light .butter-card::before {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.5) 45%,
+    rgba(203, 213, 225, 0.6) 100%
+  ) !important;
+}
+
+html.light .butter-card::after {
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(255, 255, 255, 0.8) 0%,
+    transparent 65%
+  ) !important;
 }
 
 /* Card Floating Wave Undulation (Butter Organic Motion) */
@@ -98,7 +166,7 @@
   animation: butter-undulate-3 4.8s ease-in-out infinite 1.2s;
 }
 
-/* Pause wave on card hover or when container hovered */
+/* Pause wave on card hover */
 .butter-card:hover {
   animation-play-state: paused !important;
   z-index: 20;
@@ -120,8 +188,336 @@
   filter: drop-shadow(0 15px 25px rgba(0, 240, 255, 0.4));
 }
 
-/* Scrubber Playhead Glow */
-.butter-playhead {
-  transition: left 0.28s cubic-bezier(0.16, 1, 0.3, 1), width 0.28s ease;
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+html.light .butter-card-logo {
+  filter: drop-shadow(0 8px 14px rgba(15, 23, 42, 0.12)) !important;
+}
+
+html.light .butter-card:hover .butter-card-logo {
+  filter: drop-shadow(0 14px 22px rgba(2, 132, 199, 0.25)) !important;
+}
+
+/* ==========================================================================
+   Brand-Specific Card Gradient Themes & Badges (Dark Mode Default)
+   ========================================================================== */
+
+/* Laravel */
+.butter-card-laravel {
+  background: linear-gradient(to bottom, rgba(244, 63, 94, 0.25), #1f0b10 40%, #0a0305 100%);
+  border-color: rgba(244, 63, 94, 0.4);
+}
+.butter-card-laravel:hover {
+  border-color: #fb7185;
+  box-shadow: 0 25px 45px -10px rgba(244, 63, 94, 0.45);
+}
+.butter-badge-laravel {
+  background-color: rgba(244, 63, 94, 0.15);
+  color: #fda4af;
+  border-color: rgba(244, 63, 94, 0.3);
+}
+
+/* HTML & CSS */
+.butter-card-html-css {
+  background: linear-gradient(to bottom, rgba(249, 115, 22, 0.25), #261206 40%, #0c0502 100%);
+  border-color: rgba(249, 115, 22, 0.4);
+}
+.butter-card-html-css:hover {
+  border-color: #fb923c;
+  box-shadow: 0 25px 45px -10px rgba(249, 115, 22, 0.45);
+}
+.butter-badge-html-css {
+  background-color: rgba(249, 115, 22, 0.15);
+  color: #fdba74;
+  border-color: rgba(249, 115, 22, 0.3);
+}
+
+/* Tailwind CSS */
+.butter-card-tailwind-css {
+  background: linear-gradient(to bottom, rgba(6, 182, 212, 0.25), #071926 40%, #020b12 100%);
+  border-color: rgba(6, 182, 212, 0.4);
+}
+.butter-card-tailwind-css:hover {
+  border-color: #22d3ee;
+  box-shadow: 0 25px 45px -10px rgba(6, 182, 212, 0.45);
+}
+.butter-badge-tailwind-css {
+  background-color: rgba(6, 182, 212, 0.15);
+  color: #67e8f9;
+  border-color: rgba(6, 182, 212, 0.3);
+}
+
+/* JavaScript */
+.butter-card-javascript {
+  background: linear-gradient(to bottom, rgba(251, 191, 36, 0.25), #251d07 40%, #0c0902 100%);
+  border-color: rgba(251, 191, 36, 0.4);
+}
+.butter-card-javascript:hover {
+  border-color: #fde047;
+  box-shadow: 0 25px 45px -10px rgba(251, 191, 36, 0.45);
+}
+.butter-badge-javascript {
+  background-color: rgba(251, 191, 36, 0.15);
+  color: #fde047;
+  border-color: rgba(251, 191, 36, 0.3);
+}
+
+/* PHP */
+.butter-card-php {
+  background: linear-gradient(to bottom, rgba(99, 102, 241, 0.25), #181938 40%, #080816 100%);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+.butter-card-php:hover {
+  border-color: #818cf8;
+  box-shadow: 0 25px 45px -10px rgba(99, 102, 241, 0.45);
+}
+.butter-badge-php {
+  background-color: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+/* MySQL */
+.butter-card-mysql {
+  background: linear-gradient(to bottom, rgba(56, 189, 248, 0.25), #07192e 40%, #020914 100%);
+  border-color: rgba(56, 189, 248, 0.4);
+}
+.butter-card-mysql:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 25px 45px -10px rgba(56, 189, 248, 0.45);
+}
+.butter-badge-mysql {
+  background-color: rgba(56, 189, 248, 0.15);
+  color: #7dd3fc;
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+/* Figma */
+.butter-card-figma {
+  background: linear-gradient(to bottom, rgba(168, 85, 247, 0.25), #1f0e2b 40%, #0a040f 100%);
+  border-color: rgba(168, 85, 247, 0.4);
+}
+.butter-card-figma:hover {
+  border-color: #c084fc;
+  box-shadow: 0 25px 45px -10px rgba(168, 85, 247, 0.45);
+}
+.butter-badge-figma {
+  background-color: rgba(168, 85, 247, 0.15);
+  color: #d8b4fe;
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+/* MongoDB */
+.butter-card-mongodb {
+  background: linear-gradient(to bottom, rgba(16, 185, 129, 0.25), #071f14 40%, #020d08 100%);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+.butter-card-mongodb:hover {
+  border-color: #34d399;
+  box-shadow: 0 25px 45px -10px rgba(16, 185, 129, 0.45);
+}
+.butter-badge-mongodb {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+/* ==========================================================================
+   Brand-Specific Card Gradient Themes & Badges (Light Mode)
+   ========================================================================== */
+
+/* Laravel Light */
+html.light .butter-card-laravel {
+  background: linear-gradient(to bottom, #fff1f2 0%, #ffffff 50%, #ffe4e6 100%) !important;
+  border-color: #fecdd3 !important;
+}
+html.light .butter-card-laravel:hover {
+  border-color: #f43f5e !important;
+  box-shadow: 0 20px 35px -8px rgba(244, 63, 94, 0.22) !important;
+}
+html.light .butter-badge-laravel {
+  background-color: #ffe4e6 !important;
+  color: #e11d48 !important;
+  border-color: #fecdd3 !important;
+}
+
+/* HTML & CSS Light */
+html.light .butter-card-html-css {
+  background: linear-gradient(to bottom, #fff7ed 0%, #ffffff 50%, #ffedd5 100%) !important;
+  border-color: #fed7aa !important;
+}
+html.light .butter-card-html-css:hover {
+  border-color: #f97316 !important;
+  box-shadow: 0 20px 35px -8px rgba(249, 115, 22, 0.22) !important;
+}
+html.light .butter-badge-html-css {
+  background-color: #ffedd5 !important;
+  color: #ea580c !important;
+  border-color: #fed7aa !important;
+}
+
+/* Tailwind CSS Light */
+html.light .butter-card-tailwind-css {
+  background: linear-gradient(to bottom, #ecfeff 0%, #ffffff 50%, #cffafe 100%) !important;
+  border-color: #a5f3fc !important;
+}
+html.light .butter-card-tailwind-css:hover {
+  border-color: #06b6d4 !important;
+  box-shadow: 0 20px 35px -8px rgba(6, 182, 212, 0.22) !important;
+}
+html.light .butter-badge-tailwind-css {
+  background-color: #cffafe !important;
+  color: #0891b2 !important;
+  border-color: #a5f3fc !important;
+}
+
+/* JavaScript Light */
+html.light .butter-card-javascript {
+  background: linear-gradient(to bottom, #fefce8 0%, #ffffff 50%, #fef9c3 100%) !important;
+  border-color: #fef08a !important;
+}
+html.light .butter-card-javascript:hover {
+  border-color: #eab308 !important;
+  box-shadow: 0 20px 35px -8px rgba(234, 179, 8, 0.22) !important;
+}
+html.light .butter-badge-javascript {
+  background-color: #fef9c3 !important;
+  color: #a16207 !important;
+  border-color: #fef08a !important;
+}
+
+/* PHP Light */
+html.light .butter-card-php {
+  background: linear-gradient(to bottom, #eef2ff 0%, #ffffff 50%, #e0e7ff 100%) !important;
+  border-color: #c7d2fe !important;
+}
+html.light .butter-card-php:hover {
+  border-color: #6366f1 !important;
+  box-shadow: 0 20px 35px -8px rgba(99, 102, 241, 0.22) !important;
+}
+html.light .butter-badge-php {
+  background-color: #e0e7ff !important;
+  color: #4338ca !important;
+  border-color: #c7d2fe !important;
+}
+
+/* MySQL Light */
+html.light .butter-card-mysql {
+  background: linear-gradient(to bottom, #f0f9ff 0%, #ffffff 50%, #e0f2fe 100%) !important;
+  border-color: #bae6fd !important;
+}
+html.light .butter-card-mysql:hover {
+  border-color: #0ea5e9 !important;
+  box-shadow: 0 20px 35px -8px rgba(14, 165, 233, 0.22) !important;
+}
+html.light .butter-badge-mysql {
+  background-color: #e0f2fe !important;
+  color: #0369a1 !important;
+  border-color: #bae6fd !important;
+}
+
+/* Figma Light */
+html.light .butter-card-figma {
+  background: linear-gradient(to bottom, #faf5ff 0%, #ffffff 50%, #f3e8ff 100%) !important;
+  border-color: #e9d5ff !important;
+}
+html.light .butter-card-figma:hover {
+  border-color: #a855f7 !important;
+  box-shadow: 0 20px 35px -8px rgba(168, 85, 247, 0.22) !important;
+}
+html.light .butter-badge-figma {
+  background-color: #f3e8ff !important;
+  color: #7e22ce !important;
+  border-color: #e9d5ff !important;
+}
+
+/* MongoDB Light */
+html.light .butter-card-mongodb {
+  background: linear-gradient(to bottom, #ecfdf5 0%, #ffffff 50%, #d1fae5 100%) !important;
+  border-color: #a7f3d0 !important;
+}
+html.light .butter-card-mongodb:hover {
+  border-color: #10b981 !important;
+  box-shadow: 0 20px 35px -8px rgba(16, 185, 129, 0.22) !important;
+}
+html.light .butter-badge-mongodb {
+  background-color: #d1fae5 !important;
+  color: #047857 !important;
+  border-color: #a7f3d0 !important;
+}
+
+/* ==========================================================================
+   Deck Header & Meta Elements in Light Mode
+   ========================================================================== */
+
+html.light #butter-skills-deck [class*="border-white\/10"],
+html.light #butter-skills-deck .border-white\/10,
+html.light #butter-skills-deck .border-b {
+  border-color: rgba(226, 232, 240, 0.9) !important;
+}
+
+html.light #butter-skills-deck .border-white\/5 {
+  border-color: rgba(226, 232, 240, 0.8) !important;
+}
+
+html.light #butter-play-btn {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
+
+html.light #butter-play-btn:hover {
+  background-color: #f1f5f9 !important;
+}
+
+html.light #butter-pause-icon,
+html.light #butter-play-icon {
+  color: #0284c7 !important;
+}
+
+html.light #butter-timecode {
+  color: #0284c7 !important;
+}
+
+html.light #butter-skills-deck .font-mono.text-white {
+  color: #0f172a !important;
+}
+
+html.light #butter-skills-deck .bg-white\/5 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #334155 !important;
+}
+
+html.light #butter-skills-deck .text-slate-300 {
+  color: #334155 !important;
+}
+
+html.light #butter-skills-deck .text-slate-500 {
+  color: #64748b !important;
+}
+
+html.light #butter-skills-deck .text-cyan-300 {
+  color: #0284c7 !important;
+}
+
+html.light #butter-skills-deck .bg-cyan-500\/10 {
+  background-color: rgba(2, 132, 199, 0.08) !important;
+  border-color: rgba(2, 132, 199, 0.25) !important;
+  color: #0369a1 !important;
+}
+
+html.light #butter-skills-deck .bg-cyan-400 {
+  background-color: #0284c7 !important;
+}
+
+html.light .butter-card-title {
+  color: #0f172a !important;
+}
+
+html.light .butter-card-desc {
+  color: #64748b !important;
+}
+
+html.light .butter-card-num {
+  color: #94a3b8 !important;
 }
