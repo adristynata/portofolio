@@ -1,0 +1,122 @@
+/* ==========================================================================
+   Butter.video & Noth.in Inspired Interactive Cursor & Spotlight
+   ========================================================================== */
+
+@media (hover: hover) and (pointer: fine) {
+  /* Cursor Center Dot */
+  #cursor-dot {
+    width: 7px;
+    height: 7px;
+    background-color: #00f0ff;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.9), 0 0 20px rgba(0, 240, 255, 0.4);
+    pointer-events: none;
+    z-index: 99999;
+  }
+
+  /* Cursor Fluid Follower */
+  #cursor-follower {
+    width: 38px;
+    height: 38px;
+    border: 1.5px solid rgba(0, 240, 255, 0.45);
+    background-color: rgba(0, 240, 255, 0.04);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+    pointer-events: none;
+    z-index: 99998;
+    transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                height 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.1s ease-out;
+  }
+
+  /* 1. Link / Button Magnetic Expansion */
+  #cursor-follower.cursor-mode-link {
+    width: 52px;
+    height: 52px;
+    border-color: rgba(0, 240, 255, 0.85);
+    background-color: rgba(0, 240, 255, 0.12);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.35);
+  }
+
+  /* 2. Project Card Preview Morphing (Butter.video style) */
+  #cursor-follower.cursor-mode-project {
+    width: 82px;
+    height: 82px;
+    border: 1.5px solid rgba(56, 189, 248, 0.8);
+    background-color: rgba(7, 11, 25, 0.85);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
+    color: #00f0ff;
+  }
+
+  #cursor-follower.cursor-mode-project #cursor-label {
+    letter-spacing: 0.2em;
+    font-weight: 800;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+  }
+
+  /* 3. Certificate / Media Mode */
+  #cursor-follower.cursor-mode-media {
+    width: 76px;
+    height: 76px;
+    border: 1.5px solid rgba(168, 85, 247, 0.8);
+    background-color: rgba(7, 11, 25, 0.85);
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+    color: #c084fc;
+  }
+
+  #cursor-follower.cursor-mode-media #cursor-label {
+    letter-spacing: 0.18em;
+    font-weight: 800;
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
+  }
+
+  /* 4. Text Highlight Mode (Noth.in inverted feel) */
+  #cursor-follower.cursor-mode-text {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background-color: #ffffff;
+    mix-blend-mode: difference;
+    box-shadow: none;
+  }
+
+  /* Click Animation */
+  #cursor-follower.cursor-clicking {
+    transform: translate(-50%, -50%) scale(0.82) !important;
+  }
+
+  #cursor-dot.cursor-dot-clicking {
+    transform: translate(-50%, -50%) scale(1.6) !important;
+  }
+
+  /* Interactive Spotlight on Dark Glass Cards */
+  .dark-glass-card {
+    position: relative;
+  }
+
+  .dark-glass-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(
+      320px circle at var(--card-mouse-x, -500px) var(--card-mouse-y, -500px),
+      rgba(0, 240, 255, 0.5),
+      rgba(168, 85, 247, 0.3) 40%,
+      transparent 70%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: 10;
+  }
+
+  .dark-glass-card:hover::before {
+    opacity: 1;
+  }
+}
