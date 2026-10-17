@@ -41,8 +41,8 @@
                     @forelse ($projects as $item)
                         <tr class="hover:bg-slate-900/40 transition">
                             <td class="px-5 py-4">
-                                @if($item->image)
-                                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" class="w-16 h-12 object-cover rounded-xl border border-slate-800">
+                                @if($item->image_url)
+                                    <img src="{{ $item->image_url }}" alt="{{ $item->title }}" class="w-16 h-12 object-cover rounded-xl border border-slate-800">
                                 @else
                                     <div class="w-16 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-600 font-bold text-xs">
                                         No Image

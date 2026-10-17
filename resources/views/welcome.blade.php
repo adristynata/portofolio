@@ -352,9 +352,9 @@
                     <div class="dark-glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col justify-between">
                         <div>
                             {{-- Image Header with Clickable Zoom Preview --}}
-                            <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-900 {{ $project->image ? 'cursor-pointer group/img' : '' }}"
-                                 @if($project->image)
-                                     data-img="{{ asset('storage/' . $project->image) }}"
+                            <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-900 {{ $project->image_url ? 'cursor-pointer group/img' : '' }}"
+                                 @if($project->image_url)
+                                     data-img="{{ $project->image_url }}"
                                      data-title="{{ $project->title }}"
                                      data-desc="{{ $project->description }}"
                                      data-demo="{{ $project->demo_link ? (Str::startsWith($project->demo_link, ['http://', 'https://']) ? $project->demo_link : 'https://' . $project->demo_link) : '' }}"
@@ -363,8 +363,8 @@
                                      title="Klik untuk melihat gambar penuh"
                                  @endif
                             >
-                                @if($project->image)
-                                    <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105">
+                                @if($project->image_url)
+                                    <img src="{{ $project->image_url }}" alt="{{ $project->title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105">
                                     <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                         <span class="px-3.5 py-1.5 rounded-full text-xs font-bold text-white bg-slate-900/85 backdrop-blur-md border border-cyan-500/40 shadow-xl flex items-center gap-1.5 transform translate-y-2 group-hover/img:translate-y-0 transition-transform duration-300">
                                             <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path></svg>
@@ -631,9 +631,9 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
                 @forelse ($certificates as $cert)
                     <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col sm:flex-row items-start gap-4 sm:gap-5">
-                        @if($cert->image)
-                            <div class="w-full sm:w-28 h-40 sm:h-24 rounded-xl overflow-hidden bg-slate-900 border border-slate-800 shrink-0 cursor-pointer group/img" onclick="openCertModal('{{ asset('storage/' . $cert->image) }}', '{{ $cert->title }}')">
-                                <img src="{{ asset('storage/' . $cert->image) }}" alt="{{ $cert->title }}" class="w-full h-full object-cover group-hover/img:scale-105 transition duration-300">
+                        @if($cert->image_url)
+                            <div class="w-full sm:w-28 h-40 sm:h-24 rounded-xl overflow-hidden bg-slate-900 border border-slate-800 shrink-0 cursor-pointer group/img" onclick="openCertModal('{{ $cert->image_url }}', '{{ $cert->title }}')">
+                                <img src="{{ $cert->image_url }}" alt="{{ $cert->title }}" class="w-full h-full object-cover group-hover/img:scale-105 transition duration-300">
                             </div>
                         @else
                             <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
@@ -648,8 +648,8 @@
                                 <span class="inline-block text-[11px] font-semibold text-slate-400 bg-slate-900 border border-slate-800 px-3 py-1 rounded-full">
                                     Tahun {{ $cert->year }}
                                 </span>
-                                @if($cert->image)
-                                    <button type="button" onclick="openCertModal('{{ asset('storage/' . $cert->image) }}', '{{ $cert->title }}')" class="text-xs font-bold text-cyan-400 hover:text-cyan-300 transition flex items-center gap-1">
+                                @if($cert->image_url)
+                                    <button type="button" onclick="openCertModal('{{ $cert->image_url }}', '{{ $cert->title }}')" class="text-xs font-bold text-cyan-400 hover:text-cyan-300 transition flex items-center gap-1">
                                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                                         <span>Lihat Sertifikat</span>
                                     </button>

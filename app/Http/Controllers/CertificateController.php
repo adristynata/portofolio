@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Certificate;
+use App\Traits\HandlesImageUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class CertificateController extends Controller
 {
+    use HandlesImageUpload;
+
     public function index()
     {
         $certificates = Certificate::latest()->get();
@@ -28,8 +31,7 @@ class CertificateController extends Controller
         $data = $request->except('image');
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('certificates', 'public');
-            $data['image'] = $path;
+            $data['image'] = $this->storeImage($request->file('image'), 'certificates');
         }
 
         Certificate::create($data);
@@ -51,11 +53,12 @@ class CertificateController extends Controller
         $data = $request->except('image');
 
         if ($request->hasFile('image')) {
-            if ($certificate->image) {
-                Storage::disk('public')->delete($certificate->image);
+            if ($certificate->image && !str_starts_with($certificate->image, 'data:')) {
+                try {
+                    Storage::disk('public')->delete($certificate->image);
+                } catch (\Throwable $e) {}
             }
-            $path = $request->file('image')->store('certificates', 'public');
-            $data['image'] = $path;
+            $data['image'] = $this->storeImage($request->file('image'), 'certificates');
         }
 
         $certificate->update($data);
@@ -65,8 +68,10 @@ class CertificateController extends Controller
 
     public function destroy(Certificate $certificate)
     {
-        if ($certificate->image) {
-            Storage::disk('public')->delete($certificate->image);
+        if ($certificate->image && !str_starts_with($certificate->image, 'data:')) {
+            try {
+                Storage::disk('public')->delete($certificate->image);
+            } catch (\Throwable $e) {}
         }
         $certificate->delete();
 

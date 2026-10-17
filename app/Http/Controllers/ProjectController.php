@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Traits\HandlesImageUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
+    use HandlesImageUpload;
+
     /**
      * Display a listing of the resource.
      */
@@ -48,7 +51,7 @@ class ProjectController extends Controller
         $data = $request->only(['title', 'description', 'github_link', 'demo_link']);
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('projects', 'public');
+            $data['image'] = $this->storeImage($request->file('image'), 'projects');
         }
 
         Project::create($data);
@@ -96,10 +99,12 @@ class ProjectController extends Controller
         $data = $request->only(['title', 'description', 'github_link', 'demo_link']);
 
         if ($request->hasFile('image')) {
-            if ($project->image) {
-                Storage::disk('public')->delete($project->image);
+            if ($project->image && !str_starts_with($project->image, 'data:')) {
+                try {
+                    Storage::disk('public')->delete($project->image);
+                } catch (\Throwable $e) {}
             }
-            $data['image'] = $request->file('image')->store('projects', 'public');
+            $data['image'] = $this->storeImage($request->file('image'), 'projects');
         }
 
         $project->update($data);
@@ -114,8 +119,10 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
 
-        if ($project->image) {
-            Storage::disk('public')->delete($project->image);
+        if ($project->image && !str_starts_with($project->image, 'data:')) {
+            try {
+                Storage::disk('public')->delete($project->image);
+            } catch (\Throwable $e) {}
         }
         $project->delete();
 
