@@ -1,48 +1,68 @@
 /**
- * Butter.video & Noth.in inspired Fluid Interactive Cursor & Ambient Spotlight
- * High performance 60fps requestAnimationFrame with lerp easing
+ * High-End Luxury Fluid Cursor inspired by Butter.video & Noth.in
+ * Features:
+ * - 60fps GPU translate3d with spring interpolation
+ * - Velocity-based fluid squish & stretch (Jelly / Butter deformation)
+ * - Frosted glass iridescent aura with micro-blur
+ * - Contextual morphing (Pill, Magnetic, Difference Text Invert)
+ * - Pure desktop pointer replacement with safe text-input fallback
  */
 
 export function initInteractiveCursor() {
-    // Only activate on devices with fine pointer (mouse/trackpad), skip touch screens
+    // Only activate on devices with fine pointer (mouse/trackpad), never on touch
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
         return;
     }
 
-    // Check if cursor elements already exist
-    if (document.getElementById('custom-cursor-container')) {
-        return;
+    // Remove any existing instance
+    const oldContainer = document.getElementById('custom-cursor-container');
+    if (oldContainer) {
+        oldContainer.remove();
     }
 
-    // Create DOM structure for cursor
+    // Create DOM structure
     const container = document.createElement('div');
     container.id = 'custom-cursor-container';
     container.innerHTML = `
-        <div id="cursor-ambient-glow" class="pointer-events-none fixed inset-0 z-30 transition-opacity duration-500 opacity-0"></div>
-        <div id="cursor-dot" class="pointer-events-none fixed top-0 left-0 z-[99999] -translate-x-1/2 -translate-y-1/2 rounded-full transition-transform duration-75 ease-out opacity-0"></div>
-        <div id="cursor-follower" class="pointer-events-none fixed top-0 left-0 z-[99998] -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-300 ease-out flex items-center justify-center text-[10px] font-extrabold uppercase tracking-widest text-cyan-300 opacity-0 select-none backdrop-blur-[2px]">
-            <span id="cursor-label" class="opacity-0 transition-opacity duration-200"></span>
+        <div id="cursor-ambient-spotlight" class="pointer-events-none fixed inset-0 z-30 transition-opacity duration-700 opacity-0"></div>
+        <div id="cursor-dot" class="pointer-events-none fixed top-0 left-0 z-[99999] rounded-full opacity-0"></div>
+        <div id="cursor-follower" class="pointer-events-none fixed top-0 left-0 z-[99998] rounded-full opacity-0 flex items-center justify-center">
+            <span id="cursor-label" class="pointer-events-none opacity-0 select-none"></span>
         </div>
     `;
     document.body.appendChild(container);
 
     const dot = document.getElementById('cursor-dot');
     const follower = document.getElementById('cursor-follower');
-    const ambientGlow = document.getElementById('cursor-ambient-glow');
+    const spotlight = document.getElementById('cursor-ambient-spotlight');
     const label = document.getElementById('cursor-label');
 
-    // Coordinates & Lerp Physics
+    // Hide default OS cursor on body when inside the page
+    document.documentElement.classList.add('has-custom-cursor');
+
+    // Physics & State Variables
     let mouseX = -100;
     let mouseY = -100;
+    let prevMouseX = -100;
+    let prevMouseY = -100;
+
     let followerX = -100;
     let followerY = -100;
+
+    let velX = 0;
+    let velY = 0;
+    let currentAngle = 0;
+    let currentScaleX = 1;
+    let currentScaleY = 1;
+
     let isVisible = false;
     let isClicking = false;
-    let currentMode = 'default'; // 'default', 'link', 'project', 'media', 'text'
+    let isHoveringText = false;
+    let targetMode = 'default'; // 'default', 'link', 'project', 'stack', 'media', 'text'
 
-    const lerp = (start, end, factor) => start + (end - start) * factor;
+    const lerp = (a, b, n) => (1 - n) * a + n * b;
 
-    // Mouse Move Event
+    // Mouse Movement
     window.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
@@ -50,67 +70,98 @@ export function initInteractiveCursor() {
         if (!isVisible) {
             followerX = mouseX;
             followerY = mouseY;
+            prevMouseX = mouseX;
+            prevMouseY = mouseY;
             isVisible = true;
             dot.style.opacity = '1';
             follower.style.opacity = '1';
-            ambientGlow.style.opacity = '1';
+            spotlight.style.opacity = '1';
         }
 
-        // Direct position update for the sharp center dot
-        dot.style.left = `${mouseX}px`;
-        dot.style.top = `${mouseY}px`;
+        // 0-latency instant positioning for the center precision dot
+        dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
 
-        // Update ambient spotlight radial coordinates
-        ambientGlow.style.background = `radial-gradient(650px circle at ${mouseX}px ${mouseY}px, rgba(0, 240, 255, 0.05), rgba(168, 85, 247, 0.02) 40%, transparent 75%)`;
+        // Ambient spotlight glow following cursor
+        spotlight.style.background = `radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(0, 240, 255, 0.045), rgba(168, 85, 247, 0.02) 40%, transparent 70%)`;
     }, { passive: true });
 
-    // Mouse Leave & Enter Window
+    // Window In/Out Handlers
     document.addEventListener('mouseleave', () => {
         isVisible = false;
         dot.style.opacity = '0';
         follower.style.opacity = '0';
-        ambientGlow.style.opacity = '0';
+        spotlight.style.opacity = '0';
     });
 
     document.addEventListener('mouseenter', () => {
         isVisible = true;
         dot.style.opacity = '1';
         follower.style.opacity = '1';
-        ambientGlow.style.opacity = '1';
+        spotlight.style.opacity = '1';
     });
 
-    // Click / Mouse Down Effects
+    // Click Physics
     window.addEventListener('mousedown', () => {
         isClicking = true;
-        follower.classList.add('cursor-clicking');
-        dot.classList.add('cursor-dot-clicking');
+        follower.classList.add('is-clicking');
+        dot.classList.add('is-clicking');
     });
 
     window.addEventListener('mouseup', () => {
         isClicking = false;
-        follower.classList.remove('cursor-clicking');
-        dot.classList.remove('cursor-dot-clicking');
+        follower.classList.remove('is-clicking');
+        dot.classList.remove('is-clicking');
     });
 
-    // 60fps Animation Loop with Fluid Inertia
-    function render() {
+    // 60FPS Fluid Animation Loop with Velocity Squish & Stretch (Butter signature)
+    function renderLoop() {
         if (isVisible) {
-            // Smooth lerp (0.16 factor gives a silky butter-like drag)
-            followerX = lerp(followerX, mouseX, 0.16);
-            followerY = lerp(followerY, mouseY, 0.16);
+            // Smooth follower position interpolation
+            followerX = lerp(followerX, mouseX, 0.18);
+            followerY = lerp(followerY, mouseY, 0.18);
 
-            follower.style.left = `${followerX}px`;
-            follower.style.top = `${followerY}px`;
+            // Calculate instantaneous velocity
+            velX = mouseX - prevMouseX;
+            velY = mouseY - prevMouseY;
+            prevMouseX = mouseX;
+            prevMouseY = mouseY;
+
+            const speed = Math.sqrt(velX * velX + velY * velY);
+
+            // Calculate stretch angle & amount (jelly deformation)
+            if (speed > 1.5 && targetMode === 'default') {
+                const angle = Math.atan2(velY, velX);
+                currentAngle = lerp(currentAngle, angle, 0.2);
+
+                const stretch = Math.min(speed * 0.0035, 0.35);
+                currentScaleX = lerp(currentScaleX, 1 + stretch, 0.2);
+                currentScaleY = lerp(currentScaleY, 1 - stretch * 0.6, 0.2);
+            } else {
+                currentAngle = lerp(currentAngle, 0, 0.15);
+                currentScaleX = lerp(currentScaleX, 1, 0.15);
+                currentScaleY = lerp(currentScaleY, 1, 0.15);
+            }
+
+            // Apply GPU-accelerated transform
+            if (targetMode === 'project' || targetMode === 'stack' || targetMode === 'media') {
+                // Keep pill upright when showing text
+                follower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%) scale(${isClicking ? 0.9 : 1})`;
+            } else {
+                // Apply fluid jelly angle & stretch
+                follower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%) rotate(${currentAngle}rad) scale(${currentScaleX}, ${currentScaleY})`;
+            }
         }
 
-        requestAnimationFrame(render);
+        requestAnimationFrame(renderLoop);
     }
-    requestAnimationFrame(render);
+    requestAnimationFrame(renderLoop);
 
-    // Contextual Hover Handlers (Butter.video & Noth.in style)
-    function updateCursorMode(mode, text = '') {
-        currentMode = mode;
-        follower.className = follower.className.replace(/\bcursor-mode-\S+/g, '');
+    // Contextual Mode Morphing
+    function setMode(mode, text = '') {
+        if (targetMode === mode && label.textContent === text) return;
+        targetMode = mode;
+
+        follower.className = 'pointer-events-none fixed top-0 left-0 z-[99998] rounded-full opacity-1 flex items-center justify-center';
 
         if (text) {
             label.textContent = text;
@@ -121,54 +172,70 @@ export function initInteractiveCursor() {
         }
 
         if (mode !== 'default') {
-            follower.classList.add(`cursor-mode-${mode}`);
+            follower.classList.add(`mode-${mode}`);
+            dot.classList.add(`dot-mode-${mode}`);
+        } else {
+            dot.className = 'pointer-events-none fixed top-0 left-0 z-[99999] rounded-full opacity-1';
         }
     }
 
-    // Attach listeners with event delegation for optimum performance
+    // Event Delegation for Interactive Elements
     document.addEventListener('mouseover', (e) => {
         const target = e.target;
 
-        // 1. Project cards (Butter.video style expanded preview pill)
-        const projectCard = target.closest('#project .dark-glass-card, [data-img]');
-        if (projectCard) {
-            updateCursorMode('project', 'VIEW');
-            return;
-        }
-
-        // 1b. Butter Skills Cards (Butter.video style)
+        // 1. Butter Skills Cards Deck
         const butterCard = target.closest('.butter-card');
         if (butterCard) {
-            updateCursorMode('project', 'STACK');
+            setMode('stack', 'STACK');
             return;
         }
 
-        // 2. Certificate cards
+        // 2. Project Cards
+        const projectCard = target.closest('#project .dark-glass-card, [data-img]');
+        if (projectCard) {
+            setMode('project', 'VIEW');
+            return;
+        }
+
+        // 3. Certificate Cards
         const certCard = target.closest('#sertifikat .dark-glass-card');
         if (certCard) {
-            updateCursorMode('media', 'LIHAT');
+            setMode('media', 'LIHAT');
             return;
         }
 
-        // 3. Buttons & Links (Magnetic expansion)
-        const clickable = target.closest('a, button, input[type="submit"], input[type="button"], [role="button"]');
+        // 4. Clickable Links, Buttons, Inputs
+        const clickable = target.closest('a, button, input[type="submit"], input[type="button"], [role="button"], .interactive-pill');
         if (clickable) {
-            updateCursorMode('link');
+            setMode('link');
             return;
         }
 
-        // 4. Headings & Hero big text (Noth.in subtle text highlight)
-        const bigText = target.closest('h1, h2, .highlight-cursor-text');
-        if (bigText) {
-            updateCursorMode('text');
+        // 5. Inverted Headings (Noth.in signature)
+        const heading = target.closest('h1, h2, .invert-hover-text');
+        if (heading) {
+            setMode('text');
             return;
         }
 
-        updateCursorMode('default');
+        // Default normal floating droplet
+        setMode('default');
     });
 
-    // Spotlight on Dark Glass Cards
-    const cards = document.querySelectorAll('.dark-glass-card');
+    // Restore text cursor over inputs and textareas
+    document.addEventListener('mouseover', (e) => {
+        const isInput = e.target.closest('input:not([type="submit"]):not([type="button"]), textarea, [contenteditable="true"]');
+        if (isInput) {
+            dot.style.opacity = '0';
+            follower.style.opacity = '0';
+            document.documentElement.classList.add('cursor-over-input');
+        } else {
+            document.documentElement.classList.remove('cursor-over-input');
+        }
+    });
+
+    // Card Spotlight Highlight Effect
+    const cards = document.querySelectorAll('.dark-glass-card, .butter-card');
     cards.forEach((card) => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();

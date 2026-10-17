@@ -1,122 +1,159 @@
 /* ==========================================================================
-   Butter.video & Noth.in Inspired Interactive Cursor & Spotlight
+   Luxury Butter.video & Noth.in Inspired Fluid Cursor
    ========================================================================== */
 
 @media (hover: hover) and (pointer: fine) {
-  /* Cursor Center Dot */
+  /* 1. Hide default OS cursor to prevent double-cursor conflict */
+  html.has-custom-cursor,
+  html.has-custom-cursor body,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button,
+  html.has-custom-cursor [role="button"] {
+    cursor: none !important;
+  }
+
+  /* Keep standard cursor for inputs & text fields */
+  html.cursor-over-input,
+  html.cursor-over-input input,
+  html.cursor-over-input textarea {
+    cursor: auto !important;
+  }
+
+  /* 2. Precision Core Dot */
   #cursor-dot {
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
     background-color: #00f0ff;
-    box-shadow: 0 0 10px rgba(0, 240, 255, 0.9), 0 0 20px rgba(0, 240, 255, 0.4);
+    border-radius: 9999px;
+    box-shadow: 
+      0 0 8px rgba(0, 240, 255, 0.9),
+      0 0 16px rgba(0, 240, 255, 0.5);
     pointer-events: none;
     z-index: 99999;
+    will-change: transform;
+    transition: opacity 0.2s ease, width 0.2s ease, height 0.2s ease, transform 0.05s ease;
   }
 
-  /* Cursor Fluid Follower */
+  #cursor-dot.dot-mode-link,
+  #cursor-dot.dot-mode-project,
+  #cursor-dot.dot-mode-stack,
+  #cursor-dot.dot-mode-media {
+    opacity: 0.3 !important;
+    width: 3px;
+    height: 3px;
+  }
+
+  #cursor-dot.dot-mode-text {
+    opacity: 0 !important;
+  }
+
+  /* 3. Fluid Frosted Follower Bubble */
   #cursor-follower {
-    width: 38px;
-    height: 38px;
-    border: 1.5px solid rgba(0, 240, 255, 0.45);
-    background-color: rgba(0, 240, 255, 0.04);
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+    width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+    border: 1px solid rgba(0, 240, 255, 0.35);
+    background: radial-gradient(
+      circle at 40% 40%,
+      rgba(0, 240, 255, 0.16) 0%,
+      rgba(168, 85, 247, 0.08) 55%,
+      rgba(0, 240, 255, 0.02) 100%
+    );
+    box-shadow: 0 0 16px rgba(0, 240, 255, 0.2);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     pointer-events: none;
     z-index: 99998;
-    transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-                height 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-                background-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.1s ease-out;
+    will-change: transform, width, height;
+    transition: 
+      width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      background 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
-  /* 1. Link / Button Magnetic Expansion */
-  #cursor-follower.cursor-mode-link {
-    width: 52px;
-    height: 52px;
-    border-color: rgba(0, 240, 255, 0.85);
-    background-color: rgba(0, 240, 255, 0.12);
-    box-shadow: 0 0 25px rgba(0, 240, 255, 0.35);
-  }
-
-  /* 2. Project Card Preview Morphing (Butter.video style) */
-  #cursor-follower.cursor-mode-project {
-    width: 82px;
-    height: 82px;
-    border: 1.5px solid rgba(56, 189, 248, 0.8);
-    background-color: rgba(7, 11, 25, 0.85);
-    box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
-    color: #00f0ff;
-  }
-
-  #cursor-follower.cursor-mode-project #cursor-label {
-    letter-spacing: 0.2em;
+  /* Label inside pill */
+  #cursor-label {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 9px;
     font-weight: 800;
-    text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: opacity 0.2s ease;
   }
 
-  /* 3. Certificate / Media Mode */
-  #cursor-follower.cursor-mode-media {
+  /* 4. Link & Button Magnetic State */
+  #cursor-follower.mode-link {
+    width: 48px;
+    height: 48px;
+    border-color: rgba(0, 240, 255, 0.85);
+    background: rgba(0, 240, 255, 0.18);
+    box-shadow: 
+      0 0 25px rgba(0, 240, 255, 0.45),
+      inset 0 0 12px rgba(0, 240, 255, 0.2);
+  }
+
+  /* 5. Stack / Butter Card Mode */
+  #cursor-follower.mode-stack {
     width: 76px;
     height: 76px;
-    border: 1.5px solid rgba(168, 85, 247, 0.8);
-    background-color: rgba(7, 11, 25, 0.85);
-    box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+    border: 1.5px solid rgba(0, 240, 255, 0.7);
+    background: rgba(8, 12, 26, 0.88);
+    box-shadow: 
+      0 15px 35px -5px rgba(0, 240, 255, 0.35),
+      inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    color: #00f0ff;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* 6. Project Card Mode */
+  #cursor-follower.mode-project {
+    width: 80px;
+    height: 80px;
+    border: 1.5px solid rgba(56, 189, 248, 0.7);
+    background: rgba(8, 12, 26, 0.88);
+    box-shadow: 
+      0 15px 35px -5px rgba(56, 189, 248, 0.35),
+      inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    color: #38bdf8;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* 7. Certificate Mode */
+  #cursor-follower.mode-media {
+    width: 74px;
+    height: 74px;
+    border: 1.5px solid rgba(168, 85, 247, 0.7);
+    background: rgba(8, 12, 26, 0.88);
+    box-shadow: 
+      0 15px 35px -5px rgba(168, 85, 247, 0.35),
+      inset 0 1px 1px rgba(255, 255, 255, 0.3);
     color: #c084fc;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
-  #cursor-follower.cursor-mode-media #cursor-label {
-    letter-spacing: 0.18em;
-    font-weight: 800;
-    text-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
-  }
-
-  /* 4. Text Highlight Mode (Noth.in inverted feel) */
-  #cursor-follower.cursor-mode-text {
-    width: 24px;
-    height: 24px;
+  /* 8. Text Invert Mode (Noth.in Signature) */
+  #cursor-follower.mode-text {
+    width: 50px;
+    height: 50px;
     border: none;
-    background-color: #ffffff;
+    background: #ffffff;
     mix-blend-mode: difference;
     box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
-  /* Click Animation */
-  #cursor-follower.cursor-clicking {
-    transform: translate(-50%, -50%) scale(0.82) !important;
+  /* 9. Click Compression Pulse */
+  #cursor-follower.is-clicking {
+    transform: translate3d(var(--tw-translate-x, -50%), var(--tw-translate-y, -50%), 0) scale(0.78) !important;
   }
 
-  #cursor-dot.cursor-dot-clicking {
-    transform: translate(-50%, -50%) scale(1.6) !important;
-  }
-
-  /* Interactive Spotlight on Dark Glass Cards */
-  .dark-glass-card {
-    position: relative;
-  }
-
-  .dark-glass-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: radial-gradient(
-      320px circle at var(--card-mouse-x, -500px) var(--card-mouse-y, -500px),
-      rgba(0, 240, 255, 0.5),
-      rgba(168, 85, 247, 0.3) 40%,
-      transparent 70%
-    );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    z-index: 10;
-  }
-
-  .dark-glass-card:hover::before {
-    opacity: 1;
+  #cursor-dot.is-clicking {
+    transform: translate3d(var(--tw-translate-x, -50%), var(--tw-translate-y, -50%), 0) scale(1.6) !important;
   }
 }
