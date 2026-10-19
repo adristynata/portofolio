@@ -27,15 +27,15 @@ export function initSmoothScroll() {
         return;
     }
 
-    // Initialize Lenis with weighted momentum
+    // Initialize Lenis with natural, responsive momentum
     lenisInstance = new Lenis({
-        duration: 1.25,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential luxury easeOut
+        duration: 0.9,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Snappy easeOut
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
-        wheelMultiplier: 0.95,
-        touchMultiplier: 1.4,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.2,
         infinite: false,
     });
 
@@ -52,7 +52,6 @@ export function initSmoothScroll() {
     const progressBar = document.getElementById('scroll-progress-bar');
     const navbar = document.querySelector('nav');
     const backToTopBtn = document.getElementById('back-to-top-btn');
-    const heroScrollIndicator = document.getElementById('hero-scroll-indicator');
     const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
     const sections = Array.from(document.querySelectorAll('section[id]'));
     const parallaxLayers = document.querySelectorAll('[data-parallax-speed]');
@@ -62,13 +61,13 @@ export function initSmoothScroll() {
         const scrollY = e.scroll;
         const maxScroll = e.limit || (document.documentElement.scrollHeight - window.innerHeight);
 
-        // 1. Top Glowing Progress Bar
+        // 1. Reading Progress Bar
         if (progressBar && maxScroll > 0) {
             const progress = Math.min(1, Math.max(0, scrollY / maxScroll));
             progressBar.style.transform = `scaleX(${progress})`;
         }
 
-        // 2. Navbar Glass Elevation
+        // 2. Navbar Elevation on Scroll
         if (navbar) {
             if (scrollY > 20) {
                 navbar.classList.add('nav-scrolled');
@@ -86,27 +85,16 @@ export function initSmoothScroll() {
             }
         }
 
-        // 4. Hero Scroll Indicator Fade Out
-        if (heroScrollIndicator) {
-            if (scrollY > 40) {
-                heroScrollIndicator.style.opacity = '0';
-                heroScrollIndicator.style.pointerEvents = 'none';
-            } else {
-                heroScrollIndicator.style.opacity = '1';
-                heroScrollIndicator.style.pointerEvents = 'auto';
-            }
-        }
-
-        // 5. Subtle Parallax on Hero Orbs & Decorative Layers
+        // 4. Subtle Parallax on Hero Shapes
         if (parallaxLayers.length > 0 && scrollY < window.innerHeight * 1.5) {
             parallaxLayers.forEach((el) => {
-                const speed = parseFloat(el.getAttribute('data-parallax-speed') || '0.15');
+                const speed = parseFloat(el.getAttribute('data-parallax-speed') || '0.12');
                 const yOffset = scrollY * speed;
                 el.style.transform = `translate3d(0, ${yOffset}px, 0)`;
             });
         }
 
-        // 6. Active Scrollspy
+        // 5. Active Scrollspy
         updateScrollspy(scrollY, sections, navLinks);
     });
 
