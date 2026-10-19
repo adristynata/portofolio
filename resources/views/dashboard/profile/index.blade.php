@@ -26,7 +26,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-2">Judul Peran (Role Title)</label>
-                        <input type="text" name="role_title" value="{{ old('role_title', $user->role_title) }}" class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="Web Developer / Fullstack Software Engineer">
+                        <input type="text" name="role_title" value="{{ old('role_title', $user->role_title) }}" class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="Web Developer / Backend Engineer">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-2">Foto Profil</label>

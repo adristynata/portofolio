@@ -12,7 +12,7 @@
                         Adristy Akiko Yukinata
                     </span>
                     <span class="text-[10px] font-extrabold tracking-widest text-cyan-400 uppercase">
-                        FULLSTACK DEVELOPER
+                        BACKEND DEVELOPER
                     </span>
                 </div>
             </a>

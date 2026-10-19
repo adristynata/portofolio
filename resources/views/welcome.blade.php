@@ -20,7 +20,7 @@
                     <div>
                         <span class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold tracking-wide bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 backdrop-blur-md">
                             <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                            <span>Fullstack Developer</span>
+                            <span>Backend Developer</span>
                         </span>
                     </div>
 
@@ -32,7 +32,7 @@
 
                     {{-- Subheading --}}
                     <h2 class="text-lg sm:text-xl font-bold text-slate-300">
-                        {{ $profile->role_title ?? 'Fullstack Developer' }}
+                        {{ $profile->role_title ?? 'Backend Developer' }}
                     </h2>
 
                     {{-- Bio / Intro Paragraph --}}
