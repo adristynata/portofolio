@@ -194,6 +194,34 @@ html.light section#contact .contact-divider {
   border-color: #e2e8f0 !important;
 }
 
+/* About Section Light Mode Enhancements */
+html.light section#about {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light section#about .about-subcard {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05) !important;
+}
+
+html.light section#about .about-subcard:hover {
+  border-color: #0284c7 !important;
+  box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.12) !important;
+}
+
+html.light section#about .about-chip {
+  background-color: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #334155 !important;
+}
+
+html.light section#about .about-chip:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
 html.light .text-cyan-400 {
   color: #0284c7 !important;
 }
