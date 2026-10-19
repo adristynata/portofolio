@@ -1,6 +1,7 @@
 @import "flowbite/src/themes/default";
 @import "./cursor.css";
 @import "./butter-deck.css";
+@import "./scroll-reveal.css";
 
 @tailwind base;
 @tailwind components;

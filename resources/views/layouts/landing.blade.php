@@ -35,12 +35,22 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-['Plus_Jakarta_Sans',sans-serif] antialiased selection:bg-cyan-500 selection:text-white min-h-screen overflow-x-hidden transition-colors duration-300">
+        {{-- Top Glowing Reading Progress Bar --}}
+        <div id="scroll-progress-bar"></div>
+
         <div class="min-h-screen">
             <!-- Page Content -->
             <main>
                 {{ $slot }}
             </main>
         </div>
+
+        {{-- Floating Glass Back-to-Top Button --}}
+        <button type="button" id="back-to-top-btn" title="Kembali ke atas" aria-label="Kembali ke atas">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+            </svg>
+        </button>
     </body>
 </html>
 
