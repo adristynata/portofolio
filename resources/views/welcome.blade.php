@@ -153,199 +153,125 @@
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             {{-- Section Header --}}
-            <div class="text-center mb-12 sm:mb-16 reveal-init">
-                <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-3.5">
+            <div class="text-center mb-10 sm:mb-12 reveal-init">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-3">
                     <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
                     Tentang Saya
                 </span>
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-                    Rekayasa Backend yang Terstruktur, Cepat & Handal
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                    Dedikasi Dalam Rekayasa Web
                 </h2>
-                <p class="text-slate-400 text-xs sm:text-sm mt-2.5 max-w-2xl mx-auto leading-relaxed">
-                    Mengenal latar belakang, prinsip arsitektur perangkat lunak, dan dedikasi saya dalam merancang sistem server-side serta integrasi API yang tangguh.
+                <p class="text-slate-400 text-xs sm:text-sm mt-2 max-w-xl mx-auto">
+                    Mengenal lebih dekat latar belakang, fokus keahlian, dan perjalanan saya di dunia software engineering.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                 
-                {{-- Left Column: Narasi Rekayasa & 3 Pilar Teknis --}}
-                <div class="lg:col-span-7 flex flex-col gap-6 reveal-left reveal-delay-1">
-                    
-                    {{-- Intro Card --}}
-                    <div class="dark-glass-card p-6 sm:p-7 rounded-2xl border border-white/10 about-subcard">
-                        <div class="flex items-center gap-2 text-xs font-semibold text-cyan-400 mb-2 uppercase tracking-wider">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-                            Filosofi & Latar Belakang
-                        </div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-3">
-                            Mengutamakan Efisiensi Logika & Skalabilitas Arsitektur
+                {{-- Left Column: Ringkasan Profil & Info Inti --}}
+                <div class="lg:col-span-7 flex flex-col gap-5 reveal-left reveal-delay-1">
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-bold text-white mb-2 leading-snug">
+                            Mengembangkan Solusi Web yang Terstruktur & Handal
                         </h3>
-                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-5 whitespace-pre-line">
-                            {{ $profile->bio ?? 'Saya adalah siswi Rekayasa Perangkat Lunak dari SMK Negeri 1 Bangsri yang berfokus mendalami arsitektur backend, manajemen database, dan integrasi API yang handal.' }}
+                        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed whitespace-pre-line">
+                            {{ $profile->bio ?? 'Saya adalah siswi Rekayasa Perangkat Lunak dari SMK Negeri 1 Bangsri yang berfokus pada arsitektur web dan backend. Terbiasa membangun aplikasi berbasis Laravel, merancang basis data relasional MySQL, serta mengintegrasikan RESTful API yang aman dan efisien.' }}
                         </p>
-                        
-                        {{-- Core Focus Tech Tags --}}
-                        <div class="pt-4 border-t border-white/10">
-                            <span class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2.5">Fokus Keahlian Utama:</span>
-                            <div class="flex flex-wrap items-center gap-2">
-                                <span class="about-chip text-xs font-medium px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300">PHP 8+</span>
-                                <span class="about-chip text-xs font-medium px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300">Laravel</span>
-                                <span class="about-chip text-xs font-medium px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300">RESTful API</span>
-                                <span class="about-chip text-xs font-medium px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300">MySQL</span>
-                                <span class="about-chip text-xs font-medium px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300">MongoDB</span>
-                                <span class="about-chip text-xs font-medium px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300">Postman</span>
-                                <span class="about-chip text-xs font-medium px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300">Git / GitHub</span>
-                            </div>
-                        </div>
                     </div>
 
-                    {{-- 3 Technical Pillars (Nilai & Pendekatan Teknis) --}}
-                    <div class="grid grid-cols-1 gap-3.5">
+                    {{-- 2x2 Key Info Grid --}}
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                         
-                        {{-- Pillar 1: Arsitektur API --}}
-                        <div class="dark-glass-card p-4 sm:p-5 rounded-xl border border-white/10 flex items-start gap-4 hover:border-cyan-500/40 transition about-subcard">
-                            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        {{-- Info 1: Pendidikan --}}
+                        <div class="dark-glass-card p-3.5 rounded-xl border border-white/10 flex items-center gap-3 hover:border-cyan-500/30 transition about-subcard">
+                            <div class="w-9 h-9 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
                             </div>
-                            <div>
-                                <h4 class="text-sm font-bold text-white mb-1">Arsitektur API & Logika Terstruktur</h4>
-                                <p class="text-xs text-slate-400 leading-relaxed">
-                                    Merancang RESTful API yang rapi, pemisahan modul berbasis pola MVC, validasi request yang ketat, serta penanganan error response terstandar (JSON).
-                                </p>
+                            <div class="min-w-0">
+                                <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-400">Pendidikan</span>
+                                <span class="text-xs sm:text-sm font-semibold text-white truncate block">{{ $profile->education ?? 'SMK Negeri 1 Bangsri' }}</span>
                             </div>
                         </div>
 
-                        {{-- Pillar 2: Basis Data --}}
-                        <div class="dark-glass-card p-4 sm:p-5 rounded-xl border border-white/10 flex items-start gap-4 hover:border-purple-500/40 transition about-subcard">
-                            <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
+                        {{-- Info 2: Fokus --}}
+                        <div class="dark-glass-card p-3.5 rounded-xl border border-white/10 flex items-center gap-3 hover:border-purple-500/30 transition about-subcard">
+                            <div class="w-9 h-9 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center shrink-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                             </div>
-                            <div>
-                                <h4 class="text-sm font-bold text-white mb-1">Manajemen Database & Integritas Relasi</h4>
-                                <p class="text-xs text-slate-400 leading-relaxed">
-                                    Perancangan skema relasional di MySQL dengan optimasi foreign key, normalisasi data, serta eksplorasi skema dokumen fleksibel di MongoDB.
-                                </p>
+                            <div class="min-w-0">
+                                <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-400">Fokus Bidang</span>
+                                <span class="text-xs sm:text-sm font-semibold text-white truncate block">{{ $profile->focus ?? 'Backend & Web Dev' }}</span>
                             </div>
                         </div>
 
-                        {{-- Pillar 3: Pengujian & Workflow --}}
-                        <div class="dark-glass-card p-4 sm:p-5 rounded-xl border border-white/10 flex items-start gap-4 hover:border-emerald-500/40 transition about-subcard">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        {{-- Info 3: Domisili --}}
+                        <div class="dark-glass-card p-3.5 rounded-xl border border-white/10 flex items-center gap-3 hover:border-indigo-500/30 transition about-subcard">
+                            <div class="w-9 h-9 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center shrink-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                             </div>
-                            <div>
-                                <h4 class="text-sm font-bold text-white mb-1">Disiplin Pengujian & Version Control</h4>
-                                <p class="text-xs text-slate-400 leading-relaxed">
-                                    Dokumentasi dan pengujian endpoint sistematis via Postman, alur kerja Git yang teratur, serta antusiasme tinggi untuk terus mengadopsi standar industri terkini.
-                                </p>
+                            <div class="min-w-0">
+                                <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-400">Domisili</span>
+                                <span class="text-xs sm:text-sm font-semibold text-white truncate block">{{ $profile->location ?? 'Jepara, Jawa Tengah' }}</span>
                             </div>
                         </div>
 
+                        {{-- Info 4: Status Kesiapan --}}
+                        <div class="dark-glass-card p-3.5 rounded-xl border border-white/10 flex items-center gap-3 hover:border-emerald-500/30 transition about-subcard">
+                            <div class="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div class="min-w-0">
+                                <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-400">Status</span>
+                                <span class="text-xs sm:text-sm font-semibold text-emerald-400 flex items-center gap-1.5 truncate">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+                                    Siap Magang / Proyek
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {{-- Compact Stack Chips --}}
+                    <div class="flex flex-wrap items-center gap-1.5 pt-1">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mr-1.5">Stack:</span>
+                        <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-300">Laravel</span>
+                        <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-300">PHP 8</span>
+                        <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-300">RESTful API</span>
+                        <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-300">MySQL</span>
+                        <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-300">MongoDB</span>
+                        <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-300">Postman</span>
                     </div>
                 </div>
 
-                {{-- Right Column: 4 Stat Cards + Developer Profile Snapshot --}}
-                <div class="lg:col-span-5 flex flex-col gap-4 reveal-right reveal-delay-2">
+                {{-- Right Column: 4 Stat Bento Cards (Tanpa 100% Clean Code) --}}
+                <div class="lg:col-span-5 grid grid-cols-2 gap-3.5 sm:gap-4 reveal-right reveal-delay-2">
                     
-                    {{-- 2x2 Metric Bento Grid --}}
-                    <div class="grid grid-cols-2 gap-3.5">
-                        
-                        {{-- Stat 1: Proyek Selesai --}}
-                        <div class="dark-glass-card p-4 sm:p-5 rounded-2xl border border-white/10 hover:border-cyan-500/40 transition about-subcard flex flex-col justify-between">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-2xl sm:text-3xl font-black text-cyan-400 font-mono tracking-tight">{{ max(1, count($projects)) }}+</span>
-                                <div class="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-                                </div>
-                            </div>
-                            <div>
-                                <span class="block text-xs font-bold text-white uppercase tracking-wider">Proyek Selesai</span>
-                                <span class="text-[11px] text-slate-400 mt-0.5 block leading-snug">Aplikasi web fungsional & database-driven</span>
-                            </div>
-                        </div>
-
-                        {{-- Stat 2: Skill & Tools --}}
-                        <div class="dark-glass-card p-4 sm:p-5 rounded-2xl border border-white/10 hover:border-purple-500/40 transition about-subcard flex flex-col justify-between">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-2xl sm:text-3xl font-black text-purple-400 font-mono tracking-tight">{{ max(1, count($skills)) }}+</span>
-                                <div class="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center shrink-0">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                                </div>
-                            </div>
-                            <div>
-                                <span class="block text-xs font-bold text-white uppercase tracking-wider">Tech Stack</span>
-                                <span class="text-[11px] text-slate-400 mt-0.5 block leading-snug">Bahasa, framework, DB & tooling</span>
-                            </div>
-                        </div>
-
-                        {{-- Stat 3: Sertifikasi Resmi --}}
-                        <div class="dark-glass-card p-4 sm:p-5 rounded-2xl border border-white/10 hover:border-pink-500/40 transition about-subcard flex flex-col justify-between">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-2xl sm:text-3xl font-black text-pink-400 font-mono tracking-tight">{{ max(1, count($certificates)) }}+</span>
-                                <div class="w-8 h-8 rounded-lg bg-pink-500/10 text-pink-400 flex items-center justify-center shrink-0">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
-                                </div>
-                            </div>
-                            <div>
-                                <span class="block text-xs font-bold text-white uppercase tracking-wider">Sertifikasi</span>
-                                <span class="text-[11px] text-slate-400 mt-0.5 block leading-snug">Kompetensi teruji & kursus teknis</span>
-                            </div>
-                        </div>
-
-                        {{-- Stat 4: REPLACING 100% CLEAN CODE -> 2+ Tahun Eksplorasi Koding --}}
-                        <div class="dark-glass-card p-4 sm:p-5 rounded-2xl border border-white/10 hover:border-emerald-500/40 transition about-subcard flex flex-col justify-between">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-2xl sm:text-3xl font-black text-emerald-400 font-mono tracking-tight">2+ Thn</span>
-                                <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                </div>
-                            </div>
-                            <div>
-                                <span class="block text-xs font-bold text-white uppercase tracking-wider">Eksplorasi Koding</span>
-                                <span class="text-[11px] text-slate-400 mt-0.5 block leading-snug">Riset aktif sejak masuk jurusan RPL</span>
-                            </div>
-                        </div>
-
+                    {{-- Stat 1: Proyek Selesai --}}
+                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-white/10 hover:border-cyan-500/40 transition about-subcard flex flex-col items-center justify-center text-center">
+                        <span class="text-3xl sm:text-4xl font-extrabold text-cyan-400 font-mono tracking-tight mb-1">{{ max(1, count($projects)) }}+</span>
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">Proyek Selesai</span>
+                        <span class="text-[11px] text-slate-400 mt-1">Aplikasi web & DB</span>
                     </div>
 
-                    {{-- Developer Snapshot Bento Card --}}
-                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-white/10 about-subcard flex flex-col gap-4">
-                        
-                        {{-- Top status row --}}
-                        <div class="flex items-center justify-between pb-3.5 border-b border-white/10">
-                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Status Kesiapan</span>
-                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                                Siap Magang & Kolaborasi
-                            </span>
-                        </div>
+                    {{-- Stat 2: Tech Stack --}}
+                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-white/10 hover:border-purple-500/40 transition about-subcard flex flex-col items-center justify-center text-center">
+                        <span class="text-3xl sm:text-4xl font-extrabold text-purple-400 font-mono tracking-tight mb-1">{{ max(1, count($skills)) }}+</span>
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">Tech Stack</span>
+                        <span class="text-[11px] text-slate-400 mt-1">Bahasa, DB & tools</span>
+                    </div>
 
-                        {{-- Metadata List --}}
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                            <div class="p-2.5 rounded-xl bg-white/5 border border-white/5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">Institusi</span>
-                                <span class="text-white font-semibold block leading-tight">{{ $profile->education ?? 'SMK Negeri 1 Bangsri' }}</span>
-                            </div>
-                            <div class="p-2.5 rounded-xl bg-white/5 border border-white/5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">Spesialisasi</span>
-                                <span class="text-white font-semibold block leading-tight">{{ $profile->focus ?? 'Backend & Web Dev' }}</span>
-                            </div>
-                            <div class="p-2.5 rounded-xl bg-white/5 border border-white/5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">Domisili</span>
-                                <span class="text-white font-semibold block leading-tight">{{ $profile->location ?? 'Jepara, Jawa Tengah' }}</span>
-                            </div>
-                            <div class="p-2.5 rounded-xl bg-white/5 border border-white/5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">Pendekatan</span>
-                                <span class="text-white font-semibold block leading-tight">Clean MVC & REST API</span>
-                            </div>
-                        </div>
+                    {{-- Stat 3: Sertifikasi Resmi --}}
+                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-white/10 hover:border-pink-500/40 transition about-subcard flex flex-col items-center justify-center text-center">
+                        <span class="text-3xl sm:text-4xl font-extrabold text-pink-400 font-mono tracking-tight mb-1">{{ max(1, count($certificates)) }}+</span>
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">Sertifikasi</span>
+                        <span class="text-[11px] text-slate-400 mt-1">Kompetensi teruji</span>
+                    </div>
 
-                        {{-- Engineering Ethos Quote --}}
-                        <div class="pt-3 border-t border-white/10 flex items-start gap-2.5 text-xs text-slate-400 italic">
-                            <svg class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                            <span>"Membangun sistem web yang tidak hanya bekerja dengan baik, tetapi juga mudah dipahami, dirawat, dan dikembangkan di masa mendatang."</span>
-                        </div>
-
+                    {{-- Stat 4: 2+ Tahun Eksplorasi Koding --}}
+                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-white/10 hover:border-emerald-500/40 transition about-subcard flex flex-col items-center justify-center text-center">
+                        <span class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono tracking-tight mb-1">2+ Thn</span>
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">Eksplorasi Koding</span>
+                        <span class="text-[11px] text-slate-400 mt-1">Riset aktif SMK RPL</span>
                     </div>
 
                 </div>
