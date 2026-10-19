@@ -85,7 +85,7 @@
                         <h4 class="text-xs font-semibold text-cyan-400 mb-1">{{ $msg->subject ?? 'Tanpa Subjek' }}</h4>
                         <p class="text-xs text-slate-400 line-clamp-2">{{ $msg->message }}</p>
                     </div>
-                    <span class="text-[11px] text-slate-500 whitespace-nowrap">{{ $msg->created_at->diffForHumans() }}</span>
+                    <span class="text-[11px] text-slate-500 whitespace-nowrap">{{ $msg->created_at->timezone('Asia/Jakarta')->diffForHumans() }}</span>
                 </div>
             @empty
                 <div class="py-12 text-center text-slate-500 text-sm font-medium italic">

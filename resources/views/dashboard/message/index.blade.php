@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <span class="text-xs font-medium text-slate-500">
-                        {{ $item->created_at->format('d M Y, H:i') }} ({{ $item->created_at->diffForHumans() }})
+                        {{ $item->created_at->timezone('Asia/Jakarta')->translatedFormat('d M Y, H:i') }} WIB ({{ $item->created_at->timezone('Asia/Jakarta')->diffForHumans() }})
                     </span>
                 </div>
 
