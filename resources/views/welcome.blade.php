@@ -7,8 +7,8 @@
     <section id="home" class="relative min-h-screen flex items-center justify-center pt-24 pb-12 sm:pt-24 sm:pb-16 overflow-hidden bg-[#070b19]">
         {{-- Background Glow & Grid Effects --}}
         <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:32px_32px] opacity-25"></div>
-        <div class="absolute top-1/4 -right-20 w-80 sm:w-96 h-80 sm:h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-10 -left-20 w-80 sm:w-96 h-80 sm:h-96 bg-purple-600/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/4 -right-20 w-80 sm:w-96 h-80 sm:h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none ambient-orb"></div>
+        <div class="absolute bottom-10 -left-20 w-80 sm:w-96 h-80 sm:h-96 bg-purple-600/15 rounded-full blur-3xl pointer-events-none ambient-orb" style="animation-delay: -6s;"></div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-4 sm:py-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
@@ -27,7 +27,7 @@
                     {{-- Main Title --}}
                     <h1 class="reveal-init reveal-delay-1 text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-black text-white leading-tight tracking-tight">
                         Halo, Saya <br>
-                        <span class="text-gradient-cyan-purple drop-shadow-sm">{{ $profile->name ?? 'Adristy Akiko Yukinata' }}</span>
+                        <span class="text-gradient-cyan-purple text-shimmer-radiant drop-shadow-sm">{{ $profile->name ?? 'Adristy Akiko Yukinata' }}</span>
                     </h1>
 
                     {{-- Subheading --}}
@@ -142,11 +142,26 @@
 
             </div>
         </div>
+
+        {{-- Hero Floating Scroll Indicator --}}
+        <div id="hero-scroll-indicator" class="absolute bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 cursor-pointer transition-all duration-500 hover:scale-110">
+            <span class="text-[10px] font-mono font-bold tracking-widest text-slate-400 uppercase flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                Scroll to explore
+            </span>
+            <div class="w-5 h-8 rounded-full border-2 border-cyan-400/50 flex items-start justify-center p-1 bg-slate-900/60 backdrop-blur-sm shadow-[0_0_12px_rgba(0,240,255,0.25)]">
+                <div class="w-1.5 h-2.5 rounded-full bg-cyan-400 animate-scroll-pill"></div>
+            </div>
+        </div>
     </section>
 
     {{-- === 2. ABOUT SECTION (#about) === --}}
-    <section id="about" class="relative py-16 sm:py-24 bg-[#090e23] border-t border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" class="relative py-16 sm:py-24 bg-[#090e23] border-t border-slate-800/80 overflow-hidden">
+        {{-- Ambient Aurora Glow Orbs --}}
+        <div class="absolute -top-32 -left-32 w-80 sm:w-96 h-80 sm:h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none ambient-orb"></div>
+        <div class="absolute -bottom-32 -right-32 w-80 sm:w-96 h-80 sm:h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none ambient-orb" style="animation-delay: -5s;"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             {{-- Section Header --}}
             <div class="text-center mb-12 sm:mb-14 reveal-init">
@@ -178,7 +193,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 sm:pt-4">
                         
                         {{-- Card 1: Pendidikan --}}
-                        <div class="dark-glass-card p-4 rounded-xl flex items-center gap-3.5 border border-white/10 hover:border-cyan-500/40 transition reveal-scale reveal-delay-1">
+                        <div class="dark-glass-card card-spotlight p-4 rounded-xl flex items-center gap-3.5 border border-white/10 hover:border-cyan-500/40 transition reveal-scale reveal-delay-1">
                             <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-cyan-400 flex items-center justify-center shrink-0">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
                             </div>
@@ -189,7 +204,7 @@
                         </div>
 
                         {{-- Card 2: Fokus Utama --}}
-                        <div class="dark-glass-card p-4 rounded-xl flex items-center gap-3.5 border border-white/10 hover:border-cyan-500/40 transition reveal-scale reveal-delay-2">
+                        <div class="dark-glass-card card-spotlight p-4 rounded-xl flex items-center gap-3.5 border border-white/10 hover:border-cyan-500/40 transition reveal-scale reveal-delay-2">
                             <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                             </div>
@@ -200,7 +215,7 @@
                         </div>
 
                         {{-- Card 3: Email --}}
-                        <div class="dark-glass-card p-4 rounded-xl flex items-center gap-3.5 border border-white/10 hover:border-cyan-500/40 transition overflow-hidden reveal-scale reveal-delay-3">
+                        <div class="dark-glass-card card-spotlight p-4 rounded-xl flex items-center gap-3.5 border border-white/10 hover:border-cyan-500/40 transition overflow-hidden reveal-scale reveal-delay-3">
                             <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center shrink-0">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                             </div>
@@ -213,7 +228,7 @@
                         </div>
 
                         {{-- Card 4: Lokasi --}}
-                        <div class="dark-glass-card p-4 rounded-xl flex items-center gap-3.5 border border-white/10 hover:border-cyan-500/40 transition reveal-scale reveal-delay-4">
+                        <div class="dark-glass-card card-spotlight p-4 rounded-xl flex items-center gap-3.5 border border-white/10 hover:border-cyan-500/40 transition reveal-scale reveal-delay-4">
                             <div class="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center shrink-0">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                             </div>
@@ -230,26 +245,26 @@
                 <div class="lg:col-span-5 grid grid-cols-2 gap-4 reveal-right reveal-delay-2">
                     
                     {{-- Stat 1 --}}
-                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-center hover:border-cyan-500/50 transition reveal-scale reveal-delay-1">
-                        <span class="text-3xl sm:text-4xl font-black text-cyan-400 mb-1">{{ max(1, count($projects)) }}+</span>
+                    <div class="dark-glass-card card-spotlight card-shine p-5 sm:p-6 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-center hover:border-cyan-500/50 transition reveal-scale reveal-delay-1">
+                        <span class="text-3xl sm:text-4xl font-black text-cyan-400 mb-1" data-counter-target="{{ max(1, count($projects)) }}" data-counter-suffix="+">0+</span>
                         <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">PROYEK SELESAI</span>
                     </div>
 
                     {{-- Stat 2 --}}
-                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-center hover:border-purple-500/50 transition reveal-scale reveal-delay-2">
-                        <span class="text-3xl sm:text-4xl font-black text-purple-400 mb-1">{{ max(1, count($skills)) }}+</span>
+                    <div class="dark-glass-card card-spotlight card-shine p-5 sm:p-6 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-center hover:border-purple-500/50 transition reveal-scale reveal-delay-2">
+                        <span class="text-3xl sm:text-4xl font-black text-purple-400 mb-1" data-counter-target="{{ max(1, count($skills)) }}" data-counter-suffix="+">0+</span>
                         <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">SKILL & TOOLS</span>
                     </div>
 
                     {{-- Stat 3 --}}
-                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-center hover:border-pink-500/50 transition reveal-scale reveal-delay-3">
-                        <span class="text-3xl sm:text-4xl font-black text-pink-400 mb-1">{{ max(1, count($certificates)) }}+</span>
+                    <div class="dark-glass-card card-spotlight card-shine p-5 sm:p-6 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-center hover:border-pink-500/50 transition reveal-scale reveal-delay-3">
+                        <span class="text-3xl sm:text-4xl font-black text-pink-400 mb-1" data-counter-target="{{ max(1, count($certificates)) }}" data-counter-suffix="+">0+</span>
                         <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">SERTIFIKASI</span>
                     </div>
 
                     {{-- Stat 4 --}}
-                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-center hover:border-emerald-500/50 transition reveal-scale reveal-delay-4">
-                        <span class="text-3xl sm:text-4xl font-black text-emerald-400 mb-1">100%</span>
+                    <div class="dark-glass-card card-spotlight card-shine p-5 sm:p-6 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-center hover:border-emerald-500/50 transition reveal-scale reveal-delay-4">
+                        <span class="text-3xl sm:text-4xl font-black text-emerald-400 mb-1" data-counter-target="100" data-counter-suffix="%">0%</span>
                         <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">CLEAN CODE</span>
                     </div>
 
@@ -260,8 +275,12 @@
     </section>
 
     {{-- === 3. SKILLS SECTION (#skill) === --}}
-    <section id="skill" class="relative py-16 sm:py-24 bg-[#070b19]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="skill" class="relative py-16 sm:py-24 bg-[#070b19] overflow-hidden">
+        {{-- Ambient Aurora Glow Orbs --}}
+        <div class="absolute top-1/2 -right-36 -translate-y-1/2 w-80 sm:w-96 h-80 sm:h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none ambient-orb" style="animation-delay: -3s;"></div>
+        <div class="absolute top-1/3 -left-36 w-80 sm:w-96 h-80 sm:h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none ambient-orb" style="animation-delay: -8s;"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             {{-- Section Header --}}
             <div class="text-center mb-12 sm:mb-14 reveal-init">
@@ -406,7 +425,7 @@
                             $waveClass = 'butter-wave-' . (($index % 3) + 1);
                         @endphp
 
-                        <div class="butter-card butter-card-{{ $slug }} {{ $waveClass }} border p-4 sm:p-5 flex flex-col justify-between items-center text-center min-h-[210px] sm:min-h-[230px] shadow-xl group reveal-scale reveal-delay-{{ ($index % 5) + 1 }}"
+                        <div class="butter-card butter-card-{{ $slug }} {{ $waveClass }} card-spotlight card-shine border p-4 sm:p-5 flex flex-col justify-between items-center text-center min-h-[210px] sm:min-h-[230px] shadow-xl group reveal-scale reveal-delay-{{ ($index % 5) + 1 }}"
                              data-skill-index="{{ $index }}">
                             
                             {{-- Top Meta Badges --}}
@@ -449,8 +468,12 @@
     </section>
 
     {{-- === 4. PROJECTS SECTION (#project) === --}}
-    <section id="project" class="relative py-16 sm:py-24 bg-[#090e23] border-t border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="project" class="relative py-16 sm:py-24 bg-[#090e23] border-t border-slate-800/80 overflow-hidden">
+        {{-- Ambient Aurora Glow Orbs --}}
+        <div class="absolute -top-32 -left-32 w-80 sm:w-96 h-80 sm:h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none ambient-orb"></div>
+        <div class="absolute -bottom-32 -right-32 w-80 sm:w-96 h-80 sm:h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none ambient-orb" style="animation-delay: -6s;"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             {{-- Section Header --}}
             <div class="text-center mb-8 sm:mb-12 reveal-init">
@@ -477,7 +500,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 
                 @forelse ($projects as $project)
-                    <div class="dark-glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col justify-between reveal-init reveal-delay-{{ ($loop->index % 3) + 1 }}">
+                    <div class="dark-glass-card card-spotlight card-shine rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col justify-between reveal-init reveal-delay-{{ ($loop->index % 3) + 1 }}">
                         <div>
                             {{-- Image Header with Clickable Zoom Preview --}}
                             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-900 {{ $project->image_url ? 'cursor-pointer group/img' : '' }}"
@@ -541,7 +564,7 @@
                         </div>
                     </div>
                 @empty
-                    <div class="dark-glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col justify-between reveal-init reveal-delay-1">
+                    <div class="dark-glass-card card-spotlight card-shine rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col justify-between reveal-init reveal-delay-1">
                         <div>
                             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-900 cursor-pointer group/img"
                                  data-img="{{ asset('images/foto-saya.jpg') }}"
@@ -684,12 +707,21 @@
                 </p>
             </div>
 
-            {{-- Dynamic Timeline Cards --}}
-            <div class="max-w-4xl mx-auto relative pl-4 sm:pl-6 border-l-2 border-cyan-500/40 space-y-6 sm:space-y-8">
+            {{-- Dynamic Timeline Cards with Animated Cyber Energy Beam --}}
+            <div class="max-w-4xl mx-auto relative pl-6 sm:pl-8 space-y-6 sm:space-y-8 timeline-container">
+                {{-- Animated Glowing Timeline Rail & Traveling Energy Beam --}}
+                <div class="timeline-rail absolute left-1 sm:left-2 top-2 bottom-2 w-[3px] rounded-full overflow-hidden">
+                    <div class="timeline-beam absolute top-0 left-0 w-full h-36 bg-gradient-to-b from-transparent via-cyan-400 to-purple-500"></div>
+                </div>
+
                 @forelse ($experiences as $exp)
                     <div class="relative reveal-left reveal-delay-{{ ($loop->index % 3) + 1 }}">
-                        <div class="absolute -left-[23px] sm:-left-[31px] top-4 w-4 h-4 rounded-full bg-cyan-400 border-4 border-[#070b19] shadow-[0_0_10px_#00f0ff]"></div>
-                        <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition duration-300">
+                        {{-- Radar Glowing Milestone Dot --}}
+                        <div class="absolute -left-[27px] sm:-left-[31px] top-4 w-6 h-6 flex items-center justify-center">
+                            <div class="w-3.5 h-3.5 rounded-full bg-cyan-400 border-2 border-[#070b19] shadow-[0_0_12px_#00f0ff] relative z-10"></div>
+                            <div class="absolute w-5 h-5 rounded-full bg-cyan-400/40 animate-ping"></div>
+                        </div>
+                        <div class="dark-glass-card card-spotlight p-5 sm:p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition duration-300">
                             <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
                                 <span class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
                                     {{ $exp->type }}
@@ -716,8 +748,12 @@
                     </div>
                 @empty
                     <div class="relative reveal-left reveal-delay-1">
-                        <div class="absolute -left-[23px] sm:-left-[31px] top-4 w-4 h-4 rounded-full bg-cyan-400 border-4 border-[#070b19] shadow-[0_0_10px_#00f0ff]"></div>
-                        <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition duration-300">
+                        {{-- Radar Glowing Milestone Dot --}}
+                        <div class="absolute -left-[27px] sm:-left-[31px] top-4 w-6 h-6 flex items-center justify-center">
+                            <div class="w-3.5 h-3.5 rounded-full bg-cyan-400 border-2 border-[#070b19] shadow-[0_0_12px_#00f0ff] relative z-10"></div>
+                            <div class="absolute w-5 h-5 rounded-full bg-cyan-400/40 animate-ping"></div>
+                        </div>
+                        <div class="dark-glass-card card-spotlight p-5 sm:p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition duration-300">
                             <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
                                 <span class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
                                     PENDIDIKAN
@@ -765,7 +801,7 @@
             {{-- Certificate Cards Grid --}}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
                 @forelse ($certificates as $cert)
-                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col sm:flex-row items-start gap-4 sm:gap-5 reveal-scale reveal-delay-{{ ($loop->index % 2) + 1 }}">
+                    <div class="dark-glass-card card-spotlight card-shine p-5 sm:p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col sm:flex-row items-start gap-4 sm:gap-5 reveal-scale reveal-delay-{{ ($loop->index % 2) + 1 }}">
                         @if($cert->image_url)
                             <div class="w-full sm:w-28 h-40 sm:h-24 rounded-xl overflow-hidden bg-slate-900 border border-slate-800 shrink-0 cursor-pointer group/img" onclick="openCertModal('{{ $cert->image_url }}', '{{ $cert->title }}')">
                                 <img src="{{ $cert->image_url }}" alt="{{ $cert->title }}" class="w-full h-full object-cover group-hover/img:scale-105 transition duration-300">
@@ -799,7 +835,7 @@
                         </div>
                     </div>
                 @empty
-                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex items-start gap-4 reveal-scale reveal-delay-1">
+                    <div class="dark-glass-card card-spotlight card-shine p-5 sm:p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex items-start gap-4 reveal-scale reveal-delay-1">
                         <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2 0h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
                         </div>
@@ -860,7 +896,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch max-w-6xl mx-auto">
                 
                 {{-- Left Column: Interactive Contact Command Center --}}
-                <div class="contact-card lg:col-span-5 flex flex-col justify-between h-full p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl shadow-xl reveal-left reveal-delay-1">
+                <div class="contact-card card-spotlight lg:col-span-5 flex flex-col justify-between h-full p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl shadow-xl reveal-left reveal-delay-1">
                     <div>
                         {{-- Availability status pill --}}
                         <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold mb-6">
@@ -988,7 +1024,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('contact.store') }}" method="POST" class="contact-card p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl shadow-xl flex-1 flex flex-col justify-between">
+                    <form action="{{ route('contact.store') }}" method="POST" class="contact-card card-spotlight p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl shadow-xl flex-1 flex flex-col justify-between">
                         @csrf
                         <div class="space-y-4">
                             <div>

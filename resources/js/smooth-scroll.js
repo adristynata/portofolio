@@ -27,15 +27,15 @@ export function initSmoothScroll() {
         return;
     }
 
-    // Initialize Lenis
+    // Initialize Lenis with weighted momentum
     lenisInstance = new Lenis({
-        duration: 1.15,
+        duration: 1.25,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential luxury easeOut
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
-        wheelMultiplier: 1.0,
-        touchMultiplier: 1.5,
+        wheelMultiplier: 0.95,
+        touchMultiplier: 1.4,
         infinite: false,
     });
 
@@ -52,6 +52,7 @@ export function initSmoothScroll() {
     const progressBar = document.getElementById('scroll-progress-bar');
     const navbar = document.querySelector('nav');
     const backToTopBtn = document.getElementById('back-to-top-btn');
+    const heroScrollIndicator = document.getElementById('hero-scroll-indicator');
     const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
     const sections = Array.from(document.querySelectorAll('section[id]'));
     const parallaxLayers = document.querySelectorAll('[data-parallax-speed]');
@@ -85,7 +86,18 @@ export function initSmoothScroll() {
             }
         }
 
-        // 4. Subtle Parallax on Hero Orbs & Decorative Layers
+        // 4. Hero Scroll Indicator Fade Out
+        if (heroScrollIndicator) {
+            if (scrollY > 40) {
+                heroScrollIndicator.style.opacity = '0';
+                heroScrollIndicator.style.pointerEvents = 'none';
+            } else {
+                heroScrollIndicator.style.opacity = '1';
+                heroScrollIndicator.style.pointerEvents = 'auto';
+            }
+        }
+
+        // 5. Subtle Parallax on Hero Orbs & Decorative Layers
         if (parallaxLayers.length > 0 && scrollY < window.innerHeight * 1.5) {
             parallaxLayers.forEach((el) => {
                 const speed = parseFloat(el.getAttribute('data-parallax-speed') || '0.15');
@@ -94,7 +106,7 @@ export function initSmoothScroll() {
             });
         }
 
-        // 5. Active Scrollspy
+        // 6. Active Scrollspy
         updateScrollspy(scrollY, sections, navLinks);
     });
 

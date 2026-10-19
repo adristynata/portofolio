@@ -5,6 +5,7 @@ import { initInteractiveCursor } from './cursor';
 import { initButterDeck } from './butter-deck';
 import { initSmoothScroll } from './smooth-scroll';
 import { initScrollReveal } from './scroll-reveal';
+import { initCardEffects } from './card-effects';
 
 window.Alpine = Alpine;
 
@@ -13,6 +14,7 @@ Alpine.start();
 function initCreativeInteractions() {
     initSmoothScroll();
     initScrollReveal();
+    initCardEffects();
     initInteractiveCursor();
     initButterDeck();
 }

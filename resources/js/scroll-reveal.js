@@ -1,8 +1,8 @@
 /**
- * Luxury Scroll Reveal Engine using IntersectionObserver
+ * Luxury 3D Scroll Reveal Engine using IntersectionObserver
  * Features:
- * - Sub-pixel hardware-accelerated fluid entrances (slide, scale, fade, directional)
- * - Intelligent initial viewport detection (instant staggered hero reveal on load)
+ * - Sub-pixel hardware-accelerated 3D fluid entrances (3D perspective tilt, scale, directional yaw)
+ * - Intelligent initial hero cascade detection on load
  * - Clean unobserving for peak 60-120fps scrolling performance
  * - Reduced motion support
  */
@@ -21,8 +21,8 @@ export function initScrollReveal() {
 
     const observerOptions = {
         root: null,
-        rootMargin: '0px 0px -45px 0px',
-        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.12,
     };
 
     const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -34,15 +34,17 @@ export function initScrollReveal() {
         });
     }, observerOptions);
 
-    elements.forEach((el) => {
-        // If element is already within the top viewport on load, reveal with slight stagger
+    // Initial check: Only animate elements genuinely in the initial hero view on load
+    elements.forEach((el, idx) => {
         const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.9) {
-            requestAnimationFrame(() => {
-                setTimeout(() => {
-                    el.classList.add('reveal-active');
-                }, 60);
-            });
+        const isInInitialView = rect.top < window.innerHeight * 0.75;
+        const isHeroElement = el.closest('#home') !== null;
+
+        if (isInInitialView && isHeroElement) {
+            // Cascade entrance for hero elements
+            setTimeout(() => {
+                el.classList.add('reveal-active');
+            }, 80 + (idx * 60));
         } else {
             revealObserver.observe(el);
         }

@@ -1,6 +1,6 @@
 /* ==========================================================================
-   Smooth Scrolling & Luxury Scroll Reveal Transitions
-   Inspired by Apple, Butter.video & Linear
+   Luxury 3D Scroll Reveal, Spotlight & Cinematic Motion Transitions
+   Inspired by Apple, Vercel, Linear & Aceternity UI
    ========================================================================== */
 
 /* 1. Lenis Smooth Scrolling Core */
@@ -25,99 +25,290 @@ html.lenis body {
   pointer-events: none;
 }
 
-/* 2. Top Glowing Scroll Progress Bar */
+/* 2. Top Glowing Neon Scroll Progress Bar */
 #scroll-progress-bar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, #00f0ff 0%, #38bdf8 30%, #818cf8 65%, #c084fc 100%);
+  background: linear-gradient(90deg, #00f0ff 0%, #38bdf8 25%, #818cf8 60%, #c084fc 100%);
   transform-origin: 0% 50%;
   transform: scaleX(0);
   z-index: 99999;
   pointer-events: none;
-  box-shadow: 0 0 14px rgba(0, 240, 255, 0.75), 0 0 6px rgba(56, 189, 248, 0.9);
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.9), 0 0 8px rgba(56, 189, 248, 0.95);
   transition: transform 0.04s linear;
   will-change: transform;
 }
 
 html.light #scroll-progress-bar {
-  background: linear-gradient(90deg, #0284c7 0%, #2563eb 40%, #7c3aed 80%, #db2777 100%);
-  box-shadow: 0 0 12px rgba(2, 132, 199, 0.65), 0 0 5px rgba(37, 99, 235, 0.85);
+  background: linear-gradient(90deg, #0284c7 0%, #2563eb 35%, #7c3aed 75%, #db2777 100%);
+  box-shadow: 0 0 14px rgba(2, 132, 199, 0.8), 0 0 6px rgba(37, 99, 235, 0.9);
 }
 
-/* 3. Luxury Scroll Reveal Animations */
+/* 3. Cinematic 3D Scroll Reveal Transitions (Perspective Glides) */
 .reveal-init {
   opacity: 0;
-  transform: translateY(36px);
+  transform: perspective(1200px) rotateX(14deg) translateY(48px) scale(0.94);
   filter: blur(8px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform, filter;
+  transform-origin: center bottom;
 }
 
 .reveal-fade {
   opacity: 0;
-  transform: scale(0.95);
+  transform: perspective(1200px) scale(0.90) translateY(24px);
   filter: blur(8px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform, filter;
 }
 
 .reveal-left {
   opacity: 0;
-  transform: translateX(-40px);
+  transform: perspective(1200px) rotateY(-14deg) translateX(-48px);
   filter: blur(8px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform, filter;
+  transform-origin: left center;
 }
 
 .reveal-right {
   opacity: 0;
-  transform: translateX(40px);
+  transform: perspective(1200px) rotateY(14deg) translateX(48px);
   filter: blur(8px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform, filter;
+  transform-origin: right center;
 }
 
 .reveal-scale {
   opacity: 0;
-  transform: scale(0.92) translateY(24px);
+  transform: perspective(1200px) rotateX(12deg) scale(0.90) translateY(36px);
   filter: blur(8px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform, filter;
+  transform-origin: center bottom;
 }
 
-/* Revealed active state */
+/* Revealed active state (Full 3D Realignment) */
 .reveal-active {
   opacity: 1 !important;
-  transform: translateY(0) translateX(0) scale(1) !important;
+  transform: perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(0) translateX(0) scale(1) !important;
   filter: blur(0) !important;
 }
 
 /* Stagger Delay Utility Classes */
-.reveal-delay-1 { transition-delay: 80ms; }
-.reveal-delay-2 { transition-delay: 160ms; }
-.reveal-delay-3 { transition-delay: 240ms; }
-.reveal-delay-4 { transition-delay: 320ms; }
-.reveal-delay-5 { transition-delay: 400ms; }
-.reveal-delay-6 { transition-delay: 480ms; }
-.reveal-delay-7 { transition-delay: 560ms; }
-.reveal-delay-8 { transition-delay: 640ms; }
-.reveal-delay-9 { transition-delay: 720ms; }
-.reveal-delay-10 { transition-delay: 800ms; }
+.reveal-delay-1 { transition-delay: 60ms; }
+.reveal-delay-2 { transition-delay: 130ms; }
+.reveal-delay-3 { transition-delay: 200ms; }
+.reveal-delay-4 { transition-delay: 270ms; }
+.reveal-delay-5 { transition-delay: 340ms; }
+.reveal-delay-6 { transition-delay: 410ms; }
+.reveal-delay-7 { transition-delay: 480ms; }
+.reveal-delay-8 { transition-delay: 550ms; }
+.reveal-delay-9 { transition-delay: 620ms; }
+.reveal-delay-10 { transition-delay: 690ms; }
 
-/* 4. Active Scrollspy Navbar Links */
+/* 4. Interactive Card Spotlight Cursor Glow */
+.card-spotlight {
+  position: relative;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-spotlight::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    450px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 240, 255, 0.16),
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-spotlight:hover::before {
+  opacity: 1;
+}
+
+html.light .card-spotlight::before {
+  background: radial-gradient(
+    450px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(2, 132, 199, 0.14),
+    transparent 55%
+  );
+}
+
+/* 5. Glass Card Glare Shine Beam Sweep */
+.card-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-shine::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -150%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 42%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(0, 240, 255, 0.12) 52%,
+    transparent 58%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  transition: transform 0.8s ease;
+  z-index: 2;
+}
+
+.card-shine:hover::after {
+  transform: translateX(110%) rotate(25deg);
+}
+
+.reveal-active.card-shine::after {
+  animation: shine-sweep 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+@keyframes shine-sweep {
+  0% { transform: translateX(0%) rotate(25deg); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateX(130%) rotate(25deg); opacity: 0; }
+}
+
+/* 6. Timeline Glowing Cyber Energy Beam */
+.timeline-rail {
+  background: linear-gradient(180deg, rgba(0, 240, 255, 0.15), rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.15));
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.timeline-beam {
+  animation: beam-flow 3.5s ease-in-out infinite;
+  box-shadow: 0 0 16px #00f0ff, 0 0 30px #818cf8;
+}
+
+@keyframes beam-flow {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(600%);
+    opacity: 0;
+  }
+}
+
+html.light .timeline-rail {
+  background: linear-gradient(180deg, rgba(2, 132, 199, 0.2), rgba(37, 99, 235, 0.2), rgba(124, 58, 237, 0.2));
+  box-shadow: 0 0 10px rgba(2, 132, 199, 0.2);
+}
+
+html.light .timeline-beam {
+  box-shadow: 0 0 14px #0284c7, 0 0 24px #2563eb;
+}
+
+/* 7. Holographic Shimmering Gradient Text */
+.text-shimmer-radiant {
+  background: linear-gradient(
+    90deg,
+    #00f0ff 0%,
+    #38bdf8 25%,
+    #c084fc 50%,
+    #38bdf8 75%,
+    #00f0ff 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-text 5s linear infinite;
+}
+
+html.light .text-shimmer-radiant {
+  background: linear-gradient(
+    90deg,
+    #0284c7 0%,
+    #2563eb 25%,
+    #7c3aed 50%,
+    #2563eb 75%,
+    #0284c7 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-text 5s linear infinite;
+}
+
+@keyframes shimmer-text {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* 8. Hero Scroll Indicator Pill */
+@keyframes scroll-pill {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(9px);
+    opacity: 0.25;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-scroll-pill {
+  animation: scroll-pill 1.8s ease-in-out infinite;
+}
+
+/* 9. Ambient Floating Aurora Mesh Orbs */
+@keyframes float-ambient {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(25px, -20px) scale(1.06);
+  }
+  66% {
+    transform: translate(-20px, 18px) scale(0.96);
+  }
+}
+
+.ambient-orb {
+  animation: float-ambient 12s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* 10. Active Scrollspy Navbar Links */
 .nav-link.nav-active {
   color: #38bdf8 !important;
   font-weight: 700 !important;
@@ -157,7 +348,7 @@ html.light .nav-link.nav-active::after {
   }
 }
 
-/* 5. Glassmorphic Scrolled Navbar Elevation */
+/* 11. Glassmorphic Scrolled Navbar Elevation */
 nav.nav-scrolled {
   background-color: rgba(7, 11, 25, 0.88) !important;
   backdrop-filter: blur(20px) !important;
@@ -172,7 +363,7 @@ html.light nav.nav-scrolled {
   box-shadow: 0 10px 25px -10px rgba(15, 23, 42, 0.08), 0 1px 0 rgba(226, 232, 240, 0.9) !important;
 }
 
-/* 6. Floating Back to Top Glass Button */
+/* 12. Floating Back to Top Glass Button */
 #back-to-top-btn {
   position: fixed;
   bottom: 2rem;
@@ -184,11 +375,11 @@ html.light nav.nav-scrolled {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(13, 20, 48, 0.8);
+  background: rgba(13, 20, 48, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 240, 255, 0.35);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 240, 255, 0.2);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 240, 255, 0.25);
   color: #38bdf8;
   opacity: 0;
   transform: translateY(20px) scale(0.85);
@@ -207,13 +398,13 @@ html.light nav.nav-scrolled {
   border-color: #00f0ff;
   color: #00f0ff;
   transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 14px 28px -4px rgba(0, 0, 0, 0.6), 0 0 22px rgba(0, 240, 255, 0.45);
+  box-shadow: 0 14px 28px -4px rgba(0, 0, 0, 0.6), 0 0 22px rgba(0, 240, 255, 0.5);
 }
 
 html.light #back-to-top-btn {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   border: 1.5px solid rgba(2, 132, 199, 0.4);
-  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(2, 132, 199, 0.15);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(2, 132, 199, 0.2);
   color: #0284c7;
 }
 
@@ -221,10 +412,10 @@ html.light #back-to-top-btn:hover {
   background: #ffffff;
   border-color: #0284c7;
   color: #0284c7;
-  box-shadow: 0 14px 28px -4px rgba(15, 23, 42, 0.18), 0 6px 18px rgba(2, 132, 199, 0.25);
+  box-shadow: 0 14px 28px -4px rgba(15, 23, 42, 0.18), 0 6px 18px rgba(2, 132, 199, 0.3);
 }
 
-/* 7. Subtle Scroll Parallax Utility */
+/* 13. Parallax Layer Utility */
 .parallax-layer {
   will-change: transform;
   transition: transform 0.1s linear;
