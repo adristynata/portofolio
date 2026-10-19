@@ -45,10 +45,7 @@
       0 0 16px rgba(37, 99, 235, 0.45);
   }
 
-  #cursor-dot.dot-mode-link,
-  #cursor-dot.dot-mode-project,
-  #cursor-dot.dot-mode-stack,
-  #cursor-dot.dot-mode-media {
+  #cursor-dot.dot-mode-link {
     opacity: 0.35 !important;
     width: 3.5px;
     height: 3.5px;
@@ -101,16 +98,6 @@
     -webkit-backdrop-filter: blur(4px);
   }
 
-  /* Label inside pill */
-  #cursor-label {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    transition: opacity 0.2s ease;
-  }
-
   /* 4. Link & Button Magnetic State (Dark Mode) */
   #cursor-follower.mode-link {
     width: 48px;
@@ -129,78 +116,6 @@
     box-shadow: 
       0 0 25px rgba(2, 132, 199, 0.35),
       inset 0 0 12px rgba(2, 132, 199, 0.15);
-  }
-
-  /* 5. Stack / Butter Card Mode (Dark Mode) */
-  #cursor-follower.mode-stack {
-    width: 76px;
-    height: 76px;
-    border: 1.5px solid rgba(0, 240, 255, 0.7);
-    background: rgba(8, 12, 26, 0.9);
-    box-shadow: 
-      0 15px 35px -5px rgba(0, 240, 255, 0.35),
-      inset 0 1px 1px rgba(255, 255, 255, 0.3);
-    color: #00f0ff;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-
-  /* Stack / Butter Card Mode (Light Mode) */
-  html.light #cursor-follower.mode-stack {
-    border: 1.5px solid rgba(2, 132, 199, 0.8);
-    background: rgba(15, 23, 42, 0.92);
-    box-shadow: 
-      0 15px 35px -5px rgba(15, 23, 42, 0.3),
-      inset 0 1px 1px rgba(255, 255, 255, 0.3);
-    color: #38bdf8;
-  }
-
-  /* 6. Project Card Mode (Dark Mode) */
-  #cursor-follower.mode-project {
-    width: 80px;
-    height: 80px;
-    border: 1.5px solid rgba(56, 189, 248, 0.7);
-    background: rgba(8, 12, 26, 0.9);
-    box-shadow: 
-      0 15px 35px -5px rgba(56, 189, 248, 0.35),
-      inset 0 1px 1px rgba(255, 255, 255, 0.3);
-    color: #38bdf8;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-
-  /* Project Card Mode (Light Mode) */
-  html.light #cursor-follower.mode-project {
-    border: 1.5px solid rgba(2, 132, 199, 0.8);
-    background: rgba(15, 23, 42, 0.92);
-    box-shadow: 
-      0 15px 35px -5px rgba(15, 23, 42, 0.3),
-      inset 0 1px 1px rgba(255, 255, 255, 0.3);
-    color: #38bdf8;
-  }
-
-  /* 7. Certificate Mode (Dark Mode) */
-  #cursor-follower.mode-media {
-    width: 74px;
-    height: 74px;
-    border: 1.5px solid rgba(168, 85, 247, 0.7);
-    background: rgba(8, 12, 26, 0.9);
-    box-shadow: 
-      0 15px 35px -5px rgba(168, 85, 247, 0.35),
-      inset 0 1px 1px rgba(255, 255, 255, 0.3);
-    color: #c084fc;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-
-  /* Certificate Mode (Light Mode) */
-  html.light #cursor-follower.mode-media {
-    border: 1.5px solid rgba(147, 51, 234, 0.8);
-    background: rgba(15, 23, 42, 0.92);
-    box-shadow: 
-      0 15px 35px -5px rgba(15, 23, 42, 0.3),
-      inset 0 1px 1px rgba(255, 255, 255, 0.3);
-    color: #c084fc;
   }
 
   /* 8. Heading / Text Glow Lens Mode */

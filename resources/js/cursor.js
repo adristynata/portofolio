@@ -27,16 +27,13 @@ export function initInteractiveCursor() {
     container.innerHTML = `
         <div id="cursor-ambient-spotlight" class="pointer-events-none fixed inset-0 z-30 transition-opacity duration-700 opacity-0"></div>
         <div id="cursor-dot" class="pointer-events-none fixed top-0 left-0 z-[99999] rounded-full opacity-0"></div>
-        <div id="cursor-follower" class="pointer-events-none fixed top-0 left-0 z-[99998] rounded-full opacity-0 flex items-center justify-center">
-            <span id="cursor-label" class="pointer-events-none opacity-0 select-none"></span>
-        </div>
+        <div id="cursor-follower" class="pointer-events-none fixed top-0 left-0 z-[99998] rounded-full opacity-0 flex items-center justify-center"></div>
     `;
     document.body.appendChild(container);
 
     const dot = document.getElementById('cursor-dot');
     const follower = document.getElementById('cursor-follower');
     const spotlight = document.getElementById('cursor-ambient-spotlight');
-    const label = document.getElementById('cursor-label');
 
     // Hide default OS cursor globally on desktop
     document.documentElement.classList.add('has-custom-cursor');
@@ -59,7 +56,7 @@ export function initInteractiveCursor() {
     let isVisible = false;
     let isClicking = false;
     let isOverTextInput = false;
-    let targetMode = 'default'; // 'default', 'link', 'project', 'stack', 'media', 'text'
+    let targetMode = 'default'; // 'default', 'link', 'text'
 
     const lerp = (a, b, n) => (1 - n) * a + n * b;
 
@@ -164,14 +161,8 @@ export function initInteractiveCursor() {
                 currentScaleY = lerp(currentScaleY, 1, 0.15);
             }
 
-            // Apply GPU-accelerated transform
-            if (targetMode === 'project' || targetMode === 'stack' || targetMode === 'media') {
-                // Keep pill upright when showing text
-                follower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%) scale(${isClicking ? 0.9 : 1})`;
-            } else {
-                // Apply fluid jelly angle & stretch
-                follower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%) rotate(${currentAngle}rad) scale(${currentScaleX}, ${currentScaleY})`;
-            }
+            // Apply GPU-accelerated fluid jelly transform
+            follower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%) rotate(${currentAngle}rad) scale(${currentScaleX}, ${currentScaleY})`;
         }
 
         requestAnimationFrame(renderLoop);
@@ -179,19 +170,11 @@ export function initInteractiveCursor() {
     requestAnimationFrame(renderLoop);
 
     // Contextual Mode Morphing
-    function setMode(mode, text = '') {
-        if (targetMode === mode && label.textContent === text) return;
+    function setMode(mode) {
+        if (targetMode === mode) return;
         targetMode = mode;
 
         follower.className = 'pointer-events-none fixed top-0 left-0 z-[99998] rounded-full flex items-center justify-center';
-
-        if (text) {
-            label.textContent = text;
-            label.style.opacity = '1';
-        } else {
-            label.textContent = '';
-            label.style.opacity = '0';
-        }
 
         if (mode !== 'default') {
             follower.classList.add(`mode-${mode}`);
@@ -229,35 +212,14 @@ export function initInteractiveCursor() {
             follower.style.opacity = '1';
         }
 
-        // 1. Butter Skills Cards Deck
-        const butterCard = target.closest('.butter-card');
-        if (butterCard) {
-            setMode('stack', 'STACK');
-            return;
-        }
-
-        // 2. Project Cards
-        const projectCard = target.closest('#project .dark-glass-card, [data-img]');
-        if (projectCard) {
-            setMode('project', 'VIEW');
-            return;
-        }
-
-        // 3. Certificate Cards
-        const certCard = target.closest('#sertifikat .dark-glass-card');
-        if (certCard) {
-            setMode('media', 'LIHAT');
-            return;
-        }
-
-        // 4. Clickable Links, Buttons, Inputs, Labels
+        // 1. Clickable Links, Buttons, Inputs, Labels
         const clickable = target.closest('a, button, input[type="submit"], input[type="button"], [role="button"], .interactive-pill, label, select');
         if (clickable) {
             setMode('link');
             return;
         }
 
-        // 5. Headings
+        // 2. Headings
         const heading = target.closest('h1, h2, .invert-hover-text');
         if (heading) {
             setMode('text');

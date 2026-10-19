@@ -299,13 +299,6 @@
                         <div class="font-mono text-xs sm:text-sm font-extrabold text-white tracking-wider flex items-center gap-2">
                             <span id="butter-timecode" class="text-cyan-400">00:01.00 / 00:{{ sprintf('%02d', max(1, count($skills))) }}.00</span>
                         </div>
-
-                        {{-- Duration Badge --}}
-                        <div class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono font-bold text-slate-300 flex items-center gap-1">
-                            <span class="text-slate-500">Dur</span>
-                            <span class="text-cyan-300 font-extrabold">{{ count($skills) ?: 8 }}s</span>
-                            <span class="text-slate-500">stack</span>
-                        </div>
                     </div>
 
                     {{-- Right Status Pill --}}
@@ -580,11 +573,10 @@
             <!-- Modal Preview Foto Proyek Fullscreen -->
             <div id="project-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-4 transition-all duration-300" onclick="closeProjectModal()">
                 <div class="relative max-w-5xl w-full p-2" onclick="event.stopPropagation()">
-                    <button type="button" onclick="closeProjectModal()" class="absolute -top-10 right-0 text-slate-300 hover:text-white text-2xl font-bold flex items-center gap-1.5 leading-none transition">
-                        <span>&times;</span>
-                        <span class="text-sm font-semibold">Tutup</span>
-                    </button>
-                    <div class="overflow-hidden rounded-2xl border border-slate-700/80 bg-slate-950 shadow-2xl">
+                    <div class="overflow-hidden rounded-2xl border border-slate-700/80 bg-slate-950 shadow-2xl relative">
+                        <button type="button" onclick="closeProjectModal()" class="absolute top-3 right-3 z-30 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white border border-white/10 flex items-center justify-center transition shadow-lg" title="Tutup">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
                         {{-- Image Display Area --}}
                         <div class="max-h-[72vh] overflow-auto flex items-center justify-center p-3 bg-slate-950/90">
                             <img id="project-modal-img" src="" alt="Preview Proyek" class="w-auto h-auto max-w-full max-h-[68vh] object-contain rounded-xl shadow-lg">
@@ -647,6 +639,14 @@
                 function closeProjectModal() {
                     document.getElementById('project-modal').classList.add('hidden');
                 }
+
+                window.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        closeProjectModal();
+                        const c = document.getElementById('cert-modal');
+                        if (c) c.classList.add('hidden');
+                    }
+                });
             </script>
         </div>
     </section>
@@ -803,7 +803,9 @@
             <!-- Public Modal Preview Foto Sertifikat -->
             <div id="cert-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-4" onclick="this.classList.add('hidden')">
                 <div class="relative max-w-4xl w-full p-2" onclick="event.stopPropagation()">
-                    <button type="button" onclick="document.getElementById('cert-modal').classList.add('hidden')" class="absolute -top-10 right-0 text-slate-300 hover:text-white text-2xl leading-none">&times; Tutup</button>
+                    <button type="button" onclick="document.getElementById('cert-modal').classList.add('hidden')" class="absolute top-4 right-4 z-30 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white border border-white/10 flex items-center justify-center transition shadow-lg" title="Tutup">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
                     <img id="cert-modal-img" src="" alt="Sertifikat" class="w-full h-auto max-h-[85vh] object-contain rounded-2xl border border-slate-700 shadow-2xl">
                     <p id="cert-modal-title" class="text-center text-sm font-bold text-white mt-3"></p>
                 </div>
