@@ -5,7 +5,7 @@
             <!-- Left: Logo & Brand Info -->
             <a href="#home" class="flex items-center gap-3.5 group">
                 <div class="relative w-10 h-10 rounded-xl p-1 bg-slate-900/90 border border-white/10 shadow-md shadow-cyan-500/10 flex items-center justify-center group-hover:scale-105 group-hover:border-cyan-400/40 transition-all duration-300">
-                    <img src="{{ asset('images/logo.svg') }}" alt="Logo Adristy" class="w-full h-full object-contain">
+                    <img src="{{ asset('images/logo.svg') }}" alt="Logo Adristy" class="w-full h-full object-contain drop-shadow-[0_2px_8px_rgba(56,189,248,0.35)]">
                 </div>
                 <div class="flex flex-col">
                     <span class="text-white font-bold tracking-tight text-base group-hover:text-cyan-400 transition-colors">
