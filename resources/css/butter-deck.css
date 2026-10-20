@@ -55,8 +55,8 @@ html.light .timeline-ticks {
 /* Scrubber Playhead */
 .butter-playhead {
   transition: left 0.28s cubic-bezier(0.16, 1, 0.3, 1), width 0.28s ease, background-color 0.3s ease, border-color 0.3s ease;
-  box-shadow: 0 0 15px rgba(117, 130, 104, 0.5);
-  border-color: #758268;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.7);
+  border-color: #A5B698;
 }
 
 html.light .butter-playhead {

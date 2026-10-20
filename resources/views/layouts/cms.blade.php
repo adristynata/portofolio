@@ -30,7 +30,7 @@
                     </div>
                     <div>
                         <h1 class="text-base font-extrabold text-[#F0EEE8] leading-tight">Portofolio CMS</h1>
-                        <span class="text-xs font-bold text-[#758268]">Admin Panel</span>
+                        <span class="text-xs font-bold text-[#A5B698]">Admin Panel</span>
                     </div>
                 </div>
 
@@ -91,7 +91,7 @@
 
             <!-- Bottom Actions -->
             <div class="pt-6 border-t border-[#353535] space-y-3">
-                <a href="{{ route('home') }}" target="_blank" class="flex items-center justify-center gap-2.5 w-full py-3 px-4 rounded-2xl text-sm font-bold text-[#758268] bg-[#191919] border border-[#353535] hover:bg-[#2c2c2c] hover:border-[#758268]/50 hover:text-[#F0EEE8] transition shadow-inner">
+                <a href="{{ route('home') }}" target="_blank" class="flex items-center justify-center gap-2.5 w-full py-3 px-4 rounded-2xl text-sm font-bold text-[#A5B698] bg-[#191919] border border-[#353535] hover:bg-[#2c2c2c] hover:border-[#A5B698]/50 hover:text-[#F0EEE8] transition shadow-inner">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                     <span>Lihat Portofolio</span>
                 </a>
@@ -111,7 +111,7 @@
         <main class="flex-1 min-w-0 p-4 sm:p-8 lg:p-10 overflow-y-auto">
             
             @if(session('success'))
-                <div class="mb-6 p-4 rounded-2xl bg-[#758268]/15 border border-[#758268]/30 text-[#8a997a] text-sm font-bold flex items-center gap-3">
+                <div class="mb-6 p-4 rounded-2xl bg-[#20251d] border border-[#444f3d] text-[#A5B698] text-sm font-bold flex items-center gap-3">
                     <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                     <span>{{ session('success') }}</span>
                 </div>

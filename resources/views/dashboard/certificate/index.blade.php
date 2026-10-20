@@ -31,13 +31,13 @@
                                 @if($item->image_url)
                                     <img src="{{ $item->image_url }}" alt="{{ $item->title }}" class="w-16 h-12 object-cover rounded-xl border border-[#353535] cursor-pointer hover:scale-105 transition" onclick="showImageModal('{{ $item->image_url }}', '{{ $item->title }}')">
                                 @else
-                                    <div class="w-12 h-12 rounded-xl bg-[#758268]/15 border border-[#758268]/30 flex items-center justify-center text-[#758268]">
+                                    <div class="w-12 h-12 rounded-xl bg-[#191919] border border-[#353535] flex items-center justify-center text-[#A5B698]">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                                     </div>
                                 @endif
                             </td>
                             <td class="px-6 py-4">
-                                <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase bg-[#758268]/15 text-[#758268] border border-[#758268]/30">
+                                <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase bg-[#20251d] text-[#A5B698] border border-[#444f3d]">
                                     {{ $item->type }}
                                 </span>
                             </td>
@@ -47,11 +47,11 @@
                             <td class="px-6 py-4 text-xs text-[#F0EEE8]/90">
                                 {{ $item->issuer }}
                             </td>
-                            <td class="px-6 py-4 text-xs font-semibold text-[#758268] whitespace-nowrap">
+                            <td class="px-6 py-4 text-xs font-semibold text-[#A5B698] whitespace-nowrap">
                                 {{ $item->year }}
                             </td>
                             <td class="px-6 py-4 text-right whitespace-nowrap">
-                                <button type="button" onclick="editCertificate({{ json_encode($item) }})" class="px-3 py-1.5 rounded-lg text-xs font-bold text-[#758268] bg-[#758268]/15 border border-[#758268]/30 hover:bg-[#758268]/25 transition mr-2">
+                                <button type="button" onclick="editCertificate({{ json_encode($item) }})" class="px-3 py-1.5 rounded-lg text-xs font-bold text-[#A5B698] bg-[#20251d] border border-[#444f3d] hover:bg-[#283024] transition mr-2">
                                     Edit
                                 </button>
                                 <form action="{{ route('certificate.destroy', $item->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Apakah Anda yakin ingin menghapus sertifikat ini?')">

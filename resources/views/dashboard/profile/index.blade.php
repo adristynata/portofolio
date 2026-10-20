@@ -11,7 +11,7 @@
 
             <!-- Section 1: Informasi Utama -->
             <div>
-                <h3 class="text-base font-bold text-[#758268] pb-2 border-b border-[#353535] mb-4 flex items-center gap-2">
+                <h3 class="text-base font-bold text-[#A5B698] pb-2 border-b border-[#353535] mb-4 flex items-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                     <span>Informasi Utama & Foto</span>
                 </h3>
@@ -37,7 +37,7 @@
                 <!-- Teks Hero Section vs Teks About Section -->
                 <div class="grid grid-cols-1 gap-6 mt-6">
                     <div>
-                        <label class="block text-xs font-bold text-[#758268] mb-1 flex items-center gap-1.5">
+                        <label class="block text-xs font-bold text-[#A5B698] mb-1 flex items-center gap-1.5">
                             <span>✨ Teks Ringkas Hero Section (Paling Atas Halaman)</span>
                         </label>
                         <p class="text-[11px] text-[#929292] mb-2">Teks pengenalan singkat yang tampil langsung di bawah nama Anda pada bagian Hero paling atas.</p>
@@ -45,7 +45,7 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-[#8a997a] mb-1 flex items-center gap-1.5">
+                        <label class="block text-xs font-bold text-[#A5B698] mb-1 flex items-center gap-1.5">
                             <span>📖 Teks Biografi About Section (Bagian "Tentang Saya")</span>
                         </label>
                         <p class="text-[11px] text-[#929292] mb-2">Biografi narasi lengkap tentang diri Anda yang tampil pada bagian "Tentang Saya".</p>
@@ -56,7 +56,7 @@
 
             <!-- Section 2: Detail Profil (4 Cards Component) -->
             <div>
-                <h3 class="text-base font-bold text-[#758268] pb-2 border-b border-[#353535] mb-4 flex items-center gap-2">
+                <h3 class="text-base font-bold text-[#A5B698] pb-2 border-b border-[#353535] mb-4 flex items-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path></svg>
                     <span>Detail Informasi Tambahan</span>
                 </h3>
@@ -82,7 +82,7 @@
 
             <!-- Section 3: Link Media Sosial -->
             <div>
-                <h3 class="text-base font-bold text-[#758268] pb-2 border-b border-[#353535] mb-4 flex items-center gap-2">
+                <h3 class="text-base font-bold text-[#A5B698] pb-2 border-b border-[#353535] mb-4 flex items-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
                     <span>Link Media Sosial</span>
                 </h3>
@@ -122,8 +122,8 @@
             @method('PUT')
 
             <div>
-                <h3 class="text-base font-bold text-[#758268] pb-2 border-b border-[#353535] mb-1 flex items-center gap-2">
-                    <svg class="w-5 h-5 text-[#758268]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                <h3 class="text-base font-bold text-[#A5B698] pb-2 border-b border-[#353535] mb-1 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-[#A5B698]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                     <span>Ubah Kata Sandi (Password) Akun Admin</span>
                 </h3>
                 <p class="text-xs text-[#929292] mt-1">Gunakan kata sandi baru yang aman dan sulit ditebak untuk melindungi akses login ke panel CMS ini.</p>

@@ -17,25 +17,23 @@
 </head>
 <body class="font-['Plus_Jakarta_Sans',sans-serif] antialiased bg-[#191919] text-[#F0EEE8] min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
     
-    <!-- Background Ambient Glows & Grid -->
-    <div class="absolute inset-0 bg-[radial-gradient(#353535_1px,transparent_1px)] [background-size:32px_32px] opacity-30"></div>
-    <div class="absolute top-1/4 -right-20 w-96 h-96 bg-[#758268]/15 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-10 -left-20 w-96 h-96 bg-[#758268]/10 rounded-full blur-3xl pointer-events-none"></div>
+    <!-- Clean Subtle Grid (Swiss Minimalist) -->
+    <div class="absolute inset-0 bg-[radial-gradient(#353535_1px,transparent_1px)] [background-size:32px_32px] opacity-20 pointer-events-none"></div>
 
     <div class="relative z-10 w-full max-w-md">
         
         <!-- Brand & Login Card -->
-        <div class="bg-[#242424] border border-[#353535] rounded-3xl p-8 sm:p-10 shadow-2xl shadow-black/50 relative">
+        <div class="bg-[#242424] border border-[#353535] rounded-3xl p-8 sm:p-10 shadow-2xl shadow-black/60 relative">
             
             <!-- Logo Header -->
             <div class="flex flex-col items-center text-center mb-8">
-                <div class="w-14 h-14 rounded-2xl bg-[#758268] border border-[#8a997a]/30 flex items-center justify-center text-[#F0EEE8] shadow-lg shadow-[#758268]/25 mb-4">
+                <div class="w-14 h-14 rounded-2xl bg-[#758268] border border-[#8a997a]/40 flex items-center justify-center text-[#F0EEE8] shadow-lg shadow-black/40 mb-4">
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                     </svg>
                 </div>
                 <h1 class="text-2xl font-extrabold text-[#F0EEE8] tracking-tight">Portofolio CMS</h1>
-                <span class="text-xs font-bold text-[#758268] mt-1 uppercase tracking-wider">Khusus Administrator</span>
+                <span class="text-xs font-bold text-[#A5B698] mt-1 uppercase tracking-wider">Khusus Administrator</span>
             </div>
 
             <!-- Session Status Alert -->
@@ -74,7 +72,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                             </svg>
                         </div>
-                        <input id="email" type="email" name="email" value="{{ old('email', 'adristyakikoyukinata@gmail.com') }}" required autofocus class="w-full pl-11 pr-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268] placeholder-[#929292]/50 transition" placeholder="adristyakikoyukinata@gmail.com">
+                        <input id="email" type="email" name="email" value="{{ old('email', 'adristyakikoyukinata@gmail.com') }}" required autofocus class="w-full pl-11 pr-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] focus:outline-none focus:border-[#A5B698] focus:ring-1 focus:ring-[#A5B698] placeholder-[#929292]/50 transition" placeholder="adristyakikoyukinata@gmail.com">
                     </div>
                 </div>
 
@@ -87,26 +85,26 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                             </svg>
                         </div>
-                        <input id="password" type="password" name="password" required class="w-full pl-11 pr-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268] placeholder-[#929292]/50 transition" placeholder="••••••••">
+                        <input id="password" type="password" name="password" required class="w-full pl-11 pr-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] focus:outline-none focus:border-[#A5B698] focus:ring-1 focus:ring-[#A5B698] placeholder-[#929292]/50 transition" placeholder="••••••••">
                     </div>
                 </div>
 
                 <!-- Remember Me Checkbox -->
                 <div class="flex items-center justify-between">
                     <label for="remember_me" class="inline-flex items-center cursor-pointer">
-                        <input id="remember_me" type="checkbox" name="remember" class="w-4 h-4 rounded bg-[#191919] border-[#353535] text-[#758268] focus:ring-[#758268] focus:ring-offset-[#242424]">
+                        <input id="remember_me" type="checkbox" name="remember" class="w-4 h-4 rounded bg-[#191919] border-[#353535] text-[#758268] focus:ring-[#A5B698] focus:ring-offset-[#242424]">
                         <span class="ms-2 text-xs font-medium text-[#929292]">Ingat Saya</span>
                     </label>
 
                     @if (Route::has('password.request'))
-                        <a href="{{ route('password.request') }}" class="text-xs font-semibold text-[#758268] hover:text-[#8a997a] transition">
+                        <a href="{{ route('password.request') }}" class="text-xs font-semibold text-[#A5B698] hover:text-[#F0EEE8] transition">
                             Lupa Kata Sandi?
                         </a>
                     @endif
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="w-full py-3.5 rounded-xl font-bold text-sm text-[#F0EEE8] bg-[#758268] hover:bg-[#859376] border border-[#8a997a]/30 transition shadow-lg shadow-[#758268]/25 flex items-center justify-center gap-2 active:scale-[0.99]">
+                <button type="submit" class="w-full py-3.5 rounded-xl font-bold text-sm text-[#F0EEE8] bg-[#758268] hover:bg-[#859477] border border-[#8a997a]/40 transition shadow-lg shadow-black/40 flex items-center justify-center gap-2 active:scale-[0.99]">
                     <span>Masuk ke Dashboard CMS</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </button>

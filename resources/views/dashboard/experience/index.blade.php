@@ -28,7 +28,7 @@
                     @forelse ($experiences as $item)
                         <tr class="hover:bg-[#191919]/40 transition">
                             <td class="px-6 py-4">
-                                <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase bg-[#758268]/15 text-[#758268] border border-[#758268]/30">
+                                <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase bg-[#20251d] text-[#A5B698] border border-[#444f3d]">
                                     {{ $item->type }}
                                 </span>
                             </td>
@@ -38,15 +38,15 @@
                             <td class="px-6 py-4 text-xs text-[#F0EEE8]/90">
                                 {{ $item->organization ?? '-' }}
                             </td>
-                            <td class="px-6 py-4 text-xs font-semibold text-[#758268] whitespace-nowrap flex items-center gap-1">
-                                <svg class="w-4 h-4 text-[#758268]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <td class="px-6 py-4 text-xs font-semibold text-[#A5B698] whitespace-nowrap flex items-center gap-1">
+                                <svg class="w-4 h-4 text-[#A5B698]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                                 <span>{{ $item->period }}</span>
                             </td>
                             <td class="px-6 py-4 text-xs text-[#929292] max-w-xs truncate">
                                 {{ $item->description }}
                             </td>
                             <td class="px-6 py-4 text-right whitespace-nowrap">
-                                <button type="button" onclick="editExperience({{ json_encode($item) }})" class="px-3 py-1.5 rounded-lg text-xs font-bold text-[#758268] bg-[#758268]/15 border border-[#758268]/30 hover:bg-[#758268]/25 transition mr-2">
+                                <button type="button" onclick="editExperience({{ json_encode($item) }})" class="px-3 py-1.5 rounded-lg text-xs font-bold text-[#A5B698] bg-[#20251d] border border-[#444f3d] hover:bg-[#283024] transition mr-2">
                                     Edit
                                 </button>
                                 <form action="{{ route('experience.destroy', $item->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pengalaman ini?')">

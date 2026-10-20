@@ -8,20 +8,20 @@
     <!-- Messages List -->
     <div class="space-y-4">
         @forelse ($messages as $item)
-            <div class="bg-[#242424] p-6 rounded-2xl border {{ $item->is_read ? 'border-[#353535]' : 'border-[#758268]/50 bg-[#758268]/5' }} shadow-xl transition">
+            <div class="bg-[#242424] p-6 rounded-2xl border {{ $item->is_read ? 'border-[#353535]' : 'border-[#A5B698]/40 bg-[#20251d]/40' }} shadow-xl transition">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#353535] mb-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-[#191919] border border-[#353535] flex items-center justify-center text-[#758268]">
+                        <div class="w-10 h-10 rounded-xl bg-[#191919] border border-[#353535] flex items-center justify-center text-[#A5B698]">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         </div>
                         <div>
                             <h3 class="text-base font-bold text-[#F0EEE8] flex items-center gap-2">
                                 <span>{{ $item->name }}</span>
                                 @if(!$item->is_read)
-                                    <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-[#758268] text-[#F0EEE8]">Baru</span>
+                                    <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-[#20251d] text-[#A5B698] border border-[#444f3d]">Baru</span>
                                 @endif
                             </h3>
-                            <a href="mailto:{{ $item->email }}" class="text-xs text-[#929292] hover:text-[#758268] transition">{{ $item->email }}</a>
+                            <a href="mailto:{{ $item->email }}" class="text-xs text-[#929292] hover:text-[#A5B698] transition">{{ $item->email }}</a>
                         </div>
                     </div>
                     <span class="text-xs font-medium text-[#929292]">
@@ -30,7 +30,7 @@
                 </div>
 
                 @if($item->subject)
-                    <div class="text-xs font-bold text-[#758268] mb-2">Subjek: {{ $item->subject }}</div>
+                    <div class="text-xs font-bold text-[#A5B698] mb-2">Subjek: {{ $item->subject }}</div>
                 @endif
 
                 <p class="text-sm text-[#F0EEE8]/90 leading-relaxed mb-6 whitespace-pre-line bg-[#191919] p-4 rounded-xl border border-[#353535]">
@@ -40,7 +40,7 @@
                 <div class="flex items-center justify-between pt-2 border-t border-[#353535]/80">
                     <form action="{{ route('message.read', $item->id) }}" method="POST">
                         @csrf
-                        <button type="submit" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition {{ $item->is_read ? 'text-[#929292] bg-[#191919] border border-[#353535] hover:text-[#F0EEE8]' : 'text-[#758268] bg-[#758268]/15 border border-[#758268]/30 hover:bg-[#758268]/25' }}">
+                        <button type="submit" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition {{ $item->is_read ? 'text-[#929292] bg-[#191919] border border-[#353535] hover:text-[#F0EEE8]' : 'text-[#A5B698] bg-[#20251d] border border-[#444f3d] hover:bg-[#283024]' }}">
                             {{ $item->is_read ? 'Tandai Belum Dibaca' : '✓ Tandai Sudah Dibaca' }}
                         </button>
                     </form>

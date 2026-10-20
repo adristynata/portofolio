@@ -27,13 +27,13 @@
                     @forelse ($skills as $skill)
                         <tr class="hover:bg-[#191919]/40 transition">
                             <td class="px-6 py-4 font-bold text-[#F0EEE8] whitespace-nowrap flex items-center gap-2">
-                                <span class="text-[#758268] font-extrabold">&lt;/&gt;</span>
+                                <span class="text-[#A5B698] font-extrabold">&lt;/&gt;</span>
                                 <span>{{ $skill->name }}</span>
                             </td>
                             <td class="px-6 py-4 text-xs text-[#929292]">
                                 {{ $skill->category }}
                             </td>
-                            <td class="px-6 py-4 text-xs font-semibold text-[#758268]">
+                            <td class="px-6 py-4 text-xs font-semibold text-[#A5B698]">
                                 {{ $skill->level }}
                             </td>
                             <td class="px-6 py-4">
@@ -45,7 +45,7 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4 text-right whitespace-nowrap">
-                                <button type="button" onclick="editSkill({{ json_encode($skill) }})" class="px-3 py-1.5 rounded-lg text-xs font-bold text-[#758268] bg-[#758268]/15 border border-[#758268]/30 hover:bg-[#758268]/25 transition mr-2">
+                                <button type="button" onclick="editSkill({{ json_encode($skill) }})" class="px-3 py-1.5 rounded-lg text-xs font-bold text-[#A5B698] bg-[#20251d] border border-[#444f3d] hover:bg-[#283024] transition mr-2">
                                     Edit
                                 </button>
                                 <form action="{{ route('skill.destroy', $skill->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Apakah Anda yakin ingin menghapus skill ini?')">
