@@ -115,6 +115,63 @@
             </div>
 
         </form>
+
+        <!-- Card Ubah Kata Sandi (Password) Admin -->
+        <form action="{{ route('password.update') }}" method="POST" class="mt-8 bg-[#0b1026] p-6 sm:p-8 rounded-2xl border border-slate-800/80 shadow-xl space-y-6">
+            @csrf
+            @method('PUT')
+
+            <div>
+                <h3 class="text-base font-bold text-cyan-400 pb-2 border-b border-slate-800 mb-1 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    <span>Ubah Kata Sandi (Password) Akun Admin</span>
+                </h3>
+                <p class="text-xs text-slate-400 mt-1">Gunakan kata sandi baru yang aman dan sulit ditebak untuk melindungi akses login ke panel CMS ini.</p>
+            </div>
+
+            @if (session('status') === 'password-updated')
+                <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold flex items-center gap-2">
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span>Kata sandi admin berhasil diperbarui!</span>
+                </div>
+            @endif
+
+            @if ($errors->updatePassword->any())
+                <div class="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-bold space-y-1">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>Gagal Mengubah Kata Sandi:</span>
+                    </div>
+                    <ul class="list-disc list-inside pl-4 font-normal text-[11px]">
+                        @foreach ($errors->updatePassword->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-2">Kata Sandi Saat Ini</label>
+                    <input type="password" name="current_password" required autocomplete="current-password" class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="••••••••">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-2">Kata Sandi Baru</label>
+                    <input type="password" name="password" required autocomplete="new-password" class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="Minimal 8 karakter">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-2">Konfirmasi Sandi Baru</label>
+                    <input type="password" name="password_confirmation" required autocomplete="new-password" class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="Ulangi sandi baru">
+                </div>
+            </div>
+
+            <div class="pt-2 flex justify-end">
+                <button type="submit" class="px-7 py-3 rounded-xl font-bold text-sm text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-cyan-500/50 transition flex items-center gap-2">
+                    <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span>Perbarui Kata Sandi</span>
+                </button>
+            </div>
+        </form>
     </div>
 
 </x-cms-layout>

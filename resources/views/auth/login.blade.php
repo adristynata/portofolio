@@ -97,6 +97,12 @@
                         <input id="remember_me" type="checkbox" name="remember" class="w-4 h-4 rounded bg-slate-950 border-slate-800 text-cyan-500 focus:ring-cyan-500 focus:ring-offset-slate-900">
                         <span class="ms-2 text-xs font-medium text-slate-400">Ingat Saya</span>
                     </label>
+
+                    @if (Route::has('password.request'))
+                        <a href="{{ route('password.request') }}" class="text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition">
+                            Lupa Kata Sandi?
+                        </a>
+                    @endif
                 </div>
 
                 <!-- Submit Button -->
