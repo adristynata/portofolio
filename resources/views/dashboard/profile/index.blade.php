@@ -2,113 +2,113 @@
     
     <div class="max-w-4xl mx-auto">
         <div class="mb-8">
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Profil Saya & Link Media Sosial</h1>
-            <p class="text-slate-400 text-sm mt-1">Kelola data pribadi, teks Hero, biografi About Me, dan tautan media sosial yang akan tampil di halaman depan portofolio.</p>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-[#F0EEE8]">Profil Saya & Link Media Sosial</h1>
+            <p class="text-[#929292] text-sm mt-1">Kelola data pribadi, teks Hero, biografi About Me, dan tautan media sosial yang akan tampil di halaman depan portofolio.</p>
         </div>
 
-        <form action="{{ route('admin.profile.update') }}" method="POST" enctype="multipart/form-data" class="bg-[#0b1026] p-6 sm:p-8 rounded-2xl border border-slate-800/80 shadow-xl space-y-8">
+        <form action="{{ route('admin.profile.update') }}" method="POST" enctype="multipart/form-data" class="bg-[#242424] p-6 sm:p-8 rounded-2xl border border-[#353535] shadow-xl space-y-8">
             @csrf
 
             <!-- Section 1: Informasi Utama -->
             <div>
-                <h3 class="text-base font-bold text-cyan-400 pb-2 border-b border-slate-800 mb-4 flex items-center gap-2">
+                <h3 class="text-base font-bold text-[#758268] pb-2 border-b border-[#353535] mb-4 flex items-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                     <span>Informasi Utama & Foto</span>
                 </h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-2">Nama Lengkap</label>
-                        <input type="text" name="name" value="{{ old('name', $user->name) }}" required class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500">
+                        <label class="block text-xs font-bold text-[#F0EEE8] mb-2">Nama Lengkap</label>
+                        <input type="text" name="name" value="{{ old('name', $user->name) }}" required class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-2">Email Admin</label>
-                        <input type="email" name="email" value="{{ old('email', $user->email) }}" required class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500">
+                        <label class="block text-xs font-bold text-[#F0EEE8] mb-2">Email Admin</label>
+                        <input type="email" name="email" value="{{ old('email', $user->email) }}" required class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-2">Judul Peran (Role Title)</label>
-                        <input type="text" name="role_title" value="{{ old('role_title', $user->role_title) }}" class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="Web Developer / Backend Engineer">
+                        <label class="block text-xs font-bold text-[#F0EEE8] mb-2">Judul Peran (Role Title)</label>
+                        <input type="text" name="role_title" value="{{ old('role_title', $user->role_title) }}" class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="Web Developer / Backend Engineer">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-2">Foto Profil</label>
-                        <input type="file" name="photo" class="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 focus:outline-none file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-cyan-500 file:text-white hover:file:bg-cyan-400">
+                        <label class="block text-xs font-bold text-[#F0EEE8] mb-2">Foto Profil</label>
+                        <input type="file" name="photo" class="w-full px-4 py-2.5 bg-[#191919] border border-[#353535] rounded-xl text-xs text-[#929292] focus:outline-none file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-[#758268] file:text-[#F0EEE8] hover:file:bg-[#859376]">
                     </div>
                 </div>
 
                 <!-- Teks Hero Section vs Teks About Section -->
                 <div class="grid grid-cols-1 gap-6 mt-6">
                     <div>
-                        <label class="block text-xs font-bold text-cyan-400 mb-1 flex items-center gap-1.5">
+                        <label class="block text-xs font-bold text-[#758268] mb-1 flex items-center gap-1.5">
                             <span>✨ Teks Ringkas Hero Section (Paling Atas Halaman)</span>
                         </label>
-                        <p class="text-[11px] text-slate-400 mb-2">Teks pengenalan singkat yang tampil langsung di bawah nama Anda pada bagian Hero paling atas.</p>
-                        <textarea name="hero_bio" rows="2" class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="e.g. Saya adalah Junior Web Developer & Software Engineer dari SMK Negeri 1 Bangsri yang berfokus pada...">{{ old('hero_bio', $user->hero_bio ?? 'Saya adalah Junior Web Developer & Software Engineer dari SMK Negeri 1 Bangsri yang berfokus pada pengembangan aplikasi web modern, responsif, dan berperforma tinggi.') }}</textarea>
+                        <p class="text-[11px] text-[#929292] mb-2">Teks pengenalan singkat yang tampil langsung di bawah nama Anda pada bagian Hero paling atas.</p>
+                        <textarea name="hero_bio" rows="2" class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="e.g. Saya adalah Junior Web Developer & Software Engineer dari SMK Negeri 1 Bangsri yang berfokus pada...">{{ old('hero_bio', $user->hero_bio ?? 'Saya adalah Junior Web Developer & Software Engineer dari SMK Negeri 1 Bangsri yang berfokus pada pengembangan aplikasi web modern, responsif, dan berperforma tinggi.') }}</textarea>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-purple-400 mb-1 flex items-center gap-1.5">
+                        <label class="block text-xs font-bold text-[#8a997a] mb-1 flex items-center gap-1.5">
                             <span>📖 Teks Biografi About Section (Bagian "Tentang Saya")</span>
                         </label>
-                        <p class="text-[11px] text-slate-400 mb-2">Biografi narasi lengkap tentang diri Anda yang tampil pada bagian "Tentang Saya".</p>
-                        <textarea name="bio" rows="4" class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="Tuliskan cerita biografi lengkap Anda di sini...">{{ old('bio', $user->bio) }}</textarea>
+                        <p class="text-[11px] text-[#929292] mb-2">Biografi narasi lengkap tentang diri Anda yang tampil pada bagian "Tentang Saya".</p>
+                        <textarea name="bio" rows="4" class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="Tuliskan cerita biografi lengkap Anda di sini...">{{ old('bio', $user->bio) }}</textarea>
                     </div>
                 </div>
             </div>
 
             <!-- Section 2: Detail Profil (4 Cards Component) -->
             <div>
-                <h3 class="text-base font-bold text-cyan-400 pb-2 border-b border-slate-800 mb-4 flex items-center gap-2">
+                <h3 class="text-base font-bold text-[#758268] pb-2 border-b border-[#353535] mb-4 flex items-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path></svg>
                     <span>Detail Informasi Tambahan</span>
                 </h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-2">Pendidikan</label>
-                        <input type="text" name="education" value="{{ old('education', $user->education) }}" class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="Teknik Informatika / RPL">
+                        <label class="block text-xs font-bold text-[#F0EEE8] mb-2">Pendidikan</label>
+                        <input type="text" name="education" value="{{ old('education', $user->education) }}" class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="Teknik Informatika / RPL">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-2">Fokus Utama</label>
-                        <input type="text" name="focus" value="{{ old('focus', $user->focus) }}" class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="Web & Backend Dev">
+                        <label class="block text-xs font-bold text-[#F0EEE8] mb-2">Fokus Utama</label>
+                        <input type="text" name="focus" value="{{ old('focus', $user->focus) }}" class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="Web & Backend Dev">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-2">No. Telepon / WhatsApp</label>
-                        <input type="text" name="phone" value="{{ old('phone', $user->phone) }}" class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="+62 89639685566">
+                        <label class="block text-xs font-bold text-[#F0EEE8] mb-2">No. Telepon / WhatsApp</label>
+                        <input type="text" name="phone" value="{{ old('phone', $user->phone) }}" class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="+62 89639685566">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-2">Lokasi</label>
-                        <input type="text" name="location" value="{{ old('location', $user->location) }}" class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="Jepara">
+                        <label class="block text-xs font-bold text-[#F0EEE8] mb-2">Lokasi</label>
+                        <input type="text" name="location" value="{{ old('location', $user->location) }}" class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="Jepara">
                     </div>
                 </div>
             </div>
 
-            <!-- Section 3: Link Media Sosial (Requirement User) -->
+            <!-- Section 3: Link Media Sosial -->
             <div>
-                <h3 class="text-base font-bold text-cyan-400 pb-2 border-b border-slate-800 mb-4 flex items-center gap-2">
+                <h3 class="text-base font-bold text-[#758268] pb-2 border-b border-[#353535] mb-4 flex items-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
                     <span>Link Media Sosial</span>
                 </h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-2">URL GitHub</label>
-                        <input type="url" name="github_url" value="{{ old('github_url', $user->github_url) }}" class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="https://github.com/username">
+                        <label class="block text-xs font-bold text-[#F0EEE8] mb-2">URL GitHub</label>
+                        <input type="url" name="github_url" value="{{ old('github_url', $user->github_url) }}" class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="https://github.com/username">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-2">URL LinkedIn</label>
-                        <input type="url" name="linkedin_url" value="{{ old('linkedin_url', $user->linkedin_url) }}" class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="https://linkedin.com/in/username">
+                        <label class="block text-xs font-bold text-[#F0EEE8] mb-2">URL LinkedIn</label>
+                        <input type="url" name="linkedin_url" value="{{ old('linkedin_url', $user->linkedin_url) }}" class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="https://linkedin.com/in/username">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-2">URL Instagram</label>
-                        <input type="url" name="instagram_url" value="{{ old('instagram_url', $user->instagram_url) }}" class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="https://instagram.com/username">
+                        <label class="block text-xs font-bold text-[#F0EEE8] mb-2">URL Instagram</label>
+                        <input type="url" name="instagram_url" value="{{ old('instagram_url', $user->instagram_url) }}" class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="https://instagram.com/username">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-2">Link WhatsApp Direct</label>
-                        <input type="url" name="whatsapp_url" value="{{ old('whatsapp_url', $user->whatsapp_url) }}" class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="https://wa.me/6289639685566">
+                        <label class="block text-xs font-bold text-[#F0EEE8] mb-2">Link WhatsApp Direct</label>
+                        <input type="url" name="whatsapp_url" value="{{ old('whatsapp_url', $user->whatsapp_url) }}" class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="https://wa.me/6289639685566">
                     </div>
                 </div>
             </div>
 
             <!-- Submit Button -->
             <div class="pt-4 flex justify-end">
-                <button type="submit" class="px-8 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 transition shadow-lg shadow-blue-600/30 flex items-center gap-2">
+                <button type="submit" class="px-8 py-3.5 rounded-xl font-bold text-sm text-[#F0EEE8] bg-[#758268] hover:bg-[#859376] border border-[#8a997a]/30 transition shadow-md shadow-[#758268]/20 flex items-center gap-2 active:scale-95">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
                     <span>Simpan Perubahan Profil & Sosmed</span>
                 </button>
@@ -117,16 +117,16 @@
         </form>
 
         <!-- Card Ubah Kata Sandi (Password) Admin -->
-        <form action="{{ route('password.update') }}" method="POST" class="mt-8 bg-[#0b1026] p-6 sm:p-8 rounded-2xl border border-slate-800/80 shadow-xl space-y-6">
+        <form action="{{ route('password.update') }}" method="POST" class="mt-8 bg-[#242424] p-6 sm:p-8 rounded-2xl border border-[#353535] shadow-xl space-y-6">
             @csrf
             @method('PUT')
 
             <div>
-                <h3 class="text-base font-bold text-cyan-400 pb-2 border-b border-slate-800 mb-1 flex items-center gap-2">
-                    <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                <h3 class="text-base font-bold text-[#758268] pb-2 border-b border-[#353535] mb-1 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-[#758268]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                     <span>Ubah Kata Sandi (Password) Akun Admin</span>
                 </h3>
-                <p class="text-xs text-slate-400 mt-1">Gunakan kata sandi baru yang aman dan sulit ditebak untuk melindungi akses login ke panel CMS ini.</p>
+                <p class="text-xs text-[#929292] mt-1">Gunakan kata sandi baru yang aman dan sulit ditebak untuk melindungi akses login ke panel CMS ini.</p>
             </div>
 
             @if (session('status') === 'password-updated')
@@ -153,10 +153,10 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <!-- Current Password -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-2">Kata Sandi Saat Ini</label>
+                    <label class="block text-xs font-bold text-[#F0EEE8] mb-2">Kata Sandi Saat Ini</label>
                     <div class="relative">
-                        <input type="password" id="input_current_password" name="current_password" required autocomplete="current-password" class="w-full pl-4 pr-10 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="••••••••">
-                        <button type="button" onclick="togglePasswordVisibility('input_current_password', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-cyan-400 transition" title="Lihat / Sembunyikan Sandi">
+                        <input type="password" id="input_current_password" name="current_password" required autocomplete="current-password" class="w-full pl-4 pr-10 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="••••••••">
+                        <button type="button" onclick="togglePasswordVisibility('input_current_password', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-[#929292] hover:text-[#758268] transition" title="Lihat / Sembunyikan Sandi">
                             <svg class="eye-show w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                             <svg class="eye-hide w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18"/></svg>
                         </button>
@@ -165,10 +165,10 @@
 
                 <!-- New Password -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-2">Kata Sandi Baru</label>
+                    <label class="block text-xs font-bold text-[#F0EEE8] mb-2">Kata Sandi Baru</label>
                     <div class="relative">
-                        <input type="password" id="input_new_password" name="password" required autocomplete="new-password" minlength="8" oninput="checkPasswordMatch()" class="w-full pl-4 pr-10 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="Minimal 8 karakter">
-                        <button type="button" onclick="togglePasswordVisibility('input_new_password', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-cyan-400 transition" title="Lihat / Sembunyikan Sandi">
+                        <input type="password" id="input_new_password" name="password" required autocomplete="new-password" minlength="8" oninput="checkPasswordMatch()" class="w-full pl-4 pr-10 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="Minimal 8 karakter">
+                        <button type="button" onclick="togglePasswordVisibility('input_new_password', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-[#929292] hover:text-[#758268] transition" title="Lihat / Sembunyikan Sandi">
                             <svg class="eye-show w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                             <svg class="eye-hide w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18"/></svg>
                         </button>
@@ -177,10 +177,10 @@
 
                 <!-- Confirm Password -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-2">Konfirmasi Sandi Baru</label>
+                    <label class="block text-xs font-bold text-[#F0EEE8] mb-2">Konfirmasi Sandi Baru</label>
                     <div class="relative">
-                        <input type="password" id="input_confirm_password" name="password_confirmation" required autocomplete="new-password" minlength="8" oninput="checkPasswordMatch()" class="w-full pl-4 pr-10 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="Ulangi sandi baru">
-                        <button type="button" onclick="togglePasswordVisibility('input_confirm_password', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-cyan-400 transition" title="Lihat / Sembunyikan Sandi">
+                        <input type="password" id="input_confirm_password" name="password_confirmation" required autocomplete="new-password" minlength="8" oninput="checkPasswordMatch()" class="w-full pl-4 pr-10 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="Ulangi sandi baru">
+                        <button type="button" onclick="togglePasswordVisibility('input_confirm_password', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-[#929292] hover:text-[#758268] transition" title="Lihat / Sembunyikan Sandi">
                             <svg class="eye-show w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                             <svg class="eye-hide w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18"/></svg>
                         </button>
@@ -190,8 +190,8 @@
             </div>
 
             <div class="pt-2 flex justify-end">
-                <button type="submit" class="px-7 py-3 rounded-xl font-bold text-sm text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-cyan-500/50 transition flex items-center gap-2">
-                    <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <button type="submit" class="px-7 py-3 rounded-xl font-bold text-sm text-[#F0EEE8] bg-[#758268] hover:bg-[#859376] border border-[#8a997a]/30 transition shadow-md shadow-[#758268]/20 flex items-center gap-2 active:scale-95">
+                    <svg class="w-4 h-4 text-[#F0EEE8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                     <span>Perbarui Kata Sandi</span>
                 </button>
             </div>

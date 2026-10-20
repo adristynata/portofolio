@@ -15,6 +15,20 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                swiss: {
+                    bg: '#191919',
+                    surface: '#242424',
+                    'surface-elevated': '#2c2c2c',
+                    primary: '#F0EEE8',
+                    secondary: '#929292',
+                    accent: '#758268',
+                    'accent-light': '#8a997a',
+                    'accent-dark': '#5e6953',
+                    border: '#353535',
+                    'border-light': '#454545',
+                },
+            },
         },
     },
 

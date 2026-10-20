@@ -4,11 +4,11 @@
 
 /* Outer Studio Deck Container (Default: Dark Mode) */
 .butter-deck {
-  background: radial-gradient(120% 120% at 50% 0%, #11172e 0%, #080c1b 50%, #050711 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: radial-gradient(120% 120% at 50% 0%, #242424 0%, #1e1e1e 50%, #191919 100%);
+  border: 1px solid #353535;
   box-shadow: 
     0 25px 50px -12px rgba(0, 0, 0, 0.8),
-    inset 0 1px 1px rgba(255, 255, 255, 0.15),
+    inset 0 1px 1px rgba(240, 238, 232, 0.08),
     inset 0 -1px 1px rgba(0, 0, 0, 0.5);
   position: relative;
   isolation: isolate;
@@ -55,7 +55,8 @@ html.light .timeline-ticks {
 /* Scrubber Playhead */
 .butter-playhead {
   transition: left 0.28s cubic-bezier(0.16, 1, 0.3, 1), width 0.28s ease, background-color 0.3s ease, border-color 0.3s ease;
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+  box-shadow: 0 0 15px rgba(117, 130, 104, 0.5);
+  border-color: #758268;
 }
 
 html.light .butter-playhead {

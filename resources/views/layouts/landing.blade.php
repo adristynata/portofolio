@@ -13,7 +13,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
-        <meta name="theme-color" content="#070b19">
+        <meta name="theme-color" content="#191919">
 
         <!-- Theme Initialization (Prevents flicker) -->
         <script>
@@ -34,7 +34,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-['Plus_Jakarta_Sans',sans-serif] antialiased selection:bg-cyan-500 selection:text-white min-h-screen overflow-x-hidden transition-colors duration-300">
+    <body class="font-['Plus_Jakarta_Sans',sans-serif] antialiased selection:bg-[#758268]/30 selection:text-[#F0EEE8] min-h-screen overflow-x-hidden transition-colors duration-300">
         {{-- Top Glowing Reading Progress Bar --}}
         <div id="scroll-progress-bar"></div>
 

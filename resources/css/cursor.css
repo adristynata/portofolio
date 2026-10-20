@@ -21,11 +21,11 @@
   #cursor-dot {
     width: 6px;
     height: 6px;
-    background-color: #00f0ff;
+    background-color: #758268;
     border-radius: 9999px;
     box-shadow: 
-      0 0 8px rgba(0, 240, 255, 0.9),
-      0 0 16px rgba(0, 240, 255, 0.5);
+      0 0 8px rgba(117, 130, 104, 0.9),
+      0 0 16px rgba(117, 130, 104, 0.5);
     pointer-events: none;
     z-index: 99999;
     will-change: transform;
@@ -62,14 +62,14 @@
     width: 34px;
     height: 34px;
     border-radius: 9999px;
-    border: 1.5px solid rgba(0, 240, 255, 0.4);
+    border: 1.5px solid rgba(117, 130, 104, 0.45);
     background: radial-gradient(
       circle at 40% 40%,
-      rgba(0, 240, 255, 0.16) 0%,
-      rgba(168, 85, 247, 0.08) 55%,
-      rgba(0, 240, 255, 0.02) 100%
+      rgba(117, 130, 104, 0.18) 0%,
+      rgba(94, 105, 83, 0.08) 55%,
+      rgba(25, 25, 25, 0.02) 100%
     );
-    box-shadow: 0 0 16px rgba(0, 240, 255, 0.25);
+    box-shadow: 0 0 16px rgba(117, 130, 104, 0.25);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
     pointer-events: none;
@@ -102,11 +102,11 @@
   #cursor-follower.mode-link {
     width: 48px;
     height: 48px;
-    border-color: rgba(0, 240, 255, 0.85);
-    background: rgba(0, 240, 255, 0.2);
+    border-color: rgba(117, 130, 104, 0.85);
+    background: rgba(117, 130, 104, 0.22);
     box-shadow: 
-      0 0 25px rgba(0, 240, 255, 0.45),
-      inset 0 0 12px rgba(0, 240, 255, 0.2);
+      0 0 25px rgba(117, 130, 104, 0.45),
+      inset 0 0 12px rgba(117, 130, 104, 0.2);
   }
 
   /* Link & Button Magnetic State (Light Mode) */
@@ -122,9 +122,9 @@
   #cursor-follower.mode-text {
     width: 52px;
     height: 52px;
-    border: 1.5px solid rgba(0, 240, 255, 0.65);
-    background: rgba(0, 240, 255, 0.14);
-    box-shadow: 0 0 20px rgba(0, 240, 255, 0.28);
+    border: 1.5px solid rgba(117, 130, 104, 0.65);
+    background: rgba(117, 130, 104, 0.14);
+    box-shadow: 0 0 20px rgba(117, 130, 104, 0.28);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
   }
