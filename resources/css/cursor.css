@@ -39,10 +39,10 @@
 
   /* Precision Core Dot (Light Mode) */
   html.light #cursor-dot {
-    background-color: #0284c7;
+    background-color: #5E6E55;
     box-shadow: 
-      0 0 8px rgba(2, 132, 199, 0.9),
-      0 0 16px rgba(37, 99, 235, 0.45);
+      0 0 8px rgba(94, 110, 85, 0.7),
+      0 0 16px rgba(94, 110, 85, 0.35);
   }
 
   #cursor-dot.dot-mode-link {
@@ -81,14 +81,9 @@
 
   /* Fluid Frosted Follower Bubble (Light Mode) */
   html.light #cursor-follower {
-    border: 1.5px solid rgba(2, 132, 199, 0.65);
-    background: radial-gradient(
-      circle at 40% 40%,
-      rgba(2, 132, 199, 0.18) 0%,
-      rgba(99, 102, 241, 0.1) 55%,
-      rgba(15, 23, 42, 0.04) 100%
-    );
-    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.12), 0 0 14px rgba(2, 132, 199, 0.25);
+    border: 1.5px solid rgba(117, 130, 104, 0.45);
+    background: rgba(117, 130, 104, 0.05);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
   }
@@ -106,11 +101,11 @@
 
   /* Link & Button Magnetic State (Light Mode) */
   html.light #cursor-follower.mode-link {
-    border-color: rgba(2, 132, 199, 0.95);
-    background: rgba(2, 132, 199, 0.22);
+    border-color: rgba(94, 110, 85, 0.85);
+    background: rgba(117, 130, 104, 0.15);
     box-shadow: 
-      0 0 25px rgba(2, 132, 199, 0.35),
-      inset 0 0 12px rgba(2, 132, 199, 0.15);
+      0 0 20px rgba(117, 130, 104, 0.25),
+      inset 0 0 10px rgba(117, 130, 104, 0.1);
   }
 
   /* 8. Heading / Text Glow Lens Mode */
@@ -125,9 +120,9 @@
   }
 
   html.light #cursor-follower.mode-text {
-    border: 1.5px solid rgba(2, 132, 199, 0.75);
-    background: rgba(2, 132, 199, 0.16);
-    box-shadow: 0 4px 20px rgba(2, 132, 199, 0.25);
+    border: 1.5px solid rgba(94, 110, 85, 0.75);
+    background: rgba(117, 130, 104, 0.12);
+    box-shadow: 0 4px 20px rgba(117, 130, 104, 0.2);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
   }

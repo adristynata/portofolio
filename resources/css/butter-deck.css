@@ -61,16 +61,16 @@ html.light .timeline-ticks {
 
 html.light .butter-playhead {
   background-color: rgba(255, 255, 255, 0.96) !important;
-  border-color: #0284c7 !important;
-  box-shadow: 0 4px 16px -2px rgba(2, 132, 199, 0.35) !important;
+  border-color: #758268 !important;
+  box-shadow: 0 4px 16px -2px rgba(117, 130, 104, 0.35) !important;
 }
 
 html.light .butter-playhead span {
-  color: #0f172a !important;
+  color: #191919 !important;
 }
 
 html.light .butter-playhead div {
-  background-color: #0284c7 !important;
+  background-color: #758268 !important;
 }
 
 /* 3D Squircle Pillow Cards */
@@ -194,7 +194,7 @@ html.light .butter-card-logo {
 }
 
 html.light .butter-card:hover .butter-card-logo {
-  filter: drop-shadow(0 14px 22px rgba(2, 132, 199, 0.25)) !important;
+  filter: drop-shadow(0 14px 22px rgba(117, 130, 104, 0.25)) !important;
 }
 
 /* ==========================================================================
@@ -520,65 +520,65 @@ html.light #butter-skills-deck .border-white\/5 {
 }
 
 html.light #butter-play-btn {
-  background-color: #ffffff !important;
-  border-color: #cbd5e1 !important;
-  color: #0f172a !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+  background-color: #FFFFFF !important;
+  border-color: #E5E3DC !important;
+  color: #191919 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
 }
 
 html.light #butter-play-btn:hover {
-  background-color: #f1f5f9 !important;
+  background-color: #F2EFEB !important;
 }
 
 html.light #butter-pause-icon,
 html.light #butter-play-icon {
-  color: #0284c7 !important;
+  color: #5E6E55 !important;
 }
 
 html.light #butter-timecode {
-  color: #0284c7 !important;
+  color: #5E6E55 !important;
 }
 
 html.light #butter-skills-deck .font-mono.text-white {
-  color: #0f172a !important;
+  color: #191919 !important;
 }
 
 html.light #butter-skills-deck .bg-white\/5 {
-  background-color: #ffffff !important;
-  border-color: #e2e8f0 !important;
-  color: #334155 !important;
+  background-color: #FFFFFF !important;
+  border-color: #E5E3DC !important;
+  color: #4A4A4A !important;
 }
 
 html.light #butter-skills-deck .text-slate-300 {
-  color: #334155 !important;
+  color: #4A4A4A !important;
 }
 
 html.light #butter-skills-deck .text-slate-500 {
-  color: #64748b !important;
+  color: #777777 !important;
 }
 
 html.light #butter-skills-deck .text-cyan-300 {
-  color: #0284c7 !important;
+  color: #5E6E55 !important;
 }
 
 html.light #butter-skills-deck .bg-cyan-500\/10 {
-  background-color: rgba(2, 132, 199, 0.08) !important;
-  border-color: rgba(2, 132, 199, 0.25) !important;
-  color: #0369a1 !important;
+  background-color: rgba(117, 130, 104, 0.12) !important;
+  border-color: rgba(117, 130, 104, 0.3) !important;
+  color: #4E5D46 !important;
 }
 
 html.light #butter-skills-deck .bg-cyan-400 {
-  background-color: #0284c7 !important;
+  background-color: #758268 !important;
 }
 
 html.light .butter-card-title {
-  color: #0f172a !important;
+  color: #191919 !important;
 }
 
 html.light .butter-card-desc {
-  color: #64748b !important;
+  color: #555555 !important;
 }
 
 html.light .butter-card-num {
-  color: #94a3b8 !important;
+  color: #8C8A84 !important;
 }

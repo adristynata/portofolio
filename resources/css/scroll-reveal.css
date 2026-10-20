@@ -45,7 +45,7 @@ html.lenis body {
 }
 
 html.light #scroll-progress-bar {
-  background: linear-gradient(90deg, #0284c7 0%, #2563eb 50%, #7c3aed 100%);
+  background: linear-gradient(90deg, #758268 0%, #8a997a 50%, #CAD6C3 100%);
 }
 
 /* 3. Refined Scroll Reveal Animations (Clean, Sharp & Fast) */
@@ -126,12 +126,12 @@ html.light #scroll-progress-bar {
 }
 
 html.light .nav-link.nav-active {
-  color: #0284c7 !important;
+  color: #5E6E55 !important;
   font-weight: 600 !important;
 }
 
 html.light .nav-link.nav-active::after {
-  background: #0284c7;
+  background: #5E6E55;
 }
 
 @keyframes nav-pill-in {
@@ -200,16 +200,16 @@ html.light nav.nav-scrolled {
 }
 
 html.light #back-to-top-btn {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  color: #64748b;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #E5E3DC;
+  color: #555555;
+  box-shadow: 0 4px 14px rgba(25, 25, 25, 0.08);
 }
 
 html.light #back-to-top-btn:hover {
-  background: #ffffff;
-  color: #0284c7;
-  border-color: rgba(2, 132, 199, 0.4);
+  background: #FFFFFF;
+  color: #5E6E55;
+  border-color: rgba(117, 130, 104, 0.5);
   transform: translateY(-2px);
 }
 

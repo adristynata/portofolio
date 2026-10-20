@@ -1,20 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
   <defs>
-    <!-- Bright Electric Cyan-to-Blue Gradient (Vividly visible on both dark and light modes) -->
+    <!-- Swiss Editorial Crisp Luxury Gradient: Luminous Warm Off-White to Crisp Sage -->
     <linearGradient id="logoBodyGrad" x1="75%" y1="15%" x2="25%" y2="85%">
-      <stop offset="0%" stop-color="#38bdf8"/>
-      <stop offset="35%" stop-color="#0ea5e9"/>
-      <stop offset="70%" stop-color="#2563eb"/>
-      <stop offset="100%" stop-color="#1d4ed8"/>
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="35%" stop-color="#F0EEE8"/>
+      <stop offset="70%" stop-color="#C8D6C0"/>
+      <stop offset="100%" stop-color="#9EB28F"/>
     </linearGradient>
 
     <!-- 3D Luminous Dot Sphere Radial Gradient -->
     <radialGradient id="logoDotGrad" cx="68%" cy="28%" r="68%">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="25%" stop-color="#e0f2fe"/>
-      <stop offset="60%" stop-color="#7dd3fc"/>
-      <stop offset="85%" stop-color="#38bdf8"/>
-      <stop offset="100%" stop-color="#0284c7"/>
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="40%" stop-color="#F5F3ED"/>
+      <stop offset="80%" stop-color="#C8D6C0"/>
+      <stop offset="100%" stop-color="#8FA382"/>
     </radialGradient>
   </defs>
 

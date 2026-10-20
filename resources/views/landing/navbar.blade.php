@@ -5,7 +5,7 @@
             <!-- Left: Logo & Brand Info -->
             <a href="#home" class="flex items-center gap-3.5 group">
                 <div class="relative w-10 h-10 rounded-xl p-1 bg-[#242424] border border-[#353535] shadow-md flex items-center justify-center group-hover:scale-105 group-hover:border-[#A5B698]/50 transition-all duration-300">
-                    <img src="{{ asset('images/logo.svg') }}" alt="Logo Adristy" class="w-full h-full object-contain dark:hidden drop-shadow-[0_2px_8px_rgba(56,189,248,0.35)]">
+                    <img src="{{ asset('images/logo.svg') }}" alt="Logo Adristy" class="w-full h-full object-contain dark:hidden drop-shadow-[0_2px_8px_rgba(165,182,152,0.35)]">
                     <img src="{{ asset('images/logo-dark.svg') }}" alt="Logo Adristy" class="w-full h-full object-contain hidden dark:block drop-shadow-[0_2px_8px_rgba(165,182,152,0.35)]">
                 </div>
                 <div class="flex flex-col">
@@ -108,7 +108,7 @@
 }
 
 html.light .nav-link::after {
-    background: #0284c7;
+    background: #758268;
 }
 
 .nav-link:hover::after {
