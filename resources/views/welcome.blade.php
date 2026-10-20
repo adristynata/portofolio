@@ -16,14 +16,6 @@
                 {{-- Left Side: Texts & Action Buttons --}}
                 <div class="lg:col-span-7 flex flex-col gap-4 sm:gap-5 text-left">
                     
-                    {{-- Pill Badge --}}
-                    <div class="reveal-init">
-                        <span class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold tracking-wide bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 backdrop-blur-md">
-                            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                            <span>Backend Developer</span>
-                        </span>
-                    </div>
-
                     {{-- Main Title --}}
                     <h1 class="reveal-init reveal-delay-1 text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-black text-white leading-tight tracking-tight">
                         Halo, Saya <br>
