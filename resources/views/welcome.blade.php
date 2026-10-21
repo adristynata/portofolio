@@ -4,7 +4,7 @@
     @include('landing.navbar')
     
     {{-- === 1. HERO SECTION (#home) === --}}
-    <section id="home" class="relative min-h-[100dvh] h-[100dvh] flex items-center justify-center overflow-hidden bg-[#0c0e0c] select-none">
+    <section id="home" class="relative min-h-[100dvh] h-[100dvh] flex items-center justify-center overflow-hidden bg-[#0c0e0c] select-none pt-16">
         
         {{-- Luxury Atmospheric Dark Glass Backlight & Contrast Glow --}}
         <div class="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-0">
@@ -15,7 +15,7 @@
         </div>
 
         {{-- Centered Cutout Photo of Adristy (White shirt & hijab, z-20 in front of emerging name) --}}
-        <div class="absolute left-1/2 -translate-x-1/2 bottom-0 z-20 flex justify-center items-end pointer-events-none w-full max-w-[380px] sm:max-w-[460px] lg:max-w-[500px] xl:max-w-[540px] h-full max-h-[86vh] lg:max-h-[90vh]">
+        <div class="absolute left-1/2 -translate-x-1/2 bottom-0 z-20 flex justify-center items-end pointer-events-none w-full max-w-[360px] sm:max-w-[440px] lg:max-w-[480px] xl:max-w-[520px] h-full max-h-[80vh] lg:max-h-[82vh]">
             <img src="{{ asset('images/adristy_cutout.png') }}" 
                  alt="{{ $profile->name ?? 'Adristy Akiko' }}" 
                  class="w-full h-full object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.85)] select-none pointer-events-auto transition-transform duration-700 hover:scale-[1.01]"
@@ -26,7 +26,7 @@
         <div class="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 h-full flex flex-col lg:flex-row items-center justify-between pointer-events-none pt-12 pb-16 lg:py-0">
             
             {{-- Left Side: Name emerging from behind neck + dropping description --}}
-            <div class="w-full lg:w-[42%] flex flex-col justify-center text-left pointer-events-auto z-10 pt-14 sm:pt-20 lg:pt-0">
+            <div class="w-full lg:w-[46%] max-w-lg flex flex-col justify-center text-left pointer-events-auto z-10 pt-16 sm:pt-20 lg:pt-0">
                 
                 {{-- Name: ONLY "Adristy Akiko", emerges from behind neck with fast-then-slow bouncy overshoot --}}
                 <div class="relative overflow-visible">
@@ -36,66 +36,13 @@
                 </div>
 
                 {{-- Description: Fades in and drops down from above below the name --}}
-                <p class="hero-desc-drop mt-5 sm:mt-6 text-sm sm:text-base lg:text-lg text-[#C5C2BA] font-serif italic leading-relaxed max-w-md">
+                <p class="hero-desc-drop mt-5 sm:mt-6 text-sm sm:text-base lg:text-lg text-[#C5C2BA] font-serif italic leading-relaxed">
                     Saya adalah Junior Web Developer sekaligus Software Engineering dari SMK Negeri 1 Bangsri yang berfokus pada pengembangan web modern, responsif, dan berperforma tinggi.
                 </p>
             </div>
 
-            {{-- Right Side: Dynamic Software Capsule Pills & Backend Developer Role with Magnetic Cursor Avoidance --}}
-            <div class="w-full lg:w-[42%] flex flex-col items-end justify-end lg:justify-center pointer-events-auto z-30 pb-6 lg:pb-0">
-                <div id="hero-capsules-container" class="relative w-full max-w-[420px] flex flex-col gap-3 sm:gap-3.5">
-                    
-                    {{-- Row 1: Node.js (top right) --}}
-                    <div class="flex justify-end pr-6 sm:pr-10">
-                        <div class="hero-capsule" data-capsule="nodejs">
-                            <div class="capsule-pill border-[#758268]/50 text-[#E8EDE4] shadow-[0_0_18px_rgba(117,130,104,0.2)]" data-pill="nodejs">
-                                <span class="w-2 h-2 rounded-full bg-[#8a997a] mr-2 shadow-[0_0_8px_#8a997a]"></span>
-                                Node.js
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Row 2: Python (middle-left) and Go (middle-right) --}}
-                    <div class="flex items-center justify-end gap-3 pr-2">
-                        <div class="hero-capsule" data-capsule="python">
-                            <div class="capsule-pill border-[#38bdf8]/50 text-[#E0F2FE] shadow-[0_0_18px_rgba(56,189,248,0.2)]" data-pill="python">
-                                <span class="w-2 h-2 rounded-full bg-[#38bdf8] mr-2 shadow-[0_0_8px_#38bdf8]"></span>
-                                Python
-                            </div>
-                        </div>
-                        <div class="hero-capsule" data-capsule="go">
-                            <div class="capsule-pill border-[#f59e0b]/55 text-[#FEF3C7] shadow-[0_0_20px_rgba(245,158,11,0.25)]" data-pill="go">
-                                <span class="w-2 h-2 rounded-full bg-[#f59e0b] mr-2 shadow-[0_0_8px_#f59e0b]"></span>
-                                Go
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Row 3: Role Label ("Backend Developer") alongside Docker --}}
-                    <div class="flex items-center justify-between pl-2">
-                        <span class="hero-role-label text-sm sm:text-base lg:text-lg font-medium text-[#F0EEE8]/85 tracking-tight select-none">
-                            Backend Developer
-                        </span>
-                        <div class="hero-capsule" data-capsule="docker">
-                            <div class="capsule-pill border-[#0ea5e9]/55 text-[#E0F2FE] shadow-[0_0_20px_rgba(14,165,233,0.25)]" data-pill="docker">
-                                <span class="w-2 h-2 rounded-full bg-[#0ea5e9] mr-2 shadow-[0_0_8px_#0ea5e9]"></span>
-                                Docker
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Row 4: SQL (bottom right below Docker) --}}
-                    <div class="flex justify-end pr-4 sm:pr-6">
-                        <div class="hero-capsule" data-capsule="sql">
-                            <div class="capsule-pill border-[#fb923c]/50 text-[#FFEDD5] shadow-[0_0_20px_rgba(251,146,60,0.22)]" data-pill="sql">
-                                <span class="w-2 h-2 rounded-full bg-[#fb923c] mr-2 shadow-[0_0_8px_#fb923c]"></span>
-                                SQL
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+            {{-- Right Side Spacer for Balanced Luxury Composition --}}
+            <div class="hidden lg:block w-[46%] pointer-events-none"></div>
 
         </div>
 

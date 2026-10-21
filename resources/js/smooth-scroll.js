@@ -172,16 +172,8 @@ let lastNavScrollY = 0;
 
 function updateNavbar(navbar, scrollY) {
     if (!navbar) return;
-
-    const isPastHero = scrollY > 80;
-    navbar.classList.toggle('nav-scrolled', isPastHero);
-
-    const delta = scrollY - lastNavScrollY;
-    if (Math.abs(delta) < 6) return; // ignore micro-jitter from inertia
-
-    const shouldHide = delta > 0 && scrollY > 400 && !navbar.classList.contains('menu-open');
-    navbar.classList.toggle('nav-hidden', shouldHide);
-    lastNavScrollY = scrollY;
+    // Navbar is stuck permanently at the top; only toggles subtle elevation on scroll
+    navbar.classList.toggle('nav-scrolled', scrollY > 20);
 }
 
 /**

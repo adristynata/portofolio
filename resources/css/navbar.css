@@ -7,11 +7,11 @@
 .site-nav,
 .mnav {
   --nav-ink: #F0EEE8;
-  --nav-dim: #8F8F8B;
+  --nav-dim: #9E9E98;
   --nav-faint: #5C5C59;
-  --nav-line: rgba(240, 238, 232, 0.14);
-  --nav-line-strong: rgba(240, 238, 232, 0.32);
-  --nav-bg: rgba(25, 25, 25, 0.72);
+  --nav-line: rgba(240, 238, 232, 0.08);
+  --nav-line-strong: rgba(240, 238, 232, 0.22);
+  --nav-bg: rgba(12, 14, 12, 0.72);
   --nav-surface: #1E1E1E;
   --nav-menu-bg: #141414;
   --nav-accent: #A5B698;
@@ -23,49 +23,47 @@ html.light .mnav {
   --nav-ink: #191919;
   --nav-dim: #5F5F5B;
   --nav-faint: #A3A19B;
-  --nav-line: rgba(25, 25, 25, 0.1);
-  --nav-line-strong: rgba(25, 25, 25, 0.28);
-  --nav-bg: rgba(249, 248, 246, 0.8);
+  --nav-line: rgba(25, 25, 25, 0.08);
+  --nav-line-strong: rgba(25, 25, 25, 0.22);
+  --nav-bg: rgba(249, 248, 246, 0.82);
   --nav-surface: #FFFFFF;
   --nav-menu-bg: #F4F2EE;
   --nav-accent: #5E6E55;
 }
 
-/* ---------- Header shell ---------- */
+/* ---------- Header shell (Permanently stuck / fixed, clean minimal luxury) ---------- */
 .site-nav {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 60;
-  padding: 1rem clamp(1rem, 4vw, 2.5rem);
-  border-bottom: 1px solid transparent;
-  transform: translateY(-110%);
-  opacity: 0;
-  pointer-events: none;
+  padding: 0.85rem clamp(1rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--nav-line);
+  background-color: var(--nav-bg);
+  -webkit-backdrop-filter: saturate(140%) blur(16px);
+  backdrop-filter: saturate(140%) blur(16px);
+  transform: none !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
   transition:
-    transform 0.55s var(--nav-ease),
-    opacity 0.4s ease,
-    background-color 0.4s ease,
-    border-color 0.4s ease,
-    padding 0.4s var(--nav-ease);
-  will-change: transform, opacity;
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    padding 0.3s var(--nav-ease),
+    box-shadow 0.3s ease;
+  will-change: background-color, border-color, padding;
 }
 
 .site-nav.nav-scrolled {
-  transform: translateY(0);
-  opacity: 1;
-  pointer-events: auto;
-  padding-top: 0.7rem;
-  padding-bottom: 0.7rem;
-  background-color: var(--nav-bg);
-  border-bottom-color: var(--nav-line);
-  -webkit-backdrop-filter: saturate(140%) blur(14px);
-  backdrop-filter: saturate(140%) blur(14px);
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+  background-color: rgba(12, 14, 12, 0.9);
+  border-bottom-color: rgba(240, 238, 232, 0.14);
+  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.4);
 }
 
-.site-nav.nav-hidden {
-  transform: translateY(-110%) !important;
-  opacity: 0;
-  pointer-events: none;
+html.light .site-nav.nav-scrolled {
+  background-color: rgba(249, 248, 246, 0.94);
+  border-bottom-color: rgba(25, 25, 25, 0.12);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
 }
 
 /* While the mobile menu is open the header sits on the overlay. */
