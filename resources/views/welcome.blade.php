@@ -282,65 +282,45 @@
             </section>
 
             {{-- 2. FOREGROUND LAYER: HERO SECTION (#home) --}}
-            {{-- Foto tetap di center tanpa terbelah; HANYA teks nama yang terbelah ke kiri dan kanan --}}
-            <div id="home" class="hero-stage-layer absolute inset-0 z-20 w-full h-full pointer-events-none select-none flex flex-col justify-between items-center bg-[#0a0f0d] overflow-hidden">
+            {{-- Foto tetap di center tanpa terbelah; Teks nama dan bio berada di sisi kiri persis tampilan awal --}}
+            <div id="home" class="hero-stage-layer absolute inset-0 z-20 w-full h-full pointer-events-none select-none flex items-center justify-center overflow-hidden bg-[#0c0e0c] pt-16">
                 
-                {{-- Atmospheric Dark Glass & Sage Green Ambient Glow --}}
+                {{-- Luxury Atmospheric Dark Glass Backlight & Contrast Glow --}}
                 <div class="hero-ambient-glow absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-0">
-                    <div class="w-[500px] sm:w-[650px] lg:w-[820px] h-[500px] sm:h-[650px] lg:h-[780px] rounded-full bg-gradient-to-tr from-[#758268]/20 via-[#A5B698]/10 to-transparent blur-[110px] opacity-75"></div>
-                    <div class="absolute inset-0 bg-[radial-gradient(#353535_1px,transparent_1px)] [background-size:32px_32px] opacity-20"></div>
-                    <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#0a0f0d] via-[#0a0f0d]/80 to-transparent"></div>
+                    <div class="w-[520px] sm:w-[680px] lg:w-[860px] h-[520px] sm:h-[680px] lg:h-[800px] rounded-full bg-gradient-to-tr from-[#758268]/22 via-[#A5B698]/12 to-transparent blur-[110px] opacity-80"></div>
+                    <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0c0e0c] via-[#0c0e0c]/80 to-transparent"></div>
                 </div>
 
-                {{-- Accessible Heading for Screen Readers --}}
-                <h1 class="sr-only">{{ $profile->name ?? 'Adristy Akiko' }}</h1>
+                {{-- FOTO CUTOUT TRANSPARAN ADRISTY (STAY DI TENGAH, TIDAK KEBELAH, z-20) --}}
+                <div class="hero-stay-photo absolute left-1/2 -translate-x-1/2 bottom-0 z-20 flex justify-center items-end pointer-events-none w-full max-w-[360px] sm:max-w-[440px] lg:max-w-[480px] xl:max-w-[520px] h-full max-h-[80vh] lg:max-h-[82vh]">
+                    <img src="{{ asset('images/adristy_cutout.png') }}?v=cutout-clean" 
+                         alt="{{ $profile->name ?? 'Adristy Akiko Yukinata' }}" 
+                         class="hero-photo-soft-entrance w-full h-full object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.85)] select-none pointer-events-auto transition-transform duration-700 hover:scale-[1.01]"
+                         style="mask-image: linear-gradient(to bottom, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);">
+                </div>
 
-                {{-- Main Hero Layout Stage --}}
-                <div class="relative z-10 w-full max-w-7xl mx-auto h-full flex flex-col justify-center items-center px-4 sm:px-8 lg:px-12 pt-16 pb-8">
+                {{-- STAGE CONTAINER: KIRI BERISI NAMA & BIO, KANAN SPACER SEIMBANG --}}
+                <div class="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 h-full flex flex-col lg:flex-row items-center justify-between pointer-events-none pt-12 pb-16 lg:py-0">
                     
-                    {{-- THE SPLIT WORDS (HANYA TEKS YANG TERBELAH) --}}
-                    <div class="w-full relative z-10 flex flex-col md:flex-row items-center justify-between my-auto pointer-events-none">
+                    {{-- SISI KIRI: NAMA LENGKAP & DESKRIPSI (DI SISI KIRI, BUKAN DI TENGAH!) --}}
+                    <div class="hero-left-content w-full lg:w-[46%] max-w-lg flex flex-col justify-center text-left pointer-events-auto z-10 pt-16 sm:pt-20 lg:pt-0">
                         
-                        {{-- KATA KIRI: "ADRISTY" (Bergerak ke kiri saat scroll) --}}
-                        <div class="hero-split-text-left hero-word-mask overflow-hidden flex justify-center md:justify-start w-full md:w-[42%] text-center md:text-left pointer-events-auto">
-                            <span class="hero-word-reveal inline-block font-black text-6xl sm:text-7xl md:text-7xl lg:text-8xl xl:text-9xl tracking-tighter text-[#f1eee6] uppercase drop-shadow-[0_20px_35px_rgba(0,0,0,0.85)]">
-                                Adristy
-                            </span>
+                        {{-- Nama: Dynamic dari Admin CMS --}}
+                        <div class="relative overflow-visible">
+                            <h1 class="hero-name-emerge text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-[#F0EEE8] tracking-tight leading-none">
+                                {{ $profile->name ?? 'Adristy Akiko Yukinata' }}
+                            </h1>
                         </div>
 
-                        {{-- Spacer Tengah untuk Foto Cutout --}}
-                        <div class="hidden md:block w-[16%] pointer-events-none"></div>
-
-                        {{-- KATA KANAN: "AKIKO" (Bergerak ke kanan saat scroll) --}}
-                        <div class="hero-split-text-right hero-word-mask overflow-hidden flex justify-center md:justify-end w-full md:w-[42%] text-center md:text-right mt-2 md:mt-0 pointer-events-auto">
-                            <span class="hero-word-reveal inline-block font-black text-6xl sm:text-7xl md:text-7xl lg:text-8xl xl:text-9xl tracking-tighter text-[#f1eee6] uppercase drop-shadow-[0_20px_35px_rgba(0,0,0,0.85)]">
-                                Akiko
-                            </span>
-                        </div>
-
-                    </div>
-
-                    {{-- FOTO CUTOUT TRANSPARAN (STAY DI TENGAH, TIDAK KEBELAH, z-30 DI DEPAN TEKS) --}}
-                    <div class="hero-stay-photo absolute left-1/2 -translate-x-1/2 bottom-0 z-30 pointer-events-none flex justify-center items-end w-[290px] sm:w-[380px] md:w-[430px] lg:w-[480px] xl:w-[530px] h-[72vh] sm:h-[78vh] lg:h-[84vh]">
-                        <img src="{{ asset('images/adristy_cutout.png') }}" 
-                             alt="{{ $profile->name ?? 'Adristy Akiko' }}" 
-                             class="w-full h-full object-contain object-bottom drop-shadow-[0_25px_60px_rgba(0,0,0,0.95)] pointer-events-auto select-none"
-                             style="mask-image: linear-gradient(to bottom, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);">
-                    </div>
-
-                    {{-- Subtitle Serif Italic di Bawah Nama (Fade out saat scroll) --}}
-                    <div class="hero-split-desc relative z-40 mt-6 sm:mt-10 max-w-2xl mx-auto text-center px-4 pointer-events-auto">
-                        <p class="font-serif italic text-sm sm:text-base md:text-lg lg:text-xl text-[#c5c2ba] leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+                        {{-- Deskripsi Bio: Dynamic dari Admin CMS (hero_bio) di bawah nama sisi kiri --}}
+                        <p class="hero-desc-drop mt-5 sm:mt-6 text-sm sm:text-base lg:text-lg text-[#C5C2BA] font-serif italic leading-relaxed">
                             {{ $profile->hero_bio ?? 'Saya adalah Junior Web Developer sekaligus Software Engineering dari SMK Negeri 1 Bangsri yang berfokus pada pengembangan web modern, responsif, dan berperforma tinggi.' }}
                         </p>
                     </div>
 
-                </div>
+                    {{-- Spacer Kanan untuk Menyeimbangkan Komposisi Mewah --}}
+                    <div class="hidden lg:block w-[46%] pointer-events-none"></div>
 
-                {{-- Bottom Scroll Indicator --}}
-                <div class="hero-split-desc absolute bottom-4 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center gap-1.5 opacity-60">
-                    <span class="text-[10px] uppercase font-mono tracking-widest text-[#a5b698]">Scroll to Reveal</span>
-                    <svg class="w-3.5 h-3.5 text-[#a5b698] animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
                 </div>
 
             </div>

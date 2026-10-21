@@ -6,7 +6,7 @@
 .hero-split-wrapper {
   position: relative;
   width: 100%;
-  background-color: #0a0f0d;
+  background-color: #0c0e0c;
 }
 
 .hero-pinned-stage {
@@ -15,7 +15,7 @@
   height: 100dvh;
   min-height: 100dvh;
   overflow: hidden;
-  background-color: #0a0f0d;
+  background-color: #0c0e0c;
 }
 
 /* Foreground Hero Stage */
@@ -26,20 +26,19 @@
   height: 100%;
   z-index: 20;
   pointer-events: none;
-  background-color: #0a0f0d;
+  background-color: #0c0e0c;
   will-change: opacity;
 }
 
-/* Split Text Elements (HANYA teks nama yang terbelah ke samping/atas-bawah!) */
-.hero-split-text-left,
-.hero-split-text-right {
+/* Sisi Kiri Hero (Nama & Bio berada di kiri, bukan di tengah) */
+.hero-left-content {
   will-change: transform, opacity;
 }
 
-/* Foto Adristy (STAY DI TENGAH, TIDAK TERBELAH, z-30 di depan teks) */
+/* Foto Adristy (STAY DI TENGAH, TIDAK KEBELAH, z-20 di depan teks leher) */
 .hero-stay-photo {
   will-change: transform, opacity;
-  z-index: 30;
+  z-index: 20;
 }
 
 /* Stage About di belakang hero */
@@ -54,25 +53,64 @@
   background-color: #0a0f0d;
 }
 
-/* Initial Mask Reveal on Page Load */
-.hero-word-mask {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-}
-
-.hero-word-reveal {
-  display: inline-block;
-  will-change: transform;
-  transform: translateY(115%);
-}
-
-.hero-split-desc {
-  will-change: transform, opacity;
-}
-
 .about-reveal-item {
   will-change: transform, opacity;
+}
+
+/* Page-Load Animations: Teks nama keluar dari balik leher & bio meluncur ke bawah */
+.hero-name-emerge {
+  animation: nameEmergeBehindNeck 1.25s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+  will-change: transform, opacity;
+}
+
+.hero-desc-drop {
+  animation: descFadeDrop 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.75s both;
+  will-change: transform, opacity;
+}
+
+.hero-photo-soft-entrance {
+  animation: heroPhotoSoftEntrance 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+  will-change: transform, opacity;
+}
+
+@keyframes nameEmergeBehindNeck {
+  0% {
+    opacity: 0;
+    transform: translate3d(50px, 0, 0) scale(0.96);
+  }
+  65% {
+    opacity: 1;
+    transform: translate3d(-10px, 0, 0) scale(1.01);
+  }
+  85% {
+    transform: translate3d(4px, 0, 0) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes descFadeDrop {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -22px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes heroPhotoSoftEntrance {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
 }
 
 /* Reduced Motion Accessibility Fallback */
@@ -92,7 +130,11 @@
     transform: none !important;
     opacity: 1 !important;
   }
-  .hero-word-reveal {
+  .hero-name-emerge,
+  .hero-desc-drop,
+  .hero-photo-soft-entrance {
+    animation: none !important;
+    opacity: 1 !important;
     transform: none !important;
   }
 }
