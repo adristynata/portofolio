@@ -44,9 +44,7 @@ html.lenis body {
   will-change: transform;
 }
 
-html.light #scroll-progress-bar {
-  background: linear-gradient(90deg, #758268 0%, #8a997a 50%, #CAD6C3 100%);
-}
+
 
 /* 3. Refined Scroll Reveal Animations (Clean, Sharp & Fast) */
 .reveal-init {
@@ -146,19 +144,7 @@ html.light #scroll-progress-bar {
   transform: translateY(-2px);
 }
 
-html.light #back-to-top-btn {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid #E5E3DC;
-  color: #555555;
-  box-shadow: 0 4px 14px rgba(25, 25, 25, 0.08);
-}
 
-html.light #back-to-top-btn:hover {
-  background: #FFFFFF;
-  color: #5E6E55;
-  border-color: rgba(117, 130, 104, 0.5);
-  transform: translateY(-2px);
-}
 
 /* 7. Subtle Parallax for hero background shapes */
 .parallax-layer {

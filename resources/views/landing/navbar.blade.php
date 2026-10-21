@@ -35,11 +35,6 @@
 
         {{-- Actions --}}
         <div class="site-nav__actions">
-            <button type="button" onclick="toggleTheme()" class="site-nav__icon-btn" aria-label="Ganti mode terang / gelap" title="Ganti tema">
-                <svg class="theme-icon-sun" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
-                <svg class="theme-icon-moon hidden" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 0 0 12 21a9.003 9.003 0 0 0 8.354-5.646z"/></svg>
-            </button>
-
             @auth
                 <div class="site-nav__account" x-data="{ open: false }" @keydown.escape.window="open = false">
                     <button type="button" @click="open = !open" class="site-nav__icon-btn" :aria-expanded="open.toString()" aria-haspopup="true" aria-label="Menu admin" title="{{ Auth::user()->name }}">
@@ -97,21 +92,6 @@
 </div>
 
 <script>
-    function updateThemeIcons() {
-        const isLight = document.documentElement.classList.contains('light');
-        document.querySelectorAll('.theme-icon-sun').forEach((el) => el.classList.toggle('hidden', isLight));
-        document.querySelectorAll('.theme-icon-moon').forEach((el) => el.classList.toggle('hidden', !isLight));
-    }
-
-    function toggleTheme() {
-        const root = document.documentElement;
-        const toLight = root.classList.contains('dark');
-        root.classList.toggle('dark', !toLight);
-        root.classList.toggle('light', toLight);
-        localStorage.setItem('theme', toLight ? 'light' : 'dark');
-        updateThemeIcons();
-    }
-
     (function () {
         const burger = document.getElementById('navBurger');
         const menu = document.getElementById('mobileMenu');
@@ -131,9 +111,6 @@
 
         // Exposed so the smooth-scroll anchor handler can close the menu after navigation.
         window.closeMobileNav = () => setMenu(false);
-
-        document.addEventListener('DOMContentLoaded', updateThemeIcons);
-        updateThemeIcons();
 
         if (burger && menu) {
             burger.addEventListener('click', () => setMenu(!menu.classList.contains('is-open')));

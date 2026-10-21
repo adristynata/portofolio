@@ -18,19 +18,6 @@
   --nav-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-html.light .site-nav,
-html.light .mnav {
-  --nav-ink: #191919;
-  --nav-dim: #5F5F5B;
-  --nav-faint: #A3A19B;
-  --nav-line: rgba(25, 25, 25, 0.08);
-  --nav-line-strong: rgba(25, 25, 25, 0.22);
-  --nav-bg: rgba(249, 248, 246, 0.82);
-  --nav-surface: #FFFFFF;
-  --nav-menu-bg: #F4F2EE;
-  --nav-accent: #5E6E55;
-}
-
 /* ---------- Header shell (Permanently stuck / fixed, clean minimal luxury) ---------- */
 .site-nav {
   position: fixed;
@@ -58,12 +45,6 @@ html.light .mnav {
   background-color: rgba(12, 14, 12, 0.9);
   border-bottom-color: rgba(240, 238, 232, 0.14);
   box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.4);
-}
-
-html.light .site-nav.nav-scrolled {
-  background-color: rgba(249, 248, 246, 0.94);
-  border-bottom-color: rgba(25, 25, 25, 0.12);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
 }
 
 /* While the mobile menu is open the header sits on the overlay. */

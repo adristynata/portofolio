@@ -15,15 +15,11 @@
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}?v=3">
         <meta name="theme-color" content="#191919">
 
-        <!-- Theme Initialization (Prevents flicker) -->
+        <!-- Permanent Dark Mode Enforcement -->
         <script>
-            if (localStorage.getItem('theme') === 'light') {
-                document.documentElement.classList.remove('dark');
-                document.documentElement.classList.add('light');
-            } else {
-                document.documentElement.classList.add('dark');
-                document.documentElement.classList.remove('light');
-            }
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+            localStorage.setItem('theme', 'dark');
         </script>
 
         <!-- Fonts -->

@@ -37,14 +37,6 @@
       box-shadow 0.3s ease;
   }
 
-  /* Precision Core Dot (Light Mode) */
-  html.light #cursor-dot {
-    background-color: #5E6E55;
-    box-shadow: 
-      0 0 8px rgba(94, 110, 85, 0.7),
-      0 0 16px rgba(94, 110, 85, 0.35);
-  }
-
   #cursor-dot.dot-mode-link {
     opacity: 0.35 !important;
     width: 3.5px;
@@ -79,16 +71,7 @@
       opacity 0.2s ease;
   }
 
-  /* Fluid Frosted Follower Bubble (Light Mode) */
-  html.light #cursor-follower {
-    border: 1.5px solid rgba(117, 130, 104, 0.45);
-    background: rgba(117, 130, 104, 0.05);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-  }
-
-  /* 4. Link & Button Magnetic State (Dark Mode) */
+  /* 4. Link & Button Magnetic State */
   #cursor-follower.mode-link {
     width: 48px;
     height: 48px;
@@ -99,15 +82,6 @@
       inset 0 0 10px rgba(165, 182, 152, 0.1);
   }
 
-  /* Link & Button Magnetic State (Light Mode) */
-  html.light #cursor-follower.mode-link {
-    border-color: rgba(94, 110, 85, 0.85);
-    background: rgba(117, 130, 104, 0.15);
-    box-shadow: 
-      0 0 20px rgba(117, 130, 104, 0.25),
-      inset 0 0 10px rgba(117, 130, 104, 0.1);
-  }
-
   /* 8. Heading / Text Glow Lens Mode */
   #cursor-follower.mode-text {
     width: 52px;
@@ -115,14 +89,6 @@
     border: 1.5px solid rgba(117, 130, 104, 0.65);
     background: rgba(117, 130, 104, 0.14);
     box-shadow: 0 0 20px rgba(117, 130, 104, 0.28);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-  }
-
-  html.light #cursor-follower.mode-text {
-    border: 1.5px solid rgba(94, 110, 85, 0.75);
-    background: rgba(117, 130, 104, 0.12);
-    box-shadow: 0 4px 20px rgba(117, 130, 104, 0.2);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
   }
