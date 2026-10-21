@@ -39,58 +39,57 @@ export function initSplitRevealHero() {
     // 2. Responsive Scroll Timeline dengan gsap.matchMedia()
     const mm = gsap.matchMedia();
 
-    // === DESKTOP (>= 768px): Cukup 1 kali scroll cepat & bersih (end: '+=50%') ===
+    // === DESKTOP (>= 768px): Natural Split Scroll (Tanpa jeda/halaman kosong) ===
     mm.add('(min-width: 768px)', () => {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: '.hero-pinned-stage',
                 start: 'top top',
-                end: '+=50%',
+                end: 'bottom top',
                 scrub: 0.5,
-                pin: true,
-                anticipatePin: 1,
                 invalidateOnRefresh: true,
             }
         });
 
         // a. "ADRISTY" (+ bio jika ada) meluncur ke KIRI
         tl.to('.hero-anim-adristy', {
-            xPercent: -130,
+            xPercent: -110,
             opacity: 0,
-            duration: 1,
-            ease: 'power2.inOut'
+            duration: 0.8,
+            ease: 'power1.inOut'
         }, 0);
 
         // b. "YUKINATA" (di tengah) meluncur ke KIRI ikut Adristy keluar dari balik foto!
         tl.to('.hero-anim-yukinata', {
-            xPercent: -120,
+            xPercent: -100,
             opacity: 0,
-            duration: 1,
-            ease: 'power2.inOut'
+            duration: 0.8,
+            ease: 'power1.inOut'
         }, 0);
 
         // c. "AKIKO" (+ badge info) meluncur ke KANAN
         tl.to('.hero-anim-akiko', {
-            xPercent: 130,
+            xPercent: 110,
             opacity: 0,
-            duration: 1,
-            ease: 'power2.inOut'
+            duration: 0.8,
+            ease: 'power1.inOut'
         }, 0);
 
-        // d. Foto STAY di tengah, lalu soft crossfade keluar
+        // d. Foto STAY di tengah, naik anggun bersama hero section
         tl.to('.hero-stay-photo', {
-            opacity: 0,
-            scale: 1.04,
-            duration: 0.55,
-            ease: 'power2.inOut'
-        }, 0.35);
+            yPercent: -10,
+            scale: 0.98,
+            opacity: 0.85,
+            duration: 0.8,
+            ease: 'power1.inOut'
+        }, 0);
 
         // e. Ambient backlight memudar lembut
         tl.to('.hero-ambient-glow', {
-            opacity: 0,
-            duration: 0.5,
-            ease: 'power2.in'
-        }, 0.4);
+            opacity: 0.3,
+            duration: 0.8,
+            ease: 'power1.in'
+        }, 0);
 
         // Staggered fade-up untuk kartu About saat user masuk ke #about
         gsap.fromTo('.about-reveal-item', {
@@ -114,57 +113,56 @@ export function initSplitRevealHero() {
         };
     });
 
-    // === MOBILE (< 768px): Cukup 1 kali scroll cepat (end: '+=40%') ===
+    // === MOBILE (< 768px): Natural Split Scroll (Tanpa jeda/halaman kosong) ===
     mm.add('(max-width: 767px)', () => {
         const tlMobile = gsap.timeline({
             scrollTrigger: {
                 trigger: '.hero-pinned-stage',
                 start: 'top top',
-                end: '+=40%',
+                end: 'bottom top',
                 scrub: 0.5,
-                pin: true,
-                anticipatePin: 1,
                 invalidateOnRefresh: true,
             }
         });
 
         // a. ADRISTY meluncur ke KIRI
         tlMobile.to('.hero-anim-adristy', {
-            xPercent: -125,
+            xPercent: -100,
             opacity: 0,
-            duration: 1,
-            ease: 'power2.inOut'
+            duration: 0.8,
+            ease: 'power1.inOut'
         }, 0);
 
         // b. YUKINATA (di tengah) meluncur ke KIRI ikut Adristy
         tlMobile.to('.hero-anim-yukinata', {
-            xPercent: -120,
+            xPercent: -90,
             opacity: 0,
-            duration: 1,
-            ease: 'power2.inOut'
+            duration: 0.8,
+            ease: 'power1.inOut'
         }, 0);
 
         // c. AKIKO meluncur ke KANAN
         tlMobile.to('.hero-anim-akiko', {
-            xPercent: 125,
+            xPercent: 100,
             opacity: 0,
-            duration: 1,
-            ease: 'power2.inOut'
+            duration: 0.8,
+            ease: 'power1.inOut'
         }, 0);
 
         // d. Foto STAY di tengah
         tlMobile.to('.hero-stay-photo', {
-            opacity: 0,
-            scale: 1.04,
-            duration: 0.55,
-            ease: 'power2.inOut'
-        }, 0.35);
+            yPercent: -10,
+            scale: 0.98,
+            opacity: 0.85,
+            duration: 0.8,
+            ease: 'power1.inOut'
+        }, 0);
 
         tlMobile.to('.hero-ambient-glow', {
-            opacity: 0,
-            duration: 0.5,
-            ease: 'power2.in'
-        }, 0.4);
+            opacity: 0.3,
+            duration: 0.8,
+            ease: 'power1.in'
+        }, 0);
 
         gsap.fromTo('.about-reveal-item', {
             opacity: 0,

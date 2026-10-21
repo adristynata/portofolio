@@ -53,18 +53,18 @@
                 {{-- BARIS 1: ADRISTY (KIRI) DAN AKIKO (KANAN) SAMA RATA SEJAJAR DENGAN SPASI SIMETRIS & SEIMBANG --}}
                 <div class="w-full flex items-baseline justify-center pointer-events-none">
                     {{-- Sisi Kiri: ADRISTY (Rata Kanan ke arah foto tengah) --}}
-                    <div class="hero-anim-adristy flex-1 text-right pointer-events-auto pr-2 sm:pr-3 md:pr-4 lg:pr-5 xl:pr-6">
-                        <h1 class="hero-name-left text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#F0EEE8] tracking-tighter leading-none select-none uppercase">
+                    <div class="hero-anim-adristy flex-1 text-right pointer-events-auto pr-3 sm:pr-4 md:pr-5 lg:pr-6">
+                        <h1 class="hero-name-left text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#F0EEE8] tracking-[-0.015em] leading-none select-none uppercase">
                             {{ $firstName }}
                         </h1>
                     </div>
 
-                    {{-- Center Head Spacer (Spasi ideal di tengah agar pas dan tidak kemepetan) --}}
-                    <div class="w-10 sm:w-16 md:w-20 lg:w-24 xl:w-28 shrink-0 pointer-events-none"></div>
+                    {{-- Center Head Spacer (Spasi presisi simetris di tengah) --}}
+                    <div class="w-8 sm:w-12 md:w-16 lg:w-20 shrink-0 pointer-events-none"></div>
 
-                    {{-- Sisi Kanan: AKIKO (Rata Kiri, spasi optik presisi menyamai jarak huruf Y ke hijab) --}}
-                    <div class="hero-anim-akiko flex-1 text-left pointer-events-auto pl-0 -ml-1 sm:-ml-2 md:-ml-3 lg:-ml-4 xl:-ml-5">
-                        <h2 class="hero-name-right text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#F0EEE8] tracking-tighter leading-none select-none uppercase">
+                    {{-- Sisi Kanan: AKIKO (Rata Kiri, spasi optik presisi identik dengan sisi kiri) --}}
+                    <div class="hero-anim-akiko flex-1 text-left pointer-events-auto pl-3 sm:pl-4 md:pl-5 lg:pl-6">
+                        <h2 class="hero-name-right text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#F0EEE8] tracking-[-0.015em] leading-none select-none uppercase">
                             {{ $secondName }}
                         </h2>
                     </div>
@@ -73,7 +73,7 @@
                 {{-- BARIS 2: YUKINATA DI TENGAH (CENTERED HORIZONTALLY BEHIND PHOTO) --}}
                 <div class="w-full flex justify-center items-center pointer-events-none -mt-3 sm:-mt-5 md:-mt-8 lg:-mt-10 xl:-mt-12">
                     <div class="hero-anim-yukinata w-full text-center pointer-events-auto">
-                        <h3 class="hero-name-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#A5B698] tracking-tighter leading-none select-none uppercase">
+                        <h3 class="hero-name-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#A5B698] tracking-[-0.015em] leading-none select-none uppercase">
                             {{ $thirdName }}
                         </h3>
                     </div>
