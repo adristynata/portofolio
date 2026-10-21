@@ -107,60 +107,7 @@ html.light #scroll-progress-bar {
 .reveal-delay-9 { transition-delay: 360ms; }
 .reveal-delay-10 { transition-delay: 400ms; }
 
-/* 4. Active Scrollspy Navbar Links */
-.nav-link.nav-active {
-  color: #758268 !important;
-  font-weight: 600 !important;
-}
-
-.nav-link.nav-active::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: #758268;
-  border-radius: 9999px;
-  animation: nav-pill-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-html.light .nav-link.nav-active {
-  color: #5E6E55 !important;
-  font-weight: 600 !important;
-}
-
-html.light .nav-link.nav-active::after {
-  background: #5E6E55;
-}
-
-@keyframes nav-pill-in {
-  from {
-    transform: scaleX(0);
-    opacity: 0;
-  }
-  to {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-}
-
-/* 5. Clean Frosted Navbar Elevation on Scroll */
-nav.nav-scrolled {
-  background-color: rgba(25, 25, 25, 0.92) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border-bottom: 1px solid #353535 !important;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4) !important;
-}
-
-html.light nav.nav-scrolled {
-  background-color: rgba(255, 255, 255, 0.9) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.9) !important;
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05) !important;
-}
+/* 4–5. Navbar scrollspy + scrolled state now live in navbar.css (scoped to .site-nav). */
 
 /* 6. Clean Floating Back to Top Button */
 #back-to-top-btn {

@@ -2,6 +2,7 @@
 @import "./cursor.css";
 @import "./butter-deck.css";
 @import "./scroll-reveal.css";
+@import "./navbar.css";
 
 @tailwind base;
 @tailwind components;
@@ -79,21 +80,6 @@ html.light footer {
   background-color: #F2EFEB !important;
   color: #666666 !important;
   border-color: #E5E3DC !important;
-}
-
-html.light nav {
-  background-color: rgba(249, 248, 246, 0.92) !important;
-  border-color: #E5E3DC !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-html.light nav .nav-link {
-  color: #4A4A4A !important;
-}
-
-html.light nav .nav-link:hover {
-  color: #5E6E55 !important;
 }
 
 html.light .dark-glass-card {

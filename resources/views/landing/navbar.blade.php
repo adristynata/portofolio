@@ -1,151 +1,145 @@
-<nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-[#191919]/90 border-b border-[#353535] transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
-            
-            <!-- Left: Logo & Brand Info -->
-            <a href="#home" class="flex items-center gap-3.5 group">
-                <div class="relative w-10 h-10 rounded-xl p-1 bg-[#242424] border border-[#353535] shadow-md flex items-center justify-center group-hover:scale-105 group-hover:border-[#A5B698]/50 transition-all duration-300">
-                    <img src="{{ asset('images/logo.svg') }}" alt="Logo Adristy" class="w-full h-full object-contain dark:hidden drop-shadow-[0_2px_8px_rgba(165,182,152,0.35)]">
-                    <img src="{{ asset('images/logo-dark.svg') }}" alt="Logo Adristy" class="w-full h-full object-contain hidden dark:block drop-shadow-[0_2px_8px_rgba(165,182,152,0.35)]">
+{{--
+    Site navigation — minimal editorial header.
+    Desktop: brand · section links · theme toggle · CTA pill.
+    Mobile : brand · theme toggle · round burger → full-screen numbered menu.
+    Scroll behaviour (transparent at top, frosted when scrolled, hide on scroll-down)
+    and the active-link scrollspy are handled in resources/js/smooth-scroll.js.
+--}}
+@php
+    $navItems = [
+        ['href' => '#about',      'label' => 'Tentang'],
+        ['href' => '#skill',      'label' => 'Keahlian'],
+        ['href' => '#project',    'label' => 'Proyek'],
+        ['href' => '#pengalaman', 'label' => 'Pengalaman'],
+        ['href' => '#sertifikat', 'label' => 'Sertifikat'],
+    ];
+    $brandFirstName = \Illuminate\Support\Str::of($profile->name ?? 'Adristy Akiko Yukinata')->explode(' ')->first();
+    $contactEmail   = $profile->email ?? 'adristyakikoyukinata@gmail.com';
+@endphp
+
+<header id="siteNav" class="site-nav">
+    <div class="site-nav__inner">
+
+        {{-- Brand --}}
+        <a href="#home" class="site-nav__brand" aria-label="{{ $brandFirstName }} — kembali ke atas">
+            <x-brand-mark class="site-nav__mark" />
+            <span class="site-nav__name">{{ $brandFirstName }}<em>.dev</em></span>
+        </a>
+
+        {{-- Desktop links --}}
+        <nav class="site-nav__links" aria-label="Navigasi utama">
+            @foreach ($navItems as $item)
+                <a href="{{ $item['href'] }}" class="nav-link site-nav__link">{{ $item['label'] }}</a>
+            @endforeach
+        </nav>
+
+        {{-- Actions --}}
+        <div class="site-nav__actions">
+            <button type="button" onclick="toggleTheme()" class="site-nav__icon-btn" aria-label="Ganti mode terang / gelap" title="Ganti tema">
+                <svg class="theme-icon-sun" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+                <svg class="theme-icon-moon hidden" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 0 0 12 21a9.003 9.003 0 0 0 8.354-5.646z"/></svg>
+            </button>
+
+            @auth
+                <div class="site-nav__account" x-data="{ open: false }" @keydown.escape.window="open = false">
+                    <button type="button" @click="open = !open" class="site-nav__icon-btn" :aria-expanded="open.toString()" aria-haspopup="true" aria-label="Menu admin" title="{{ Auth::user()->name }}">
+                        <span class="site-nav__avatar">{{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::substr(Auth::user()->name, 0, 1)) }}</span>
+                    </button>
+                    <div x-show="open" x-cloak @click.outside="open = false"
+                         x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 -translate-y-1" x-transition:enter-end="opacity-100 translate-y-0"
+                         x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                         class="site-nav__dropdown" role="menu">
+                        <span class="site-nav__dropdown-label">{{ Auth::user()->name }}</span>
+                        <a href="{{ route('dashboard') }}" class="site-nav__dropdown-item" role="menuitem">Dashboard CMS</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="site-nav__dropdown-item site-nav__dropdown-item--danger" role="menuitem">Logout</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="flex flex-col">
-                    <span class="text-[#F0EEE8] font-bold tracking-tight text-base group-hover:text-[#A5B698] transition-colors">
-                        Adristy Akiko Yukinata
-                    </span>
-                    <span class="text-[10px] font-extrabold tracking-widest text-[#A5B698] uppercase">
-                        BACKEND DEVELOPER
-                    </span>
-                </div>
+            @endauth
+
+            <a href="#contact" class="nav-link site-nav__cta">
+                <span class="site-nav__cta-dot" aria-hidden="true"></span>
+                Hubungi Saya
             </a>
 
-            <!-- Center: Desktop Menu -->
-            <div class="hidden lg:flex items-center space-x-7 text-sm font-medium">
-                <a href="#about" class="nav-link text-[#929292] hover:text-[#F0EEE8] transition-colors relative py-1">Tentang Saya</a>
-                <a href="#skill" class="nav-link text-[#929292] hover:text-[#F0EEE8] transition-colors relative py-1">Keahlian</a>
-                <a href="#project" class="nav-link text-[#929292] hover:text-[#F0EEE8] transition-colors relative py-1">Proyek</a>
-                <a href="#pengalaman" class="nav-link text-[#929292] hover:text-[#F0EEE8] transition-colors relative py-1">Pengalaman</a>
-                <a href="#sertifikat" class="nav-link text-[#929292] hover:text-[#F0EEE8] transition-colors relative py-1">Sertifikat</a>
-                <a href="#contact" class="nav-link text-[#929292] hover:text-[#F0EEE8] transition-colors relative py-1">Kontak</a>
-            </div>
-
-            <!-- Right: Actions (Theme Switcher & Authenticated Admin Link) -->
-            <div class="hidden lg:flex items-center gap-3">
-                <!-- Theme Switcher Button -->
-                <button type="button" onclick="toggleTheme()" title="Beralih Mode Gelap / Terang" class="w-10 h-10 rounded-xl bg-[#242424] border border-[#353535] flex items-center justify-center text-amber-400 hover:bg-[#2c2c2c] transition-all shadow-inner">
-                    <svg class="theme-icon-sun w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                    <svg class="theme-icon-moon w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                </button>
-
-                @auth
-                    <!-- Admin Dashboard Link (Only visible when logged in) -->
-                    <div class="relative" x-data="{ open: false }">
-                        <button @click="open = !open" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all bg-[#242424] border border-[#353535] text-[#F0EEE8] hover:border-[#A5B698]/50">
-                            <svg class="w-4 h-4 text-[#A5B698]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                            </svg>
-                            <span>{{ Auth::user()->name }}</span>
-                            <svg class="w-4 h-4 text-[#929292]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div x-show="open" @click.away="open = false" x-cloak class="absolute right-0 mt-2 w-48 rounded-xl shadow-2xl py-2 bg-[#242424] border border-[#353535] z-50">
-                            <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm text-[#F0EEE8] hover:bg-[#2c2c2c] hover:text-[#A5B698] transition">Dashboard CMS</a>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-[#F0EEE8] hover:bg-[#2c2c2c] hover:text-rose-400 transition">Logout</button>
-                            </form>
-                        </div>
-                    </div>
-                @endauth
-            </div>
-
-            <!-- Mobile Actions Button -->
-            <div class="lg:hidden flex items-center gap-2">
-                <button type="button" onclick="toggleTheme()" class="w-9 h-9 rounded-lg bg-[#242424] border border-[#353535] flex items-center justify-center text-amber-400">
-                    <svg class="theme-icon-sun w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                    <svg class="theme-icon-moon w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                </button>
-                <button id="menu-btn" class="p-2 text-[#929292] hover:text-[#F0EEE8] rounded-lg bg-[#242424] border border-[#353535]">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
-
+            <button type="button" id="navBurger" class="site-nav__burger" aria-label="Buka menu" aria-expanded="false" aria-controls="mobileMenu">
+                <span></span><span></span>
+            </button>
         </div>
     </div>
+</header>
 
-    <!-- Mobile Menu Container -->
-    <div id="menu" class="hidden lg:hidden px-6 pb-6 pt-2 bg-[#191919]/98 border-b border-[#353535] space-y-3">
-        <a href="#about" class="block py-2 text-sm text-[#929292] hover:text-[#A5B698] transition">Tentang Saya</a>
-        <a href="#skill" class="block py-2 text-sm text-[#929292] hover:text-[#A5B698] transition">Keahlian</a>
-        <a href="#project" class="block py-2 text-sm text-[#929292] hover:text-[#A5B698] transition">Proyek</a>
-        <a href="#pengalaman" class="block py-2 text-sm text-[#929292] hover:text-[#A5B698] transition">Pengalaman</a>
-        <a href="#sertifikat" class="block py-2 text-sm text-[#929292] hover:text-[#A5B698] transition">Sertifikat</a>
-        <a href="#contact" class="block py-2 text-sm text-[#929292] hover:text-[#A5B698] transition">Kontak</a>
+{{-- Mobile full-screen menu --}}
+<div id="mobileMenu" class="mnav" aria-hidden="true">
+    <p class="mnav__label">(Menu)</p>
+    <nav class="mnav__links" aria-label="Navigasi mobile">
+        @foreach (array_merge($navItems, [['href' => '#contact', 'label' => 'Kontak']]) as $i => $item)
+            <a href="{{ $item['href'] }}" style="--i: {{ $i }}"><i>{{ sprintf('%02d', $i + 1) }}</i>{{ $item['label'] }}</a>
+        @endforeach
+    </nav>
 
-        @auth
-            <a href="{{ route('dashboard') }}" class="block py-2 text-sm font-semibold text-[#A5B698]">Dashboard CMS</a>
+    @auth
+        <div class="mnav__admin">
+            <a href="{{ route('dashboard') }}">Dashboard CMS</a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="block w-full text-left py-2 text-sm text-rose-400">Logout</button>
+                <button type="submit">Logout</button>
             </form>
-        @endauth
+        </div>
+    @endauth
+
+    <div class="mnav__foot">
+        <span>{{ $profile->role_title ?? 'Backend Developer' }} · {{ $profile->location ?? 'Jepara, Indonesia' }}</span>
+        <a href="mailto:{{ $contactEmail }}">{{ $contactEmail }}</a>
     </div>
-</nav>
-
-<style>
-.nav-link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0%;
-    height: 2px;
-    background: #A5B698;
-    transition: all 0.3s ease;
-    border-radius: 2px;
-}
-
-html.light .nav-link::after {
-    background: #758268;
-}
-
-.nav-link:hover::after {
-    width: 100%;
-}
-</style>
+</div>
 
 <script>
-function toggleTheme() {
-    if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark');
-        document.documentElement.classList.add('light');
-        localStorage.setItem('theme', 'light');
-    } else {
-        document.documentElement.classList.remove('light');
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
+    function updateThemeIcons() {
+        const isLight = document.documentElement.classList.contains('light');
+        document.querySelectorAll('.theme-icon-sun').forEach((el) => el.classList.toggle('hidden', isLight));
+        document.querySelectorAll('.theme-icon-moon').forEach((el) => el.classList.toggle('hidden', !isLight));
     }
-    updateThemeIcons();
-}
 
-function updateThemeIcons() {
-    const isLight = document.documentElement.classList.contains('light');
-    document.querySelectorAll('.theme-icon-sun').forEach(el => el.classList.toggle('hidden', isLight));
-    document.querySelectorAll('.theme-icon-moon').forEach(el => el.classList.toggle('hidden', !isLight));
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    updateThemeIcons();
-
-    const btn = document.getElementById('menu-btn');
-    const menu = document.getElementById('menu');
-
-    if (btn && menu) {
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
+    function toggleTheme() {
+        const root = document.documentElement;
+        const toLight = root.classList.contains('dark');
+        root.classList.toggle('dark', !toLight);
+        root.classList.toggle('light', toLight);
+        localStorage.setItem('theme', toLight ? 'light' : 'dark');
+        updateThemeIcons();
     }
-});
+
+    (function () {
+        const burger = document.getElementById('navBurger');
+        const menu = document.getElementById('mobileMenu');
+        const nav = document.getElementById('siteNav');
+
+        function setMenu(open) {
+            if (!burger || !menu) return;
+            burger.classList.toggle('is-open', open);
+            menu.classList.toggle('is-open', open);
+            nav && nav.classList.toggle('menu-open', open);
+            burger.setAttribute('aria-expanded', String(open));
+            burger.setAttribute('aria-label', open ? 'Tutup menu' : 'Buka menu');
+            menu.setAttribute('aria-hidden', String(!open));
+            document.documentElement.style.overflow = open ? 'hidden' : '';
+            if (window.__lenis) open ? window.__lenis.stop() : window.__lenis.start();
+        }
+
+        // Exposed so the smooth-scroll anchor handler can close the menu after navigation.
+        window.closeMobileNav = () => setMenu(false);
+
+        document.addEventListener('DOMContentLoaded', updateThemeIcons);
+        updateThemeIcons();
+
+        if (burger && menu) {
+            burger.addEventListener('click', () => setMenu(!menu.classList.contains('is-open')));
+            menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+            window.matchMedia('(min-width: 1024px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
+        }
+    })();
 </script>

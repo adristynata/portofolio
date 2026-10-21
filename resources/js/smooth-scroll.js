@@ -50,7 +50,7 @@ export function initSmoothScroll() {
 
     // Elements
     const progressBar = document.getElementById('scroll-progress-bar');
-    const navbar = document.querySelector('nav');
+    const navbar = document.getElementById('siteNav');
     const backToTopBtn = document.getElementById('back-to-top-btn');
     const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
     const sections = Array.from(document.querySelectorAll('section[id]'));
@@ -67,14 +67,8 @@ export function initSmoothScroll() {
             progressBar.style.transform = `scaleX(${progress})`;
         }
 
-        // 2. Navbar Elevation on Scroll
-        if (navbar) {
-            if (scrollY > 20) {
-                navbar.classList.add('nav-scrolled');
-            } else {
-                navbar.classList.remove('nav-scrolled');
-            }
-        }
+        // 2. Navbar: frosted when scrolled, hidden while scrolling down
+        updateNavbar(navbar, scrollY);
 
         // 3. Back to Top Button Visibility
         if (backToTopBtn) {
@@ -119,13 +113,12 @@ export function initSmoothScroll() {
             e.preventDefault();
 
             // Close mobile menu if open
-            const mobileMenu = document.getElementById('menu') || document.getElementById('mobile-menu');
-            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
+            if (typeof window.closeMobileNav === 'function') {
+                window.closeMobileNav();
             }
 
             lenisInstance.scrollTo(target, {
-                offset: -75,
+                offset: -72,
                 duration: 1.25,
             });
         }
@@ -140,7 +133,7 @@ export function initSmoothScroll() {
  */
 function initScrollUIOnly() {
     const progressBar = document.getElementById('scroll-progress-bar');
-    const navbar = document.querySelector('nav');
+    const navbar = document.getElementById('siteNav');
     const backToTopBtn = document.getElementById('back-to-top-btn');
     const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
     const sections = Array.from(document.querySelectorAll('section[id]'));
@@ -153,9 +146,7 @@ function initScrollUIOnly() {
             progressBar.style.transform = `scaleX(${Math.min(1, Math.max(0, scrollY / maxScroll))})`;
         }
 
-        if (navbar) {
-            navbar.classList.toggle('nav-scrolled', scrollY > 20);
-        }
+        updateNavbar(navbar, scrollY);
 
         if (backToTopBtn) {
             backToTopBtn.classList.toggle('visible', scrollY > 380);
@@ -170,6 +161,26 @@ function initScrollUIOnly() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+}
+
+/**
+ * Navbar state: frosted background once scrolled, slides away while the user
+ * scrolls down and returns as soon as they scroll up. Never hides near the top
+ * of the page or while the mobile menu is open.
+ */
+let lastNavScrollY = 0;
+
+function updateNavbar(navbar, scrollY) {
+    if (!navbar) return;
+
+    navbar.classList.toggle('nav-scrolled', scrollY > 20);
+
+    const delta = scrollY - lastNavScrollY;
+    if (Math.abs(delta) < 6) return; // ignore micro-jitter from inertia
+
+    const shouldHide = delta > 0 && scrollY > 320 && !navbar.classList.contains('menu-open');
+    navbar.classList.toggle('nav-hidden', shouldHide);
+    lastNavScrollY = scrollY;
 }
 
 /**
