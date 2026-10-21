@@ -283,19 +283,21 @@
 
             {{-- 2. FOREGROUND LAYER: HERO SECTION (#home) --}}
             {{-- Boon Global Style Hero:
-                 - Sisi Kiri: "Adristy" + Bio Deskripsi
-                 - Sisi Kanan: "Akiko" & "Yukinata" + Role & Info Badge
+                 - Baris 1: "ADRISTY" (Kiri) dan "AKIKO" (Kanan) sama rata sejajar horizontal
+                 - Baris 2: "YUKINATA" berada di tengah (centered) tepat di belakang foto
                  - Center: Foto Cutout Adristy (z-20 di depan teks, stay di tengah, tidak kebelah!)
-                 - Saat Scroll: Teks kiri meluncur ke kiri, teks kanan meluncur ke kanan dari balik foto!
+                 - Saat Scroll: "ADRISTY" & "YUKINATA" meluncur ke KIRI, "AKIKO" meluncur ke KANAN!
             --}}
             @php
                 $rawProfileName = trim($profile->name ?? 'Adristy Akiko Yukinata');
                 $nameWords = preg_split('/\s+/', $rawProfileName);
-                $leftNameWord = $nameWords[0] ?? 'Adristy';
-                $rightNameWords = array_slice($nameWords, 1);
-                if (empty($rightNameWords)) {
-                    $rightNameWords = ['Akiko', 'Yukinata'];
-                }
+                // Kata 1: ADRISTY (Sisi Kiri, Sejajar Akiko)
+                $firstName = $nameWords[0] ?? 'Adristy';
+                // Kata 2: AKIKO (Sisi Kanan, Sejajar Adristy)
+                $secondName = $nameWords[1] ?? 'Akiko';
+                // Kata 3+: YUKINATA (Di Tengah, Meluncur ke Kiri Ikut Adristy)
+                $thirdName = count($nameWords) >= 3 ? implode(' ', array_slice($nameWords, 2)) : (isset($nameWords[2]) ? $nameWords[2] : 'Yukinata');
+                $heroBioText = trim($profile->hero_bio ?? '');
             @endphp
 
             <div id="home" class="hero-stage-layer absolute inset-0 z-20 w-full h-full pointer-events-none select-none flex items-center justify-center overflow-hidden bg-[#0c0e0c]">
@@ -315,59 +317,57 @@
                 </div>
 
                 {{-- SPLIT TYPOGRAPHY STAGE (BOON GLOBAL STYLE, z-10 DI BALIK FOTO) --}}
-                <div class="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 h-full flex flex-col justify-between lg:justify-center items-center pointer-events-none pt-24 pb-20 lg:py-0">
+                <div class="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 h-full flex flex-col justify-center pointer-events-none pt-16 pb-12 lg:py-0">
                     
-                    {{-- Row Container Flanking Center Photo --}}
-                    <div class="w-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-0 my-auto">
+                    <div class="w-full flex flex-col my-auto space-y-2 sm:space-y-3 lg:space-y-4">
 
-                        {{-- SISI KIRI: NAMA "ADRISTY" & DESKRIPSI BIO --}}
-                        <div class="hero-side-left w-full lg:w-[42%] flex flex-col justify-center items-start text-left pointer-events-auto z-10">
-                            
-                            {{-- Nama Sisi Kiri --}}
-                            <div class="relative overflow-visible">
-                                <h1 class="hero-name-left text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-[#F0EEE8] tracking-tighter leading-none select-none uppercase">
-                                    {{ $leftNameWord }}
+                        {{-- BARIS 1: ADRISTY (KIRI) DAN AKIKO (KANAN) SAMA RATA SEJAJAR --}}
+                        <div class="w-full flex items-baseline justify-between pointer-events-none">
+                            {{-- Sisi Kiri: ADRISTY --}}
+                            <div class="hero-anim-adristy w-[44%] text-left pointer-events-auto">
+                                <h1 class="hero-name-left text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#F0EEE8] tracking-tighter leading-none select-none uppercase">
+                                    {{ $firstName }}
                                 </h1>
                             </div>
 
-                            {{-- Deskripsi Bio di bawah Nama Sisi Kiri (Hanya muncul jika diisi di CMS) --}}
-                            @php
-                                $heroBioText = trim($profile->hero_bio ?? '');
-                            @endphp
-                            @if(!empty($heroBioText))
-                                <p class="hero-desc-drop mt-4 sm:mt-6 text-xs sm:text-sm md:text-base lg:text-lg text-[#C5C2BA] font-serif italic leading-relaxed max-w-md">
-                                    {{ $heroBioText }}
-                                </p>
-                            @endif
-
-                        </div>
-
-                        {{-- SISI KANAN: NAMA "AKIKO YUKINATA" & ROLE BADGE --}}
-                        <div class="hero-side-right w-full lg:w-[42%] flex flex-col justify-center items-end text-right pointer-events-auto z-10">
-                            
-                            {{-- Nama Sisi Kanan (Akiko / Yukinata) --}}
-                            <div class="relative overflow-visible text-right">
-                                <h2 class="hero-name-right text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-[#F0EEE8] tracking-tighter leading-none select-none uppercase">
-                                    @if(count($rightNameWords) >= 2)
-                                        <span class="block">{{ $rightNameWords[0] }}</span>
-                                        <span class="block text-[#A5B698]">{{ implode(' ', array_slice($rightNameWords, 1)) }}</span>
-                                    @else
-                                        <span class="block">{{ implode(' ', $rightNameWords) }}</span>
-                                    @endif
+                            {{-- Sisi Kanan: AKIKO (SEJAJAR DENGAN ADRISTY) --}}
+                            <div class="hero-anim-akiko w-[44%] text-right pointer-events-auto">
+                                <h2 class="hero-name-right text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#F0EEE8] tracking-tighter leading-none select-none uppercase">
+                                    {{ $secondName }}
                                 </h2>
                             </div>
+                        </div>
 
-                            {{-- Sleek Tech / Education Badge Sisi Kanan --}}
-                            <div class="hero-meta-right mt-4 sm:mt-6 flex flex-col items-end gap-2 text-right">
-                                <span class="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#1e251c]/80 border border-[#3e4f35]/60 text-[11px] sm:text-xs font-mono text-[#A5B698] backdrop-blur-md">
-                                    <span class="w-2 h-2 rounded-full bg-[#A5B698] animate-pulse"></span>
-                                    {{ $profile->role_title ?? 'Junior Web Developer & Software Engineer' }}
-                                </span>
-                                <span class="text-[11px] sm:text-xs text-[#8E8B82] font-mono tracking-wide">
-                                    {{ $profile->education ?? 'SMK Negeri 1 Bangsri' }} &bull; Portfolio
-                                </span>
+                        {{-- BARIS 2: YUKINATA DI TENGAH (CENTERED HORIZONTALLY BEHIND PHOTO) --}}
+                        <div class="w-full flex justify-center items-center pointer-events-none -mt-3 sm:-mt-5 md:-mt-8 lg:-mt-10 xl:-mt-12">
+                            <div class="hero-anim-yukinata w-full text-center pointer-events-auto">
+                                <h3 class="hero-name-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#A5B698] tracking-tighter leading-none select-none uppercase">
+                                    {{ $thirdName }}
+                                </h3>
+                            </div>
+                        </div>
+
+                        {{-- BARIS 3: META INFO & DESKRIPSI (KIRI BIO, KANAN BADGE) --}}
+                        <div class="w-full flex items-start justify-between pt-2 sm:pt-4 pointer-events-none">
+                            {{-- Sisi Kiri: Bio Deskripsi (Hanya muncul jika diisi di CMS) --}}
+                            <div class="hero-anim-adristy w-[44%] text-left pointer-events-auto">
+                                @if(!empty($heroBioText))
+                                    <p class="hero-desc-drop text-xs sm:text-sm md:text-base lg:text-lg text-[#C5C2BA] font-serif italic leading-relaxed max-w-md">
+                                        {{ $heroBioText }}
+                                    </p>
+                                @endif
                             </div>
 
+                            {{-- Sisi Kanan: Badge & Info --}}
+                            <div class="hero-anim-akiko w-[44%] flex flex-col items-end gap-1.5 sm:gap-2 text-right pointer-events-auto">
+                                <span class="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#1e251c]/80 border border-[#3e4f35]/60 text-[11px] sm:text-xs font-mono text-[#A5B698] backdrop-blur-md">
+                                    <span class="w-2 h-2 rounded-full bg-[#A5B698] animate-pulse"></span>
+                                    {{ $profile->role_title ?? 'Backend Developer' }}
+                                </span>
+                                <span class="text-[11px] sm:text-xs text-[#8E8B82] font-mono tracking-wide">
+                                    {{ $profile->education ?? 'Pengembangan Perangkat Lunak dan Gim • Portofolio' }}
+                                </span>
+                            </div>
                         </div>
 
                     </div>

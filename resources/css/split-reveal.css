@@ -30,14 +30,20 @@
   will-change: opacity;
 }
 
-/* Split Sides: Sisi Kiri & Sisi Kanan (Boon Global Flanking Typography) */
-.hero-side-left {
+/* Split Elements: Adristy (Kiri), Akiko (Kanan, Sejajar), Yukinata (Tengah) */
+.hero-anim-adristy {
   position: relative;
   z-index: 10;
   will-change: transform, opacity;
 }
 
-.hero-side-right {
+.hero-anim-akiko {
+  position: relative;
+  z-index: 10;
+  will-change: transform, opacity;
+}
+
+.hero-anim-yukinata {
   position: relative;
   z-index: 10;
   will-change: transform, opacity;
@@ -75,6 +81,11 @@
 
 .hero-name-right {
   animation: nameRightEntrance 1.25s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+  will-change: transform, opacity;
+}
+
+.hero-name-center {
+  animation: nameCenterEntrance 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
   will-change: transform, opacity;
 }
 
@@ -131,6 +142,18 @@
   }
 }
 
+/* Keyframes: Nama Tengah (Yukinata) muncul lembut dari balik leher/center */
+@keyframes nameCenterEntrance {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 32px, 0) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
 /* Keyframes: Deskripsi & Meta drop down lembut */
 @keyframes descFadeDrop {
   0% {
@@ -172,11 +195,13 @@
     transform: none !important;
     opacity: 1 !important;
   }
-  .hero-side-left,
-  .hero-side-right,
+  .hero-anim-adristy,
+  .hero-anim-akiko,
+  .hero-anim-yukinata,
   .hero-stay-photo,
   .hero-name-left,
   .hero-name-right,
+  .hero-name-center,
   .hero-desc-drop,
   .hero-meta-right,
   .hero-photo-soft-entrance {

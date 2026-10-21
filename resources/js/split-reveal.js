@@ -3,12 +3,13 @@
  * Stack: GSAP + ScrollTrigger + Lenis
  * Features:
  * - Layout Awal:
- *   - Sisi Kiri: "Adristy" + Deskripsi Bio
- *   - Sisi Kanan: "Akiko Yukinata" + Meta Info
+ *   - Baris 1: "ADRISTY" (Kiri) dan "AKIKO" (Kanan) sama rata sejajar horizontal
+ *   - Baris 2: "YUKINATA" berada di tengah tepat di belakang foto
  *   - Tengah: Foto Cutout Adristy (utuh, transparan, z-20 di depan teks)
  * - Saat Scroll:
- *   - Teks Sisi Kiri meluncur ke KIRI (<-) dari balik foto
- *   - Teks Sisi Kanan meluncur ke KANAN (->) dari balik foto
+ *   - Teks "ADRISTY" meluncur ke KIRI (<-)
+ *   - Teks "YUKINATA" meluncur ke KIRI ikut Adristy (<-) dari balik foto
+ *   - Teks "AKIKO" meluncur ke KANAN (->)
  *   - Foto STAY di TENGAH (tidak kebelah, tidak ikut geser horizontal)
  *   - About Section terungkap dari celah di belakangnya
  * - Aksesibilitas: prefers-reduced-motion dihormati
@@ -28,8 +29,9 @@ export function initSplitRevealHero() {
     // 1. Aksesibilitas: prefers-reduced-motion fallback
     if (prefersReducedMotion) {
         gsap.set('.about-reveal-stage', { scale: 1, opacity: 1, y: 0 });
-        gsap.set('.hero-side-left', { opacity: 1, x: 0 });
-        gsap.set('.hero-side-right', { opacity: 1, x: 0 });
+        gsap.set('.hero-anim-adristy', { opacity: 1, x: 0 });
+        gsap.set('.hero-anim-akiko', { opacity: 1, x: 0 });
+        gsap.set('.hero-anim-yukinata', { opacity: 1, x: 0 });
         gsap.set('.hero-stay-photo', { opacity: 1, scale: 1 });
         gsap.set('.about-reveal-item', { opacity: 1, y: 0 });
         return;
@@ -52,23 +54,31 @@ export function initSplitRevealHero() {
             }
         });
 
-        // a. Sisi Kiri ("Adristy" + bio) meluncur keluar ke arah KIRI dari balik foto
-        tl.to('.hero-side-left', {
+        // a. "ADRISTY" (+ bio jika ada) meluncur ke KIRI
+        tl.to('.hero-anim-adristy', {
             xPercent: -130,
             opacity: 0,
             duration: 1,
             ease: 'power2.inOut'
         }, 0);
 
-        // b. Sisi Kanan ("Akiko Yukinata" + meta) meluncur keluar ke arah KANAN dari balik foto
-        tl.to('.hero-side-right', {
+        // b. "YUKINATA" (di tengah) meluncur ke KIRI ikut Adristy keluar dari balik foto!
+        tl.to('.hero-anim-yukinata', {
+            xPercent: -120,
+            opacity: 0,
+            duration: 1,
+            ease: 'power2.inOut'
+        }, 0);
+
+        // c. "AKIKO" (+ badge info) meluncur ke KANAN
+        tl.to('.hero-anim-akiko', {
             xPercent: 130,
             opacity: 0,
             duration: 1,
             ease: 'power2.inOut'
         }, 0);
 
-        // c. Foto STAY di tengah (tidak kebelah, tidak geser horizontal)
+        // d. Foto STAY di tengah (tidak kebelah, tidak geser horizontal)
         // Setelah teks terbelah keluar, foto softly crossfade ke About section
         tl.to('.hero-stay-photo', {
             opacity: 0,
@@ -77,14 +87,14 @@ export function initSplitRevealHero() {
             ease: 'power2.inOut'
         }, 0.55);
 
-        // d. Layer background panggung hero memudar halus
+        // e. Layer background panggung hero memudar halus
         tl.to('.hero-stage-layer', {
             opacity: 0,
             duration: 0.4,
             ease: 'power2.in'
         }, 0.6);
 
-        // e. About Section terungkap dari belakang dengan smooth scale & fade
+        // f. About Section terungkap dari belakang dengan smooth scale & fade
         tl.fromTo('.about-reveal-stage', {
             scale: 0.92,
             opacity: 0.4,
@@ -97,7 +107,7 @@ export function initSplitRevealHero() {
             ease: 'power3.out'
         }, 0.15);
 
-        // f. Staggered fade-up untuk kartu & teks About
+        // g. Staggered fade-up untuk kartu & teks About
         tl.fromTo('.about-reveal-item', {
             opacity: 0,
             y: 28
@@ -112,7 +122,7 @@ export function initSplitRevealHero() {
         return () => tl.kill();
     });
 
-    // === MOBILE (< 768px): Split Sisi Kiri ke Kiri & Sisi Kanan ke Kanan ===
+    // === MOBILE (< 768px): Split Sisi Kiri & Tengah ke Kiri, Sisi Kanan ke Kanan ===
     mm.add('(max-width: 767px)', () => {
         const tlMobile = gsap.timeline({
             scrollTrigger: {
@@ -126,20 +136,31 @@ export function initSplitRevealHero() {
             }
         });
 
-        tlMobile.to('.hero-side-left', {
+        // a. ADRISTY meluncur ke KIRI
+        tlMobile.to('.hero-anim-adristy', {
             xPercent: -125,
             opacity: 0,
             duration: 1,
             ease: 'power2.inOut'
         }, 0);
 
-        tlMobile.to('.hero-side-right', {
+        // b. YUKINATA (di tengah) meluncur ke KIRI ikut Adristy
+        tlMobile.to('.hero-anim-yukinata', {
+            xPercent: -120,
+            opacity: 0,
+            duration: 1,
+            ease: 'power2.inOut'
+        }, 0);
+
+        // c. AKIKO meluncur ke KANAN
+        tlMobile.to('.hero-anim-akiko', {
             xPercent: 125,
             opacity: 0,
             duration: 1,
             ease: 'power2.inOut'
         }, 0);
 
+        // d. Foto STAY di tengah
         tlMobile.to('.hero-stay-photo', {
             opacity: 0,
             scale: 1.04,
