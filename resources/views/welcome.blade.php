@@ -324,17 +324,17 @@
                         {{-- BARIS 1: ADRISTY (KIRI) DAN AKIKO (KANAN) SAMA RATA SEJAJAR DENGAN SPASI SIMETRIS & RAPAT --}}
                         <div class="w-full flex items-baseline justify-center pointer-events-none">
                             {{-- Sisi Kiri: ADRISTY (Rata Kanan mendekati foto tengah) --}}
-                            <div class="hero-anim-adristy flex-1 text-right pointer-events-auto pr-3 sm:pr-5 md:pr-7 lg:pr-8">
+                            <div class="hero-anim-adristy flex-1 text-right pointer-events-auto pr-1 sm:pr-2 md:pr-3 lg:pr-4">
                                 <h1 class="hero-name-left text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#F0EEE8] tracking-tighter leading-none select-none uppercase">
                                     {{ $firstName }}
                                 </h1>
                             </div>
 
-                            {{-- Center Head Spacer (Lebar kepala hijab agar spasi kiri & kanan seimbang sempurna) --}}
-                            <div class="w-16 sm:w-24 md:w-32 lg:w-40 xl:w-44 shrink-0 pointer-events-none"></div>
+                            {{-- Center Head Spacer (Rapat dan presisi agar spasi Akiko tidak ada celah kosong berlebih) --}}
+                            <div class="w-6 sm:w-10 md:w-14 lg:w-16 xl:w-20 shrink-0 pointer-events-none"></div>
 
-                            {{-- Sisi Kanan: AKIKO (Rata Kiri dari dekat foto tengah, spasi seimbang tidak kejauhan) --}}
-                            <div class="hero-anim-akiko flex-1 text-left pointer-events-auto pl-3 sm:pl-5 md:pl-7 lg:pl-8">
+                            {{-- Sisi Kanan: AKIKO (Rata Kiri dari dekat foto tengah, spasi rapat & simetris dengan Adristy) --}}
+                            <div class="hero-anim-akiko flex-1 text-left pointer-events-auto pl-1 sm:pl-2 md:pl-3 lg:pl-4">
                                 <h2 class="hero-name-right text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#F0EEE8] tracking-tighter leading-none select-none uppercase">
                                     {{ $secondName }}
                                 </h2>
