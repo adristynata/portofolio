@@ -7,12 +7,25 @@
 --}}
 @php
     $navItems = [
-        ['href' => '#about',      'label' => 'Tentang'],
-        ['href' => '#skill',      'label' => 'Keahlian'],
-        ['href' => '#project',    'label' => 'Proyek'],
-        ['href' => '#pengalaman', 'label' => 'Pengalaman'],
-        ['href' => '#sertifikat', 'label' => 'Sertifikat'],
+        ['href' => '#home',        'label' => 'OVERVIEW'],
+        ['href' => '#about',       'label' => 'ME'],
+        ['href' => '#skill',       'label' => 'TECH'],
+        ['href' => '#project',     'label' => 'SHOWCASE'],
+        ['href' => '#pengalaman',  'label' => 'EXP'],
+        ['href' => '#sertifikat',  'label' => 'CERTS'],
+        ['href' => '#contact',     'label' => 'CONTACT'],
     ];
+
+    $mobileNavItems = [
+        ['href' => '#home',        'label' => 'Overview',         'tag' => 'OVERVIEW'],
+        ['href' => '#about',       'label' => 'Tentang Saya',     'tag' => 'ME'],
+        ['href' => '#skill',       'label' => 'Keahlian & Tech',  'tag' => 'TECH'],
+        ['href' => '#project',     'label' => 'Proyek Unggulan',  'tag' => 'SHOWCASE'],
+        ['href' => '#pengalaman',  'label' => 'Pengalaman Kerja', 'tag' => 'EXP'],
+        ['href' => '#sertifikat',  'label' => 'Sertifikasi',      'tag' => 'CERTS'],
+        ['href' => '#contact',     'label' => 'Hubungi Saya',     'tag' => 'CONTACT'],
+    ];
+
     $brandFirstName = \Illuminate\Support\Str::of($profile->name ?? 'Adristy Akiko Yukinata')->explode(' ')->first();
     $contactEmail   = $profile->email ?? 'adristyakikoyukinata@gmail.com';
 @endphp
@@ -20,20 +33,23 @@
 <header id="siteNav" class="site-nav">
     <div class="site-nav__inner">
 
-        {{-- Brand --}}
-        <a href="#home" class="site-nav__brand" aria-label="{{ $brandFirstName }} — kembali ke atas">
+        {{-- Brand Pill (Left) --}}
+        <a href="#home" class="site-nav__brand-badge" aria-label="{{ $brandFirstName }} — kembali ke atas">
             <x-brand-mark class="site-nav__mark" />
             <span class="site-nav__name">{{ $brandFirstName }}<em>.dev</em></span>
         </a>
 
-        {{-- Desktop links --}}
-        <nav class="site-nav__links" aria-label="Navigasi utama">
+        {{-- Floating Capsule Navbar (Center — matching user's design reference) --}}
+        <nav class="site-nav__capsule" aria-label="Navigasi utama">
             @foreach ($navItems as $item)
-                <a href="{{ $item['href'] }}" class="nav-link site-nav__link">{{ $item['label'] }}</a>
+                <a href="{{ $item['href'] }}" class="nav-link site-nav__link">
+                    <span>{{ $item['label'] }}</span>
+                    <span class="site-nav__indicator" aria-hidden="true"></span>
+                </a>
             @endforeach
         </nav>
 
-        {{-- Actions --}}
+        {{-- Actions Pill (Right) --}}
         <div class="site-nav__actions">
             @auth
                 <div class="site-nav__account" x-data="{ open: false }" @keydown.escape.window="open = false">
@@ -54,9 +70,10 @@
                 </div>
             @endauth
 
-            <a href="#contact" class="nav-link site-nav__cta">
+            <a href="#contact" class="nav-link site-nav__cta-badge">
                 <span class="site-nav__cta-dot" aria-hidden="true"></span>
-                Hubungi Saya
+                <span class="hidden sm:inline">Hubungi</span>
+                <span class="sm:hidden">Kontak</span>
             </a>
 
             <button type="button" id="navBurger" class="site-nav__burger" aria-label="Buka menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -68,10 +85,14 @@
 
 {{-- Mobile full-screen menu --}}
 <div id="mobileMenu" class="mnav" aria-hidden="true">
-    <p class="mnav__label">(Menu)</p>
+    <p class="mnav__label">(Menu Navigasi)</p>
     <nav class="mnav__links" aria-label="Navigasi mobile">
-        @foreach (array_merge($navItems, [['href' => '#contact', 'label' => 'Kontak']]) as $i => $item)
-            <a href="{{ $item['href'] }}" style="--i: {{ $i }}"><i>{{ sprintf('%02d', $i + 1) }}</i>{{ $item['label'] }}</a>
+        @foreach ($mobileNavItems as $i => $item)
+            <a href="{{ $item['href'] }}" style="--i: {{ $i }}">
+                <i>{{ sprintf('%02d', $i + 1) }}</i>
+                <span>{{ $item['label'] }}</span>
+                <small class="mnav__tag">/ {{ $item['tag'] }}</small>
+            </a>
         @endforeach
     </nav>
 

@@ -122,10 +122,20 @@ export function initSmoothScroll() {
                 window.closeMobileNav();
             }
 
-            lenisInstance.scrollTo(target, {
-                offset: -72,
-                duration: 1.25,
-            });
+            // Snappy active feedback on click
+            if (link.classList.contains('site-nav__link')) {
+                document.querySelectorAll('.site-nav__link').forEach(l => l.classList.remove('nav-active'));
+                link.classList.add('nav-active');
+            }
+
+            if (href === '#home') {
+                lenisInstance.scrollTo(0, { duration: 1.2 });
+            } else {
+                lenisInstance.scrollTo(target, {
+                    offset: -80,
+                    duration: 1.25,
+                });
+            }
         }
     });
 
@@ -187,14 +197,20 @@ function updateNavbar(navbar, scrollY) {
 function updateScrollspy(scrollY, sections, navLinks) {
     if (!sections.length || !navLinks.length) return;
 
-    const viewportAnchor = scrollY + window.innerHeight * 0.35;
+    // Check if user is scrolled near or at the bottom
+    const isAtBottom = (window.innerHeight + scrollY) >= (document.documentElement.scrollHeight - 60);
     let currentId = '';
 
-    for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section.offsetTop <= viewportAnchor) {
-            currentId = section.getAttribute('id');
-            break;
+    if (isAtBottom && sections.length > 0) {
+        currentId = sections[sections.length - 1].getAttribute('id');
+    } else {
+        const viewportAnchor = scrollY + window.innerHeight * 0.35;
+        for (let i = sections.length - 1; i >= 0; i--) {
+            const section = sections[i];
+            if (section.offsetTop <= viewportAnchor) {
+                currentId = section.getAttribute('id');
+                break;
+            }
         }
     }
 
