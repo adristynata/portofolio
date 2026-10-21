@@ -333,8 +333,8 @@
                             {{-- Center Head Spacer (Spasi ideal di tengah agar pas dan tidak kemepetan) --}}
                             <div class="w-10 sm:w-16 md:w-20 lg:w-24 xl:w-28 shrink-0 pointer-events-none"></div>
 
-                            {{-- Sisi Kanan: AKIKO (Rata Kiri dari dekat foto tengah, jarak pas & seimbang) --}}
-                            <div class="hero-anim-akiko flex-1 text-left pointer-events-auto pl-2 sm:pl-3 md:pl-4 lg:pl-5 xl:pl-6">
+                            {{-- Sisi Kanan: AKIKO (Rata Kiri, spasi optik presisi menyamai jarak huruf Y ke hijab) --}}
+                            <div class="hero-anim-akiko flex-1 text-left pointer-events-auto pl-0 -ml-1 sm:-ml-2 md:-ml-3 lg:-ml-4 xl:-ml-5">
                                 <h2 class="hero-name-right text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#F0EEE8] tracking-tighter leading-none select-none uppercase">
                                     {{ $secondName }}
                                 </h2>
