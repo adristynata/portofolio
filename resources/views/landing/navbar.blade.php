@@ -7,23 +7,21 @@
 --}}
 @php
     $navItems = [
-        ['href' => '#home',        'label' => 'OVERVIEW'],
-        ['href' => '#about',       'label' => 'ME'],
-        ['href' => '#skill',       'label' => 'TECH'],
-        ['href' => '#project',     'label' => 'SHOWCASE'],
-        ['href' => '#pengalaman',  'label' => 'EXP'],
-        ['href' => '#sertifikat',  'label' => 'CERTS'],
-        ['href' => '#contact',     'label' => 'CONTACT'],
+        ['href' => '#about',      'label' => 'Tentang'],
+        ['href' => '#skill',      'label' => 'Keahlian'],
+        ['href' => '#project',    'label' => 'Proyek'],
+        ['href' => '#pengalaman', 'label' => 'Pengalaman'],
+        ['href' => '#sertifikat', 'label' => 'Sertifikat'],
     ];
 
     $mobileNavItems = [
-        ['href' => '#home',        'label' => 'Overview',         'tag' => 'OVERVIEW'],
-        ['href' => '#about',       'label' => 'Tentang Saya',     'tag' => 'ME'],
-        ['href' => '#skill',       'label' => 'Keahlian & Tech',  'tag' => 'TECH'],
-        ['href' => '#project',     'label' => 'Proyek Unggulan',  'tag' => 'SHOWCASE'],
-        ['href' => '#pengalaman',  'label' => 'Pengalaman Kerja', 'tag' => 'EXP'],
-        ['href' => '#sertifikat',  'label' => 'Sertifikasi',      'tag' => 'CERTS'],
-        ['href' => '#contact',     'label' => 'Hubungi Saya',     'tag' => 'CONTACT'],
+        ['href' => '#home',        'label' => 'Beranda'],
+        ['href' => '#about',       'label' => 'Tentang'],
+        ['href' => '#skill',       'label' => 'Keahlian'],
+        ['href' => '#project',     'label' => 'Proyek'],
+        ['href' => '#pengalaman',  'label' => 'Pengalaman'],
+        ['href' => '#sertifikat',  'label' => 'Sertifikat'],
+        ['href' => '#contact',     'label' => 'Kontak'],
     ];
 
     $brandFirstName = \Illuminate\Support\Str::of($profile->name ?? 'Adristy Akiko Yukinata')->explode(' ')->first();
@@ -39,7 +37,7 @@
             <span class="site-nav__name">{{ $brandFirstName }}<em>.dev</em></span>
         </a>
 
-        {{-- Floating Capsule Navbar (Center — matching user's design reference) --}}
+        {{-- Floating Capsule Navbar (Center — model kapsul melayang dengan menu portofolio asli Anda) --}}
         <nav class="site-nav__capsule" aria-label="Navigasi utama">
             @foreach ($navItems as $item)
                 <a href="{{ $item['href'] }}" class="nav-link site-nav__link">
@@ -72,7 +70,7 @@
 
             <a href="#contact" class="nav-link site-nav__cta-badge">
                 <span class="site-nav__cta-dot" aria-hidden="true"></span>
-                <span class="hidden sm:inline">Hubungi</span>
+                <span class="hidden sm:inline">Hubungi Saya</span>
                 <span class="sm:hidden">Kontak</span>
             </a>
 
@@ -91,7 +89,6 @@
             <a href="{{ $item['href'] }}" style="--i: {{ $i }}">
                 <i>{{ sprintf('%02d', $i + 1) }}</i>
                 <span>{{ $item['label'] }}</span>
-                <small class="mnav__tag">/ {{ $item['tag'] }}</small>
             </a>
         @endforeach
     </nav>
