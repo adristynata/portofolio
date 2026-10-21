@@ -3,324 +3,308 @@
     {{-- Navbar --}}
     @include('landing.navbar')
     
-    {{-- === 1. HERO SECTION (#home) === --}}
-    <section id="home" class="relative min-h-[100dvh] h-[100dvh] flex items-center justify-center overflow-hidden bg-[#0c0e0c] select-none pt-16">
-        
-        {{-- Luxury Atmospheric Dark Glass Backlight & Contrast Glow --}}
-        <div class="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-0">
-            {{-- Center sage glow behind Adristy --}}
-            <div class="w-[520px] sm:w-[680px] lg:w-[860px] h-[520px] sm:h-[680px] lg:h-[800px] rounded-full bg-gradient-to-tr from-[#758268]/22 via-[#A5B698]/12 to-transparent blur-[110px] opacity-80"></div>
-            {{-- Grounding bottom dark vignette --}}
-            <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0c0e0c] via-[#0c0e0c]/80 to-transparent"></div>
-        </div>
-
-        {{-- Centered Cutout Photo of Adristy (White shirt & hijab with transparent background, z-20 in front of emerging name) --}}
-        @php
-            $heroPhotoSrc = asset('images/adristy_cutout.png');
-            if (!empty($profile->photo) && $profile->photo !== 'images/foto-saya.jpg') {
-                if (str_starts_with($profile->photo, 'http') || str_starts_with($profile->photo, 'data:')) {
-                    $heroPhotoSrc = $profile->photo;
-                } elseif (file_exists(public_path($profile->photo))) {
-                    $heroPhotoSrc = asset($profile->photo);
-                }
+    {{-- ============================================================== --}}
+    {{-- SPLIT REVEAL HERO & ABOUT SECTION ENGINE                       --}}
+    {{-- ============================================================== --}}
+    @php
+        $heroPhotoSrc = asset('images/adristy_cutout.png');
+        if (!empty($profile->photo) && $profile->photo !== 'images/foto-saya.jpg') {
+            if (str_starts_with($profile->photo, 'http') || str_starts_with($profile->photo, 'data:')) {
+                $heroPhotoSrc = $profile->photo;
+            } elseif (file_exists(public_path($profile->photo))) {
+                $heroPhotoSrc = asset($profile->photo);
             }
-        @endphp
-        <div class="absolute left-1/2 -translate-x-1/2 bottom-0 z-20 flex justify-center items-end pointer-events-none w-full max-w-[360px] sm:max-w-[440px] lg:max-w-[480px] xl:max-w-[520px] h-full max-h-[80vh] lg:max-h-[82vh]">
-            <img src="{{ $heroPhotoSrc }}" 
-                 alt="{{ $profile->name ?? 'Adristy Akiko' }}" 
-                 class="hero-photo-soft-entrance w-full h-full object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.85)] select-none pointer-events-auto transition-transform duration-700 hover:scale-[1.01]"
-                 style="mask-image: linear-gradient(to bottom, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);">
-        </div>
+        }
+    @endphp
 
-        {{-- Stage Container --}}
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 h-full flex flex-col lg:flex-row items-center justify-between pointer-events-none pt-12 pb-16 lg:py-0">
+    <div class="hero-split-wrapper relative w-full overflow-hidden bg-[#0a0f0d]">
+
+        {{-- PINNED VIEWPORT STAGE (100vh) --}}
+        <div class="hero-pinned-stage relative w-full h-[100dvh] min-h-[100dvh] overflow-hidden bg-[#0a0f0d]">
             
-            {{-- Left Side: Name emerging from behind neck + dropping description --}}
-            <div class="w-full lg:w-[46%] max-w-lg flex flex-col justify-center text-left pointer-events-auto z-10 pt-16 sm:pt-20 lg:pt-0">
+            {{-- 1. BASE LAYER: ABOUT SECTION (#about) --}}
+            {{-- Terletak tepat di belakang tirai hero, siap terungkap saat panel terbelah --}}
+            <section id="about" class="about-reveal-stage absolute inset-0 z-10 w-full h-full overflow-y-auto flex items-center justify-center py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[#0a0f0d] border-t border-[#353535]/40">
                 
-                {{-- Name: Dynamic from Admin CMS --}}
-                <div class="relative overflow-visible">
-                    <h1 class="hero-name-emerge text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-[#F0EEE8] tracking-tight leading-none">
-                        {{ $profile->name ?? 'Adristy Akiko' }}
-                    </h1>
-                </div>
+                {{-- Ambient Architectural Grid & Dynamic Atmospheric Glow --}}
+                <div class="absolute inset-0 bg-[radial-gradient(#353535_1px,transparent_1px)] [background-size:28px_28px] opacity-15 pointer-events-none"></div>
+                <div class="absolute -right-24 top-1/4 w-96 h-96 bg-[#758268]/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -left-24 bottom-10 w-80 h-80 bg-[#A5B698]/5 rounded-full blur-3xl pointer-events-none"></div>
 
-                {{-- Description: Dynamic from Admin CMS (hero_bio) --}}
-                <p class="hero-desc-drop mt-5 sm:mt-6 text-sm sm:text-base lg:text-lg text-[#C5C2BA] font-serif italic leading-relaxed">
-                    {{ $profile->hero_bio ?? 'Saya adalah Junior Web Developer sekaligus Software Engineering dari SMK Negeri 1 Bangsri yang berfokus pada pengembangan web modern, responsif, dan berperforma tinggi.' }}
-                </p>
-            </div>
-
-            {{-- Right Side Spacer for Balanced Luxury Composition --}}
-            <div class="hidden lg:block w-[46%] pointer-events-none"></div>
-
-        </div>
-
-    </section>
-
-    {{-- === 2. ABOUT SECTION (#about) === --}}
-    <section id="about" class="relative py-20 sm:py-28 bg-[#191919] border-t border-[#353535] overflow-hidden">
-        {{-- Ambient Architectural Grid & Dynamic Atmospheric Glow --}}
-        <div class="absolute inset-0 bg-[radial-gradient(#353535_1px,transparent_1px)] [background-size:28px_28px] opacity-15 pointer-events-none"></div>
-        <div class="absolute -right-24 top-1/4 w-96 h-96 bg-[#758268]/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -left-24 bottom-10 w-80 h-80 bg-[#A5B698]/5 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            {{-- Section Header with Technical Architectural Pill --}}
-            <div class="text-center mb-12 sm:mb-16 reveal-init">
-                <div class="flex items-center justify-center gap-2 mb-3.5">
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#20251d] text-[#A5B698] border border-[#444f3d]">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#A5B698] animate-pulse"></span>
-                        Tentang Saya
-                    </span>
-                    <span class="hidden sm:inline-block font-mono text-[10px] text-[#929292] uppercase tracking-widest px-2.5 py-0.5 rounded-md border border-[#353535] bg-[#191919]/60">
-                        02 // ARCHITECTURE & CRAFT
-                    </span>
-                </div>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#F0EEE8] tracking-tight leading-tight">
-                    Dedikasi Dalam Rekayasa Web
-                </h2>
-                <p class="text-[#929292] text-xs sm:text-sm mt-3 max-w-2xl mx-auto leading-relaxed">
-                    Menghubungkan arsitektur backend yang tangguh, optimasi database, dan antarmuka web modern dalam setiap baris kode.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-                
-                {{-- Left Column: Authentic Developer Story & Principles --}}
-                <div class="lg:col-span-6 flex flex-col justify-between gap-5 reveal-left reveal-delay-1">
+                <div class="relative z-10 max-w-7xl mx-auto w-full my-auto">
                     
-                    {{-- Headline & Bio --}}
-                    <div>
-                        <h3 class="text-xl sm:text-2xl font-black text-[#F0EEE8] leading-snug tracking-tight mb-2.5">
-                            Mengembangkan Solusi Web yang <br class="hidden sm:inline">
-                            <span class="text-gradient-cyan-purple">Terstruktur, Aman, & Handal</span>
-                        </h3>
-                        <p class="text-[#929292] text-xs sm:text-sm leading-relaxed whitespace-pre-line">
-                            {{ $profile->bio ?? 'Saya adalah siswi Rekayasa Perangkat Lunak dari SMK Negeri 1 Bangsri yang berfokus pada arsitektur web dan backend. Terbiasa membangun aplikasi berbasis Laravel, merancang basis data relasional MySQL, serta mengintegrasikan RESTful API yang aman dan efisien.' }}
+                    {{-- Section Header with Technical Architectural Pill --}}
+                    <div class="text-center mb-10 sm:mb-12 about-reveal-item">
+                        <div class="flex items-center justify-center gap-2 mb-3">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#20251d] text-[#A5B698] border border-[#444f3d]">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#A5B698] animate-pulse"></span>
+                                Tentang Saya
+                            </span>
+                            <span class="hidden sm:inline-block font-mono text-[10px] text-[#929292] uppercase tracking-widest px-2.5 py-0.5 rounded-md border border-[#353535] bg-[#191919]/60">
+                                02 // ARCHITECTURE & CRAFT
+                            </span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#F0EEE8] tracking-tight leading-tight">
+                            Dedikasi Dalam Rekayasa Web
+                        </h2>
+                        <p class="text-[#929292] text-xs sm:text-sm mt-2.5 max-w-2xl mx-auto leading-relaxed">
+                            Menghubungkan arsitektur backend yang tangguh, optimasi database, dan antarmuka web modern dalam setiap baris kode.
                         </p>
                     </div>
 
-                    {{-- 3 Core Engineering Principles (Micro-Pillars) --}}
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
-                        <div class="p-3.5 rounded-2xl bg-[#242424] border border-[#353535] about-subcard flex flex-col justify-between">
-                            <div class="w-8 h-8 rounded-xl bg-[#191919] border border-[#353535] text-[#A5B698] flex items-center justify-center mb-2 shrink-0">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                            </div>
-                            <div>
-                                <span class="text-xs font-bold text-[#F0EEE8] block">Clean MVC</span>
-                                <span class="text-[10px] text-[#929292] block mt-0.5">Kode rapi & maintainable</span>
-                            </div>
-                        </div>
-
-                        <div class="p-3.5 rounded-2xl bg-[#242424] border border-[#353535] about-subcard flex flex-col justify-between">
-                            <div class="w-8 h-8 rounded-xl bg-[#191919] border border-[#353535] text-[#A5B698] flex items-center justify-center mb-2 shrink-0">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
-                            </div>
-                            <div>
-                                <span class="text-xs font-bold text-[#F0EEE8] block">Database Relasi</span>
-                                <span class="text-[10px] text-[#929292] block mt-0.5">Skema MySQL teroptimasi</span>
-                            </div>
-                        </div>
-
-                        <div class="p-3.5 rounded-2xl bg-[#242424] border border-[#353535] about-subcard flex flex-col justify-between">
-                            <div class="w-8 h-8 rounded-xl bg-[#191919] border border-[#353535] text-[#A5B698] flex items-center justify-center mb-2 shrink-0">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                            </div>
-                            <div>
-                                <span class="text-xs font-bold text-[#F0EEE8] block">RESTful API</span>
-                                <span class="text-[10px] text-[#929292] block mt-0.5">Endpoint cepat & efisien</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- 2x2 Key Info Grid --}}
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
                         
-                        {{-- Info 1: Pendidikan --}}
-                        <div class="dark-glass-card p-3.5 rounded-xl border border-[#353535] flex items-center gap-3 hover:border-[#A5B698]/40 transition about-subcard">
-                            <div class="w-9 h-9 rounded-lg bg-[#191919] border border-[#353535] text-[#A5B698] flex items-center justify-center shrink-0">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
+                        {{-- Left Column: Authentic Developer Story & Principles --}}
+                        <div class="lg:col-span-6 flex flex-col justify-between gap-5 about-reveal-item">
+                            
+                            {{-- Headline & Bio --}}
+                            <div>
+                                <h3 class="text-xl sm:text-2xl font-black text-[#F0EEE8] leading-snug tracking-tight mb-2.5">
+                                    Mengembangkan Solusi Web yang <br class="hidden sm:inline">
+                                    <span class="text-gradient-cyan-purple">Terstruktur, Aman, & Handal</span>
+                                </h3>
+                                <p class="text-[#929292] text-xs sm:text-sm leading-relaxed whitespace-pre-line">
+                                    {{ $profile->bio ?? 'Saya adalah siswi Rekayasa Perangkat Lunak dari SMK Negeri 1 Bangsri yang berfokus pada arsitektur web dan backend. Terbiasa membangun aplikasi berbasis Laravel, merancang basis data relasional MySQL, serta mengintegrasikan RESTful API yang aman dan efisien.' }}
+                                </p>
                             </div>
-                            <div class="min-w-0">
-                                <span class="block text-[10px] font-bold uppercase tracking-wider text-[#929292]">Pendidikan</span>
-                                <span class="text-xs sm:text-sm font-semibold text-[#F0EEE8] truncate block">{{ $profile->education ?? 'SMK Negeri 1 Bangsri' }}</span>
+
+                            {{-- 3 Core Engineering Principles (Micro-Pillars) --}}
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+                                <div class="p-3.5 rounded-2xl bg-[#242424] border border-[#353535] about-subcard flex flex-col justify-between">
+                                    <div class="w-8 h-8 rounded-xl bg-[#191919] border border-[#353535] text-[#A5B698] flex items-center justify-center mb-2 shrink-0">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs font-bold text-[#F0EEE8] block">Clean MVC</span>
+                                        <span class="text-[10px] text-[#929292] block mt-0.5">Kode rapi & maintainable</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-3.5 rounded-2xl bg-[#242424] border border-[#353535] about-subcard flex flex-col justify-between">
+                                    <div class="w-8 h-8 rounded-xl bg-[#191919] border border-[#353535] text-[#A5B698] flex items-center justify-center mb-2 shrink-0">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs font-bold text-[#F0EEE8] block">Database Relasi</span>
+                                        <span class="text-[10px] text-[#929292] block mt-0.5">Skema MySQL teroptimasi</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-3.5 rounded-2xl bg-[#242424] border border-[#353535] about-subcard flex flex-col justify-between">
+                                    <div class="w-8 h-8 rounded-xl bg-[#191919] border border-[#353535] text-[#A5B698] flex items-center justify-center mb-2 shrink-0">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs font-bold text-[#F0EEE8] block">RESTful API</span>
+                                        <span class="text-[10px] text-[#929292] block mt-0.5">Endpoint cepat & efisien</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- 2x2 Key Info Grid --}}
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                                
+                                {{-- Info 1: Pendidikan --}}
+                                <div class="dark-glass-card p-3.5 rounded-xl border border-[#353535] flex items-center gap-3 hover:border-[#A5B698]/40 transition about-subcard">
+                                    <div class="w-9 h-9 rounded-lg bg-[#191919] border border-[#353535] text-[#A5B698] flex items-center justify-center shrink-0">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <span class="block text-[10px] font-bold uppercase tracking-wider text-[#929292]">Pendidikan</span>
+                                        <span class="text-xs sm:text-sm font-semibold text-[#F0EEE8] truncate block">{{ $profile->education ?? 'SMK Negeri 1 Bangsri' }}</span>
+                                    </div>
+                                </div>
+
+                                {{-- Info 2: Fokus --}}
+                                <div class="dark-glass-card p-3.5 rounded-xl border border-[#353535] flex items-center gap-3 hover:border-[#A5B698]/40 transition about-subcard">
+                                    <div class="w-9 h-9 rounded-lg bg-[#191919] border border-[#353535] text-[#A5B698] flex items-center justify-center shrink-0">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <span class="block text-[10px] font-bold uppercase tracking-wider text-[#929292]">Fokus Bidang</span>
+                                        <span class="text-xs sm:text-sm font-semibold text-[#F0EEE8] truncate block">{{ $profile->focus ?? 'Web & Backend Dev' }}</span>
+                                    </div>
+                                </div>
+
+                                {{-- Info 3: Domisili --}}
+                                <div class="dark-glass-card p-3.5 rounded-xl border border-[#353535] flex items-center gap-3 hover:border-[#A5B698]/40 transition about-subcard">
+                                    <div class="w-9 h-9 rounded-lg bg-[#191919] border border-[#353535] text-[#A5B698] flex items-center justify-center shrink-0">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <span class="block text-[10px] font-bold uppercase tracking-wider text-[#929292]">Domisili</span>
+                                        <span class="text-xs sm:text-sm font-semibold text-[#F0EEE8] truncate block">{{ $profile->location ?? 'Jepara, Jawa Tengah' }}</span>
+                                    </div>
+                                </div>
+
+                                {{-- Info 4: Status Kesiapan --}}
+                                <div class="dark-glass-card p-3.5 rounded-xl border border-[#353535] flex items-center gap-3 hover:border-[#A5B698]/40 transition about-subcard">
+                                    <div class="w-9 h-9 rounded-lg bg-[#191919] border border-[#353535] text-[#A5B698] flex items-center justify-center shrink-0">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <span class="block text-[10px] font-bold uppercase tracking-wider text-[#929292]">Status</span>
+                                        <span class="text-xs sm:text-sm font-semibold text-[#A5B698] flex items-center gap-1.5 truncate">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-[#A5B698] animate-pulse shrink-0"></span>
+                                            Siap Magang / Proyek
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            {{-- Compact Stack Chips --}}
+                            <div class="flex flex-wrap items-center gap-1.5 pt-1">
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-[#929292] mr-1.5">Core Stack:</span>
+                                <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-[#242424] border border-[#353535] text-[#929292]">Laravel</span>
+                                <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-[#242424] border border-[#353535] text-[#929292]">PHP 8</span>
+                                <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-[#242424] border border-[#353535] text-[#929292]">RESTful API</span>
+                                <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-[#242424] border border-[#353535] text-[#929292]">MySQL</span>
+                                <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-[#242424] border border-[#353535] text-[#929292]">MongoDB</span>
+                                <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-[#242424] border border-[#353535] text-[#929292]">Postman</span>
                             </div>
                         </div>
 
-                        {{-- Info 2: Fokus --}}
-                        <div class="dark-glass-card p-3.5 rounded-xl border border-[#353535] flex items-center gap-3 hover:border-[#A5B698]/40 transition about-subcard">
-                            <div class="w-9 h-9 rounded-lg bg-[#191919] border border-[#353535] text-[#A5B698] flex items-center justify-center shrink-0">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        {{-- Right Column: 3D Developer Bento Showcase Matrix --}}
+                        <div class="lg:col-span-6 flex flex-col justify-between gap-4 about-reveal-item">
+                            
+                            {{-- 1. Main Bento Card: 3D Code Terminal & Floating Database Node Cluster --}}
+                            <div class="bento-3d-card group relative p-6 sm:p-7 rounded-3xl bg-[#242424] border border-[#353535] hover:border-[#A5B698]/50 shadow-2xl transition-all duration-300 overflow-hidden flex flex-col justify-between">
+                                {{-- Specular Glare Layer --}}
+                                <div class="bento-glare pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"></div>
+
+                                {{-- Radial Ambient Glow --}}
+                                <div class="absolute -right-12 -bottom-12 w-56 h-56 bg-[#758268]/20 rounded-full blur-3xl group-hover:bg-[#758268]/30 transition-all duration-500 pointer-events-none"></div>
+
+                                <div class="relative z-10 grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
+                                    {{-- Terminal Window (Left 7 cols) --}}
+                                    <div class="sm:col-span-7 flex flex-col gap-3">
+                                        {{-- macOS Style Header --}}
+                                        <div class="flex items-center justify-between pb-2 border-b border-[#353535]">
+                                            <div class="flex items-center gap-1.5">
+                                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+                                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+                                                <span class="ml-2 font-mono text-[10px] text-[#929292]">BackendKernel.php</span>
+                                            </div>
+                                            <span class="font-mono text-[9px] text-[#A5B698] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#20251d] border border-[#444f3d]">
+                                                OPTIMIZED
+                                            </span>
+                                        </div>
+
+                                        {{-- Syntax Highlighted Code Box --}}
+                                        <div class="bento-terminal-window p-3 rounded-xl bg-[#191919] border border-[#353535] font-mono text-[11px] sm:text-[12px] leading-relaxed select-none space-y-0.5">
+                                            <p class="text-[#929292]">// Software Engineering Core</p>
+                                            <p><span class="text-[#A5B698] font-semibold">class</span> <span class="text-[#F0EEE8] font-bold">BackendEngineer</span></p>
+                                            <p class="pl-3 text-[#929292]"><span class="text-[#A5B698]">protected</span> array $stack = [<span class="text-emerald-400">'Laravel'</span>, <span class="text-emerald-400">'MySQL'</span>];</p>
+                                            <p class="pl-3"><span class="text-[#A5B698]">public function</span> <span class="text-[#F0EEE8] font-semibold">buildSolution</span>() {</p>
+                                            <p class="pl-6 text-emerald-400 font-medium">return $this->secureAuth()</p>
+                                            <p class="pl-9 text-emerald-400 font-medium">->optimizeQueries()</p>
+                                            <p class="pl-9 text-emerald-400 font-medium">->deploy();</p>
+                                            <p class="pl-3">}</p>
+                                        </div>
+
+                                        {{-- Real-time latency badge --}}
+                                        <div class="flex items-center gap-2 pt-0.5 font-mono text-[10px] text-[#929292]">
+                                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                            <span>Database Ping: 24ms • 99.9% Uptime</span>
+                                        </div>
+                                    </div>
+
+                                    {{-- 3D Server Node Cluster Asset (Right 5 cols) --}}
+                                    <div class="sm:col-span-5 flex flex-col items-center justify-center relative">
+                                        <div class="relative w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                                            <img src="{{ asset('images/3d-server-node.png') }}" 
+                                                 alt="3D Database Node Cluster" 
+                                                 class="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.85)] group-hover:scale-110 group-hover:-translate-y-2 transition-transform duration-500 pointer-events-none select-none">
+                                            <div class="absolute -bottom-2 w-32 h-6 bg-[#A5B698]/20 rounded-full blur-md"></div>
+                                        </div>
+                                        <span class="font-mono text-[10px] text-[#A5B698] font-semibold tracking-wider uppercase mt-1">
+                                            Cluster Architecture
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="min-w-0">
-                                <span class="block text-[10px] font-bold uppercase tracking-wider text-[#929292]">Fokus Bidang</span>
-                                <span class="text-xs sm:text-sm font-semibold text-[#F0EEE8] truncate block">{{ $profile->focus ?? 'Web & Backend Dev' }}</span>
+
+                            {{-- 2. Sub Bento Grid: 2 Interactive Stat & 3D Asset Cards --}}
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                
+                                {{-- Bento Subcard 1: 3D Tech Cube & Proyek Selesai --}}
+                                <div class="bento-3d-card group relative p-5 sm:p-6 rounded-3xl bg-[#242424] border border-[#353535] hover:border-[#A5B698]/50 shadow-xl transition-all duration-300 flex items-center justify-between gap-3 overflow-hidden">
+                                    <div class="bento-glare pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"></div>
+                                    
+                                    <div class="relative z-10 flex-1 min-w-0">
+                                        <div class="flex items-baseline gap-1.5 mb-1">
+                                            <span class="text-3xl sm:text-4xl font-black text-[#F0EEE8] font-mono tracking-tight">{{ max(3, count($projects)) }}+</span>
+                                            <span class="text-xs font-bold text-[#A5B698] uppercase tracking-wider">Proyek</span>
+                                        </div>
+                                        <span class="text-xs font-bold text-[#F0EEE8] block truncate">Selesai & Production</span>
+                                        <span class="text-[11px] text-[#929292] block mt-1 leading-snug line-clamp-2">Aplikasi web nyata dengan CRUD, auth & DB relasional</span>
+                                    </div>
+
+                                    {{-- 3D Tech Cube Asset --}}
+                                    <div class="relative z-10 w-20 h-20 sm:w-24 sm:h-24 shrink-0 flex items-center justify-center">
+                                        <img src="{{ asset('images/3d-tech-cube.png') }}" 
+                                             alt="3D Tech Cube" 
+                                             class="w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.85)] group-hover:rotate-12 group-hover:scale-110 transition-transform duration-500 pointer-events-none select-none">
+                                        <div class="absolute -bottom-2 w-16 h-4 bg-[#758268]/20 rounded-full blur-md"></div>
+                                    </div>
+                                </div>
+
+                                {{-- Bento Subcard 2: Jam Terbang & Status --}}
+                                <div class="bento-3d-card group relative p-5 sm:p-6 rounded-3xl bg-[#242424] border border-[#353535] hover:border-[#A5B698]/50 shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden">
+                                    <div class="bento-glare pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"></div>
+                                    
+                                    <div class="relative z-10">
+                                        <div class="flex items-baseline gap-1.5 mb-1">
+                                            <span class="text-3xl sm:text-4xl font-black text-[#F0EEE8] font-mono tracking-tight">3+</span>
+                                            <span class="text-xs font-bold text-[#A5B698] uppercase tracking-wider">Tahun</span>
+                                        </div>
+                                        <span class="text-xs font-bold text-[#F0EEE8] block">Fondasi Kuat & Teruji</span>
+                                        <span class="text-[11px] text-[#929292] block mt-1 leading-snug">Aktif eksplorasi software engineering & sertifikasi kompetensi</span>
+                                    </div>
+
+                                    {{-- Mini Status Indicators Bar --}}
+                                    <div class="relative z-10 pt-4 mt-3 border-t border-[#353535] flex items-center justify-between text-[10px] font-mono text-[#929292]">
+                                        <span class="flex items-center gap-1.5 text-[#F0EEE8]">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-[#A5B698]"></span>
+                                            {{ max(2, count($certificates)) }}+ Sertifikasi
+                                        </span>
+                                        <span class="text-[#A5B698] font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                            Lihat Stack →
+                                        </span>
+                                    </div>
+                                </div>
+
                             </div>
+
                         </div>
 
-                        {{-- Info 3: Domisili --}}
-                        <div class="dark-glass-card p-3.5 rounded-xl border border-[#353535] flex items-center gap-3 hover:border-[#A5B698]/40 transition about-subcard">
-                            <div class="w-9 h-9 rounded-lg bg-[#191919] border border-[#353535] text-[#A5B698] flex items-center justify-center shrink-0">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            </div>
-                            <div class="min-w-0">
-                                <span class="block text-[10px] font-bold uppercase tracking-wider text-[#929292]">Domisili</span>
-                                <span class="text-xs sm:text-sm font-semibold text-[#F0EEE8] truncate block">{{ $profile->location ?? 'Jepara, Jawa Tengah' }}</span>
-                            </div>
-                        </div>
-
-                        {{-- Info 4: Status Kesiapan --}}
-                        <div class="dark-glass-card p-3.5 rounded-xl border border-[#353535] flex items-center gap-3 hover:border-[#A5B698]/40 transition about-subcard">
-                            <div class="w-9 h-9 rounded-lg bg-[#191919] border border-[#353535] text-[#A5B698] flex items-center justify-center shrink-0">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            </div>
-                            <div class="min-w-0">
-                                <span class="block text-[10px] font-bold uppercase tracking-wider text-[#929292]">Status</span>
-                                <span class="text-xs sm:text-sm font-semibold text-[#A5B698] flex items-center gap-1.5 truncate">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-[#A5B698] animate-pulse shrink-0"></span>
-                                    Siap Magang / Proyek
-                                </span>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    {{-- Compact Stack Chips --}}
-                    <div class="flex flex-wrap items-center gap-1.5 pt-1">
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-[#929292] mr-1.5">Core Stack:</span>
-                        <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-[#242424] border border-[#353535] text-[#929292]">Laravel</span>
-                        <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-[#242424] border border-[#353535] text-[#929292]">PHP 8</span>
-                        <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-[#242424] border border-[#353535] text-[#929292]">RESTful API</span>
-                        <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-[#242424] border border-[#353535] text-[#929292]">MySQL</span>
-                        <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-[#242424] border border-[#353535] text-[#929292]">MongoDB</span>
-                        <span class="about-chip text-[11px] font-medium px-2.5 py-1 rounded-lg bg-[#242424] border border-[#353535] text-[#929292]">Postman</span>
                     </div>
                 </div>
+            </section>
 
-                {{-- Right Column: 3D Developer Bento Showcase Matrix --}}
-                <div class="lg:col-span-6 flex flex-col justify-between gap-4 reveal-right reveal-delay-2">
-                    
-                    {{-- 1. Main Bento Card: 3D Code Terminal & Floating Database Node Cluster --}}
-                    <div class="bento-3d-card group relative p-6 sm:p-7 rounded-3xl bg-[#242424] border border-[#353535] hover:border-[#A5B698]/50 shadow-2xl transition-all duration-300 overflow-hidden flex flex-col justify-between">
-                        {{-- Specular Glare Layer --}}
-                        <div class="bento-glare pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"></div>
+            {{-- 2. FOREGROUND LAYER: SPLIT CURTAIN PANELS (HERO #home) --}}
+            <div id="home" class="absolute inset-0 z-20 w-full h-full pointer-events-none">
+                
+                {{-- Accessible Heading for Screen Readers --}}
+                <h1 class="sr-only">{{ $profile->name ?? 'Adristy Akiko' }}</h1>
 
-                        {{-- Radial Ambient Glow --}}
-                        <div class="absolute -right-12 -bottom-12 w-56 h-56 bg-[#758268]/20 rounded-full blur-3xl group-hover:bg-[#758268]/30 transition-all duration-500 pointer-events-none"></div>
+                {{-- Left Curtain Panel (Desktop: clip-path inset(0 49.9% 0 0) | Mobile: inset(0 0 49.9% 0)) --}}
+                <div class="split-panel split-panel--left pointer-events-auto" aria-hidden="true">
+                    @include('landing.hero-split-layer', ['heroPhotoSrc' => $heroPhotoSrc])
+                </div>
 
-                        <div class="relative z-10 grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
-                            {{-- Terminal Window (Left 7 cols) --}}
-                            <div class="sm:col-span-7 flex flex-col gap-3">
-                                {{-- macOS Style Header --}}
-                                <div class="flex items-center justify-between pb-2 border-b border-[#353535]">
-                                    <div class="flex items-center gap-1.5">
-                                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
-                                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
-                                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
-                                        <span class="ml-2 font-mono text-[10px] text-[#929292]">BackendKernel.php</span>
-                                    </div>
-                                    <span class="font-mono text-[9px] text-[#A5B698] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#20251d] border border-[#444f3d]">
-                                        OPTIMIZED
-                                    </span>
-                                </div>
-
-                                {{-- Syntax Highlighted Code Box --}}
-                                <div class="bento-terminal-window p-3 rounded-xl bg-[#191919] border border-[#353535] font-mono text-[11px] sm:text-[12px] leading-relaxed select-none space-y-0.5">
-                                    <p class="text-[#929292]">// Software Engineering Core</p>
-                                    <p><span class="text-[#A5B698] font-semibold">class</span> <span class="text-[#F0EEE8] font-bold">BackendEngineer</span></p>
-                                    <p class="pl-3 text-[#929292]"><span class="text-[#A5B698]">protected</span> array $stack = [<span class="text-emerald-400">'Laravel'</span>, <span class="text-emerald-400">'MySQL'</span>];</p>
-                                    <p class="pl-3"><span class="text-[#A5B698]">public function</span> <span class="text-[#F0EEE8] font-semibold">buildSolution</span>() {</p>
-                                    <p class="pl-6 text-emerald-400 font-medium">return $this->secureAuth()</p>
-                                    <p class="pl-9 text-emerald-400 font-medium">->optimizeQueries()</p>
-                                    <p class="pl-9 text-emerald-400 font-medium">->deploy();</p>
-                                    <p class="pl-3">}</p>
-                                </div>
-
-                                {{-- Real-time latency badge --}}
-                                <div class="flex items-center gap-2 pt-0.5 font-mono text-[10px] text-[#929292]">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                                    <span>Database Ping: 24ms • 99.9% Uptime</span>
-                                </div>
-                            </div>
-
-                            {{-- 3D Server Node Cluster Asset (Right 5 cols) --}}
-                            <div class="sm:col-span-5 flex flex-col items-center justify-center relative">
-                                <div class="relative w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
-                                    <img src="{{ asset('images/3d-server-node.png') }}" 
-                                         alt="3D Database Node Cluster" 
-                                         class="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.85)] group-hover:scale-110 group-hover:-translate-y-2 transition-transform duration-500 pointer-events-none select-none">
-                                    <div class="absolute -bottom-2 w-32 h-6 bg-[#A5B698]/20 rounded-full blur-md"></div>
-                                </div>
-                                <span class="font-mono text-[10px] text-[#A5B698] font-semibold tracking-wider uppercase mt-1">
-                                    Cluster Architecture
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- 2. Sub Bento Grid: 2 Interactive Stat & 3D Asset Cards --}}
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        
-                        {{-- Bento Subcard 1: 3D Tech Cube & Proyek Selesai --}}
-                        <div class="bento-3d-card group relative p-5 sm:p-6 rounded-3xl bg-[#242424] border border-[#353535] hover:border-[#A5B698]/50 shadow-xl transition-all duration-300 flex items-center justify-between gap-3 overflow-hidden">
-                            <div class="bento-glare pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"></div>
-                            
-                            <div class="relative z-10 flex-1 min-w-0">
-                                <div class="flex items-baseline gap-1.5 mb-1">
-                                    <span class="text-3xl sm:text-4xl font-black text-[#F0EEE8] font-mono tracking-tight">{{ max(3, count($projects)) }}+</span>
-                                    <span class="text-xs font-bold text-[#A5B698] uppercase tracking-wider">Proyek</span>
-                                </div>
-                                <span class="text-xs font-bold text-[#F0EEE8] block truncate">Selesai & Production</span>
-                                <span class="text-[11px] text-[#929292] block mt-1 leading-snug line-clamp-2">Aplikasi web nyata dengan CRUD, auth & DB relasional</span>
-                            </div>
-
-                            {{-- 3D Tech Cube Asset --}}
-                            <div class="relative z-10 w-20 h-20 sm:w-24 sm:h-24 shrink-0 flex items-center justify-center">
-                                <img src="{{ asset('images/3d-tech-cube.png') }}" 
-                                     alt="3D Tech Cube" 
-                                     class="w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.75)] group-hover:scale-115 group-hover:rotate-6 transition-all duration-500 pointer-events-none select-none">
-                            </div>
-                        </div>
-
-                        {{-- Bento Subcard 2: 10+ Tech Stack & 2+ Thn Riset RPL --}}
-                        <div class="bento-3d-card group relative p-5 sm:p-6 rounded-3xl bg-[#242424] border border-[#353535] hover:border-[#A5B698]/50 shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden">
-                            <div class="bento-glare pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"></div>
-                            
-                            <div class="relative z-10">
-                                <div class="flex items-center justify-between mb-2">
-                                    <div class="flex items-baseline gap-1.5">
-                                        <span class="text-3xl sm:text-4xl font-black text-[#A5B698] font-mono tracking-tight">{{ max(10, count($skills)) }}+</span>
-                                        <span class="text-xs font-bold text-[#F0EEE8] uppercase tracking-wider">Stack</span>
-                                    </div>
-                                    <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-[#20251d] text-[#A5B698] border border-[#444f3d]">
-                                        2+ Thn RPL
-                                    </span>
-                                </div>
-                                <span class="text-xs font-bold text-[#F0EEE8] block">Fondasi Kuat & Teruji</span>
-                                <span class="text-[11px] text-[#929292] block mt-1 leading-snug">Aktif eksplorasi software engineering & sertifikasi kompetensi</span>
-                            </div>
-
-                            {{-- Mini Status Indicators Bar --}}
-                            <div class="relative z-10 pt-4 mt-3 border-t border-[#353535] flex items-center justify-between text-[10px] font-mono text-[#929292]">
-                                <span class="flex items-center gap-1.5 text-[#F0EEE8]">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-[#A5B698]"></span>
-                                    {{ max(2, count($certificates)) }}+ Sertifikasi
-                                </span>
-                                <span class="text-[#A5B698] font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                                    Lihat Stack →
-                                </span>
-                            </div>
-                        </div>
-
-                    </div>
-
+                {{-- Right Curtain Panel (Desktop: clip-path inset(0 0 0 49.9%) | Mobile: inset(49.9% 0 0 0)) --}}
+                <div class="split-panel split-panel--right pointer-events-auto" aria-hidden="true">
+                    @include('landing.hero-split-layer', ['heroPhotoSrc' => $heroPhotoSrc])
                 </div>
 
             </div>
+
         </div>
-    </section>
+
+    </div>
 
     {{-- === 3. SKILLS SECTION (#skill) === --}}
     <section id="skill" class="relative py-16 sm:py-24 bg-[#191919] border-t border-[#353535] overflow-hidden">

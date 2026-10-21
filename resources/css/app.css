@@ -3,6 +3,7 @@
 @import "./butter-deck.css";
 @import "./scroll-reveal.css";
 @import "./navbar.css";
+@import "./split-reveal.css";
 
 @tailwind base;
 @tailwind components;

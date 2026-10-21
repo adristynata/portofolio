@@ -11,6 +11,10 @@
  */
 
 import Lenis from 'lenis';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 let lenisInstance = null;
 
@@ -41,12 +45,13 @@ export function initSmoothScroll() {
 
     window.__lenis = lenisInstance;
 
-    // RAF Loop for silky 60-120fps execution
-    function raf(time) {
-        lenisInstance.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
+    // Synchronize Lenis with GSAP ScrollTrigger ticker for 60-120fps lockstep
+    lenisInstance.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+        lenisInstance.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
 
     // Elements
     const progressBar = document.getElementById('scroll-progress-bar');

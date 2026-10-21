@@ -1,0 +1,115 @@
+/* ==============================================================
+   SPLIT REVEAL HERO & ABOUT SCROLL ANIMATION STYLES
+   ============================================================== */
+
+/* Wrapper and Pinned Stage */
+.hero-split-wrapper {
+  position: relative;
+  width: 100%;
+  background-color: #0a0f0d;
+}
+
+.hero-pinned-stage {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background-color: #0a0f0d;
+}
+
+/* Split Curtain Panels */
+.split-panel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  will-change: transform;
+  z-index: 20;
+  pointer-events: auto;
+  background-color: #0a0f0d;
+}
+
+/* Desktop: Horizontal Curtain Split (Left & Right) */
+@media (min-width: 768px) {
+  .split-panel--left {
+    clip-path: inset(0 49.9% 0 0);
+  }
+  .split-panel--right {
+    clip-path: inset(0 0 0 49.9%);
+  }
+}
+
+/* Mobile: Vertical Curtain Split (Top & Bottom) */
+@media (max-width: 767px) {
+  .split-panel--left {
+    clip-path: inset(0 0 49.9% 0);
+  }
+  .split-panel--right {
+    clip-path: inset(49.9% 0 0 0);
+  }
+}
+
+/* Stage About di belakang tirai */
+.about-reveal-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  overflow-y: auto;
+  will-change: transform, opacity;
+  background-color: #0a0f0d;
+}
+
+/* Initial Mask Reveal on Page Load */
+.hero-word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.hero-word-reveal {
+  display: inline-block;
+  will-change: transform;
+  transform: translateY(115%);
+}
+
+.hero-split-photo {
+  will-change: transform, opacity;
+}
+
+.hero-split-desc {
+  will-change: transform, opacity;
+}
+
+.about-reveal-item {
+  will-change: transform, opacity;
+}
+
+/* Reduced Motion Accessibility Fallback */
+@media (prefers-reduced-motion: reduce) {
+  .hero-pinned-stage {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+  .split-panel--left {
+    position: relative !important;
+    clip-path: none !important;
+    transform: none !important;
+  }
+  .split-panel--right {
+    display: none !important;
+  }
+  .about-reveal-stage {
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .hero-word-reveal {
+    transform: none !important;
+  }
+}

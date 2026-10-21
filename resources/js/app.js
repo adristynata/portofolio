@@ -7,6 +7,7 @@ import { initSmoothScroll } from './smooth-scroll';
 import { initScrollReveal } from './scroll-reveal';
 import { init3DTilt } from './tilt-3d';
 import { initHeroCapsules } from './hero-capsules';
+import { initSplitRevealHero } from './split-reveal';
 
 window.Alpine = Alpine;
 
@@ -14,6 +15,7 @@ Alpine.start();
 
 function initCreativeInteractions() {
     initSmoothScroll();
+    initSplitRevealHero();
     initScrollReveal();
     initInteractiveCursor();
     initButterDeck();
