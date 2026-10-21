@@ -299,6 +299,54 @@ html.light section#about .about-chip:hover {
   color: #2E3828 !important;
 }
 
+/* 3D Bento Showcase Cards */
+.bento-3d-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.bento-glare {
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+html.light .bento-3d-card {
+  background-color: #FFFFFF !important;
+  border-color: #E5E3DC !important;
+  box-shadow: 0 10px 30px -10px rgba(25, 25, 25, 0.08) !important;
+}
+
+html.light .bento-3d-card:hover {
+  border-color: #758268 !important;
+  box-shadow: 0 16px 36px -10px rgba(117, 130, 104, 0.15) !important;
+}
+
+html.light .bento-terminal-window {
+  background-color: #F5F4F0 !important;
+  border-color: #E5E3DC !important;
+}
+
+html.light .bento-terminal-window p,
+html.light .bento-terminal-window span {
+  color: #191919 !important;
+}
+
+html.light .bento-terminal-window .text-\[\#A5B698\] {
+  color: #5E6E55 !important;
+}
+
+html.light .bento-terminal-window .text-emerald-400 {
+  color: #2D6A4F !important;
+}
+
+html.light .bento-terminal-window .text-\[\#929292\] {
+  color: #777777 !important;
+}
+
+html.light .bento-terminal-text {
+  color: #191919 !important;
+}
+
 /* Project Image Hover Preview Pill (Dark Mode Default) */
 .project-preview-pill {
   color: #F0EEE8 !important;

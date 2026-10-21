@@ -5,6 +5,7 @@ import { initInteractiveCursor } from './cursor';
 import { initButterDeck } from './butter-deck';
 import { initSmoothScroll } from './smooth-scroll';
 import { initScrollReveal } from './scroll-reveal';
+import { init3DTilt } from './tilt-3d';
 
 window.Alpine = Alpine;
 
@@ -15,6 +16,7 @@ function initCreativeInteractions() {
     initScrollReveal();
     initInteractiveCursor();
     initButterDeck();
+    init3DTilt();
 }
 
 if (document.readyState === 'loading') {
