@@ -53,17 +53,17 @@
                 {{-- BARIS 1: ADRISTY (KIRI) DAN AKIKO (KANAN) SAMA RATA SEJAJAR DENGAN SPASI SIMETRIS & SEIMBANG --}}
                 <div class="w-full flex items-baseline justify-center pointer-events-none">
                     {{-- Sisi Kiri: ADRISTY (Rata Kanan ke arah foto tengah) --}}
-                    <div class="hero-anim-adristy flex-1 text-right pointer-events-auto pr-3 sm:pr-4 md:pr-5 lg:pr-6">
+                    <div class="hero-anim-adristy flex-1 text-right pointer-events-auto pr-2 sm:pr-3">
                         <h1 class="hero-name-left text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#F0EEE8] tracking-[-0.015em] leading-none select-none uppercase">
                             {{ $firstName }}
                         </h1>
                     </div>
 
-                    {{-- Center Head Spacer (Spasi presisi simetris di tengah) --}}
-                    <div class="w-8 sm:w-12 md:w-16 lg:w-20 shrink-0 pointer-events-none"></div>
+                    {{-- Center Head Spacer (Cukup lebar sesuai diameter kepala agar teks di kiri & kanan berjarak sama persis) --}}
+                    <div class="w-32 sm:w-40 md:w-48 lg:w-56 xl:w-60 shrink-0 pointer-events-none"></div>
 
                     {{-- Sisi Kanan: AKIKO (Rata Kiri, spasi optik presisi identik dengan sisi kiri) --}}
-                    <div class="hero-anim-akiko flex-1 text-left pointer-events-auto pl-3 sm:pl-4 md:pl-5 lg:pl-6">
+                    <div class="hero-anim-akiko flex-1 text-left pointer-events-auto pl-2 sm:pl-3">
                         <h2 class="hero-name-right text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#F0EEE8] tracking-[-0.015em] leading-none select-none uppercase">
                             {{ $secondName }}
                         </h2>
