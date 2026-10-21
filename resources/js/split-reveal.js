@@ -1,9 +1,16 @@
 /**
- * SPLIT REVEAL HERO & ABOUT SCROLL ANIMATION
+ * SPLIT REVEAL HERO & ABOUT SCROLL ANIMATION (BOON GLOBAL STYLE)
  * Stack: GSAP + ScrollTrigger + Lenis
  * Features:
- * - Layout Awal: Nama dan Bio berada di sisi KIRI, Foto cutout berada di TENGAH (utuh & transparan)
- * - Saat Scroll ke Bawah: Teks di sisi kiri meluncur keluar, Foto stay di tengah, About section terungkap dari belakang
+ * - Layout Awal:
+ *   - Sisi Kiri: "Adristy" + Deskripsi Bio
+ *   - Sisi Kanan: "Akiko Yukinata" + Meta Info
+ *   - Tengah: Foto Cutout Adristy (utuh, transparan, z-20 di depan teks)
+ * - Saat Scroll:
+ *   - Teks Sisi Kiri meluncur ke KIRI (<-) dari balik foto
+ *   - Teks Sisi Kanan meluncur ke KANAN (->) dari balik foto
+ *   - Foto STAY di TENGAH (tidak kebelah, tidak ikut geser horizontal)
+ *   - About Section terungkap dari celah di belakangnya
  * - Aksesibilitas: prefers-reduced-motion dihormati
  */
 
@@ -21,7 +28,8 @@ export function initSplitRevealHero() {
     // 1. Aksesibilitas: prefers-reduced-motion fallback
     if (prefersReducedMotion) {
         gsap.set('.about-reveal-stage', { scale: 1, opacity: 1, y: 0 });
-        gsap.set('.hero-left-content', { opacity: 1, x: 0 });
+        gsap.set('.hero-side-left', { opacity: 1, x: 0 });
+        gsap.set('.hero-side-right', { opacity: 1, x: 0 });
         gsap.set('.hero-stay-photo', { opacity: 1, scale: 1 });
         gsap.set('.about-reveal-item', { opacity: 1, y: 0 });
         return;
@@ -30,13 +38,13 @@ export function initSplitRevealHero() {
     // 2. Responsive Scroll Timeline dengan gsap.matchMedia()
     const mm = gsap.matchMedia();
 
-    // === DESKTOP (>= 768px): Teks Nama & Bio di Kiri Meluncur Keluar Saat Scroll ===
+    // === DESKTOP (>= 768px): Boon Global Outward Split Typography ===
     mm.add('(min-width: 768px)', () => {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: '.hero-pinned-stage',
                 start: 'top top',
-                end: '+=140%',
+                end: '+=150%',
                 scrub: 1,
                 pin: true,
                 anticipatePin: 1,
@@ -44,33 +52,42 @@ export function initSplitRevealHero() {
             }
         });
 
-        // a. Teks di sisi kiri (Nama & Bio) meluncur keluar ke arah kiri saat scroll
-        tl.to('.hero-left-content', {
-            xPercent: -120,
+        // a. Sisi Kiri ("Adristy" + bio) meluncur keluar ke arah KIRI dari balik foto
+        tl.to('.hero-side-left', {
+            xPercent: -130,
             opacity: 0,
             duration: 1,
-            ease: 'power3.inOut'
-        }, 0.05);
+            ease: 'power2.inOut'
+        }, 0);
 
-        // b. Foto STAY di tengah (tidak kebelah), lalu soft crossfade ke About section
+        // b. Sisi Kanan ("Akiko Yukinata" + meta) meluncur keluar ke arah KANAN dari balik foto
+        tl.to('.hero-side-right', {
+            xPercent: 130,
+            opacity: 0,
+            duration: 1,
+            ease: 'power2.inOut'
+        }, 0);
+
+        // c. Foto STAY di tengah (tidak kebelah, tidak geser horizontal)
+        // Setelah teks terbelah keluar, foto softly crossfade ke About section
         tl.to('.hero-stay-photo', {
             opacity: 0,
-            scale: 1.03,
+            scale: 1.05,
             duration: 0.45,
             ease: 'power2.inOut'
         }, 0.55);
 
-        // c. Layer panggung hero memudar halus
+        // d. Layer background panggung hero memudar halus
         tl.to('.hero-stage-layer', {
             opacity: 0,
             duration: 0.4,
             ease: 'power2.in'
         }, 0.6);
 
-        // d. About Section terungkap dari belakang
+        // e. About Section terungkap dari belakang dengan smooth scale & fade
         tl.fromTo('.about-reveal-stage', {
             scale: 0.92,
-            opacity: 0.5,
+            opacity: 0.4,
             y: 40
         }, {
             scale: 1,
@@ -80,7 +97,7 @@ export function initSplitRevealHero() {
             ease: 'power3.out'
         }, 0.15);
 
-        // e. Staggered fade-up untuk kartu & teks About
+        // f. Staggered fade-up untuk kartu & teks About
         tl.fromTo('.about-reveal-item', {
             opacity: 0,
             y: 28
@@ -95,7 +112,7 @@ export function initSplitRevealHero() {
         return () => tl.kill();
     });
 
-    // === MOBILE (< 768px): Teks Meluncur ke Atas Saat Scroll ===
+    // === MOBILE (< 768px): Split Sisi Kiri ke Kiri & Sisi Kanan ke Kanan ===
     mm.add('(max-width: 767px)', () => {
         const tlMobile = gsap.timeline({
             scrollTrigger: {
@@ -109,16 +126,23 @@ export function initSplitRevealHero() {
             }
         });
 
-        tlMobile.to('.hero-left-content', {
-            yPercent: -100,
+        tlMobile.to('.hero-side-left', {
+            xPercent: -125,
             opacity: 0,
             duration: 1,
-            ease: 'power3.inOut'
-        }, 0.05);
+            ease: 'power2.inOut'
+        }, 0);
+
+        tlMobile.to('.hero-side-right', {
+            xPercent: 125,
+            opacity: 0,
+            duration: 1,
+            ease: 'power2.inOut'
+        }, 0);
 
         tlMobile.to('.hero-stay-photo', {
             opacity: 0,
-            scale: 1.03,
+            scale: 1.04,
             duration: 0.45,
             ease: 'power2.inOut'
         }, 0.55);
@@ -131,7 +155,7 @@ export function initSplitRevealHero() {
 
         tlMobile.fromTo('.about-reveal-stage', {
             scale: 0.94,
-            opacity: 0.5,
+            opacity: 0.4,
             y: 30
         }, {
             scale: 1,

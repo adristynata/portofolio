@@ -1,5 +1,5 @@
 /* ==============================================================
-   SPLIT REVEAL HERO & ABOUT SCROLL ANIMATION STYLES
+   SPLIT REVEAL HERO & ABOUT SCROLL ANIMATION STYLES (BOON GLOBAL STYLE)
    ============================================================== */
 
 /* Wrapper and Pinned Stage */
@@ -30,15 +30,25 @@
   will-change: opacity;
 }
 
-/* Sisi Kiri Hero (Nama & Bio berada di kiri, bukan di tengah) */
-.hero-left-content {
+/* Split Sides: Sisi Kiri & Sisi Kanan (Boon Global Flanking Typography) */
+.hero-side-left {
+  position: relative;
+  z-index: 10;
   will-change: transform, opacity;
 }
 
-/* Foto Adristy (STAY DI TENGAH, TIDAK KEBELAH, z-20 di depan teks leher) */
-.hero-stay-photo {
+.hero-side-right {
+  position: relative;
+  z-index: 10;
   will-change: transform, opacity;
+}
+
+/* Foto Cutout Adristy (STAY DI TENGAH, TIDAK KEBELAH, z-20 di depan teks leher/bahu) */
+.hero-stay-photo {
+  position: absolute;
   z-index: 20;
+  will-change: transform, opacity;
+  pointer-events: none;
 }
 
 /* Stage About di belakang hero */
@@ -57,9 +67,14 @@
   will-change: transform, opacity;
 }
 
-/* Page-Load Animations: Teks nama keluar dari balik leher & bio meluncur ke bawah */
-.hero-name-emerge {
-  animation: nameEmergeBehindNeck 1.25s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+/* Page-Load Animations: Teks nama keluar dari balik leher foto dengan fast-then-slow bouncy */
+.hero-name-left {
+  animation: nameLeftEntrance 1.25s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+  will-change: transform, opacity;
+}
+
+.hero-name-right {
+  animation: nameRightEntrance 1.25s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
   will-change: transform, opacity;
 }
 
@@ -68,15 +83,21 @@
   will-change: transform, opacity;
 }
 
+.hero-meta-right {
+  animation: descFadeDrop 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+  will-change: transform, opacity;
+}
+
 .hero-photo-soft-entrance {
   animation: heroPhotoSoftEntrance 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
   will-change: transform, opacity;
 }
 
-@keyframes nameEmergeBehindNeck {
+/* Keyframes: Nama Kiri keluar dari balik leher/center ke arah kiri dengan subtle bounce */
+@keyframes nameLeftEntrance {
   0% {
     opacity: 0;
-    transform: translate3d(50px, 0, 0) scale(0.96);
+    transform: translate3d(60px, 0, 0) scale(0.96);
   }
   65% {
     opacity: 1;
@@ -91,10 +112,30 @@
   }
 }
 
+/* Keyframes: Nama Kanan keluar dari balik leher/center ke arah kanan dengan subtle bounce */
+@keyframes nameRightEntrance {
+  0% {
+    opacity: 0;
+    transform: translate3d(-60px, 0, 0) scale(0.96);
+  }
+  65% {
+    opacity: 1;
+    transform: translate3d(10px, 0, 0) scale(1.01);
+  }
+  85% {
+    transform: translate3d(-4px, 0, 0) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* Keyframes: Deskripsi & Meta drop down lembut */
 @keyframes descFadeDrop {
   0% {
     opacity: 0;
-    transform: translate3d(0, -22px, 0);
+    transform: translate3d(0, -20px, 0);
   }
   100% {
     opacity: 1;
@@ -102,10 +143,11 @@
   }
 }
 
+/* Keyframes: Foto Cutout Soft Rise Entrance */
 @keyframes heroPhotoSoftEntrance {
   0% {
     opacity: 0;
-    transform: translate3d(0, 28px, 0) scale(0.97);
+    transform: translate3d(0, 30px, 0) scale(0.97);
   }
   100% {
     opacity: 1;
@@ -130,8 +172,13 @@
     transform: none !important;
     opacity: 1 !important;
   }
-  .hero-name-emerge,
+  .hero-side-left,
+  .hero-side-right,
+  .hero-stay-photo,
+  .hero-name-left,
+  .hero-name-right,
   .hero-desc-drop,
+  .hero-meta-right,
   .hero-photo-soft-entrance {
     animation: none !important;
     opacity: 1 !important;

@@ -282,44 +282,90 @@
             </section>
 
             {{-- 2. FOREGROUND LAYER: HERO SECTION (#home) --}}
-            {{-- Foto tetap di center tanpa terbelah; Teks nama dan bio berada di sisi kiri persis tampilan awal --}}
-            <div id="home" class="hero-stage-layer absolute inset-0 z-20 w-full h-full pointer-events-none select-none flex items-center justify-center overflow-hidden bg-[#0c0e0c] pt-16">
+            {{-- Boon Global Style Hero:
+                 - Sisi Kiri: "Adristy" + Bio Deskripsi
+                 - Sisi Kanan: "Akiko" & "Yukinata" + Role & Info Badge
+                 - Center: Foto Cutout Adristy (z-20 di depan teks, stay di tengah, tidak kebelah!)
+                 - Saat Scroll: Teks kiri meluncur ke kiri, teks kanan meluncur ke kanan dari balik foto!
+            --}}
+            @php
+                $rawProfileName = trim($profile->name ?? 'Adristy Akiko Yukinata');
+                $nameWords = preg_split('/\s+/', $rawProfileName);
+                $leftNameWord = $nameWords[0] ?? 'Adristy';
+                $rightNameWords = array_slice($nameWords, 1);
+                if (empty($rightNameWords)) {
+                    $rightNameWords = ['Akiko', 'Yukinata'];
+                }
+            @endphp
+
+            <div id="home" class="hero-stage-layer absolute inset-0 z-20 w-full h-full pointer-events-none select-none flex items-center justify-center overflow-hidden bg-[#0c0e0c]">
                 
                 {{-- Luxury Atmospheric Dark Glass Backlight & Contrast Glow --}}
                 <div class="hero-ambient-glow absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-0">
-                    <div class="w-[520px] sm:w-[680px] lg:w-[860px] h-[520px] sm:h-[680px] lg:h-[800px] rounded-full bg-gradient-to-tr from-[#758268]/22 via-[#A5B698]/12 to-transparent blur-[110px] opacity-80"></div>
-                    <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0c0e0c] via-[#0c0e0c]/80 to-transparent"></div>
+                    <div class="w-[520px] sm:w-[720px] lg:w-[940px] h-[520px] sm:h-[720px] lg:h-[900px] rounded-full bg-gradient-to-tr from-[#758268]/20 via-[#A5B698]/12 to-transparent blur-[120px] opacity-85"></div>
+                    <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#0c0e0c] via-[#0c0e0c]/85 to-transparent"></div>
                 </div>
 
-                {{-- FOTO CUTOUT TRANSPARAN ADRISTY (STAY DI TENGAH, TIDAK KEBELAH, z-20) --}}
-                <div class="hero-stay-photo absolute left-1/2 -translate-x-1/2 bottom-0 z-20 flex justify-center items-end pointer-events-none w-full max-w-[360px] sm:max-w-[440px] lg:max-w-[480px] xl:max-w-[520px] h-full max-h-[80vh] lg:max-h-[82vh]">
+                {{-- FOTO CUTOUT TRANSPARAN ADRISTY (STAY DI TENGAH, TIDAK KEBELAH, z-20 DI DEPAN TEKS) --}}
+                <div class="hero-stay-photo absolute left-1/2 -translate-x-1/2 bottom-0 z-20 flex justify-center items-end pointer-events-none w-full max-w-[340px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] xl:max-w-[540px] h-full max-h-[80vh] lg:max-h-[86vh]">
                     <img src="{{ asset('images/adristy_cutout.png') }}?v=cutout-clean" 
-                         alt="{{ $profile->name ?? 'Adristy Akiko Yukinata' }}" 
-                         class="hero-photo-soft-entrance w-full h-full object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.85)] select-none pointer-events-auto transition-transform duration-700 hover:scale-[1.01]"
+                         alt="{{ $rawProfileName }}" 
+                         class="hero-photo-soft-entrance w-full h-full object-contain object-bottom drop-shadow-[0_25px_60px_rgba(0,0,0,0.92)] select-none pointer-events-auto transition-transform duration-700 hover:scale-[1.01]"
                          style="mask-image: linear-gradient(to bottom, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);">
                 </div>
 
-                {{-- STAGE CONTAINER: KIRI BERISI NAMA & BIO, KANAN SPACER SEIMBANG --}}
-                <div class="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 h-full flex flex-col lg:flex-row items-center justify-between pointer-events-none pt-12 pb-16 lg:py-0">
+                {{-- SPLIT TYPOGRAPHY STAGE (BOON GLOBAL STYLE, z-10 DI BALIK FOTO) --}}
+                <div class="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 h-full flex flex-col justify-between lg:justify-center items-center pointer-events-none pt-24 pb-20 lg:py-0">
                     
-                    {{-- SISI KIRI: NAMA LENGKAP & DESKRIPSI (DI SISI KIRI, BUKAN DI TENGAH!) --}}
-                    <div class="hero-left-content w-full lg:w-[46%] max-w-lg flex flex-col justify-center text-left pointer-events-auto z-10 pt-16 sm:pt-20 lg:pt-0">
-                        
-                        {{-- Nama: Dynamic dari Admin CMS --}}
-                        <div class="relative overflow-visible">
-                            <h1 class="hero-name-emerge text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-[#F0EEE8] tracking-tight leading-none">
-                                {{ $profile->name ?? 'Adristy Akiko Yukinata' }}
-                            </h1>
+                    {{-- Row Container Flanking Center Photo --}}
+                    <div class="w-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-0 my-auto">
+
+                        {{-- SISI KIRI: NAMA "ADRISTY" & DESKRIPSI BIO --}}
+                        <div class="hero-side-left w-full lg:w-[42%] flex flex-col justify-center items-start text-left pointer-events-auto z-10">
+                            
+                            {{-- Nama Sisi Kiri --}}
+                            <div class="relative overflow-visible">
+                                <h1 class="hero-name-left text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-[#F0EEE8] tracking-tighter leading-none select-none uppercase">
+                                    {{ $leftNameWord }}
+                                </h1>
+                            </div>
+
+                            {{-- Deskripsi Bio di bawah Nama Sisi Kiri --}}
+                            <p class="hero-desc-drop mt-4 sm:mt-6 text-xs sm:text-sm md:text-base lg:text-lg text-[#C5C2BA] font-serif italic leading-relaxed max-w-md">
+                                {{ $profile->hero_bio ?? 'Saya adalah Junior Web Developer sekaligus Software Engineering dari SMK Negeri 1 Bangsri yang berfokus pada pengembangan web modern, responsif, dan berperforma tinggi.' }}
+                            </p>
+
                         </div>
 
-                        {{-- Deskripsi Bio: Dynamic dari Admin CMS (hero_bio) di bawah nama sisi kiri --}}
-                        <p class="hero-desc-drop mt-5 sm:mt-6 text-sm sm:text-base lg:text-lg text-[#C5C2BA] font-serif italic leading-relaxed">
-                            {{ $profile->hero_bio ?? 'Saya adalah Junior Web Developer sekaligus Software Engineering dari SMK Negeri 1 Bangsri yang berfokus pada pengembangan web modern, responsif, dan berperforma tinggi.' }}
-                        </p>
-                    </div>
+                        {{-- SISI KANAN: NAMA "AKIKO YUKINATA" & ROLE BADGE --}}
+                        <div class="hero-side-right w-full lg:w-[42%] flex flex-col justify-center items-end text-right pointer-events-auto z-10">
+                            
+                            {{-- Nama Sisi Kanan (Akiko / Yukinata) --}}
+                            <div class="relative overflow-visible text-right">
+                                <h2 class="hero-name-right text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-[#F0EEE8] tracking-tighter leading-none select-none uppercase">
+                                    @if(count($rightNameWords) >= 2)
+                                        <span class="block">{{ $rightNameWords[0] }}</span>
+                                        <span class="block text-[#A5B698]">{{ implode(' ', array_slice($rightNameWords, 1)) }}</span>
+                                    @else
+                                        <span class="block">{{ implode(' ', $rightNameWords) }}</span>
+                                    @endif
+                                </h2>
+                            </div>
 
-                    {{-- Spacer Kanan untuk Menyeimbangkan Komposisi Mewah --}}
-                    <div class="hidden lg:block w-[46%] pointer-events-none"></div>
+                            {{-- Sleek Tech / Education Badge Sisi Kanan --}}
+                            <div class="hero-meta-right mt-4 sm:mt-6 flex flex-col items-end gap-2 text-right">
+                                <span class="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#1e251c]/80 border border-[#3e4f35]/60 text-[11px] sm:text-xs font-mono text-[#A5B698] backdrop-blur-md">
+                                    <span class="w-2 h-2 rounded-full bg-[#A5B698] animate-pulse"></span>
+                                    {{ $profile->role_title ?? 'Junior Web Developer & Software Engineer' }}
+                                </span>
+                                <span class="text-[11px] sm:text-xs text-[#8E8B82] font-mono tracking-wide">
+                                    {{ $profile->education ?? 'SMK Negeri 1 Bangsri' }} &bull; Portfolio
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
