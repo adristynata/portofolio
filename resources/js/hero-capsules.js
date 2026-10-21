@@ -1,72 +1,70 @@
 /**
- * Interactive Physics Evasion & Floating Engine for Hero Tech Capsules
+ * Hero Software Capsules & Cursor Avoidance Physics
  * Features:
- * - Gentle organic sinusoidal idle floating motion
- * - Responsive cursor repulsion (capsules steer away from cursor on approach)
- * - Elastic spring return to floating equilibrium
- * - Hardware-accelerated 60-120fps translate3d transforms
+ * - Ultra-smooth sinusoidal ambient floating (sine/cosine phase drift)
+ * - Dynamic magnetic cursor avoidance: repels away when cursor approaches
+ * - Smooth spring damping physics with natural deceleration and restitution
+ * - High performance 60/120fps RAF loop with zero layout thrashing
  */
+
 export function initHeroCapsules() {
-    const hero = document.getElementById('home');
-    const pills = document.querySelectorAll('.tech-capsule-pill');
-    if (!hero || !pills.length) return;
+    const heroSection = document.getElementById('home');
+    const capsules = document.querySelectorAll('.hero-capsule');
+    if (!heroSection || !capsules.length) return;
 
-    // Track mouse position
-    let mouseX = -9999;
-    let mouseY = -9999;
-    let isMouseInside = false;
-
-    // Capsule state data
-    const capsuleStates = Array.from(pills).map((el, i) => {
+    // Capsule physical state tracking
+    const items = Array.from(capsules).map((el, i) => {
         return {
             el,
+            phaseX: i * 1.45,
+            phaseY: i * 1.15 + 1.2,
+            speedX: 0.0015 + (i % 3) * 0.0004,
+            speedY: 0.0019 + (i % 2) * 0.0005,
+            ampX: 4 + (i % 2) * 2.5,
+            ampY: 6 + (i % 3) * 2.5,
             currentX: 0,
             currentY: 0,
-            targetX: 0,
-            targetY: 0,
-            phase: (i * 1.35) % (Math.PI * 2),
-            speedX: 0.0016 + (i % 3) * 0.0005,
-            speedY: 0.0020 + ((i + 1) % 3) * 0.0005,
-            ampX: 3.5 + (i % 3) * 2,
-            ampY: 5.5 + (i % 3) * 2.5,
+            targetRepelX: 0,
+            targetRepelY: 0,
         };
     });
 
-    hero.addEventListener('mousemove', (e) => {
+    let mouseX = -9999;
+    let mouseY = -9999;
+    let isMouseActive = false;
+
+    const onMouseMove = (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        isMouseInside = true;
-    });
+        isMouseActive = true;
+    };
 
-    hero.addEventListener('mouseleave', () => {
-        isMouseInside = false;
+    const onMouseLeave = () => {
+        isMouseActive = false;
         mouseX = -9999;
         mouseY = -9999;
-    });
+        items.forEach(item => {
+            item.targetRepelX = 0;
+            item.targetRepelY = 0;
+        });
+    };
 
-    hero.addEventListener('touchmove', (e) => {
-        if (e.touches && e.touches.length > 0) {
-            mouseX = e.touches[0].clientX;
-            mouseY = e.touches[0].clientY;
-            isMouseInside = true;
-        }
-    }, { passive: true });
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    document.addEventListener('mouseleave', onMouseLeave, { passive: true });
 
-    hero.addEventListener('touchend', () => {
-        isMouseInside = false;
-        mouseX = -9999;
-        mouseY = -9999;
-    });
+    const repelRadius = 150; // Detection radius in px
+    const maxRepelDist = 90; // Maximum push distance in px
+
+    let animationFrameId = null;
 
     function render(time) {
-        const repelRadius = 140; // Detection radius in pixels
-        const maxRepel = 52;     // Maximum push distance in pixels
+        items.forEach(item => {
+            // 1. Gentle ambient sinusoidal floating
+            const floatX = Math.sin(time * item.speedX + item.phaseX) * item.ampX;
+            const floatY = Math.cos(time * item.speedY + item.phaseY) * item.ampY;
 
-        capsuleStates.forEach((item) => {
-            let repelX = 0;
-            let repelY = 0;
-
-            if (isMouseInside) {
+            // 2. Cursor avoidance calculation
+            if (isMouseActive && mouseX > -100 && mouseY > -100) {
                 const rect = item.el.getBoundingClientRect();
                 const centerX = rect.left + rect.width / 2;
                 const centerY = rect.top + rect.height / 2;
@@ -76,31 +74,33 @@ export function initHeroCapsules() {
                 const dist = Math.hypot(dx, dy);
 
                 if (dist < repelRadius && dist > 0.001) {
-                    const factor = Math.pow(1 - dist / repelRadius, 1.4);
-                    const force = factor * maxRepel;
-                    repelX = (dx / dist) * force;
-                    repelY = (dy / dist) * force;
+                    // Non-linear power repulsion: smoothly pushes harder when closer
+                    const strength = Math.pow(1 - (dist / repelRadius), 1.35) * maxRepelDist;
+                    const angle = Math.atan2(dy, dx);
+                    item.targetRepelX = Math.cos(angle) * strength;
+                    item.targetRepelY = Math.sin(angle) * strength;
+                } else {
+                    item.targetRepelX = 0;
+                    item.targetRepelY = 0;
                 }
+            } else {
+                item.targetRepelX = 0;
+                item.targetRepelY = 0;
             }
 
-            // Spring towards target repulsion
-            item.targetX = repelX;
-            item.targetY = repelY;
-            item.currentX += (item.targetX - item.currentX) * 0.14;
-            item.currentY += (item.targetY - item.currentY) * 0.14;
+            // 3. Smooth spring damping lerp back to resting position
+            item.currentX += (item.targetRepelX - item.currentX) * 0.12;
+            item.currentY += (item.targetRepelY - item.currentY) * 0.12;
 
-            // Idle organic float offset
-            const idleX = Math.cos(time * item.speedX + item.phase) * item.ampX;
-            const idleY = Math.sin(time * item.speedY + item.phase) * item.ampY;
+            // 4. Combine ambient drift + cursor avoidance
+            const totalX = floatX + item.currentX;
+            const totalY = floatY + item.currentY;
 
-            const finalX = (item.currentX + idleX).toFixed(2);
-            const finalY = (item.currentY + idleY).toFixed(2);
-
-            item.el.style.transform = `translate3d(${finalX}px, ${finalY}px, 0)`;
+            item.el.style.transform = `translate3d(${totalX.toFixed(2)}px, ${totalY.toFixed(2)}px, 0)`;
         });
 
-        requestAnimationFrame(render);
+        animationFrameId = requestAnimationFrame(render);
     }
 
-    requestAnimationFrame(render);
+    animationFrameId = requestAnimationFrame(render);
 }

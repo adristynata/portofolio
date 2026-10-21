@@ -81,12 +81,12 @@ export function initInteractiveCursor() {
         // 0-latency instant positioning for the center precision dot
         dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
 
-        // Ambient spotlight glow following cursor (theme adaptive)
+        // Ambient spotlight glow following cursor (theme adaptive - Swiss / Sage luxury palette)
         const isLight = document.documentElement.classList.contains('light');
         if (isLight) {
-            spotlight.style.background = `radial-gradient(550px circle at ${mouseX}px ${mouseY}px, rgba(2, 132, 199, 0.05), rgba(99, 102, 241, 0.025) 40%, transparent 70%)`;
+            spotlight.style.background = `radial-gradient(550px circle at ${mouseX}px ${mouseY}px, rgba(117, 130, 104, 0.05), rgba(165, 182, 152, 0.025) 40%, transparent 70%)`;
         } else {
-            spotlight.style.background = `radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(0, 240, 255, 0.045), rgba(168, 85, 247, 0.02) 40%, transparent 70%)`;
+            spotlight.style.background = `radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(117, 130, 104, 0.06), rgba(165, 182, 152, 0.025) 40%, transparent 70%)`;
         }
 
         // Evaluate target under cursor
