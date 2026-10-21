@@ -109,6 +109,27 @@ section#home {
   overflow: hidden;
 }
 
+/* 0. Photo Soft Entrance Animation: elegant fade in and smooth upward glide */
+@keyframes heroPhotoSoftEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(32px) scale(0.97);
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero-photo-soft-entrance {
+  opacity: 0;
+  animation: heroPhotoSoftEntrance 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  will-change: transform, opacity;
+}
+
 /* 1. Name Emergence Animation: starts hidden behind neck/center photo, slides out fast, decelerates with bouncy recoil */
 @keyframes nameEmergeBehindNeck {
   0% {

@@ -14,11 +14,11 @@
             <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0c0e0c] via-[#0c0e0c]/80 to-transparent"></div>
         </div>
 
-        {{-- Centered Cutout Photo of Adristy (White shirt & hijab, z-20 in front of emerging name) --}}
+        {{-- Centered Cutout Photo of Adristy (White shirt & hijab with transparent background, z-20 in front of emerging name) --}}
         <div class="absolute left-1/2 -translate-x-1/2 bottom-0 z-20 flex justify-center items-end pointer-events-none w-full max-w-[360px] sm:max-w-[440px] lg:max-w-[480px] xl:max-w-[520px] h-full max-h-[80vh] lg:max-h-[82vh]">
-            <img src="{{ !empty($profile->photo) ? asset($profile->photo) : asset('images/adristy_cutout.png') }}" 
+            <img src="{{ asset('images/adristy_cutout.png') }}" 
                  alt="{{ $profile->name ?? 'Adristy Akiko' }}" 
-                 class="w-full h-full object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.85)] select-none pointer-events-auto transition-transform duration-700 hover:scale-[1.01]"
+                 class="hero-photo-soft-entrance w-full h-full object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.85)] select-none pointer-events-auto transition-transform duration-700 hover:scale-[1.01]"
                  style="mask-image: linear-gradient(to bottom, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);">
         </div>
 
