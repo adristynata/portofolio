@@ -57,16 +57,13 @@
   pointer-events: none;
 }
 
-/* Stage About di belakang hero */
-.about-reveal-stage {
-  position: absolute;
-  inset: 0;
+/* About Section: Mengalir alami tanpa terpotong */
+.about-section {
+  position: relative;
   width: 100%;
-  height: 100%;
-  z-index: 10;
-  overflow-y: auto;
-  will-change: transform, opacity;
+  min-height: 100vh;
   background-color: #0a0f0d;
+  overflow: visible;
 }
 
 .about-reveal-item {
@@ -189,7 +186,7 @@
     position: relative !important;
     height: 100dvh !important;
   }
-  .about-reveal-stage {
+  .about-section {
     position: relative !important;
     inset: auto !important;
     transform: none !important;

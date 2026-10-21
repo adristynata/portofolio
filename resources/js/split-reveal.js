@@ -28,7 +28,6 @@ export function initSplitRevealHero() {
 
     // 1. Aksesibilitas: prefers-reduced-motion fallback
     if (prefersReducedMotion) {
-        gsap.set('.about-reveal-stage', { scale: 1, opacity: 1, y: 0 });
         gsap.set('.hero-anim-adristy', { opacity: 1, x: 0 });
         gsap.set('.hero-anim-akiko', { opacity: 1, x: 0 });
         gsap.set('.hero-anim-yukinata', { opacity: 1, x: 0 });
@@ -40,14 +39,14 @@ export function initSplitRevealHero() {
     // 2. Responsive Scroll Timeline dengan gsap.matchMedia()
     const mm = gsap.matchMedia();
 
-    // === DESKTOP (>= 768px): Boon Global Outward Split Typography ===
+    // === DESKTOP (>= 768px): Cukup 1 kali scroll cepat & bersih (end: '+=50%') ===
     mm.add('(min-width: 768px)', () => {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: '.hero-pinned-stage',
                 start: 'top top',
-                end: '+=150%',
-                scrub: 1,
+                end: '+=50%',
+                scrub: 0.5,
                 pin: true,
                 anticipatePin: 1,
                 invalidateOnRefresh: true,
@@ -78,58 +77,51 @@ export function initSplitRevealHero() {
             ease: 'power2.inOut'
         }, 0);
 
-        // d. Foto STAY di tengah (tidak kebelah, tidak geser horizontal)
-        // Setelah teks terbelah keluar, foto softly crossfade ke About section
+        // d. Foto STAY di tengah, lalu soft crossfade keluar
         tl.to('.hero-stay-photo', {
             opacity: 0,
-            scale: 1.05,
-            duration: 0.45,
+            scale: 1.04,
+            duration: 0.55,
             ease: 'power2.inOut'
-        }, 0.55);
-
-        // e. Layer background panggung hero memudar halus
-        tl.to('.hero-stage-layer', {
-            opacity: 0,
-            duration: 0.4,
-            ease: 'power2.in'
-        }, 0.6);
-
-        // f. About Section terungkap dari belakang dengan smooth scale & fade
-        tl.fromTo('.about-reveal-stage', {
-            scale: 0.92,
-            opacity: 0.4,
-            y: 40
-        }, {
-            scale: 1,
-            opacity: 1,
-            y: 0,
-            duration: 0.9,
-            ease: 'power3.out'
-        }, 0.15);
-
-        // g. Staggered fade-up untuk kartu & teks About
-        tl.fromTo('.about-reveal-item', {
-            opacity: 0,
-            y: 28
-        }, {
-            opacity: 1,
-            y: 0,
-            stagger: 0.06,
-            duration: 0.6,
-            ease: 'power2.out'
         }, 0.35);
 
-        return () => tl.kill();
+        // e. Ambient backlight memudar lembut
+        tl.to('.hero-ambient-glow', {
+            opacity: 0,
+            duration: 0.5,
+            ease: 'power2.in'
+        }, 0.4);
+
+        // Staggered fade-up untuk kartu About saat user masuk ke #about
+        gsap.fromTo('.about-reveal-item', {
+            opacity: 0,
+            y: 35
+        }, {
+            scrollTrigger: {
+                trigger: '#about',
+                start: 'top 75%',
+                toggleActions: 'play none none none',
+            },
+            opacity: 1,
+            y: 0,
+            stagger: 0.08,
+            duration: 0.8,
+            ease: 'power2.out',
+        });
+
+        return () => {
+            tl.kill();
+        };
     });
 
-    // === MOBILE (< 768px): Split Sisi Kiri & Tengah ke Kiri, Sisi Kanan ke Kanan ===
+    // === MOBILE (< 768px): Cukup 1 kali scroll cepat (end: '+=40%') ===
     mm.add('(max-width: 767px)', () => {
         const tlMobile = gsap.timeline({
             scrollTrigger: {
                 trigger: '.hero-pinned-stage',
                 start: 'top top',
-                end: '+=130%',
-                scrub: 1,
+                end: '+=40%',
+                scrub: 0.5,
                 pin: true,
                 anticipatePin: 1,
                 invalidateOnRefresh: true,
@@ -164,39 +156,34 @@ export function initSplitRevealHero() {
         tlMobile.to('.hero-stay-photo', {
             opacity: 0,
             scale: 1.04,
-            duration: 0.45,
+            duration: 0.55,
             ease: 'power2.inOut'
-        }, 0.55);
-
-        tlMobile.to('.hero-stage-layer', {
-            opacity: 0,
-            duration: 0.4,
-            ease: 'power2.in'
-        }, 0.6);
-
-        tlMobile.fromTo('.about-reveal-stage', {
-            scale: 0.94,
-            opacity: 0.4,
-            y: 30
-        }, {
-            scale: 1,
-            opacity: 1,
-            y: 0,
-            duration: 0.9,
-            ease: 'power3.out'
-        }, 0.15);
-
-        tlMobile.fromTo('.about-reveal-item', {
-            opacity: 0,
-            y: 18
-        }, {
-            opacity: 1,
-            y: 0,
-            stagger: 0.05,
-            duration: 0.6,
-            ease: 'power2.out'
         }, 0.35);
 
-        return () => tlMobile.kill();
+        tlMobile.to('.hero-ambient-glow', {
+            opacity: 0,
+            duration: 0.5,
+            ease: 'power2.in'
+        }, 0.4);
+
+        gsap.fromTo('.about-reveal-item', {
+            opacity: 0,
+            y: 20
+        }, {
+            scrollTrigger: {
+                trigger: '#about',
+                start: 'top 80%',
+                toggleActions: 'play none none none',
+            },
+            opacity: 1,
+            y: 0,
+            stagger: 0.06,
+            duration: 0.7,
+            ease: 'power2.out',
+        });
+
+        return () => {
+            tlMobile.kill();
+        };
     });
 }
