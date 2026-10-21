@@ -6,6 +6,7 @@ import { initButterDeck } from './butter-deck';
 import { initSmoothScroll } from './smooth-scroll';
 import { initScrollReveal } from './scroll-reveal';
 import { init3DTilt } from './tilt-3d';
+import { initHeroCapsules } from './hero-capsules';
 
 window.Alpine = Alpine;
 
@@ -17,6 +18,7 @@ function initCreativeInteractions() {
     initInteractiveCursor();
     initButterDeck();
     init3DTilt();
+    initHeroCapsules();
 }
 
 if (document.readyState === 'loading') {

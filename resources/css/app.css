@@ -484,3 +484,172 @@ html.light ::-webkit-scrollbar-thumb:hover {
 .animate-float-2 {
   animation: float-orb-2 7s ease-in-out infinite;
 }
+
+/* ==========================================================================
+   HERO REVAMP - CINEMATIC EMERGE & GLASS CAPSULES (Image 2 Reference)
+   ========================================================================== */
+
+/* 1. Name Emerge from Behind Neck (Fast, then slow, with bouncy recoil) */
+@keyframes nameEmergeFromNeck {
+  0% {
+    opacity: 0;
+    transform: translate3d(90px, 0, 0);
+  }
+  32% {
+    opacity: 1;
+    transform: translate3d(-18px, 0, 0);
+  }
+  58% {
+    transform: translate3d(8px, 0, 0);
+  }
+  80% {
+    transform: translate3d(-3px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (max-width: 1023px) {
+  @keyframes nameEmergeFromNeck {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 35px, 0);
+    }
+    35% {
+      opacity: 1;
+      transform: translate3d(0, -10px, 0);
+    }
+    60% {
+      transform: translate3d(0, 5px, 0);
+    }
+    82% {
+      transform: translate3d(0, -2px, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
+
+.hero-name-emerge {
+  animation: nameEmergeFromNeck 1.25s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+  will-change: transform, opacity;
+}
+
+/* 2. Description Dropping Down from Name (Fade in then fall from above) */
+@keyframes descDropDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -26px, 0);
+  }
+  60% {
+    opacity: 0.95;
+    transform: translate3d(0, 5px, 0);
+  }
+  82% {
+    transform: translate3d(0, -2px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-desc-drop {
+  animation: descDropDown 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.65s both;
+  will-change: transform, opacity;
+}
+
+.hero-actions-drop {
+  animation: descDropDown 1.0s cubic-bezier(0.22, 1, 0.36, 1) 0.95s both;
+  will-change: transform, opacity;
+}
+
+/* 3. Tech Capsule Pills ("Box Tabung" with Glass & Specular Sheen) */
+.tech-capsule-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 9999px;
+  background: rgba(30, 30, 30, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  color: #F0EEE8;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  will-change: transform;
+  cursor: default;
+  user-select: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.tech-capsule-pill:hover {
+  background: rgba(42, 42, 42, 0.9);
+}
+
+/* Variant Highlights */
+.pill-go {
+  border-color: rgba(245, 158, 11, 0.35);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.45), 0 0 15px rgba(245, 158, 11, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.pill-go:hover {
+  border-color: rgba(245, 158, 11, 0.75);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 24px rgba(245, 158, 11, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.pill-docker {
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.45), 0 0 15px rgba(56, 189, 248, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.pill-docker:hover {
+  border-color: rgba(56, 189, 248, 0.75);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 24px rgba(56, 189, 248, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.pill-node {
+  border-color: rgba(117, 130, 104, 0.4);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.45), 0 0 15px rgba(117, 130, 104, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.pill-node:hover {
+  border-color: rgba(165, 182, 152, 0.8);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 24px rgba(165, 182, 152, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.pill-python {
+  border-color: rgba(234, 179, 8, 0.35);
+}
+.pill-python:hover {
+  border-color: rgba(234, 179, 8, 0.75);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 24px rgba(234, 179, 8, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.pill-sql {
+  border-color: rgba(168, 85, 247, 0.35);
+}
+.pill-sql:hover {
+  border-color: rgba(168, 85, 247, 0.75);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 24px rgba(168, 85, 247, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* Light Mode Overrides for Capsules */
+html.light .tech-capsule-pill {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: #E5E3DC !important;
+  box-shadow: 0 8px 24px -4px rgba(25, 25, 25, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  color: #191919 !important;
+}
+html.light .tech-capsule-pill:hover {
+  background: #FFFFFF !important;
+  border-color: #CAD6C3 !important;
+  box-shadow: 0 12px 30px -4px rgba(25, 25, 25, 0.12) !important;
+}
+html.light .tech-capsule-pill span {
+  color: #191919 !important;
+}
