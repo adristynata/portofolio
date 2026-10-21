@@ -27,6 +27,14 @@ Route::get('/', function () {
     return view('welcome', compact('profile', 'projects', 'skills', 'experiences', 'certificates'));
 })->name('home');
 
+// CSRF Keep-Alive / Token Refresh
+Route::get('/refresh-csrf', function () {
+    return response()->json([
+        'token' => csrf_token(),
+        'status' => 'ok'
+    ]);
+})->middleware('web')->name('csrf.refresh');
+
 // Public Contact Form Handler
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 

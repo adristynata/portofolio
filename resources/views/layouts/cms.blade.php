@@ -118,9 +118,30 @@
         <main class="flex-1 min-w-0 p-4 sm:p-8 lg:p-10 overflow-y-auto">
             
             @if(session('success'))
-                <div class="mb-6 p-4 rounded-2xl bg-[#20251d] border border-[#444f3d] text-[#A5B698] text-sm font-bold flex items-center gap-3">
+                <div class="mb-6 p-4 rounded-2xl bg-[#20251d] border border-[#444f3d] text-[#A5B698] text-sm font-bold flex items-center gap-3 shadow-lg">
                     <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                     <span>{{ session('success') }}</span>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="mb-6 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-sm font-semibold flex items-center gap-3 shadow-lg">
+                    <svg class="w-5 h-5 shrink-0 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <span>{{ session('error') }}</span>
+                </div>
+            @endif
+
+            @if($errors->any() && !request()->routeIs('password.*'))
+                <div class="mb-6 p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-bold space-y-1 shadow-lg">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>Perhatian: Silakan periksa formulir berikut:</span>
+                    </div>
+                    <ul class="list-disc list-inside pl-4 font-normal text-[11px] space-y-0.5">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
             @endif
 
@@ -129,5 +150,48 @@
 
     </div>
 
+    <!-- CSRF Auto Keep-Alive & Session Guard for Vercel Serverless -->
+    <script>
+        function refreshCsrfToken() {
+            fetch('{{ route("csrf.refresh") }}', {
+                method: 'GET',
+                headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+                credentials: 'same-origin'
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data && data.token) {
+                    const meta = document.querySelector('meta[name="csrf-token"]');
+                    if (meta) meta.setAttribute('content', data.token);
+                    document.querySelectorAll('input[name="_token"]').forEach(input => {
+                        input.value = data.token;
+                    });
+                }
+            })
+            .catch(() => {});
+        }
+
+        // Keep-alive every 5 minutes
+        setInterval(refreshCsrfToken, 5 * 60 * 1000);
+
+        // Keep-alive on tab switch
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                refreshCsrfToken();
+            }
+        });
+
+        // Ensure token match prior to form submission
+        document.addEventListener('submit', (e) => {
+            const form = e.target;
+            if (form && form.method && form.method.toUpperCase() === 'POST') {
+                const tokenInput = form.querySelector('input[name="_token"]');
+                const metaToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+                if (tokenInput && metaToken && tokenInput.value !== metaToken) {
+                    tokenInput.value = metaToken;
+                }
+            }
+        }, true);
+    </script>
 </body>
 </html>

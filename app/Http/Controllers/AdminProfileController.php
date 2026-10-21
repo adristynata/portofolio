@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\HandlesImageUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class AdminProfileController extends Controller
 {
+    use HandlesImageUpload;
+
     public function index()
     {
         $user = Auth::user();
@@ -18,7 +22,7 @@ class AdminProfileController extends Controller
     {
         $user = Auth::user();
 
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
             'role_title' => 'nullable|string|max:255',
@@ -28,11 +32,18 @@ class AdminProfileController extends Controller
             'focus' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
             'location' => 'nullable|string|max:255',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:3072',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
             'github_url' => 'nullable|url|max:255',
             'linkedin_url' => 'nullable|url|max:255',
             'instagram_url' => 'nullable|url|max:255',
             'whatsapp_url' => 'nullable|url|max:255',
+        ], [
+            'name.required' => 'Nama lengkap wajib diisi.',
+            'email.required' => 'Alamat email wajib diisi.',
+            'email.unique' => 'Email ini sudah terdaftar oleh pengguna lain.',
+            'photo.image' => 'File foto profil harus berupa file gambar valid.',
+            'photo.mimes' => 'Format foto harus berupa JPG, PNG, GIF, SVG, atau WEBP.',
+            'photo.max' => 'Ukuran foto maksimal adalah 10MB.',
         ]);
 
         $data = $request->only([
@@ -42,14 +53,22 @@ class AdminProfileController extends Controller
         ]);
 
         if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('profile', $filename, 'public');
-            $data['photo'] = 'storage/' . $path;
+            try {
+                $storedPhoto = $this->storeImage($request->file('photo'), 'profile');
+                $data['photo'] = $storedPhoto;
+            } catch (\Throwable $e) {
+                Log::warning('Failed uploading profile photo: ' . $e->getMessage());
+            }
         }
 
-        $user->update($data);
-
-        return back()->with('success', 'Profil dan link media sosial berhasil diperbarui!');
+        try {
+            $user->update($data);
+            return back()->with('success', 'Profil dan tautan media sosial berhasil diperbarui!');
+        } catch (\Throwable $e) {
+            Log::error('Profile update error: ' . $e->getMessage());
+            return back()
+                ->withInput()
+                ->with('error', 'Gagal menyimpan profil: ' . $e->getMessage());
+        }
     }
 }

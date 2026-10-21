@@ -14,5 +14,16 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        $exceptions->render(function (\Illuminate\Session\TokenMismatchException $e, \Illuminate\Http\Request $request) {
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'message' => 'Sesi telah kedaluwarsa. Silakan muat ulang halaman.',
+                    'csrf_token' => csrf_token(),
+                ], 419);
+            }
+
+            return redirect()->back()
+                ->withInput($request->except(['_token', 'password', 'password_confirmation', 'photo']))
+                ->with('error', 'Sesi formulir telah disegarkan otomatis demi keamanan. Data yang Anda masukkan telah dipulihkan, silakan klik simpan kembali.');
+        });
     })->create();

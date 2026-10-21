@@ -15,8 +15,18 @@
         </div>
 
         {{-- Centered Cutout Photo of Adristy (White shirt & hijab with transparent background, z-20 in front of emerging name) --}}
+        @php
+            $heroPhotoSrc = asset('images/adristy_cutout.png');
+            if (!empty($profile->photo) && $profile->photo !== 'images/foto-saya.jpg') {
+                if (str_starts_with($profile->photo, 'http') || str_starts_with($profile->photo, 'data:')) {
+                    $heroPhotoSrc = $profile->photo;
+                } elseif (file_exists(public_path($profile->photo))) {
+                    $heroPhotoSrc = asset($profile->photo);
+                }
+            }
+        @endphp
         <div class="absolute left-1/2 -translate-x-1/2 bottom-0 z-20 flex justify-center items-end pointer-events-none w-full max-w-[360px] sm:max-w-[440px] lg:max-w-[480px] xl:max-w-[520px] h-full max-h-[80vh] lg:max-h-[82vh]">
-            <img src="{{ asset('images/adristy_cutout.png') }}" 
+            <img src="{{ $heroPhotoSrc }}" 
                  alt="{{ $profile->name ?? 'Adristy Akiko' }}" 
                  class="hero-photo-soft-entrance w-full h-full object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.85)] select-none pointer-events-auto transition-transform duration-700 hover:scale-[1.01]"
                  style="mask-image: linear-gradient(to bottom, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);">

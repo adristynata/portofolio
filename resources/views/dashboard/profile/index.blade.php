@@ -30,7 +30,17 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-[#F0EEE8] mb-2">Foto Profil</label>
-                        <input type="file" name="photo" class="w-full px-4 py-2.5 bg-[#191919] border border-[#353535] rounded-xl text-xs text-[#929292] focus:outline-none file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-[#758268] file:text-[#F0EEE8] hover:file:bg-[#859376]">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-[#191919] border border-[#353535] overflow-hidden flex items-center justify-center shrink-0">
+                                @if(!empty($user->photo))
+                                    <img src="{{ str_starts_with($user->photo, 'http') || str_starts_with($user->photo, 'data:') ? $user->photo : asset($user->photo) }}" class="w-full h-full object-cover" alt="Foto Profil">
+                                @else
+                                    <img src="{{ asset('images/adristy_cutout.png') }}" class="w-full h-full object-cover" alt="Foto Profil">
+                                @endif
+                            </div>
+                            <input type="file" name="photo" accept="image/*" class="w-full px-4 py-2 bg-[#191919] border border-[#353535] rounded-xl text-xs text-[#929292] focus:outline-none file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-[#758268] file:text-[#F0EEE8] hover:file:bg-[#859376]">
+                        </div>
+                        <p class="text-[10px] text-[#929292]/70 mt-1">Disarankan format PNG transparan untuk integrasi mulus dengan hero section.</p>
                     </div>
                 </div>
 
