@@ -18,40 +18,31 @@
   background-color: #0a0f0d;
 }
 
-/* Split Curtain Panels */
-.split-panel {
+/* Foreground Hero Stage */
+.hero-stage-layer {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  will-change: transform;
   z-index: 20;
-  pointer-events: auto;
+  pointer-events: none;
   background-color: #0a0f0d;
+  will-change: opacity;
 }
 
-/* Desktop: Horizontal Curtain Split (Left & Right) */
-@media (min-width: 768px) {
-  .split-panel--left {
-    clip-path: inset(0 49.9% 0 0);
-  }
-  .split-panel--right {
-    clip-path: inset(0 0 0 49.9%);
-  }
+/* Split Text Elements (HANYA teks nama yang terbelah ke samping/atas-bawah!) */
+.hero-split-text-left,
+.hero-split-text-right {
+  will-change: transform, opacity;
 }
 
-/* Mobile: Vertical Curtain Split (Top & Bottom) */
-@media (max-width: 767px) {
-  .split-panel--left {
-    clip-path: inset(0 0 49.9% 0);
-  }
-  .split-panel--right {
-    clip-path: inset(49.9% 0 0 0);
-  }
+/* Foto Adristy (STAY DI TENGAH, TIDAK TERBELAH, z-30 di depan teks) */
+.hero-stay-photo {
+  will-change: transform, opacity;
+  z-index: 30;
 }
 
-/* Stage About di belakang tirai */
+/* Stage About di belakang hero */
 .about-reveal-stage {
   position: absolute;
   inset: 0;
@@ -76,10 +67,6 @@
   transform: translateY(115%);
 }
 
-.hero-split-photo {
-  will-change: transform, opacity;
-}
-
 .hero-split-desc {
   will-change: transform, opacity;
 }
@@ -95,13 +82,9 @@
     min-height: auto !important;
     overflow: visible !important;
   }
-  .split-panel--left {
+  .hero-stage-layer {
     position: relative !important;
-    clip-path: none !important;
-    transform: none !important;
-  }
-  .split-panel--right {
-    display: none !important;
+    height: 100dvh !important;
   }
   .about-reveal-stage {
     position: relative !important;

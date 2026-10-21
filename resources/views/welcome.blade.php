@@ -7,13 +7,10 @@
     {{-- SPLIT REVEAL HERO & ABOUT SECTION ENGINE                       --}}
     {{-- ============================================================== --}}
     @php
+        // Always default to the clean transparent cutout photo without background
         $heroPhotoSrc = asset('images/adristy_cutout.png');
-        if (!empty($profile->photo) && $profile->photo !== 'images/foto-saya.jpg') {
-            if (str_starts_with($profile->photo, 'http') || str_starts_with($profile->photo, 'data:')) {
-                $heroPhotoSrc = $profile->photo;
-            } elseif (file_exists(public_path($profile->photo))) {
-                $heroPhotoSrc = asset($profile->photo);
-            }
+        if (!empty($profile->photo) && (str_starts_with($profile->photo, 'storage/') || str_starts_with($profile->photo, 'data:'))) {
+            $heroPhotoSrc = $profile->photo;
         }
     @endphp
 
@@ -284,20 +281,66 @@
                 </div>
             </section>
 
-            {{-- 2. FOREGROUND LAYER: SPLIT CURTAIN PANELS (HERO #home) --}}
-            <div id="home" class="absolute inset-0 z-20 w-full h-full pointer-events-none">
+            {{-- 2. FOREGROUND LAYER: HERO SECTION (#home) --}}
+            {{-- Foto tetap di center tanpa terbelah; HANYA teks nama yang terbelah ke kiri dan kanan --}}
+            <div id="home" class="hero-stage-layer absolute inset-0 z-20 w-full h-full pointer-events-none select-none flex flex-col justify-between items-center bg-[#0a0f0d] overflow-hidden">
                 
+                {{-- Atmospheric Dark Glass & Sage Green Ambient Glow --}}
+                <div class="hero-ambient-glow absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-0">
+                    <div class="w-[500px] sm:w-[650px] lg:w-[820px] h-[500px] sm:h-[650px] lg:h-[780px] rounded-full bg-gradient-to-tr from-[#758268]/20 via-[#A5B698]/10 to-transparent blur-[110px] opacity-75"></div>
+                    <div class="absolute inset-0 bg-[radial-gradient(#353535_1px,transparent_1px)] [background-size:32px_32px] opacity-20"></div>
+                    <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#0a0f0d] via-[#0a0f0d]/80 to-transparent"></div>
+                </div>
+
                 {{-- Accessible Heading for Screen Readers --}}
                 <h1 class="sr-only">{{ $profile->name ?? 'Adristy Akiko' }}</h1>
 
-                {{-- Left Curtain Panel (Desktop: clip-path inset(0 49.9% 0 0) | Mobile: inset(0 0 49.9% 0)) --}}
-                <div class="split-panel split-panel--left pointer-events-auto" aria-hidden="true">
-                    @include('landing.hero-split-layer', ['heroPhotoSrc' => $heroPhotoSrc])
+                {{-- Main Hero Layout Stage --}}
+                <div class="relative z-10 w-full max-w-7xl mx-auto h-full flex flex-col justify-center items-center px-4 sm:px-8 lg:px-12 pt-16 pb-8">
+                    
+                    {{-- THE SPLIT WORDS (HANYA TEKS YANG TERBELAH) --}}
+                    <div class="w-full relative z-10 flex flex-col md:flex-row items-center justify-between my-auto pointer-events-none">
+                        
+                        {{-- KATA KIRI: "ADRISTY" (Bergerak ke kiri saat scroll) --}}
+                        <div class="hero-split-text-left hero-word-mask overflow-hidden flex justify-center md:justify-start w-full md:w-[42%] text-center md:text-left pointer-events-auto">
+                            <span class="hero-word-reveal inline-block font-black text-6xl sm:text-7xl md:text-7xl lg:text-8xl xl:text-9xl tracking-tighter text-[#f1eee6] uppercase drop-shadow-[0_20px_35px_rgba(0,0,0,0.85)]">
+                                Adristy
+                            </span>
+                        </div>
+
+                        {{-- Spacer Tengah untuk Foto Cutout --}}
+                        <div class="hidden md:block w-[16%] pointer-events-none"></div>
+
+                        {{-- KATA KANAN: "AKIKO" (Bergerak ke kanan saat scroll) --}}
+                        <div class="hero-split-text-right hero-word-mask overflow-hidden flex justify-center md:justify-end w-full md:w-[42%] text-center md:text-right mt-2 md:mt-0 pointer-events-auto">
+                            <span class="hero-word-reveal inline-block font-black text-6xl sm:text-7xl md:text-7xl lg:text-8xl xl:text-9xl tracking-tighter text-[#f1eee6] uppercase drop-shadow-[0_20px_35px_rgba(0,0,0,0.85)]">
+                                Akiko
+                            </span>
+                        </div>
+
+                    </div>
+
+                    {{-- FOTO CUTOUT TRANSPARAN (STAY DI TENGAH, TIDAK KEBELAH, z-30 DI DEPAN TEKS) --}}
+                    <div class="hero-stay-photo absolute left-1/2 -translate-x-1/2 bottom-0 z-30 pointer-events-none flex justify-center items-end w-[290px] sm:w-[380px] md:w-[430px] lg:w-[480px] xl:w-[530px] h-[72vh] sm:h-[78vh] lg:h-[84vh]">
+                        <img src="{{ asset('images/adristy_cutout.png') }}" 
+                             alt="{{ $profile->name ?? 'Adristy Akiko' }}" 
+                             class="w-full h-full object-contain object-bottom drop-shadow-[0_25px_60px_rgba(0,0,0,0.95)] pointer-events-auto select-none"
+                             style="mask-image: linear-gradient(to bottom, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);">
+                    </div>
+
+                    {{-- Subtitle Serif Italic di Bawah Nama (Fade out saat scroll) --}}
+                    <div class="hero-split-desc relative z-40 mt-6 sm:mt-10 max-w-2xl mx-auto text-center px-4 pointer-events-auto">
+                        <p class="font-serif italic text-sm sm:text-base md:text-lg lg:text-xl text-[#c5c2ba] leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+                            {{ $profile->hero_bio ?? 'Saya adalah Junior Web Developer sekaligus Software Engineering dari SMK Negeri 1 Bangsri yang berfokus pada pengembangan web modern, responsif, dan berperforma tinggi.' }}
+                        </p>
+                    </div>
+
                 </div>
 
-                {{-- Right Curtain Panel (Desktop: clip-path inset(0 0 0 49.9%) | Mobile: inset(49.9% 0 0 0)) --}}
-                <div class="split-panel split-panel--right pointer-events-auto" aria-hidden="true">
-                    @include('landing.hero-split-layer', ['heroPhotoSrc' => $heroPhotoSrc])
+                {{-- Bottom Scroll Indicator --}}
+                <div class="hero-split-desc absolute bottom-4 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center gap-1.5 opacity-60">
+                    <span class="text-[10px] uppercase font-mono tracking-widest text-[#a5b698]">Scroll to Reveal</span>
+                    <svg class="w-3.5 h-3.5 text-[#a5b698] animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
                 </div>
 
             </div>

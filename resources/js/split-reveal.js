@@ -2,14 +2,13 @@
  * SPLIT REVEAL HERO & ABOUT SCROLL ANIMATION
  * Stack: GSAP + ScrollTrigger + Lenis
  * Features:
- * - Curtain Split: Panel Kiri (translateX 0 -> -100%) & Panel Kanan (translateX 0 -> 100%)
- * - Parallax Words: "Adristy" slides left (-35%), "Akiko" slides right (35%)
- * - Center Cutout Photo: scale 1 -> 1.08 with smooth fadeout near transition end
- * - About Section Reveal: scale 0.92 -> 1, opacity 0.6 -> 1, translateY 40px -> 0
- * - Staggered fade-up for inner About elements (.about-reveal-item)
- * - Initial Page-Load: Mask reveal for split words from behind overflow:hidden
- * - Responsive: Horizontal curtain split on desktop, vertical curtain split on mobile
- * - Accessibility: prefers-reduced-motion respected
+ * - HANYA teks nama yang terbelah ke samping: "Adristy" ke kiri (-125%) & "Akiko" ke kanan (+125%)
+ * - Foto Adristy STAY di tengah, tidak ikut terbelah, dengan background transparan (cutout) murni
+ * - About Section Reveal: scale 0.92 -> 1, opacity 0.5 -> 1, translateY 40px -> 0
+ * - Staggered fade-up untuk isi konten About (.about-reveal-item)
+ * - Initial Page-Load: Mask reveal untuk teks nama dari balik overflow:hidden
+ * - Responsive: Teks terbelah horizontal pada desktop, vertikal pada mobile
+ * - Aksesibilitas: prefers-reduced-motion dihormati
  */
 
 import { gsap } from 'gsap';
@@ -23,17 +22,17 @@ export function initSplitRevealHero() {
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // 1. Accessibility: prefers-reduced-motion fallback
+    // 1. Aksesibilitas: prefers-reduced-motion fallback
     if (prefersReducedMotion) {
         gsap.set('.about-reveal-stage', { scale: 1, opacity: 1, y: 0 });
         gsap.set('.hero-word-reveal', { y: '0%' });
-        gsap.set('.hero-split-photo', { opacity: 1, scale: 1 });
+        gsap.set('.hero-stay-photo', { opacity: 1, scale: 1 });
         gsap.set('.hero-split-desc', { opacity: 1, y: 0 });
         gsap.set('.about-reveal-item', { opacity: 1, y: 0 });
         return;
     }
 
-    // 2. Initial Page-Load Reveal Animation (Mask Entrance)
+    // 2. Animasi Awal Page-Load (Mask Entrance)
     const loadTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
     loadTl.to('.hero-word-reveal', {
@@ -41,9 +40,9 @@ export function initSplitRevealHero() {
         duration: 1.0,
         stagger: 0.1,
         delay: 0.15,
-        clearProps: 'transform' // Restore clean transform state for subsequent scroll parallax
+        clearProps: 'transform' // Bersihkan inline transform untuk scroll parallax
     })
-    .fromTo('.hero-split-photo', {
+    .fromTo('.hero-stay-photo', {
         scale: 0.94,
         opacity: 0,
         y: 20
@@ -67,13 +66,13 @@ export function initSplitRevealHero() {
     // 3. Responsive Split Scroll Animation using gsap.matchMedia()
     const mm = gsap.matchMedia();
 
-    // === DESKTOP (>= 768px): Horizontal Curtain Split ===
+    // === DESKTOP (>= 768px): Teks Terbelah Horizontal (Kiri & Kanan) ===
     mm.add('(min-width: 768px)', () => {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: '.hero-pinned-stage',
                 start: 'top top',
-                end: '+=150%',
+                end: '+=140%',
                 scrub: 1,
                 pin: true,
                 anticipatePin: 1,
@@ -81,7 +80,7 @@ export function initSplitRevealHero() {
             }
         });
 
-        // a. Subtitle fades out early
+        // a. Subjudul fade out lebih awal
         tl.to('.hero-split-desc', {
             opacity: 0,
             y: -25,
@@ -89,49 +88,41 @@ export function initSplitRevealHero() {
             ease: 'power2.in'
         }, 0);
 
-        // b. Left & Right curtain panels slide horizontally outward
-        tl.to('.split-panel--left', {
-            xPercent: -100,
-            duration: 1,
-            ease: 'power3.inOut'
-        }, 0.08);
-
-        tl.to('.split-panel--right', {
-            xPercent: 100,
-            duration: 1,
-            ease: 'power3.inOut'
-        }, 0.08);
-
-        // c. Parallax offset on split words ("Adristy" & "Akiko")
-        tl.to('.split-panel--left .hero-word-left', {
-            xPercent: -35,
-            duration: 1,
-            ease: 'power2.inOut'
-        }, 0.08);
-
-        tl.to('.split-panel--right .hero-word-right', {
-            xPercent: 35,
-            duration: 1,
-            ease: 'power2.inOut'
-        }, 0.08);
-
-        // d. Cutout Photo: scale 1 -> 1.08 and fade out near end
-        tl.to('.hero-split-photo', {
-            scale: 1.08,
-            duration: 0.7,
-            ease: 'power2.out'
-        }, 0.08);
-
-        tl.to('.hero-split-photo', {
+        // b. HANYA TEKS YANG TERBELAH: Kata "Adristy" bergeser ke kiri offscreen
+        tl.to('.hero-split-text-left', {
+            xPercent: -125,
             opacity: 0,
-            duration: 0.35,
-            ease: 'power2.in'
-        }, 0.65);
+            duration: 1,
+            ease: 'power3.inOut'
+        }, 0.08);
 
-        // e. About Section emerges from behind
+        // c. HANYA TEKS YANG TERBELAH: Kata "Akiko" bergeser ke kanan offscreen
+        tl.to('.hero-split-text-right', {
+            xPercent: 125,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.inOut'
+        }, 0.08);
+
+        // d. Foto STAY di tengah (tidak kebelah), lalu soft crossfade saat About section muncul
+        tl.to('.hero-stay-photo', {
+            opacity: 0,
+            scale: 1.04,
+            duration: 0.45,
+            ease: 'power2.inOut'
+        }, 0.55);
+
+        // e. Layer panggung hero fade out halus
+        tl.to('.hero-stage-layer', {
+            opacity: 0,
+            duration: 0.4,
+            ease: 'power2.in'
+        }, 0.6);
+
+        // f. About Section muncul dari belakang celah
         tl.fromTo('.about-reveal-stage', {
             scale: 0.92,
-            opacity: 0.6,
+            opacity: 0.5,
             y: 40
         }, {
             scale: 1,
@@ -141,7 +132,7 @@ export function initSplitRevealHero() {
             ease: 'power3.out'
         }, 0.15);
 
-        // f. Staggered fade-up for inner About elements
+        // g. Staggered fade-up untuk isi konten About
         tl.fromTo('.about-reveal-item', {
             opacity: 0,
             y: 28
@@ -158,7 +149,7 @@ export function initSplitRevealHero() {
         };
     });
 
-    // === MOBILE (< 768px): Vertical Curtain Split ===
+    // === MOBILE (< 768px): Teks Terbelah Vertikal (Atas & Bawah) ===
     mm.add('(max-width: 767px)', () => {
         const tlMobile = gsap.timeline({
             scrollTrigger: {
@@ -172,7 +163,7 @@ export function initSplitRevealHero() {
             }
         });
 
-        // a. Subtitle fades out early
+        // a. Subjudul fade out lebih awal
         tlMobile.to('.hero-split-desc', {
             opacity: 0,
             y: -15,
@@ -180,31 +171,40 @@ export function initSplitRevealHero() {
             ease: 'power2.in'
         }, 0);
 
-        // b. Top & Bottom curtain panels slide vertically outward
-        tlMobile.to('.split-panel--left', {
-            yPercent: -100,
-            duration: 1,
-            ease: 'power3.inOut'
-        }, 0.08);
-
-        tlMobile.to('.split-panel--right', {
-            yPercent: 100,
-            duration: 1,
-            ease: 'power3.inOut'
-        }, 0.08);
-
-        // c. Cutout Photo scale and fade
-        tlMobile.to('.hero-split-photo', {
-            scale: 1.08,
+        // b. Kata "Adristy" bergeser ke atas
+        tlMobile.to('.hero-split-text-left', {
+            yPercent: -125,
             opacity: 0,
-            duration: 0.8,
-            ease: 'power2.inOut'
+            duration: 1,
+            ease: 'power3.inOut'
         }, 0.08);
 
-        // d. About Section emerges from behind
+        // c. Kata "Akiko" bergeser ke bawah
+        tlMobile.to('.hero-split-text-right', {
+            yPercent: 125,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.inOut'
+        }, 0.08);
+
+        // d. Foto STAY di tengah (tidak kebelah), lalu soft crossfade
+        tlMobile.to('.hero-stay-photo', {
+            opacity: 0,
+            scale: 1.04,
+            duration: 0.45,
+            ease: 'power2.inOut'
+        }, 0.55);
+
+        tlMobile.to('.hero-stage-layer', {
+            opacity: 0,
+            duration: 0.4,
+            ease: 'power2.in'
+        }, 0.6);
+
+        // e. About Section muncul dari belakang
         tlMobile.fromTo('.about-reveal-stage', {
             scale: 0.94,
-            opacity: 0.6,
+            opacity: 0.5,
             y: 30
         }, {
             scale: 1,
