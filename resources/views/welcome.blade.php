@@ -16,7 +16,7 @@
 
         {{-- Centered Cutout Photo of Adristy (White shirt & hijab, z-20 in front of emerging name) --}}
         <div class="absolute left-1/2 -translate-x-1/2 bottom-0 z-20 flex justify-center items-end pointer-events-none w-full max-w-[360px] sm:max-w-[440px] lg:max-w-[480px] xl:max-w-[520px] h-full max-h-[80vh] lg:max-h-[82vh]">
-            <img src="{{ asset('images/adristy_cutout.png') }}" 
+            <img src="{{ !empty($profile->photo) ? asset($profile->photo) : asset('images/adristy_cutout.png') }}" 
                  alt="{{ $profile->name ?? 'Adristy Akiko' }}" 
                  class="w-full h-full object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.85)] select-none pointer-events-auto transition-transform duration-700 hover:scale-[1.01]"
                  style="mask-image: linear-gradient(to bottom, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);">
@@ -28,16 +28,16 @@
             {{-- Left Side: Name emerging from behind neck + dropping description --}}
             <div class="w-full lg:w-[46%] max-w-lg flex flex-col justify-center text-left pointer-events-auto z-10 pt-16 sm:pt-20 lg:pt-0">
                 
-                {{-- Name: ONLY "Adristy Akiko", emerges from behind neck with fast-then-slow bouncy overshoot --}}
+                {{-- Name: Dynamic from Admin CMS --}}
                 <div class="relative overflow-visible">
                     <h1 class="hero-name-emerge text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-[#F0EEE8] tracking-tight leading-none">
-                        Adristy Akiko
+                        {{ $profile->name ?? 'Adristy Akiko' }}
                     </h1>
                 </div>
 
-                {{-- Description: Fades in and drops down from above below the name --}}
+                {{-- Description: Dynamic from Admin CMS (hero_bio) --}}
                 <p class="hero-desc-drop mt-5 sm:mt-6 text-sm sm:text-base lg:text-lg text-[#C5C2BA] font-serif italic leading-relaxed">
-                    Saya adalah Junior Web Developer sekaligus Software Engineering dari SMK Negeri 1 Bangsri yang berfokus pada pengembangan web modern, responsif, dan berperforma tinggi.
+                    {{ $profile->hero_bio ?? 'Saya adalah Junior Web Developer sekaligus Software Engineering dari SMK Negeri 1 Bangsri yang berfokus pada pengembangan web modern, responsif, dan berperforma tinggi.' }}
                 </p>
             </div>
 
