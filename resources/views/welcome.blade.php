@@ -330,10 +330,15 @@
                                 </h1>
                             </div>
 
-                            {{-- Deskripsi Bio di bawah Nama Sisi Kiri --}}
-                            <p class="hero-desc-drop mt-4 sm:mt-6 text-xs sm:text-sm md:text-base lg:text-lg text-[#C5C2BA] font-serif italic leading-relaxed max-w-md">
-                                {{ $profile->hero_bio ?? 'Saya adalah Junior Web Developer sekaligus Software Engineering dari SMK Negeri 1 Bangsri yang berfokus pada pengembangan web modern, responsif, dan berperforma tinggi.' }}
-                            </p>
+                            {{-- Deskripsi Bio di bawah Nama Sisi Kiri (Hanya muncul jika diisi di CMS) --}}
+                            @php
+                                $heroBioText = trim($profile->hero_bio ?? '');
+                            @endphp
+                            @if(!empty($heroBioText))
+                                <p class="hero-desc-drop mt-4 sm:mt-6 text-xs sm:text-sm md:text-base lg:text-lg text-[#C5C2BA] font-serif italic leading-relaxed max-w-md">
+                                    {{ $heroBioText }}
+                                </p>
+                            @endif
 
                         </div>
 

@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 // Public Landing Page
 Route::get('/', function () {
-    $profile = User::where('is_admin', true)->first() ?? User::first();
+    $profile = (auth()->check() && auth()->user()->is_admin ? auth()->user() : null)
+            ?? User::where('is_admin', true)->orderByDesc('updated_at')->first()
+            ?? User::orderByDesc('updated_at')->first();
     $projects = Project::latest()->get();
     $skills = Skill::all();
     $experiences = Experience::latest()->get();

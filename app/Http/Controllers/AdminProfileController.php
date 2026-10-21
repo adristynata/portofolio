@@ -62,7 +62,9 @@ class AdminProfileController extends Controller
         }
 
         try {
-            $user->update($data);
+            $data['is_admin'] = true;
+            $user->fill($data);
+            $user->save();
             return back()->with('success', 'Profil dan tautan media sosial berhasil diperbarui!');
         } catch (\Throwable $e) {
             Log::error('Profile update error: ' . $e->getMessage());

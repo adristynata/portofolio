@@ -51,7 +51,7 @@
                             <span>✨ Teks Ringkas Hero Section (Paling Atas Halaman)</span>
                         </label>
                         <p class="text-[11px] text-[#929292] mb-2">Teks pengenalan singkat yang tampil langsung di bawah nama Anda pada bagian Hero paling atas.</p>
-                        <textarea name="hero_bio" rows="2" class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="e.g. Saya adalah Junior Web Developer & Software Engineer dari SMK Negeri 1 Bangsri yang berfokus pada...">{{ old('hero_bio', $user->hero_bio ?? 'Saya adalah Junior Web Developer & Software Engineer dari SMK Negeri 1 Bangsri yang berfokus pada pengembangan aplikasi web modern, responsif, dan berperforma tinggi.') }}</textarea>
+                        <textarea name="hero_bio" rows="2" class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="Tuliskan bio singkat hero section atau kosongkan jika tidak ingin menampilkan teks ini...">{{ old('hero_bio', $user->hero_bio) }}</textarea>
                     </div>
 
                     <div>
