@@ -253,115 +253,191 @@
                     </div>
                 </div>
 
-                {{-- Right Column: 3D Developer Bento Showcase Matrix --}}
-                <div class="lg:col-span-6 flex flex-col justify-between gap-4 about-reveal-item">
+                {{-- Right Column: 3D Developer Bento Showcase & Interactive 3D AAY Spatial Emblem --}}
+                <div class="lg:col-span-6 flex flex-col justify-between gap-5 about-reveal-item">
                     
-                    {{-- 1. Main Bento Card: 3D Code Terminal & Floating Database Node Cluster --}}
-                    <div class="bento-3d-card group relative p-6 sm:p-7 rounded-3xl bg-[#242424] border border-[#353535] hover:border-[#A5B698]/50 shadow-2xl transition-all duration-300 overflow-hidden flex flex-col justify-between">
-                        {{-- Specular Glare Layer --}}
-                        <div class="bento-glare pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"></div>
+                    {{-- 1. MASTERPIECE: INTERACTIVE 3D "AAY" MONOGRAM STAGE (KILAUAN LOGAM & ROTASI KURSOR 3D) --}}
+                    <div id="aayStage" class="aay-stage-container group relative flex flex-col justify-between overflow-hidden" data-theme="obsidian">
+                        
+                        {{-- Ambient Caustic Glow & Perspective Grid --}}
+                        <div class="aay-stage-halo"></div>
+                        <div class="aay-stage-grid"></div>
+                        <div class="aay-caustic-sweep"></div>
 
-                        {{-- Radial Ambient Glow --}}
-                        <div class="absolute -right-12 -bottom-12 w-56 h-56 bg-[#758268]/20 rounded-full blur-3xl group-hover:bg-[#758268]/30 transition-all duration-500 pointer-events-none"></div>
-
-                        <div class="relative z-10 grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
-                            {{-- Terminal Window (Left 7 cols) --}}
-                            <div class="sm:col-span-7 flex flex-col gap-3">
-                                {{-- macOS Style Header --}}
-                                <div class="flex items-center justify-between pb-2 border-b border-[#353535]">
-                                    <div class="flex items-center gap-1.5">
-                                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
-                                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
-                                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
-                                        <span class="ml-2 font-mono text-[10px] text-[#929292]">BackendKernel.php</span>
-                                    </div>
-                                    <span class="font-mono text-[9px] text-[#A5B698] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#20251d] border border-[#444f3d]">
-                                        OPTIMIZED
-                                    </span>
-                                </div>
-
-                                {{-- Syntax Highlighted Code Box --}}
-                                <div class="bento-terminal-window p-3 rounded-xl bg-[#191919] border border-[#353535] font-mono text-[11px] sm:text-[12px] leading-relaxed select-none space-y-0.5">
-                                    <p class="text-[#929292]">// Software Engineering Core</p>
-                                    <p><span class="text-[#A5B698] font-semibold">class</span> <span class="text-[#F0EEE8] font-bold">BackendEngineer</span></p>
-                                    <p class="pl-3 text-[#929292]"><span class="text-[#A5B698]">protected</span> array $stack = [<span class="text-emerald-400">'Laravel'</span>, <span class="text-emerald-400">'MySQL'</span>];</p>
-                                    <p class="pl-3"><span class="text-[#A5B698]">public function</span> <span class="text-[#F0EEE8] font-semibold">buildSolution</span>() {</p>
-                                    <p class="pl-6 text-emerald-400 font-medium">return $this->secureAuth()</p>
-                                    <p class="pl-9 text-emerald-400 font-medium">->optimizeQueries()</p>
-                                    <p class="pl-9 text-emerald-400 font-medium">->deploy();</p>
-                                    <p class="pl-3">}</p>
-                                </div>
-
-                                {{-- Real-time latency badge --}}
-                                <div class="flex items-center gap-2 pt-0.5 font-mono text-[10px] text-[#929292]">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                                    <span>Database Ping: 24ms • 99.9% Uptime</span>
-                                </div>
-                            </div>
-
-                            {{-- 3D Server Node Cluster Asset (Right 5 cols) --}}
-                            <div class="sm:col-span-5 flex flex-col items-center justify-center relative">
-                                <div class="relative w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
-                                    <img src="{{ asset('images/3d-server-node.png') }}" 
-                                         alt="3D Database Node Cluster" 
-                                         class="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.85)] group-hover:scale-110 group-hover:-translate-y-2 transition-transform duration-500 pointer-events-none select-none">
-                                    <div class="absolute -bottom-2 w-32 h-6 bg-[#A5B698]/20 rounded-full blur-md"></div>
-                                </div>
-                                <span class="font-mono text-[10px] text-[#A5B698] font-semibold tracking-wider uppercase mt-1">
-                                    Cluster Architecture
+                        {{-- Top Technical HUD Bar --}}
+                        <div class="aay-hud-header">
+                            <div class="flex items-center gap-2">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-[#20251d] text-[#A5B698] border border-[#444f3d]">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#A5B698] animate-pulse"></span>
+                                    3D SPATIAL EMBLEM
+                                </span>
+                                <span class="hidden sm:inline-block font-mono text-[9px] text-[#929292] uppercase tracking-wider">
+                                    AAY // BRAND IDENTITY
                                 </span>
                             </div>
+
+                            {{-- Real-time Telemetry Coordinates --}}
+                            <div class="font-mono text-[9px] text-[#929292] flex items-center gap-2">
+                                <span>X: <strong data-hud="rotX" class="text-[#F0EEE8] font-bold">-4.0°</strong></span>
+                                <span>Y: <strong data-hud="rotY" class="text-[#F0EEE8] font-bold">+8.0°</strong></span>
+                                <span class="hidden sm:inline px-1.5 py-0.5 rounded bg-[#191919] border border-[#353535] text-[#A5B698] font-bold text-[8px]" data-hud="mode">FLOATING</span>
+                            </div>
                         </div>
+
+                        {{-- 3D Interactive Viewport --}}
+                        <div class="aay-viewport">
+                            
+                            {{-- Pedestal Caustic Floor Disc --}}
+                            <div class="aay-pedestal">
+                                <div class="aay-pedestal-inner"></div>
+                            </div>
+
+                            {{-- 3D Sculptured Monogram Group (A - A - Y) --}}
+                            <div class="aay-sculpture" role="img" aria-label="3D Interaktif Monogram AAY (Adristy Akiko Yukinata)">
+                                
+                                {{-- GLYPH 1: "A" (Adristy) --}}
+                                <div class="aay-glyph-wrapper" data-glyph="A">
+                                    <div class="aay-slice aay-slice-shadow">A</div>
+                                    <div class="aay-slice aay-slice-base">A</div>
+                                    <div class="aay-slice aay-slice-ext1">A</div>
+                                    <div class="aay-slice aay-slice-ext2">A</div>
+                                    <div class="aay-slice aay-slice-ext3">A</div>
+                                    <div class="aay-slice aay-slice-ext4">A</div>
+                                    <div class="aay-slice aay-slice-front">A</div>
+                                    <div class="aay-slice aay-slice-gleam">A</div>
+                                    <div class="aay-starburst" style="top: 14%; left: 50%;">
+                                        <svg viewBox="0 0 24 24"><path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5Z"/></svg>
+                                    </div>
+                                </div>
+
+                                {{-- GLYPH 2: "A" (Akiko) --}}
+                                <div class="aay-glyph-wrapper" data-glyph="A">
+                                    <div class="aay-slice aay-slice-shadow">A</div>
+                                    <div class="aay-slice aay-slice-base">A</div>
+                                    <div class="aay-slice aay-slice-ext1">A</div>
+                                    <div class="aay-slice aay-slice-ext2">A</div>
+                                    <div class="aay-slice aay-slice-ext3">A</div>
+                                    <div class="aay-slice aay-slice-ext4">A</div>
+                                    <div class="aay-slice aay-slice-front">A</div>
+                                    <div class="aay-slice aay-slice-gleam">A</div>
+                                    <div class="aay-starburst" style="top: 14%; left: 50%;">
+                                        <svg viewBox="0 0 24 24"><path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5Z"/></svg>
+                                    </div>
+                                </div>
+
+                                {{-- GLYPH 3: "Y" (Yukinata) --}}
+                                <div class="aay-glyph-wrapper" data-glyph="Y">
+                                    <div class="aay-slice aay-slice-shadow">Y</div>
+                                    <div class="aay-slice aay-slice-base">Y</div>
+                                    <div class="aay-slice aay-slice-ext1">Y</div>
+                                    <div class="aay-slice aay-slice-ext2">Y</div>
+                                    <div class="aay-slice aay-slice-ext3">Y</div>
+                                    <div class="aay-slice aay-slice-ext4">Y</div>
+                                    <div class="aay-slice aay-slice-front">Y</div>
+                                    <div class="aay-slice aay-slice-gleam">Y</div>
+                                    <div class="aay-starburst" style="top: 26%; left: 50%;">
+                                        <svg viewBox="0 0 24 24"><path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5Z"/></svg>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        {{-- Bottom Interactive Control Deck --}}
+                        <div class="aay-hud-footer">
+                            {{-- Material Finish Selector --}}
+                            <div class="flex items-center gap-1.5">
+                                <span class="text-[9px] font-mono text-[#929292] uppercase mr-1 hidden sm:inline">Finish:</span>
+                                <button type="button" class="aay-btn active" data-aay-theme="obsidian" title="Obsidian Chrome Finish">Obsidian</button>
+                                <button type="button" class="aay-btn" data-aay-theme="sage" title="Sage Titanium Finish">Sage</button>
+                                <button type="button" class="aay-btn" data-aay-theme="silver" title="Liquid Silver Finish">Silver</button>
+                            </div>
+
+                            {{-- Action Triggers --}}
+                            <div class="flex items-center gap-2">
+                                <button type="button" id="aayGlintTrigger" class="aay-btn !text-[#A5B698] hover:!text-[#F0EEE8]" title="Picu kilauan cahaya logam">
+                                    <svg class="w-3 h-3 text-[#A5B698]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                    <span>Picu Kilau</span>
+                                </button>
+                                <button type="button" id="aayResetTrigger" class="aay-btn" title="Reset posisi ke tengah">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
 
-                    {{-- 2. Sub Bento Grid: 2 Interactive Stat & 3D Asset Cards --}}
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {{-- 2. DUAL BENTO GRID: BACKEND TERMINAL & PRODUCTION METRICS --}}
+                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-4">
                         
-                        {{-- Bento Subcard 1: 3D Tech Cube & Proyek Selesai --}}
-                        <div class="bento-3d-card group relative p-5 sm:p-6 rounded-3xl bg-[#242424] border border-[#353535] hover:border-[#A5B698]/50 shadow-xl transition-all duration-300 flex items-center justify-between gap-3 overflow-hidden">
+                        {{-- Bento Left (7 cols): macOS Backend Engineering Terminal --}}
+                        <div class="sm:col-span-7 bento-3d-card group relative p-5 rounded-3xl bg-[#242424] border border-[#353535] hover:border-[#A5B698]/50 shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden">
                             <div class="bento-glare pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"></div>
-                            
-                            <div class="relative z-10 flex-1 min-w-0">
-                                <div class="flex items-baseline gap-1.5 mb-1">
-                                    <span class="text-3xl sm:text-4xl font-black text-[#F0EEE8] font-mono tracking-tight">{{ max(3, count($projects)) }}+</span>
-                                    <span class="text-xs font-bold text-[#A5B698] uppercase tracking-wider">Proyek</span>
+
+                            {{-- Terminal Header --}}
+                            <div class="flex items-center justify-between pb-2 border-b border-[#353535] mb-2.5">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-rose-500/80"></span>
+                                    <span class="w-2 h-2 rounded-full bg-amber-500/80"></span>
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500/80"></span>
+                                    <span class="ml-1.5 font-mono text-[10px] text-[#929292]">BackendKernel.php</span>
                                 </div>
-                                <span class="text-xs font-bold text-[#F0EEE8] block truncate">Selesai & Production</span>
-                                <span class="text-[11px] text-[#929292] block mt-1 leading-snug line-clamp-2">Aplikasi web nyata dengan CRUD, auth & DB relasional</span>
+                                <span class="font-mono text-[8px] text-[#A5B698] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#20251d] border border-[#444f3d]">
+                                    OPTIMIZED
+                                </span>
                             </div>
 
-                            {{-- 3D Tech Cube Asset --}}
-                            <div class="relative z-10 w-20 h-20 sm:w-24 sm:h-24 shrink-0 flex items-center justify-center">
-                                <img src="{{ asset('images/3d-tech-cube.png') }}" 
-                                     alt="3D Tech Cube" 
-                                     class="w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.85)] group-hover:rotate-12 group-hover:scale-110 transition-transform duration-500 pointer-events-none select-none">
-                                <div class="absolute -bottom-2 w-16 h-4 bg-[#758268]/20 rounded-full blur-md"></div>
+                            {{-- Code Box --}}
+                            <div class="bento-terminal-window p-2.5 rounded-xl bg-[#191919] border border-[#353535] font-mono text-[11px] leading-relaxed select-none space-y-0.5">
+                                <p><span class="text-[#A5B698] font-semibold">class</span> <span class="text-[#F0EEE8] font-bold">BackendEngineer</span></p>
+                                <p class="pl-2 text-[#929292]"><span class="text-[#A5B698]">protected</span> array $stack = [<span class="text-emerald-400">'Laravel'</span>, <span class="text-emerald-400">'MySQL'</span>];</p>
+                                <p class="pl-2"><span class="text-[#A5B698]">public function</span> <span class="text-[#F0EEE8] font-semibold">buildSolution</span>() {</p>
+                                <p class="pl-4 text-emerald-400 font-medium">return $this->optimizeQueries()->deploy();</p>
+                                <p class="pl-2">}</p>
+                            </div>
+
+                            {{-- Latency ping badge --}}
+                            <div class="flex items-center gap-2 pt-2.5 font-mono text-[10px] text-[#929292]">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                <span>Database Ping: 24ms • 99.9% Uptime</span>
                             </div>
                         </div>
 
-                        {{-- Bento Subcard 2: Jam Terbang & Status --}}
-                        <div class="bento-3d-card group relative p-5 sm:p-6 rounded-3xl bg-[#242424] border border-[#353535] hover:border-[#A5B698]/50 shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden">
-                            <div class="bento-glare pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"></div>
+                        {{-- Bento Right (5 cols): Metrics & Flight Hours --}}
+                        <div class="sm:col-span-5 flex flex-col gap-4">
                             
-                            <div class="relative z-10">
-                                <div class="flex items-baseline gap-1.5 mb-1">
-                                    <span class="text-3xl sm:text-4xl font-black text-[#F0EEE8] font-mono tracking-tight">3+</span>
-                                    <span class="text-xs font-bold text-[#A5B698] uppercase tracking-wider">Tahun</span>
+                            {{-- Stat Card 1: Proyek Selesai --}}
+                            <div class="bento-3d-card group relative p-4 rounded-2xl bg-[#242424] border border-[#353535] hover:border-[#A5B698]/50 shadow-md transition-all duration-300 flex items-center justify-between gap-2 overflow-hidden flex-1">
+                                <div class="bento-glare pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"></div>
+                                <div class="relative z-10 min-w-0">
+                                    <div class="flex items-baseline gap-1.5 mb-0.5">
+                                        <span class="text-2xl sm:text-3xl font-black text-[#F0EEE8] font-mono tracking-tight">{{ max(3, count($projects)) }}+</span>
+                                        <span class="text-[10px] font-bold text-[#A5B698] uppercase tracking-wider">Proyek</span>
+                                    </div>
+                                    <span class="text-xs font-bold text-[#F0EEE8] block truncate">Selesai & Production</span>
+                                    <span class="text-[10px] text-[#929292] block mt-0.5 line-clamp-1">CRUD, auth & DB relasi</span>
                                 </div>
-                                <span class="text-xs font-bold text-[#F0EEE8] block">Fondasi Kuat & Teruji</span>
-                                <span class="text-[11px] text-[#929292] block mt-1 leading-snug">Aktif eksplorasi software engineering & sertifikasi kompetensi</span>
+                                <div class="w-10 h-10 rounded-xl bg-[#191919] border border-[#353535] text-[#A5B698] flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                                </div>
                             </div>
 
-                            {{-- Mini Status Indicators Bar --}}
-                            <div class="relative z-10 pt-4 mt-3 border-t border-[#353535] flex items-center justify-between text-[10px] font-mono text-[#929292]">
-                                <span class="flex items-center gap-1.5 text-[#F0EEE8]">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-[#A5B698]"></span>
-                                    {{ max(2, count($certificates)) }}+ Sertifikasi
-                                </span>
-                                <span class="text-[#A5B698] font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                                    Lihat Stack →
-                                </span>
+                            {{-- Stat Card 2: Jam Terbang & Sertifikasi --}}
+                            <div class="bento-3d-card group relative p-4 rounded-2xl bg-[#242424] border border-[#353535] hover:border-[#A5B698]/50 shadow-md transition-all duration-300 flex items-center justify-between gap-2 overflow-hidden flex-1">
+                                <div class="bento-glare pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"></div>
+                                <div class="relative z-10 min-w-0">
+                                    <div class="flex items-baseline gap-1.5 mb-0.5">
+                                        <span class="text-2xl sm:text-3xl font-black text-[#F0EEE8] font-mono tracking-tight">3+</span>
+                                        <span class="text-[10px] font-bold text-[#A5B698] uppercase tracking-wider">Tahun</span>
+                                    </div>
+                                    <span class="text-xs font-bold text-[#F0EEE8] block truncate">{{ max(2, count($certificates)) }}+ Sertifikasi</span>
+                                    <span class="text-[10px] text-[#A5B698] font-semibold block mt-0.5">Software Engineering</span>
+                                </div>
+                                <div class="w-10 h-10 rounded-xl bg-[#191919] border border-[#353535] text-[#A5B698] flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                                </div>
                             </div>
+
                         </div>
 
                     </div>
@@ -370,6 +446,433 @@
 
             </div>
         </div>
+
+        {{-- INLINE ENGINE EMBED: AAY 3D INTERACTIVE MONOGRAM (Progressive Resilience) --}}
+        <style>
+            :root {
+                --aay-primary-gleam: #F0EEE8;
+                --aay-sage-accent: #A5B698;
+                --aay-sage-deep: #758268;
+                --aay-obsidian-dark: #121512;
+                --aay-obsidian-card: #181c18;
+            }
+            .aay-stage-container {
+                position: relative;
+                width: 100%;
+                border-radius: 1.5rem;
+                background: radial-gradient(ellipse 90% 80% at 50% 30%, #1c221a 0%, #121612 55%, #0d100d 100%);
+                border: 1px solid rgba(165, 182, 152, 0.22);
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(240, 238, 232, 0.08);
+                overflow: hidden;
+                user-select: none;
+                cursor: grab;
+                transition: border-color 0.4s ease, box-shadow 0.4s ease;
+            }
+            .aay-stage-container:active { cursor: grabbing; }
+            .aay-stage-container:hover {
+                border-color: rgba(165, 182, 152, 0.45);
+                box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.85), 0 0 40px rgba(165, 182, 152, 0.12), inset 0 1px 0 rgba(240, 238, 232, 0.15);
+            }
+            .aay-stage-halo {
+                position: absolute;
+                top: 50%; left: 50%;
+                width: 280px; height: 280px;
+                transform: translate(-50%, -50%);
+                border-radius: 50%;
+                background: radial-gradient(circle, rgba(165, 182, 152, 0.18) 0%, rgba(117, 130, 104, 0.08) 45%, transparent 70%);
+                filter: blur(40px);
+                pointer-events: none;
+            }
+            .aay-stage-grid {
+                position: absolute; inset: 0;
+                background-image: 
+                    linear-gradient(to right, rgba(165, 182, 152, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(165, 182, 152, 0.05) 1px, transparent 1px);
+                background-size: 24px 24px;
+                mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 80%);
+                -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 80%);
+                pointer-events: none;
+            }
+            .aay-viewport {
+                position: relative;
+                width: 100%;
+                height: 240px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                perspective: 1200px;
+                perspective-origin: 50% 50%;
+                touch-action: none;
+            }
+            @media (min-width: 640px) { .aay-viewport { height: 270px; } }
+            .aay-sculpture {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.65rem;
+                transform-style: preserve-3d;
+                will-change: transform;
+                transform: rotateX(var(--rot-x, 0deg)) rotateY(var(--rot-y, 0deg)) rotateZ(var(--rot-z, 0deg));
+            }
+            @media (min-width: 640px) { .aay-sculpture { gap: 1.15rem; } }
+            .aay-pedestal {
+                position: absolute;
+                bottom: 22px; left: 50%;
+                width: 240px; height: 100px;
+                transform: translateX(-50%) rotateX(74deg);
+                border-radius: 50%;
+                background: radial-gradient(ellipse at 50% 50%, rgba(165, 182, 152, 0.22) 0%, rgba(117, 130, 104, 0.08) 50%, transparent 75%);
+                border: 1px dashed rgba(165, 182, 152, 0.25);
+                box-shadow: 0 0 30px rgba(165, 182, 152, 0.15);
+                pointer-events: none;
+            }
+            .aay-pedestal-inner {
+                position: absolute; inset: 18%;
+                border-radius: 50%;
+                border: 1px solid rgba(240, 238, 232, 0.18);
+                background: radial-gradient(ellipse at 50% 50%, rgba(240, 238, 232, 0.08) 0%, transparent 70%);
+            }
+            .aay-glyph-wrapper {
+                position: relative;
+                width: 68px; height: 96px;
+                transform-style: preserve-3d;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            @media (min-width: 640px) { .aay-glyph-wrapper { width: 86px; height: 120px; } }
+            @media (min-width: 1024px) { .aay-glyph-wrapper { width: 96px; height: 134px; } }
+            .aay-slice {
+                position: absolute; inset: 0;
+                display: flex; align-items: center; justify-content: center;
+                font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+                font-weight: 950;
+                font-size: 4.25rem;
+                line-height: 1;
+                text-align: center;
+                pointer-events: none;
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+                will-change: transform;
+            }
+            @media (min-width: 640px) { .aay-slice { font-size: 5.5rem; } }
+            @media (min-width: 1024px) { .aay-slice { font-size: 6.25rem; } }
+            .aay-slice-shadow { transform: translateZ(-36px); color: rgba(0, 0, 0, 0.95); filter: blur(14px); opacity: 0.85; }
+            .aay-slice-base { transform: translateZ(-16px); color: #0d120d; text-shadow: 0 0 10px rgba(0, 0, 0, 0.9); }
+            .aay-slice-ext1 { transform: translateZ(-8px); color: #171d17; -webkit-text-stroke: 1.5px #262e24; }
+            .aay-slice-ext2 { transform: translateZ(0px); color: #1e261e; -webkit-text-stroke: 1px #384535; }
+            .aay-slice-ext3 { transform: translateZ(10px); color: #2a352a; -webkit-text-stroke: 1px #556651; }
+            .aay-slice-ext4 { transform: translateZ(20px); color: #3f4e3c; -webkit-text-stroke: 1px #758268; }
+            .aay-slice-front {
+                transform: translateZ(30px);
+                background: linear-gradient(135deg, #F0EEE8 0%, #d8ded3 25%, #92a487 55%, #4b5a45 80%, #202b1e 100%);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.65));
+            }
+            .aay-slice-gleam {
+                transform: translateZ(32px);
+                background: radial-gradient(
+                    circle at var(--sheen-x, 50%) var(--sheen-y, 40%),
+                    rgba(255, 255, 255, 0.98) 0%,
+                    rgba(240, 238, 232, 0.75) 15%,
+                    rgba(165, 182, 152, 0.45) 30%,
+                    transparent 65%
+                );
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                mix-blend-mode: color-dodge;
+                opacity: 0.85;
+                pointer-events: none;
+            }
+            .aay-starburst {
+                position: absolute;
+                width: 14px; height: 14px;
+                transform: translateZ(36px) translate(-50%, -50%);
+                pointer-events: none;
+                opacity: var(--star-opacity, 0.5);
+                transition: opacity 0.2s ease, transform 0.2s ease;
+            }
+            .aay-starburst svg {
+                width: 100%; height: 100%; fill: #FFFFFF;
+                filter: drop-shadow(0 0 6px rgba(240, 238, 232, 0.95)) drop-shadow(0 0 12px rgba(165, 182, 152, 0.8));
+            }
+            .aay-caustic-sweep {
+                position: absolute; inset: -100%;
+                background: linear-gradient(
+                    var(--glint-angle, 115deg),
+                    transparent 42%,
+                    rgba(255, 255, 255, 0.12) 48%,
+                    rgba(165, 182, 152, 0.35) 50%,
+                    rgba(255, 255, 255, 0.12) 52%,
+                    transparent 58%
+                );
+                transform: translate3d(var(--sweep-x, 0%), var(--sweep-y, 0%), 0);
+                pointer-events: none;
+                mix-blend-mode: overlay;
+                opacity: 0.6;
+            }
+            .aay-stage-container[data-theme="obsidian"] .aay-slice-front {
+                background: linear-gradient(135deg, #F0EEE8 0%, #c9d2c5 22%, #839777 55%, #344030 85%, #182016 100%);
+                -webkit-background-clip: text;
+                background-clip: text;
+            }
+            .aay-stage-container[data-theme="sage"] .aay-slice-front {
+                background: linear-gradient(135deg, #e4eee0 0%, #A5B698 30%, #758268 60%, #46533d 85%, #232d1e 100%);
+                -webkit-background-clip: text;
+                background-clip: text;
+            }
+            .aay-stage-container[data-theme="silver"] .aay-slice-front {
+                background: linear-gradient(135deg, #FFFFFF 0%, #e0e0e0 25%, #a6a6a6 50%, #ffffff 70%, #4a4a4a 100%);
+                -webkit-background-clip: text;
+                background-clip: text;
+            }
+            .aay-hud-header {
+                position: relative; z-index: 20;
+                display: flex; align-items: center; justify-content: space-between;
+                padding: 1rem 1.25rem 0.5rem;
+                border-bottom: 1px solid rgba(165, 182, 152, 0.1);
+            }
+            .aay-hud-footer {
+                position: relative; z-index: 20;
+                display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+                gap: 0.75rem;
+                padding: 0.75rem 1.25rem 1rem;
+                border-top: 1px solid rgba(165, 182, 152, 0.1);
+                background: rgba(14, 18, 14, 0.65);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+            }
+            .aay-btn {
+                display: inline-flex; align-items: center; gap: 0.35rem;
+                padding: 0.35rem 0.75rem; border-radius: 9999px;
+                font-size: 0.6875rem; font-weight: 600;
+                font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+                letter-spacing: 0.04em; text-transform: uppercase;
+                background: rgba(25, 29, 25, 0.8); color: #929292;
+                border: 1px solid #353535; transition: all 0.2s ease; cursor: pointer;
+            }
+            .aay-btn:hover {
+                color: #F0EEE8; border-color: rgba(165, 182, 152, 0.45);
+                background: rgba(35, 42, 34, 0.9); transform: translateY(-1px);
+            }
+            .aay-btn.active {
+                color: #A5B698; border-color: #758268;
+                background: rgba(42, 53, 40, 0.95);
+                box-shadow: 0 0 12px rgba(165, 182, 152, 0.2);
+            }
+        </style>
+
+        <script>
+            (function() {
+                function bootAAY3D() {
+                    if (window.__aay3dInitialized) return;
+                    const stage = document.getElementById('aayStage');
+                    if (!stage) return;
+                    window.__aay3dInitialized = true;
+
+                    const sculpture = stage.querySelector('.aay-sculpture');
+                    const hudRotX = stage.querySelector('[data-hud="rotX"]');
+                    const hudRotY = stage.querySelector('[data-hud="rotY"]');
+                    const hudMode = stage.querySelector('[data-hud="mode"]');
+                    const starbursts = stage.querySelectorAll('.aay-starburst');
+                    const glintBtn = document.getElementById('aayGlintTrigger');
+                    const themeBtns = stage.querySelectorAll('[data-aay-theme]');
+                    const resetBtn = document.getElementById('aayResetTrigger');
+
+                    if (!sculpture) return;
+
+                    let currentRotX = -4, currentRotY = 8, currentRotZ = 0;
+                    let targetRotX = -4, targetRotY = 8, targetRotZ = 0;
+                    let velX = 0, velY = 0;
+                    let isDragging = false, isHovered = false;
+                    let lastDragX = 0, lastDragY = 0;
+                    let isFlaring = false;
+                    let isVisible = true;
+                    let time = 0;
+
+                    const lerp = (a, b, n) => a + (b - a) * n;
+                    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                    function handlePointerMove(clientX, clientY) {
+                        if (isDragging) return;
+                        const rect = stage.getBoundingClientRect();
+                        const centerX = rect.left + rect.width / 2;
+                        const centerY = rect.top + rect.height / 2;
+                        const nx = Math.max(-1.2, Math.min(1.2, (clientX - centerX) / (rect.width / 2)));
+                        const ny = Math.max(-1.2, Math.min(1.2, (clientY - centerY) / (rect.height / 2)));
+
+                        if (prefersReducedMotion) {
+                            targetRotX = -ny * 6;
+                            targetRotY = nx * 8;
+                        } else {
+                            targetRotX = -ny * 24;
+                            targetRotY = nx * 34;
+                            targetRotZ = nx * ny * -4;
+                        }
+
+                        stage.style.setProperty('--sheen-x', (50 + nx * 40) + '%');
+                        stage.style.setProperty('--sheen-y', (45 + ny * 35) + '%');
+                        const angle = Math.atan2(ny, nx) * (180 / Math.PI) + 90;
+                        stage.style.setProperty('--glint-angle', angle.toFixed(1) + 'deg');
+                    }
+
+                    stage.addEventListener('mouseenter', (e) => {
+                        isHovered = true;
+                        if (hudMode) hudMode.textContent = 'TRACKING';
+                        handlePointerMove(e.clientX, e.clientY);
+                    });
+
+                    stage.addEventListener('mousemove', (e) => {
+                        if (!isDragging) handlePointerMove(e.clientX, e.clientY);
+                    });
+
+                    stage.addEventListener('mouseleave', () => {
+                        isHovered = false;
+                        if (!isDragging && hudMode) hudMode.textContent = 'FLOATING';
+                    });
+
+                    stage.addEventListener('mousedown', (e) => {
+                        if (e.target.closest('button')) return;
+                        isDragging = true;
+                        lastDragX = e.clientX;
+                        lastDragY = e.clientY;
+                        velX = 0; velY = 0;
+                        if (hudMode) hudMode.textContent = 'KINETIC';
+                    });
+
+                    window.addEventListener('mousemove', (e) => {
+                        if (!isDragging) return;
+                        const dx = e.clientX - lastDragX;
+                        const dy = e.clientY - lastDragY;
+                        velY = dx * 0.45;
+                        velX = -dy * 0.45;
+                        targetRotY += velY;
+                        targetRotX += velX;
+                        lastDragX = e.clientX;
+                        lastDragY = e.clientY;
+                    });
+
+                    window.addEventListener('mouseup', () => {
+                        if (!isDragging) return;
+                        isDragging = false;
+                        if (hudMode) hudMode.textContent = isHovered ? 'TRACKING' : 'FLOATING';
+                    });
+
+                    stage.addEventListener('touchstart', (e) => {
+                        if (e.target.closest('button')) return;
+                        if (e.touches.length === 1) {
+                            isDragging = true;
+                            lastDragX = e.touches[0].clientX;
+                            lastDragY = e.touches[0].clientY;
+                            velX = 0; velY = 0;
+                        }
+                    }, { passive: true });
+
+                    stage.addEventListener('touchmove', (e) => {
+                        if (!isDragging || e.touches.length !== 1) return;
+                        const touch = e.touches[0];
+                        const dx = touch.clientX - lastDragX;
+                        const dy = touch.clientY - lastDragY;
+                        velY = dx * 0.45;
+                        velX = -dy * 0.45;
+                        targetRotY += velY;
+                        targetRotX += velX;
+                        lastDragX = touch.clientX;
+                        lastDragY = touch.clientY;
+                    }, { passive: true });
+
+                    stage.addEventListener('touchend', () => { isDragging = false; });
+
+                    function triggerGlint() {
+                        if (isFlaring) return;
+                        isFlaring = true;
+                        let startTime = performance.now();
+                        const duration = 1100;
+                        function step(now) {
+                            const elapsed = now - startTime;
+                            const progress = Math.min(1, elapsed / duration);
+                            const ease = progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+                            stage.style.setProperty('--sweep-x', (-120 + ease * 240) + '%');
+                            stage.style.setProperty('--sweep-y', (-60 + ease * 120) + '%');
+                            starbursts.forEach(star => {
+                                star.style.setProperty('--star-opacity', Math.sin(progress * Math.PI).toFixed(2));
+                            });
+                            if (progress < 1) {
+                                requestAnimationFrame(step);
+                            } else {
+                                isFlaring = false;
+                                stage.style.setProperty('--sweep-x', '0%');
+                                stage.style.setProperty('--sweep-y', '0%');
+                            }
+                        }
+                        requestAnimationFrame(step);
+                    }
+
+                    if (glintBtn) glintBtn.addEventListener('click', (e) => { e.stopPropagation(); triggerGlint(); });
+                    if (resetBtn) resetBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        targetRotX = -4; targetRotY = 8; targetRotZ = 0; velX = 0; velY = 0;
+                        triggerGlint();
+                    });
+
+                    themeBtns.forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            const theme = btn.getAttribute('data-aay-theme');
+                            stage.setAttribute('data-theme', theme);
+                            themeBtns.forEach(b => b.classList.remove('active'));
+                            btn.classList.add('active');
+                            triggerGlint();
+                        });
+                    });
+
+                    function loop(ts) {
+                        if (!isVisible) { requestAnimationFrame(loop); return; }
+                        time = ts * 0.001;
+                        if (!isDragging) {
+                            velX *= 0.93; velY *= 0.93;
+                            targetRotX += velX; targetRotY += velY;
+                            if (!isHovered && Math.abs(velX) < 0.01 && Math.abs(velY) < 0.01 && !prefersReducedMotion) {
+                                targetRotX = lerp(targetRotX, Math.sin(time * 1.3) * 6, 0.02);
+                                targetRotY = lerp(targetRotY, Math.cos(time * 0.9) * 12, 0.02);
+                            }
+                        }
+                        currentRotX = lerp(currentRotX, targetRotX, 0.08);
+                        currentRotY = lerp(currentRotY, targetRotY, 0.08);
+                        currentRotZ = lerp(currentRotZ, targetRotZ, 0.08);
+
+                        sculpture.style.setProperty('--rot-x', currentRotX.toFixed(2) + 'deg');
+                        sculpture.style.setProperty('--rot-y', currentRotY.toFixed(2) + 'deg');
+                        sculpture.style.setProperty('--rot-z', currentRotZ.toFixed(2) + 'deg');
+
+                        if (hudRotX) hudRotX.textContent = (currentRotX >= 0 ? '+' : '') + currentRotX.toFixed(1) + '°';
+                        if (hudRotY) hudRotY.textContent = (currentRotY >= 0 ? '+' : '') + currentRotY.toFixed(1) + '°';
+
+                        requestAnimationFrame(loop);
+                    }
+
+                    if ('IntersectionObserver' in window) {
+                        const obs = new IntersectionObserver((entries) => {
+                            entries.forEach(e => { isVisible = e.isIntersecting; });
+                        }, { threshold: 0.1 });
+                        obs.observe(stage);
+                    }
+
+                    setTimeout(triggerGlint, 600);
+                    requestAnimationFrame(loop);
+                }
+
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', bootAAY3D);
+                } else {
+                    bootAAY3D();
+                }
+            })();
+        </script>
     </section>
 
     {{-- === 3. SKILLS SECTION (#skill) === --}}
