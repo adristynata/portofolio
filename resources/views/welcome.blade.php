@@ -88,20 +88,36 @@
                     </div>
                 </div>
 
-                {{-- BARIS 3: META INFO & DESKRIPSI (KIRI BIO, KANAN BADGE) --}}
+                {{-- BARIS 3: META INFO & DESKRIPSI (KIRI STATUS & LOKASI, KANAN BADGE & EDUKASI) --}}
                 <div class="w-full flex items-start justify-between pt-2 sm:pt-4 pointer-events-none">
-                    {{-- Sisi Kiri: Bio Deskripsi (Hanya muncul jika diisi di CMS) --}}
-                    <div class="hero-anim-adristy w-[44%] text-left pointer-events-auto">
+                    {{-- Sisi Kiri: Status Kesiapan, Lokasi & Bio (Mirrored Counterbalance) --}}
+                    <div class="hero-anim-adristy w-[44%] flex flex-col items-start gap-1.5 sm:gap-2 text-left pointer-events-auto">
                         @if(!empty($heroBioText))
-                            <p class="hero-desc-drop text-xs sm:text-sm md:text-base lg:text-lg text-[#C5C2BA] font-serif italic leading-relaxed max-w-md">
-                                {{ $heroBioText }}
+                            <p class="hero-desc-drop text-xs sm:text-sm text-[#C5C2BA] font-serif italic leading-relaxed max-w-sm mb-0.5 line-clamp-2">
+                                “{{ $heroBioText }}”
                             </p>
                         @endif
+
+                        <span class="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#1e251c]/80 border border-[#3e4f35]/60 text-[11px] sm:text-xs font-mono text-[#A5B698] backdrop-blur-md transition-all duration-300 hover:border-[#A5B698]/50 hover:bg-[#232c21]/90 shadow-sm">
+                            <span class="relative flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#A5B698] opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-[#A5B698]"></span>
+                            </span>
+                            <span>Terbuka Untuk Magang & Proyek</span>
+                        </span>
+
+                        <span class="text-[11px] sm:text-xs text-[#8E8B82] font-mono tracking-wide flex items-center gap-1.5">
+                            <svg class="w-3 h-3 text-[#A5B698]/80 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>{{ $profile->location ?? 'Jepara, Jawa Tengah' }} • UTC+7</span>
+                        </span>
                     </div>
 
                     {{-- Sisi Kanan: Badge & Info --}}
                     <div class="hero-anim-akiko w-[44%] flex flex-col items-end gap-1.5 sm:gap-2 text-right pointer-events-auto">
-                        <span class="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#1e251c]/80 border border-[#3e4f35]/60 text-[11px] sm:text-xs font-mono text-[#A5B698] backdrop-blur-md">
+                        <span class="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#1e251c]/80 border border-[#3e4f35]/60 text-[11px] sm:text-xs font-mono text-[#A5B698] backdrop-blur-md transition-all duration-300 hover:border-[#A5B698]/50 hover:bg-[#232c21]/90 shadow-sm">
                             <span class="w-2 h-2 rounded-full bg-[#A5B698] animate-pulse"></span>
                             {{ $profile->role_title ?? 'Backend Developer' }}
                         </span>
