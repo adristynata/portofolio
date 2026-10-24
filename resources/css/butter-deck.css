@@ -283,3 +283,21 @@
   color: #fed7aa;
   border-color: rgba(255, 154, 0, 0.3);
 }
+
+/* Arduino / Arduino IDE */
+.butter-card-arduino-ide,
+.butter-card-arduino {
+  background: linear-gradient(to bottom, rgba(0, 151, 157, 0.28), #032326 40%, #010e10 100%);
+  border-color: rgba(0, 151, 157, 0.45);
+}
+.butter-card-arduino-ide:hover,
+.butter-card-arduino:hover {
+  border-color: #00b4bb;
+  box-shadow: 0 25px 45px -10px rgba(0, 151, 157, 0.5);
+}
+.butter-badge-arduino-ide,
+.butter-badge-arduino {
+  background-color: rgba(0, 151, 157, 0.18);
+  color: #5eead4;
+  border-color: rgba(0, 151, 157, 0.35);
+}
