@@ -149,10 +149,10 @@
     {{-- ============================================================== --}}
     <section id="about" class="about-section relative w-full py-20 sm:py-28 lg:py-36 px-4 sm:px-6 lg:px-8 bg-[#0c0e0c] border-t border-[#262626] overflow-hidden">
         
-        {{-- GIANT WATERMARK TYPOGRAPHY (PERSIS REFERENSI GAMBAR KEDUA "PARTNERSHIPS") --}}
+        {{-- GIANT WATERMARK TYPOGRAPHY (TENTANG) --}}
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0">
             <span class="text-[17vw] sm:text-[15vw] font-black uppercase tracking-tighter text-[#A5B698]/[0.045] leading-none whitespace-nowrap">
-                ABOUT ME
+                TENTANG
             </span>
         </div>
 
