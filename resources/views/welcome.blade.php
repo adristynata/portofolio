@@ -89,65 +89,6 @@
                     </div>
                 </div>
 
-                {{-- BARIS 3: META INFO & ORNAMEN DEVELOPER SIMETRIS (KIRI REKAYASA & ARTISAN TEST, KANAN BACKEND & STATUS) --}}
-                <div class="w-full flex items-start justify-between pt-2 sm:pt-4 pointer-events-none">
-                    
-                    {{-- Sisi Kiri: Rekayasa Perangkat Lunak & Clean Artisan Test Ornament --}}
-                    <div class="hero-anim-adristy w-[44%] flex flex-col items-start gap-1.5 sm:gap-2 text-left pointer-events-auto select-none">
-                        {{-- Kapsul Disiplin Ilmu --}}
-                        <span class="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#1e251c]/80 border border-[#3e4f35]/60 text-[11px] sm:text-xs font-mono text-[#A5B698] backdrop-blur-md transition-all duration-300 hover:border-[#A5B698]/50 shadow-sm">
-                            <svg class="w-3.5 h-3.5 text-[#A5B698]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-                            </svg>
-                            <span>Rekayasa Perangkat Lunak</span>
-                        </span>
-
-                        {{-- Ornamen Profesional Programmer: Clean Artisan Test Console --}}
-                        <div class="inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-3.5 py-1.5 rounded-xl bg-[#141813]/90 border border-[#354331]/60 backdrop-blur-md shadow-sm transition-all duration-300 hover:border-[#A5B698]/40">
-                            <span class="text-[#A5B698] font-mono text-xs font-bold select-none">❯</span>
-                            <span class="text-[#F0EEE8] font-mono text-[10px] sm:text-[11px] tracking-tight">php artisan test</span>
-                            <span class="text-[#3e4f35] font-mono select-none">|</span>
-                            <span class="text-[#A5B698] font-mono text-[9px] sm:text-[10px] font-bold flex items-center gap-1">
-                                <svg class="w-3 h-3 text-[#A5B698]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                                100% PASS
-                            </span>
-                        </div>
-
-                        {{-- Core Stack & Domisili --}}
-                        <div class="flex items-center gap-2 text-[10px] sm:text-[11px] text-[#8E8B82] font-mono tracking-wide">
-                            <span class="text-[#A5B698]/90 font-medium">Laravel</span>
-                            <span class="text-[#3e4f35]">•</span>
-                            <span class="text-[#A5B698]/90 font-medium">MySQL</span>
-                            <span class="text-[#3e4f35]">•</span>
-                            <span class="text-[#A5B698]/90 font-medium">REST API</span>
-                            <span class="text-[#3e4f35]">•</span>
-                            <span>Kudus, ID</span>
-                        </div>
-                    </div>
-
-                    {{-- Sisi Kanan: Backend Developer & Status Kesiapan (Kembar Simetris) --}}
-                    <div class="hero-anim-akiko w-[44%] flex flex-col items-end gap-1.5 sm:gap-2 text-right pointer-events-auto select-none">
-                        {{-- Kapsul Peran / Role --}}
-                        <span class="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#1e251c]/80 border border-[#3e4f35]/60 text-[11px] sm:text-xs font-mono text-[#A5B698] backdrop-blur-md transition-all duration-300 hover:border-[#A5B698]/50 hover:bg-[#232c21]/90 shadow-sm">
-                            <span class="w-2 h-2 rounded-full bg-[#A5B698] animate-pulse"></span>
-                            {{ $profile->role_title ?? 'Backend Developer' }}
-                        </span>
-
-                        {{-- Kapsul Status Kesiapan Simetris --}}
-                        <div class="inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-3.5 py-1.5 rounded-xl bg-[#141813]/90 border border-[#3e4f35]/60 backdrop-blur-md shadow-sm transition-all duration-300 hover:border-[#A5B698]/40 text-right">
-                            <span class="w-1.5 h-1.5 rounded-full bg-[#A5B698] animate-pulse"></span>
-                            <span class="text-[#F0EEE8] font-mono text-[10px] sm:text-[11px] tracking-tight">Status: Siap Magang / Proyek</span>
-                            <span class="text-[#3e4f35] font-mono select-none">|</span>
-                            <span class="text-[#A5B698] font-mono text-[9px] sm:text-[10px] font-bold">2026</span>
-                        </div>
-
-                        {{-- Pendidikan / Almamater --}}
-                        <span class="text-[10px] sm:text-[11px] text-[#8E8B82] font-mono tracking-wide">
-                            {{ $profile->education ?? 'Pengembangan Perangkat Lunak dan Gim • Portofolio' }}
-                        </span>
-                    </div>
-
-                </div>
 
             </div>
 
