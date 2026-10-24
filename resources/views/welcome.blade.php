@@ -197,10 +197,6 @@
                             <span>Jelajahi Proyek</span>
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
                         </a>
-                        <a href="#contact" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#888884] hover:text-[#F0EEE8] transition-colors">
-                            <span>Hubungi Saya</span>
-                            <span aria-hidden="true">→</span>
-                        </a>
                     </div>
 
                 </div>
