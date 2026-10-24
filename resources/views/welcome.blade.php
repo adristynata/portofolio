@@ -7,10 +7,19 @@
     {{-- SPLIT REVEAL HERO & ABOUT SECTION ENGINE                       --}}
     {{-- ============================================================== --}}
     @php
-        // Always default to the clean transparent cutout photo without background
+        // Always default to the clean transparent cutout photo without background for Hero
         $heroPhotoSrc = asset('images/adristy_cutout.png');
-        if (!empty($profile->photo) && (str_starts_with($profile->photo, 'storage/') || str_starts_with($profile->photo, 'data:'))) {
-            $heroPhotoSrc = $profile->photo;
+
+        // Dynamic About Section photo: uses uploaded CMS profile photo, falls back to studio portrait
+        $aboutPhotoSrc = asset('images/adristy_studio.png');
+        if (!empty($profile->photo)) {
+            if (str_starts_with($profile->photo, 'http') || str_starts_with($profile->photo, 'data:')) {
+                $aboutPhotoSrc = $profile->photo;
+            } elseif (str_starts_with($profile->photo, 'storage/')) {
+                $aboutPhotoSrc = asset($profile->photo);
+            } else {
+                $aboutPhotoSrc = asset('storage/' . $profile->photo);
+            }
         }
     @endphp
 
@@ -205,12 +214,12 @@
                         <div class="absolute right-0 sm:right-4 top-4 sm:top-2 w-[220px] sm:w-[280px] md:w-[300px] transform rotate-[4deg] sm:rotate-[6deg] hover:rotate-0 hover:scale-105 hover:z-30 transition-all duration-500 ease-out cursor-pointer group">
                             <div class="bg-[#F0EEE8] p-2.5 sm:p-3 pb-8 sm:pb-11 rounded-[3px] shadow-[0_20px_50px_rgba(0,0,0,0.85)] border border-[#d6d3c7] transition-shadow duration-300 group-hover:shadow-[0_30px_70px_rgba(0,0,0,0.95)]">
                                 <div class="relative aspect-[3/4] w-full overflow-hidden bg-[#161a15]">
-                                    <img src="{{ asset('images/adristy_studio.png') }}" 
-                                         alt="Adristy Akiko Yukinata — Studio Portrait" 
+                                    <img src="{{ $aboutPhotoSrc }}" 
+                                         alt="{{ $profile->name ?? 'Adristy Akiko Yukinata' }} — Studio Portrait" 
                                          class="w-full h-full object-cover object-top filter contrast-[105%] transition-transform duration-700 group-hover:scale-105">
                                 </div>
                                 <div class="pt-3 sm:pt-4 px-1 flex items-center justify-between text-[#242424] font-mono text-[9px] sm:text-[10px] uppercase tracking-wider font-semibold">
-                                    <span>Adristy Akiko</span>
+                                    <span>{{ $profile->name ?? 'Adristy Akiko' }}</span>
                                     <span class="text-[#758268]">Studio // Jepara</span>
                                 </div>
                             </div>
@@ -220,13 +229,13 @@
                         <div class="absolute left-0 sm:left-4 bottom-4 sm:bottom-2 z-20 w-[230px] sm:w-[290px] md:w-[310px] transform -rotate-[4deg] sm:-rotate-[5deg] hover:rotate-0 hover:scale-105 hover:z-30 transition-all duration-500 ease-out cursor-pointer group">
                             <div class="bg-[#F0EEE8] p-2.5 sm:p-3 pb-8 sm:pb-11 rounded-[3px] shadow-[0_30px_60px_rgba(0,0,0,0.9)] border border-[#d6d3c7] transition-shadow duration-300 group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.95)]">
                                 <div class="relative aspect-[3/4] w-full overflow-hidden bg-[#121212]">
-                                    <img src="{{ asset('images/adristy_studio.png') }}" 
-                                         alt="Adristy Akiko Yukinata — Editorial Monochrome" 
+                                    <img src="{{ $aboutPhotoSrc }}" 
+                                         alt="{{ $profile->name ?? 'Adristy Akiko Yukinata' }} — Editorial Monochrome" 
                                          class="w-full h-full object-cover object-top filter grayscale contrast-[135%] brightness-[92%] transition-transform duration-700 group-hover:scale-105">
                                 </div>
                                 <div class="pt-3 sm:pt-4 px-1 flex items-center justify-between text-[#242424] font-mono text-[9px] sm:text-[10px] uppercase tracking-wider font-semibold">
-                                    <span>Software Engineer</span>
-                                    <span class="text-[#758268]">SMK N 1 Bangsri</span>
+                                    <span>{{ $profile->focus ?? 'Web Developer' }}</span>
+                                    <span class="text-[#758268]">{{ $profile->education ?? 'SMK N 1 Bangsri' }}</span>
                                 </div>
                             </div>
                         </div>
