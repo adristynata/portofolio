@@ -31,8 +31,8 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-['Plus_Jakarta_Sans',sans-serif] antialiased selection:bg-[#758268]/30 selection:text-[#F0EEE8] min-h-screen overflow-x-hidden transition-colors duration-300">
-        {{-- Top Glowing Reading Progress Bar --}}
-        <div id="scroll-progress-bar"></div>
+
+
 
         <div class="min-h-screen">
             <!-- Page Content -->

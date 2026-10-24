@@ -147,7 +147,7 @@
     {{-- 2. ABOUT SECTION (#about) — EDITORIAL GALLERY & CLEAN NARRATIVE --}}
     {{-- Inspirasi Lookbook Editorial: Bebas Container AI & Clean        --}}
     {{-- ============================================================== --}}
-    <section id="about" class="about-section relative w-full py-20 sm:py-28 lg:py-36 px-4 sm:px-6 lg:px-8 bg-[#0c0e0c] border-t border-[#262626] overflow-hidden">
+    <section id="about" class="about-section relative w-full py-20 sm:py-28 lg:py-36 px-4 sm:px-6 lg:px-8 bg-[#0c0e0c] overflow-hidden">
         
         {{-- GIANT WATERMARK TYPOGRAPHY (TENTANG) --}}
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0">
@@ -192,8 +192,8 @@
                         </p>
                     </div>
 
-                    {{-- Minimalist Editorial Facts (Bebas Kotak Container, Clean & Bernapas) --}}
-                    <div class="pt-8 mt-8 border-t border-[#262626] grid grid-cols-2 sm:grid-cols-2 gap-y-5 gap-x-6">
+                    {{-- Minimalist Editorial Facts (Bebas Kotak Container & Bebas Garis, Clean & Bernapas) --}}
+                    <div class="pt-8 mt-8 grid grid-cols-2 sm:grid-cols-2 gap-y-5 gap-x-6">
                         <div>
                             <span class="block font-mono text-[10px] uppercase tracking-widest text-[#758268] font-bold">Pendidikan</span>
                             <span class="text-xs sm:text-sm font-semibold text-[#F0EEE8] mt-1 block">{{ $profile->education ?? 'SMK Negeri 1 Bangsri (RPL)' }}</span>
