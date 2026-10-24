@@ -175,19 +175,20 @@
                         </span>
                     </div>
 
-                    {{-- Bold Expressive Headline --}}
+                    {{-- Bold Expressive Headline (Bisa diedit via CMS: hero_bio) --}}
                     <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#F0EEE8] tracking-tight leading-[1.12] mb-6">
-                        Membangun Solusi Web yang <br class="hidden sm:inline">
-                        <span class="text-[#A5B698]">Terstruktur & Handal.</span>
+                        @if(!empty($profile->hero_bio))
+                            {!! nl2br(e($profile->hero_bio)) !!}
+                        @else
+                            Membangun Solusi Web yang <br class="hidden sm:inline">
+                            <span class="text-[#A5B698]">Terstruktur & Handal.</span>
+                        @endif
                     </h2>
 
-                    {{-- Narrative Bio --}}
-                    <div class="space-y-4 text-sm sm:text-base text-[#B0AFA9] leading-relaxed font-normal">
+                    {{-- Narrative Bio (Bisa diedit via CMS: bio, ringkas & padat tanpa teks hardcode tambahan) --}}
+                    <div class="text-sm sm:text-base text-[#B0AFA9] leading-relaxed font-normal">
                         <p>
-                            {{ $profile->bio ?? 'Saya Adristy Akiko Yukinata, siswi Rekayasa Perangkat Lunak dari SMK Negeri 1 Bangsri. Berfokus pada pengembangan web modern dan arsitektur backend, saya terbiasa membangun aplikasi berbasis Laravel, merancang basis data relasional MySQL, serta mengintegrasikan RESTful API yang aman dan efisien.' }}
-                        </p>
-                        <p class="text-[#888884] text-xs sm:text-sm leading-relaxed">
-                            Bagi saya, rekayasa perangkat lunak bukan sekadar merangkai kode, melainkan seni menyusun fondasi sistem yang rapi, menjaga integritas data, dan menghadirkan pengalaman pengguna yang cepat tanpa kompromi.
+                            {!! nl2br(e($profile->bio ?? 'Saya Adristy Akiko Yukinata, siswi Rekayasa Perangkat Lunak dari SMK Negeri 1 Bangsri. Berfokus pada pengembangan web modern dan arsitektur backend, saya terbiasa membangun aplikasi berbasis Laravel, merancang basis data relasional MySQL, serta mengintegrasikan RESTful API yang aman dan efisien.')) !!}
                         </p>
                     </div>
 

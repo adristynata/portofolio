@@ -44,22 +44,24 @@
                     </div>
                 </div>
 
-                <!-- Teks Hero Section vs Teks About Section -->
-                <div class="grid grid-cols-1 gap-6 mt-6">
+                <!-- Konten Teks About Section (Headline & Biografi) -->
+                <div class="grid grid-cols-1 gap-6 mt-6 pt-6 border-t border-[#353535]">
                     <div>
                         <label class="block text-xs font-bold text-[#A5B698] mb-1 flex items-center gap-1.5">
-                            <span>✨ Teks Ringkas Hero Section (Paling Atas Halaman)</span>
+                            <svg class="w-4 h-4 text-[#A5B698]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            <span>Headline / Judul Utama (About Section)</span>
                         </label>
-                        <p class="text-[11px] text-[#929292] mb-2">Teks pengenalan singkat yang tampil langsung di bawah nama Anda pada bagian Hero paling atas.</p>
-                        <textarea name="hero_bio" rows="2" class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="Tuliskan bio singkat hero section atau kosongkan jika tidak ingin menampilkan teks ini...">{{ old('hero_bio', $user->hero_bio) }}</textarea>
+                        <p class="text-[11px] text-[#929292] mb-2">Judul tebal yang tampil di bagian "Tentang Saya". Anda bisa menekan Enter untuk baris baru. (Default: <em>Membangun Solusi Web yang Terstruktur & Handal.</em>)</p>
+                        <textarea name="hero_bio" rows="2" class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="Membangun Solusi Web yang Terstruktur & Handal.">{{ old('hero_bio', $user->hero_bio) }}</textarea>
                     </div>
 
                     <div>
                         <label class="block text-xs font-bold text-[#A5B698] mb-1 flex items-center gap-1.5">
-                            <span>📖 Teks Biografi About Section (Bagian "Tentang Saya")</span>
+                            <svg class="w-4 h-4 text-[#A5B698]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
+                            <span>Biografi Singkat (About Section)</span>
                         </label>
-                        <p class="text-[11px] text-[#929292] mb-2">Biografi narasi lengkap tentang diri Anda yang tampil pada bagian "Tentang Saya".</p>
-                        <textarea name="bio" rows="4" class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="Tuliskan cerita biografi lengkap Anda di sini...">{{ old('bio', $user->bio) }}</textarea>
+                        <p class="text-[11px] text-[#929292] mb-2">Teks biografi diri Anda di bagian "Tentang Saya". Buat secara ringkas dan to-the-point sesuai keinginan Anda tanpa kepanjangan.</p>
+                        <textarea name="bio" rows="3" class="w-full px-4 py-3 bg-[#191919] border border-[#353535] rounded-xl text-sm text-[#F0EEE8] placeholder-[#929292]/50 focus:outline-none focus:border-[#758268] focus:ring-1 focus:ring-[#758268]" placeholder="Saya Adristy Akiko Yukinata, siswi Rekayasa Perangkat Lunak dari SMK Negeri 1 Bangsri. Berfokus pada pengembangan web modern dan arsitektur backend...">{{ old('bio', $user->bio) }}</textarea>
                     </div>
                 </div>
             </div>
