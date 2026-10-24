@@ -46,35 +46,6 @@
             <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#0c0e0c] via-[#0c0e0c]/85 to-transparent"></div>
         </div>
 
-        {{-- CLEAN ARCHITECTURAL CORNER RETICLES & ORNAMENTS --}}
-        <div class="absolute top-20 left-6 sm:left-12 font-mono text-[10px] text-[#A5B698]/30 pointer-events-none select-none hidden sm:flex items-center gap-2 z-10">
-            <span>+</span>
-            <span class="tracking-widest uppercase">01 // HERO VIEWPORT</span>
-        </div>
-        <div class="absolute top-20 right-6 sm:right-12 font-mono text-[10px] text-[#A5B698]/30 pointer-events-none select-none hidden sm:flex items-center gap-2 z-10">
-            <span class="tracking-widest uppercase">SYSTEM: ONLINE</span>
-            <span>+</span>
-        </div>
-        <div class="absolute bottom-6 left-6 sm:left-12 font-mono text-[10px] text-[#A5B698]/30 pointer-events-none select-none hidden sm:flex items-center gap-2 z-10">
-            <span>+</span>
-            <span class="tracking-widest">110°40'E • 06°35'S</span>
-        </div>
-        <div class="absolute bottom-6 right-6 sm:right-12 font-mono text-[10px] text-[#A5B698]/30 pointer-events-none select-none hidden sm:flex items-center gap-2 z-10">
-            <span class="tracking-widest">EST. 2026 // ARCHITECTURE</span>
-            <span>+</span>
-        </div>
-
-        {{-- FLOATING 3D AMBIENT ORB ORNAMENTS WITH CURSOR PHYSICS --}}
-        <div class="absolute left-10 sm:left-24 top-1/4 z-10 pointer-events-auto hidden lg:block">
-            <div class="hero-capsule">
-                <div class="tech-orb-editorial w-8 h-8 rounded-full shadow-[0_12px_28px_rgba(0,0,0,0.85)] border border-white/20 transition-transform duration-300 hover:scale-125 cursor-pointer" title="3D Titanium Orb"></div>
-            </div>
-        </div>
-        <div class="absolute right-12 sm:right-28 top-1/3 z-10 pointer-events-auto hidden lg:block">
-            <div class="hero-capsule">
-                <div class="tech-orb-editorial w-6 h-6 rounded-full shadow-[0_8px_20px_rgba(0,0,0,0.85)] border border-white/20 transition-transform duration-300 hover:scale-125 cursor-pointer" title="3D Titanium Orb"></div>
-            </div>
-        </div>
 
         {{-- FOTO CUTOUT TRANSPARAN ADRISTY (STAY DI TENGAH, TIDAK KEBELAH, z-20 DI DEPAN TEKS) --}}
         <div class="hero-stay-photo absolute left-1/2 -translate-x-1/2 bottom-0 z-20 flex justify-center items-end pointer-events-none w-full max-w-[340px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] xl:max-w-[540px] h-full max-h-[80vh] lg:max-h-[86vh]">
@@ -118,33 +89,20 @@
                     </div>
                 </div>
 
-                {{-- BARIS 3: META INFO & ORNAMEN 3D (KIRI REAL 3D WEBGL CORE, KANAN BADGE & EDUKASI) --}}
+                {{-- BARIS 3: META INFO & EDITORIAL CRAFT (KIRI EDITORIAL STATEMENT, KANAN BADGE & EDUKASI) --}}
                 <div class="w-full flex items-start justify-between pt-2 sm:pt-4 pointer-events-none">
-                    {{-- Sisi Kiri: Real Interactive 3D WebGL Spatial Core (Three.js) --}}
-                    <div class="hero-anim-adristy w-[44%] flex flex-col items-start pointer-events-auto">
-                        <div class="group relative flex items-center gap-3 sm:gap-4 p-2 sm:p-2.5 pr-4 rounded-2xl bg-[#141813]/70 border border-[#354331]/40 backdrop-blur-md shadow-[0_12px_36px_rgba(0,0,0,0.65)] hover:border-[#A5B698]/50 transition-all duration-300">
-                            
-                            {{-- Interactive 3D WebGL Canvas Stage --}}
-                            <div class="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 cursor-grab active:cursor-grabbing rounded-xl overflow-hidden bg-[#0e120d]/80 border border-[#354331]/30">
-                                {{-- Ambient Sage Core Glow --}}
-                                <div class="absolute inset-0 bg-[#A5B698]/15 rounded-full blur-md pointer-events-none"></div>
-                                <canvas id="hero3dCanvas" class="w-full h-full relative z-10 block"></canvas>
-                            </div>
-
-                            {{-- Clean Monospace Tech Micro-Annotations --}}
-                            <div class="flex flex-col text-left select-none pointer-events-none">
-                                <div class="flex items-center gap-1.5 font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-[#A5B698] font-bold">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-[#A5B698] animate-pulse"></span>
-                                    <span>3D // WEBGL CORE</span>
-                                </div>
-                                <span class="text-[10px] sm:text-[11px] text-[#F0EEE8] font-mono tracking-tight font-medium mt-0.5">
-                                    Spatial Geometry
-                                </span>
-                                <span class="text-[9px] text-[#8E8B82] font-mono tracking-widest uppercase mt-0.5">
-                                    DRAG • ROTATE 360°
-                                </span>
-                            </div>
+                    {{-- Sisi Kiri: Editorial Craft Statement (Clean, Unboxed, Elegan) --}}
+                    <div class="hero-anim-adristy w-[44%] flex flex-col items-start gap-1 sm:gap-1.5 text-left pointer-events-auto select-none">
+                        <div class="inline-flex items-center gap-2 font-mono text-[10px] sm:text-[11px] text-[#A5B698] uppercase tracking-[0.2em] font-bold">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#A5B698] animate-pulse"></span>
+                            <span>Rekayasa Perangkat Lunak</span>
                         </div>
+                        <p class="text-xs sm:text-sm md:text-base lg:text-lg text-[#F0EEE8] font-['Instrument_Serif',serif] italic leading-snug max-w-sm sm:max-w-md">
+                            {{ !empty($heroBioText) ? $heroBioText : '“Membangun arsitektur backend yang kokoh, terstruktur, dan efisien.”' }}
+                        </p>
+                        <span class="text-[10px] sm:text-[11px] text-[#8E8B82] font-mono tracking-wide">
+                            Kudus, Indonesia • Tersedia untuk Proyek
+                        </span>
                     </div>
 
                     {{-- Sisi Kanan: Badge & Info --}}
@@ -160,221 +118,6 @@
                 </div>
 
             </div>
-
-        </div>
-
-        {{-- THREE.JS REAL-TIME 3D WEBGL ENGINE --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-        <script>
-            (function initHero3D() {
-                function run() {
-                    const canvas = document.getElementById('hero3dCanvas');
-                    if (!canvas || typeof THREE === 'undefined') return;
-
-                    const container = canvas.parentElement;
-                    const getWidth = () => container.clientWidth || 80;
-                    const getHeight = () => container.clientHeight || 80;
-
-                    // Scene, Camera, Renderer
-                    const scene = new THREE.Scene();
-                    const camera = new THREE.PerspectiveCamera(45, getWidth() / getHeight(), 0.1, 100);
-                    camera.position.z = 4.2;
-
-                    const renderer = new THREE.WebGLRenderer({
-                        canvas: canvas,
-                        alpha: true,
-                        antialias: true,
-                        powerPreference: 'high-performance'
-                    });
-                    renderer.setSize(getWidth(), getHeight());
-                    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-                    const group = new THREE.Group();
-                    scene.add(group);
-
-                    // 1. Faceted Icosahedron Crystal Core
-                    const coreGeo = new THREE.IcosahedronGeometry(1.05, 0);
-                    const coreMat = new THREE.MeshStandardMaterial({
-                        color: 0x1f271c,
-                        metalness: 0.85,
-                        roughness: 0.25,
-                        flatShading: true
-                    });
-                    const coreMesh = new THREE.Mesh(coreGeo, coreMat);
-                    group.add(coreMesh);
-
-                    // 2. Wireframe Overlay with Glowing Vertices
-                    const wireMat = new THREE.MeshBasicMaterial({
-                        color: 0xa5b698,
-                        wireframe: true,
-                        transparent: true,
-                        opacity: 0.55
-                    });
-                    const wireMesh = new THREE.Mesh(coreGeo, wireMat);
-                    group.add(wireMesh);
-
-                    // 3. Orbiting Titanium Ring 1
-                    const ringGeo1 = new THREE.TorusGeometry(1.65, 0.025, 16, 64);
-                    const ringMat1 = new THREE.MeshStandardMaterial({
-                        color: 0xf0eee8,
-                        metalness: 0.95,
-                        roughness: 0.1
-                    });
-                    const ring1 = new THREE.Mesh(ringGeo1, ringMat1);
-                    ring1.rotation.x = Math.PI / 3;
-                    ring1.rotation.y = Math.PI / 6;
-                    group.add(ring1);
-
-                    // Satellite on Ring 1
-                    const satGeo = new THREE.SphereGeometry(0.09, 16, 16);
-                    const satMat = new THREE.MeshBasicMaterial({ color: 0xa5b698 });
-                    const sat1 = new THREE.Mesh(satGeo, satMat);
-                    sat1.position.x = 1.65;
-                    ring1.add(sat1);
-
-                    // 4. Orbiting Sage Ring 2
-                    const ringGeo2 = new THREE.TorusGeometry(1.4, 0.02, 16, 64);
-                    const ringMat2 = new THREE.MeshStandardMaterial({
-                        color: 0x758268,
-                        metalness: 0.9,
-                        roughness: 0.2
-                    });
-                    const ring2 = new THREE.Mesh(ringGeo2, ringMat2);
-                    ring2.rotation.x = -Math.PI / 4;
-                    ring2.rotation.y = -Math.PI / 4;
-                    group.add(ring2);
-
-                    // 5. Dynamic Specular Lights
-                    const ambientLight = new THREE.AmbientLight(0xffffff, 0.45);
-                    scene.add(ambientLight);
-
-                    const pointLight1 = new THREE.PointLight(0xf0eee8, 2.4, 12);
-                    pointLight1.position.set(3, 4, 3);
-                    scene.add(pointLight1);
-
-                    const pointLight2 = new THREE.PointLight(0xa5b698, 2.8, 12);
-                    pointLight2.position.set(-3, -2, 2);
-                    scene.add(pointLight2);
-
-                    // Physics & Mouse Interaction
-                    let targetRotX = 0, targetRotY = 0;
-                    let isDragging = false;
-                    let prevMouseX = 0, prevMouseY = 0;
-                    let velX = 0, velY = 0;
-
-                    // Mouse parallax tracking
-                    window.addEventListener('mousemove', (e) => {
-                        const nx = (e.clientX / window.innerWidth) * 2 - 1;
-                        const ny = -(e.clientY / window.innerHeight) * 2 + 1;
-                        if (!isDragging) {
-                            targetRotY = nx * 0.75;
-                            targetRotX = -ny * 0.55;
-                        }
-                    }, { passive: true });
-
-                    // Click & Drag 360 Rotation
-                    canvas.addEventListener('mousedown', (e) => {
-                        isDragging = true;
-                        prevMouseX = e.clientX;
-                        prevMouseY = e.clientY;
-                        velX = 0;
-                        velY = 0;
-                    });
-
-                    window.addEventListener('mouseup', () => { isDragging = false; });
-
-                    window.addEventListener('mousemove', (e) => {
-                        if (!isDragging) return;
-                        const deltaX = e.clientX - prevMouseX;
-                        const deltaY = e.clientY - prevMouseY;
-                        prevMouseX = e.clientX;
-                        prevMouseY = e.clientY;
-
-                        velY = deltaX * 0.012;
-                        velX = deltaY * 0.012;
-                        group.rotation.y += velY;
-                        group.rotation.x += velX;
-                    });
-
-                    // Mobile Touch 360 Rotation
-                    canvas.addEventListener('touchstart', (e) => {
-                        if (e.touches.length === 1) {
-                            isDragging = true;
-                            prevMouseX = e.touches[0].clientX;
-                            prevMouseY = e.touches[0].clientY;
-                        }
-                    }, { passive: true });
-
-                    window.addEventListener('touchend', () => { isDragging = false; });
-
-                    window.addEventListener('touchmove', (e) => {
-                        if (!isDragging || e.touches.length !== 1) return;
-                        const deltaX = e.touches[0].clientX - prevMouseX;
-                        const deltaY = e.touches[0].clientY - prevMouseY;
-                        prevMouseX = e.touches[0].clientX;
-                        prevMouseY = e.touches[0].clientY;
-
-                        velY = deltaX * 0.016;
-                        velX = deltaY * 0.016;
-                        group.rotation.y += velY;
-                        group.rotation.x += velX;
-                    }, { passive: true });
-
-                    // Window resize
-                    window.addEventListener('resize', () => {
-                        const w = getWidth();
-                        const h = getHeight();
-                        camera.aspect = w / h;
-                        camera.updateProjectionMatrix();
-                        renderer.setSize(w, h);
-                    });
-
-                    // Render loop with IntersectionObserver
-                    let clock = new THREE.Clock();
-                    let isVisible = true;
-                    if ('IntersectionObserver' in window) {
-                        const observer = new IntersectionObserver((entries) => {
-                            isVisible = entries[0].isIntersecting;
-                        }, { threshold: 0.05 });
-                        observer.observe(canvas);
-                    }
-
-                    function animate() {
-                        requestAnimationFrame(animate);
-                        if (!isVisible) return;
-
-                        const elapsed = clock.getElapsedTime();
-
-                        if (!isDragging) {
-                            group.rotation.y += 0.008 + velY;
-                            group.rotation.x += velX;
-                            velX *= 0.94;
-                            velY *= 0.94;
-
-                            group.rotation.y += (targetRotY - (group.rotation.y % (Math.PI * 2))) * 0.025;
-                            group.rotation.x += (targetRotX - group.rotation.x) * 0.035;
-                        }
-
-                        ring1.rotation.z = elapsed * 0.45;
-                        ring2.rotation.z = -elapsed * 0.6;
-
-                        const scale = 1 + Math.sin(elapsed * 2.2) * 0.025;
-                        coreMesh.scale.set(scale, scale, scale);
-                        wireMesh.scale.set(scale, scale, scale);
-
-                        renderer.render(scene, camera);
-                    }
-
-                    animate();
-                }
-
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', run);
-                } else {
-                    run();
-                }
-            })();
-        </script>
 
         </div>
 
