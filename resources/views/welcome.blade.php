@@ -48,7 +48,7 @@
 
 
         {{-- FOTO CUTOUT TRANSPARAN ADRISTY (STAY DI TENGAH, TIDAK KEBELAH, z-20 DI DEPAN TEKS) --}}
-        <div class="hero-stay-photo absolute left-1/2 -translate-x-1/2 top-[18vh] xs:top-[16vh] sm:top-auto bottom-0 z-20 flex justify-center items-start sm:items-end pointer-events-none w-full max-w-[340px] xs:max-w-[380px] sm:max-w-[460px] md:max-w-[500px] lg:max-w-[540px] sm:h-full sm:max-h-[86vh]">
+        <div class="hero-stay-photo absolute left-1/2 -translate-x-1/2 top-[18vh] sm:top-auto bottom-0 z-20 flex justify-center items-start sm:items-end pointer-events-none w-full max-w-[340px] sm:max-w-[460px] md:max-w-[500px] lg:max-w-[540px] sm:h-full sm:max-h-[86vh]">
             <img src="{{ asset('images/adristy_cutout.png') }}?v=cutout-clean" 
                  alt="{{ $rawProfileName }}" 
                  class="hero-photo-soft-entrance w-full h-full object-contain object-top sm:object-bottom drop-shadow-[0_25px_60px_rgba(0,0,0,0.92)] select-none pointer-events-auto transition-transform duration-700 hover:scale-[1.01]"
@@ -56,38 +56,38 @@
         </div>
 
         {{-- SPLIT TYPOGRAPHY STAGE (BOON GLOBAL STYLE, z-10 DI BALIK FOTO) --}}
-        <div class="relative z-10 w-full max-w-[1440px] mx-auto px-3 sm:px-10 lg:px-14 h-full flex flex-col justify-between pointer-events-none pt-24 xs:pt-28 sm:pt-24 pb-6 sm:pb-12">
+        <div class="relative z-10 w-full max-w-[1440px] mx-auto px-2 sm:px-10 lg:px-14 h-full flex flex-col justify-between pointer-events-none pt-24 sm:pt-24 pb-6 sm:pb-12">
             
             {{-- Spacer Top --}}
             <div class="w-full shrink-0"></div>
 
             {{-- Center Typography Stage --}}
-            <div class="w-full flex flex-col space-y-1 sm:space-y-3 lg:space-y-4 mt-6 xs:mt-8 sm:my-auto">
+            <div class="w-full flex flex-col space-y-1 sm:space-y-3 lg:space-y-4 mt-6 sm:my-auto">
 
                 {{-- BARIS 1: ADRISTY (KIRI) DAN AKIKO (KANAN) SAMA RATA SEJAJAR DENGAN SPASI SIMETRIS & SEIMBANG --}}
                 <div class="w-full flex items-baseline justify-center pointer-events-none">
                     {{-- Sisi Kiri: ADRISTY (Rata Kanan ke arah foto tengah) --}}
                     <div class="hero-anim-adristy flex-1 text-right pointer-events-auto pr-0.5 sm:pr-1">
-                        <h1 class="hero-name-left text-2xl xs:text-3xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#F0EEE8] tracking-[-0.015em] leading-none select-none uppercase">
+                        <h1 class="hero-name-left text-4xl min-[390px]:text-[2.65rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#FFFFFF] sm:text-[#F0EEE8] tracking-[-0.02em] leading-none select-none uppercase drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)] whitespace-nowrap">
                             {{ $firstName }}
                         </h1>
                     </div>
 
-                    {{-- Center Head Spacer (Ramping & pas di balik kepala, responsif mobile) --}}
-                    <div class="w-12 xs:w-14 sm:w-16 md:w-20 lg:w-24 xl:w-28 shrink-0 pointer-events-none"></div>
+                    {{-- Center Head Spacer (Ramping & pas di balik kepala, tidak menutupi hijab) --}}
+                    <div class="w-16 min-[390px]:w-20 sm:w-20 md:w-24 lg:w-24 xl:w-28 shrink-0 pointer-events-none"></div>
 
                     {{-- Sisi Kanan: AKIKO (Rata Kiri, spasi optik presisi identik dengan sisi kiri) --}}
                     <div class="hero-anim-akiko flex-1 text-left pointer-events-auto pl-0.5 sm:pl-1">
-                        <h2 class="hero-name-right text-2xl xs:text-3xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#F0EEE8] tracking-[-0.015em] leading-none select-none uppercase">
+                        <h2 class="hero-name-right text-4xl min-[390px]:text-[2.65rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#FFFFFF] sm:text-[#F0EEE8] tracking-[-0.02em] leading-none select-none uppercase drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)] whitespace-nowrap">
                             {{ $secondName }}
                         </h2>
                     </div>
                 </div>
 
                 {{-- BARIS 2: YUKINATA DI TENGAH (CENTERED HORIZONTALLY BEHIND PHOTO) --}}
-                <div class="w-full flex justify-center items-center pointer-events-none -mt-0.5 sm:-mt-5 md:-mt-8 lg:-mt-10 xl:-mt-12">
+                <div class="w-full flex justify-center items-center pointer-events-none mt-0.5 sm:-mt-5 md:-mt-8 lg:-mt-10 xl:-mt-12">
                     <div class="hero-anim-yukinata w-full text-center pointer-events-auto">
-                        <h3 class="hero-name-center text-2xl xs:text-3xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#A5B698] tracking-[-0.015em] leading-none select-none uppercase">
+                        <h3 class="hero-name-center text-4xl min-[390px]:text-[2.65rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#c8dac0] sm:text-[#A5B698] tracking-[-0.02em] leading-none select-none uppercase drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)] whitespace-nowrap">
                             {{ $thirdName }}
                         </h3>
                     </div>
