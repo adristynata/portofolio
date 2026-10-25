@@ -22,23 +22,54 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-['Plus_Jakarta_Sans',sans-serif] antialiased bg-[#191919] text-[#F0EEE8] min-h-screen">
+<body class="font-['Plus_Jakarta_Sans',sans-serif] antialiased bg-[#191919] text-[#F0EEE8] min-h-screen" x-data="{ sidebarOpen: false }">
     
+    <!-- MOBILE TOP BAR -->
+    <header class="md:hidden sticky top-0 z-40 bg-[#242424]/95 border-b border-[#353535] backdrop-blur-md px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-[#758268] flex items-center justify-center text-[#F0EEE8] shadow-md shadow-[#758268]/20">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+            </div>
+            <div class="leading-none">
+                <span class="text-sm font-extrabold text-[#F0EEE8] block">Portofolio CMS</span>
+                <span class="text-[10px] font-bold text-[#A5B698]">Admin Panel</span>
+            </div>
+        </div>
+        <button type="button" @click="sidebarOpen = !sidebarOpen" class="w-9 h-9 rounded-xl bg-[#191919] border border-[#353535] text-[#F0EEE8] flex items-center justify-center hover:border-[#A5B698] transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+    </header>
+
+    <!-- MOBILE SIDEBAR BACKDROP OVERLAY -->
+    <div x-show="sidebarOpen" x-cloak @click="sidebarOpen = false" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm md:hidden"
+         x-transition:enter="transition-opacity ease-linear duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition-opacity ease-linear duration-300"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"></div>
+
     <div class="min-h-screen flex flex-col md:flex-row bg-[#191919]">
         
         <!-- SIDEBAR -->
-        <aside class="w-full md:w-72 bg-[#242424] border-r border-[#353535] flex flex-col justify-between shrink-0 min-h-screen p-6">
+        <aside class="fixed md:static inset-y-0 left-0 z-50 w-72 bg-[#242424] border-r border-[#353535] flex flex-col justify-between shrink-0 h-full min-h-screen p-6 transform transition-transform duration-300 md:transform-none overflow-y-auto"
+               :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'">
             <div class="space-y-8">
                 
                 <!-- Brand Header -->
-                <div class="flex items-center gap-3.5 px-2">
-                    <div class="w-11 h-11 rounded-2xl bg-[#758268] border border-[#8a997a]/30 flex items-center justify-center text-[#F0EEE8] shadow-md shadow-[#758268]/20">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                <div class="flex items-center justify-between px-2">
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-2xl bg-[#758268] border border-[#8a997a]/30 flex items-center justify-center text-[#F0EEE8] shadow-md shadow-[#758268]/20">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                        </div>
+                        <div>
+                            <h1 class="text-base font-extrabold text-[#F0EEE8] leading-tight">Portofolio CMS</h1>
+                            <span class="text-xs font-bold text-[#A5B698]">Admin Panel</span>
+                        </div>
                     </div>
-                    <div>
-                        <h1 class="text-base font-extrabold text-[#F0EEE8] leading-tight">Portofolio CMS</h1>
-                        <span class="text-xs font-bold text-[#A5B698]">Admin Panel</span>
-                    </div>
+                    <button type="button" @click="sidebarOpen = false" class="md:hidden w-8 h-8 rounded-lg bg-[#191919] border border-[#353535] text-[#929292] hover:text-[#F0EEE8] flex items-center justify-center">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
                 </div>
 
                 <!-- Navigation Menu -->

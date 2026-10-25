@@ -48,7 +48,7 @@
 
 
         {{-- FOTO CUTOUT TRANSPARAN ADRISTY (STAY DI TENGAH, TIDAK KEBELAH, z-20 DI DEPAN TEKS) --}}
-        <div class="hero-stay-photo absolute left-1/2 -translate-x-1/2 bottom-0 z-20 flex justify-center items-end pointer-events-none w-full max-w-[340px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] xl:max-w-[540px] h-full max-h-[80vh] lg:max-h-[86vh]">
+        <div class="hero-stay-photo absolute left-1/2 -translate-x-1/2 bottom-0 z-20 flex justify-center items-end pointer-events-none w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] xl:max-w-[540px] h-full max-h-[78vh] sm:max-h-[82vh] lg:max-h-[86vh]">
             <img src="{{ asset('images/adristy_cutout.png') }}?v=cutout-clean" 
                  alt="{{ $rawProfileName }}" 
                  class="hero-photo-soft-entrance w-full h-full object-contain object-bottom drop-shadow-[0_25px_60px_rgba(0,0,0,0.92)] select-none pointer-events-auto transition-transform duration-700 hover:scale-[1.01]"
@@ -56,38 +56,38 @@
         </div>
 
         {{-- SPLIT TYPOGRAPHY STAGE (BOON GLOBAL STYLE, z-10 DI BALIK FOTO) --}}
-        <div class="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 h-full flex flex-col justify-between pointer-events-none pt-20 sm:pt-24 pb-8 sm:pb-12">
+        <div class="relative z-10 w-full max-w-[1440px] mx-auto px-3 sm:px-10 lg:px-14 h-full flex flex-col justify-between pointer-events-none pt-20 sm:pt-24 pb-6 sm:pb-12">
             
             {{-- Spacer Top --}}
             <div class="w-full shrink-0"></div>
 
             {{-- Center Typography Stage --}}
-            <div class="w-full flex flex-col space-y-2 sm:space-y-3 lg:space-y-4 my-auto">
+            <div class="w-full flex flex-col space-y-1.5 sm:space-y-3 lg:space-y-4 my-auto">
 
                 {{-- BARIS 1: ADRISTY (KIRI) DAN AKIKO (KANAN) SAMA RATA SEJAJAR DENGAN SPASI SIMETRIS & SEIMBANG --}}
                 <div class="w-full flex items-baseline justify-center pointer-events-none">
                     {{-- Sisi Kiri: ADRISTY (Rata Kanan ke arah foto tengah) --}}
-                    <div class="hero-anim-adristy flex-1 text-right pointer-events-auto pr-1">
-                        <h1 class="hero-name-left text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#F0EEE8] tracking-[-0.015em] leading-none select-none uppercase">
+                    <div class="hero-anim-adristy flex-1 text-right pointer-events-auto pr-0.5 sm:pr-1">
+                        <h1 class="hero-name-left text-3xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#F0EEE8] tracking-[-0.015em] leading-none select-none uppercase">
                             {{ $firstName }}
                         </h1>
                     </div>
 
-                    {{-- Center Head Spacer (Ramping & pas di balik kepala, tidak renggang) --}}
-                    <div class="w-14 sm:w-16 md:w-20 lg:w-24 xl:w-28 shrink-0 pointer-events-none"></div>
+                    {{-- Center Head Spacer (Ramping & pas di balik kepala, responsif mobile) --}}
+                    <div class="w-8 sm:w-16 md:w-20 lg:w-24 xl:w-28 shrink-0 pointer-events-none"></div>
 
                     {{-- Sisi Kanan: AKIKO (Rata Kiri, spasi optik presisi identik dengan sisi kiri) --}}
-                    <div class="hero-anim-akiko flex-1 text-left pointer-events-auto pl-1">
-                        <h2 class="hero-name-right text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#F0EEE8] tracking-[-0.015em] leading-none select-none uppercase">
+                    <div class="hero-anim-akiko flex-1 text-left pointer-events-auto pl-0.5 sm:pl-1">
+                        <h2 class="hero-name-right text-3xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#F0EEE8] tracking-[-0.015em] leading-none select-none uppercase">
                             {{ $secondName }}
                         </h2>
                     </div>
                 </div>
 
                 {{-- BARIS 2: YUKINATA DI TENGAH (CENTERED HORIZONTALLY BEHIND PHOTO) --}}
-                <div class="w-full flex justify-center items-center pointer-events-none -mt-3 sm:-mt-5 md:-mt-8 lg:-mt-10 xl:-mt-12">
+                <div class="w-full flex justify-center items-center pointer-events-none -mt-1 sm:-mt-5 md:-mt-8 lg:-mt-10 xl:-mt-12">
                     <div class="hero-anim-yukinata w-full text-center pointer-events-auto">
-                        <h3 class="hero-name-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#A5B698] tracking-[-0.015em] leading-none select-none uppercase">
+                        <h3 class="hero-name-center text-3xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-[#A5B698] tracking-[-0.015em] leading-none select-none uppercase">
                             {{ $thirdName }}
                         </h3>
                     </div>
@@ -228,37 +228,37 @@
 
                 </div>
 
-                {{-- SISI KANAN: OVERLAPPING EDITORIAL FRAMED PHOTOS (PERSIS SEPERTI GAMBAR KEDUA) --}}
+                {{-- SISI KANAN: OVERLAPPING EDITORIAL FRAMED PHOTOS (RESPONSIF MOBILE DENGAN TATA LETAK SEIMBANG) --}}
                 <div class="lg:col-span-6 xl:col-span-6 flex items-center justify-center about-reveal-item pt-8 lg:pt-0">
                     
-                    <div class="relative w-full max-w-[480px] sm:max-w-[540px] h-[400px] sm:h-[480px] flex items-center justify-center">
+                    <div class="relative w-full max-w-[340px] xs:max-w-[380px] sm:max-w-[540px] h-[330px] xs:h-[380px] sm:h-[480px] flex items-center justify-center mx-auto">
 
                         {{-- BINGKAI 2 (BELAKANG / KANAN): FULL COLOR STUDIO PORTRAIT (TILT RIGHT) --}}
-                        <div class="absolute right-0 sm:right-4 top-4 sm:top-2 w-[220px] sm:w-[280px] md:w-[300px] transform rotate-[4deg] sm:rotate-[6deg] hover:rotate-0 hover:scale-105 hover:z-30 transition-all duration-500 ease-out cursor-pointer group">
-                            <div class="bg-[#F0EEE8] p-2.5 sm:p-3 pb-8 sm:pb-11 rounded-[3px] shadow-[0_20px_50px_rgba(0,0,0,0.85)] border border-[#d6d3c7] transition-shadow duration-300 group-hover:shadow-[0_30px_70px_rgba(0,0,0,0.95)]">
+                        <div class="absolute right-0 sm:right-4 top-2 sm:top-2 w-[165px] xs:w-[200px] sm:w-[280px] md:w-[300px] transform rotate-[4deg] sm:rotate-[6deg] hover:rotate-0 hover:scale-105 hover:z-30 transition-all duration-500 ease-out cursor-pointer group">
+                            <div class="bg-[#F0EEE8] p-2 xs:p-2.5 sm:p-3 pb-6 xs:pb-8 sm:pb-11 rounded-[3px] shadow-[0_20px_50px_rgba(0,0,0,0.85)] border border-[#d6d3c7] transition-shadow duration-300 group-hover:shadow-[0_30px_70px_rgba(0,0,0,0.95)]">
                                 <div class="relative aspect-[3/4] w-full overflow-hidden bg-[#161a15]">
                                     <img src="{{ $aboutPhotoSrc }}" 
                                          alt="{{ $profile->name ?? 'Adristy Akiko Yukinata' }} — Studio Portrait" 
                                          class="w-full h-full object-cover object-top filter contrast-[105%] transition-transform duration-700 group-hover:scale-105">
                                 </div>
-                                <div class="pt-3 sm:pt-4 px-1 flex items-center justify-between text-[#242424] font-mono text-[9px] sm:text-[10px] uppercase tracking-wider font-semibold">
-                                    <span>{{ $profile->name ?? 'Adristy Akiko' }}</span>
-                                    <span class="text-[#758268]">Studio // Jepara</span>
+                                <div class="pt-2 sm:pt-4 px-1 flex items-center justify-between text-[#242424] font-mono text-[8px] sm:text-[10px] uppercase tracking-wider font-semibold">
+                                    <span class="truncate max-w-[90px] sm:max-w-none">{{ $profile->name ?? 'Adristy Akiko' }}</span>
+                                    <span class="text-[#758268]">Studio</span>
                                 </div>
                             </div>
                         </div>
 
                         {{-- BINGKAI 1 (DEPAN / KIRI): DRAMATIC B&W CLOSE-UP PORTRAIT (TILT LEFT - OVERLAPPING) --}}
-                        <div class="absolute left-0 sm:left-4 bottom-4 sm:bottom-2 z-20 w-[230px] sm:w-[290px] md:w-[310px] transform -rotate-[4deg] sm:-rotate-[5deg] hover:rotate-0 hover:scale-105 hover:z-30 transition-all duration-500 ease-out cursor-pointer group">
-                            <div class="bg-[#F0EEE8] p-2.5 sm:p-3 pb-8 sm:pb-11 rounded-[3px] shadow-[0_30px_60px_rgba(0,0,0,0.9)] border border-[#d6d3c7] transition-shadow duration-300 group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.95)]">
+                        <div class="absolute left-0 sm:left-4 bottom-2 sm:bottom-2 z-20 w-[175px] xs:w-[210px] sm:w-[290px] md:w-[310px] transform -rotate-[4deg] sm:-rotate-[5deg] hover:rotate-0 hover:scale-105 hover:z-30 transition-all duration-500 ease-out cursor-pointer group">
+                            <div class="bg-[#F0EEE8] p-2 xs:p-2.5 sm:p-3 pb-6 xs:pb-8 sm:pb-11 rounded-[3px] shadow-[0_30px_60px_rgba(0,0,0,0.9)] border border-[#d6d3c7] transition-shadow duration-300 group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.95)]">
                                 <div class="relative aspect-[3/4] w-full overflow-hidden bg-[#121212]">
                                     <img src="{{ $aboutPhotoSrc }}" 
                                          alt="{{ $profile->name ?? 'Adristy Akiko Yukinata' }} — Editorial Monochrome" 
                                          class="w-full h-full object-cover object-top filter grayscale contrast-[135%] brightness-[92%] transition-transform duration-700 group-hover:scale-105">
                                 </div>
-                                <div class="pt-3 sm:pt-4 px-1 flex items-center justify-between text-[#242424] font-mono text-[9px] sm:text-[10px] uppercase tracking-wider font-semibold">
-                                    <span>{{ $profile->focus ?? 'Web Developer' }}</span>
-                                    <span class="text-[#758268]">{{ $profile->education ?? 'SMK N 1 Bangsri' }}</span>
+                                <div class="pt-2 sm:pt-4 px-1 flex items-center justify-between text-[#242424] font-mono text-[8px] sm:text-[10px] uppercase tracking-wider font-semibold">
+                                    <span class="truncate max-w-[90px] sm:max-w-none">{{ $profile->focus ?? 'Web Developer' }}</span>
+                                    <span class="text-[#758268] truncate max-w-[80px] sm:max-w-none">{{ $profile->education ?? 'SMK N 1 Bangsri' }}</span>
                                 </div>
                             </div>
                         </div>
@@ -324,12 +324,12 @@
                 </div>
 
                 {{-- Interactive Timeline Ruler & Scrubber --}}
-                <div class="relative py-4 my-2">
+                <div class="relative py-4 my-2 overflow-hidden">
                     {{-- Ruler Marks --}}
                     <div class="h-6 w-full timeline-ticks relative flex items-center justify-between text-[10px] font-mono text-[#929292] select-none px-2">
                         <span>0s</span>
                         @for ($s = 1; $s <= max(1, count($skills)); $s++)
-                            <span>{{ $s }}s</span>
+                            <span class="{{ $s % 2 !== 0 && count($skills) > 5 && $s !== max(1, count($skills)) ? 'hidden sm:inline' : '' }}">{{ $s }}s</span>
                         @endfor
                     </div>
 
