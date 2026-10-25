@@ -69,7 +69,7 @@ class AdminProfileController extends Controller
         } catch (\Throwable $e) {
             Log::error('Profile update error: ' . $e->getMessage());
             return back()
-                ->withInput()
+                ->withInput($request->except(['photo']))
                 ->with('error', 'Gagal menyimpan profil: ' . $e->getMessage());
         }
     }

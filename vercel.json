@@ -47,7 +47,7 @@
         "APP_SERVICES_CACHE": "/tmp/services.php",
         "VIEW_COMPILED_PATH": "/tmp",
         "CACHE_STORE": "array",
-        "SESSION_DRIVER": "cookie",
+        "SESSION_DRIVER": "database",
         "SESSION_LIFETIME": "10080",
         "SESSION_SECURE_COOKIE": "true",
         "SESSION_SAME_SITE": "lax",
