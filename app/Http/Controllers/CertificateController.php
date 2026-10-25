@@ -32,6 +32,9 @@ class CertificateController extends Controller
 
         if ($request->hasFile('image')) {
             $data['image'] = $this->storeImage($request->file('image'), 'certificates');
+            if (str_starts_with($data['image'], 'data:')) {
+                $this->ensureColumnSupportsBase64('certificates', 'image');
+            }
         }
 
         Certificate::create($data);
@@ -59,6 +62,9 @@ class CertificateController extends Controller
                 } catch (\Throwable $e) {}
             }
             $data['image'] = $this->storeImage($request->file('image'), 'certificates');
+            if (str_starts_with($data['image'], 'data:')) {
+                $this->ensureColumnSupportsBase64('certificates', 'image');
+            }
         }
 
         $certificate->update($data);

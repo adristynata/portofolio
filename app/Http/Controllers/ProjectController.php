@@ -52,6 +52,9 @@ class ProjectController extends Controller
 
         if ($request->hasFile('image')) {
             $data['image'] = $this->storeImage($request->file('image'), 'projects');
+            if (str_starts_with($data['image'], 'data:')) {
+                $this->ensureColumnSupportsBase64('projects', 'image');
+            }
         }
 
         Project::create($data);
@@ -105,6 +108,9 @@ class ProjectController extends Controller
                 } catch (\Throwable $e) {}
             }
             $data['image'] = $this->storeImage($request->file('image'), 'projects');
+            if (str_starts_with($data['image'], 'data:')) {
+                $this->ensureColumnSupportsBase64('projects', 'image');
+            }
         }
 
         $project->update($data);

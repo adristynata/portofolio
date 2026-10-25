@@ -14,6 +14,9 @@ class AdminProfileController extends Controller
 
     public function index()
     {
+        // Ensure photo column supports base64 data URIs
+        $this->ensureColumnSupportsBase64('users', 'photo');
+
         $user = Auth::user();
         return view('dashboard.profile.index', compact('user'));
     }
@@ -54,8 +57,11 @@ class AdminProfileController extends Controller
 
         if ($request->hasFile('photo')) {
             try {
-                $storedPhoto = $this->storeImage($request->file('photo'), 'profile');
+                $storedPhoto = $this->storeImage($request->file('photo'), 'profile', 800, 80);
                 $data['photo'] = $storedPhoto;
+                if (str_starts_with($storedPhoto, 'data:')) {
+                    $this->ensureColumnSupportsBase64('users', 'photo');
+                }
             } catch (\Throwable $e) {
                 Log::warning('Failed uploading profile photo: ' . $e->getMessage());
             }
@@ -65,12 +71,27 @@ class AdminProfileController extends Controller
             $data['is_admin'] = true;
             $user->fill($data);
             $user->save();
-            return back()->with('success', 'Profil dan tautan media sosial berhasil diperbarui!');
+            return back()->with('success', 'Profil dan foto berhasil diperbarui!');
+        } catch (\Illuminate\Database\QueryException $e) {
+            // Auto-heal column if Data Too Long occurred (code 1406 / SQLSTATE 22001)
+            if (isset($data['photo']) && str_starts_with($data['photo'], 'data:')) {
+                try {
+                    $this->ensureColumnSupportsBase64('users', 'photo');
+                    $user->save();
+                    return back()->with('success', 'Profil dan foto berhasil diperbarui!');
+                } catch (\Throwable $retryErr) {
+                    Log::error('Profile retry error: ' . $retryErr->getMessage());
+                }
+            }
+            Log::error('Profile DB query error: ' . $e->getMessage());
+            return back()
+                ->withInput($request->except(['photo']))
+                ->with('error', 'Gagal menyimpan profil: Kapasitas kolom database sedang disesuaikan. Silakan klik simpan kembali.');
         } catch (\Throwable $e) {
             Log::error('Profile update error: ' . $e->getMessage());
             return back()
                 ->withInput($request->except(['photo']))
-                ->with('error', 'Gagal menyimpan profil: ' . $e->getMessage());
+                ->with('error', 'Gagal menyimpan profil. Silakan periksa kembali formulir Anda.');
         }
     }
 }

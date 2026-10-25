@@ -3,14 +3,28 @@
 namespace App\Traits;
 
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 trait HandlesImageUpload
 {
     /**
+     * Ensure the target table column in the database is LONGTEXT so it can store Base64 images without truncation.
+     */
+    protected function ensureColumnSupportsBase64(string $table, string $column): void
+    {
+        try {
+            DB::statement("ALTER TABLE `{$table}` MODIFY `{$column}` LONGTEXT NULL");
+        } catch (\Throwable $e) {
+            Log::warning("ensureColumnSupportsBase64 notice for {$table}.{$column}: " . $e->getMessage());
+        }
+    }
+
+    /**
      * Store uploaded image to disk if writable, or convert to compressed Base64 data URI for serverless environments (Vercel).
      */
-    protected function storeImage(UploadedFile $file, string $folder = 'uploads', int $maxWidth = 1280, int $quality = 85): string
+    protected function storeImage(UploadedFile $file, string $folder = 'uploads', int $maxWidth = 1000, int $quality = 80): string
     {
         // 1. Try storing on public disk (works on localhost and writable servers)
         try {
