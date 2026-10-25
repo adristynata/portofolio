@@ -48,21 +48,21 @@
 
 
         {{-- FOTO CUTOUT TRANSPARAN ADRISTY (STAY DI TENGAH, TIDAK KEBELAH, z-20 DI DEPAN TEKS) --}}
-        <div class="hero-stay-photo absolute left-1/2 -translate-x-1/2 bottom-0 z-20 flex justify-center items-end pointer-events-none w-full max-w-[360px] xs:max-w-[400px] sm:max-w-[460px] md:max-w-[500px] lg:max-w-[540px] h-[72vh] xs:h-[76vh] sm:h-full max-h-[78vh] sm:max-h-[84vh] lg:max-h-[86vh]">
+        <div class="hero-stay-photo absolute left-1/2 -translate-x-1/2 top-[18vh] xs:top-[16vh] sm:top-auto bottom-0 z-20 flex justify-center items-start sm:items-end pointer-events-none w-full max-w-[340px] xs:max-w-[380px] sm:max-w-[460px] md:max-w-[500px] lg:max-w-[540px] sm:h-full sm:max-h-[86vh]">
             <img src="{{ asset('images/adristy_cutout.png') }}?v=cutout-clean" 
                  alt="{{ $rawProfileName }}" 
-                 class="hero-photo-soft-entrance w-auto h-full max-h-full object-contain object-bottom drop-shadow-[0_25px_60px_rgba(0,0,0,0.92)] select-none pointer-events-auto transition-transform duration-700 hover:scale-[1.01]"
-                 style="mask-image: linear-gradient(to bottom, black 82%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 100%);">
+                 class="hero-photo-soft-entrance w-full h-full object-contain object-top sm:object-bottom drop-shadow-[0_25px_60px_rgba(0,0,0,0.92)] select-none pointer-events-auto transition-transform duration-700 hover:scale-[1.01]"
+                 style="mask-image: linear-gradient(to bottom, black 80%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);">
         </div>
 
         {{-- SPLIT TYPOGRAPHY STAGE (BOON GLOBAL STYLE, z-10 DI BALIK FOTO) --}}
-        <div class="relative z-10 w-full max-w-[1440px] mx-auto px-3 sm:px-10 lg:px-14 h-full flex flex-col justify-between pointer-events-none pt-16 xs:pt-20 sm:pt-24 pb-4 sm:pb-12">
+        <div class="relative z-10 w-full max-w-[1440px] mx-auto px-3 sm:px-10 lg:px-14 h-full flex flex-col justify-between pointer-events-none pt-24 xs:pt-28 sm:pt-24 pb-6 sm:pb-12">
             
             {{-- Spacer Top --}}
             <div class="w-full shrink-0"></div>
 
             {{-- Center Typography Stage --}}
-            <div class="w-full flex flex-col space-y-1 sm:space-y-3 lg:space-y-4 my-auto -mt-10 xs:-mt-14 sm:mt-0">
+            <div class="w-full flex flex-col space-y-1 sm:space-y-3 lg:space-y-4 mt-6 xs:mt-8 sm:my-auto">
 
                 {{-- BARIS 1: ADRISTY (KIRI) DAN AKIKO (KANAN) SAMA RATA SEJAJAR DENGAN SPASI SIMETRIS & SEIMBANG --}}
                 <div class="w-full flex items-baseline justify-center pointer-events-none">
