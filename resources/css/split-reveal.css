@@ -6,7 +6,7 @@
 .hero-split-wrapper {
   position: relative;
   width: 100%;
-  background-color: #0c0e0c;
+  background-color: #080a08;
 }
 
 .hero-pinned-stage {
@@ -15,7 +15,7 @@
   height: 100dvh;
   min-height: 100dvh;
   overflow: hidden;
-  background-color: #0c0e0c;
+  background-color: #080a08;
 }
 
 /* Foreground Hero Stage */
@@ -26,7 +26,7 @@
   height: 100%;
   z-index: 20;
   pointer-events: none;
-  background-color: #0c0e0c;
+  background-color: #080a08;
   will-change: opacity;
 }
 
@@ -62,7 +62,7 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-color: #0a0f0d;
+  background-color: #080a08;
   overflow: visible;
 }
 

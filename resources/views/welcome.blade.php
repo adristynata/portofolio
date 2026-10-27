@@ -49,22 +49,11 @@
         }
     @endphp
 
-    <section id="home" class="hero-pinned-stage relative w-full h-[100dvh] min-h-[100dvh] overflow-hidden bg-[#0c0e0c] flex items-center justify-center">
+    <section id="home" class="hero-pinned-stage relative w-full h-[100dvh] min-h-[100dvh] overflow-hidden bg-[#080a08] flex items-center justify-center">
         
-        {{-- Modern Living Gradient Background (Luxury Editorial Studio Lighting) --}}
-        <div class="hero-ambient-glow absolute inset-0 pointer-events-none overflow-hidden z-0">
-            {{-- Layer 1: Multi-Stop Smooth Full-Bleed Radial Studio Glow (Vibrant Deep Obsidian & Forest Slate) --}}
-            <div class="absolute inset-0 bg-[radial-gradient(ellipse_100%_80%_at_50%_30%,#182317_0%,#10160f_45%,#0c0e0c_85%)]"></div>
-
-            {{-- Layer 2: Radiant Sage & Emerald Studio Keylight behind Head & Typography --}}
-            <div class="absolute top-[28%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[620px] lg:w-[820px] h-[340px] sm:h-[620px] lg:h-[820px] rounded-full bg-[radial-gradient(circle,#8a997a_0%,#758268_35%,transparent_70%)] opacity-25 blur-[60px] sm:blur-[90px]"></div>
-
-            {{-- Layer 3: Dynamic Accent Lights (Modern & Alive Corner Fill) --}}
-            <div class="absolute -top-32 -left-32 w-80 sm:w-[480px] h-80 sm:h-[480px] rounded-full bg-[#758268]/15 blur-[80px] sm:blur-[120px]"></div>
-            <div class="absolute -top-32 -right-32 w-80 sm:w-[480px] h-80 sm:h-[480px] rounded-full bg-[#8a997a]/12 blur-[80px] sm:blur-[120px]"></div>
-
-            {{-- Layer 4: Ultra-Smooth Floor Gradient (Mencegah garis kotak di bawah foto) --}}
-            <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#0c0e0c] via-[#0c0e0c]/80 to-transparent"></div>
+        {{-- Pure Full-Bleed Continuous Studio Gradient (100% Bebas Garis / Kotak / Blur Artifacts) --}}
+        <div class="hero-ambient-glow absolute inset-0 pointer-events-none z-0"
+             style="background: radial-gradient(ellipse 120% 85% at 50% 30%, #1a2619 0%, #121a11 38%, #0d120d 68%, #080a08 100%);">
         </div>
 
 
@@ -72,8 +61,8 @@
         <div class="hero-stay-photo absolute left-1/2 -translate-x-1/2 top-[18vh] sm:top-auto bottom-0 z-20 flex justify-center items-start sm:items-end pointer-events-none w-full max-w-[300px] min-[390px]:max-w-[325px] sm:max-w-[460px] md:max-w-[500px] lg:max-w-[540px] sm:h-full sm:max-h-[86vh]">
             <img src="{{ asset('images/adristy_cutout.png') }}?v=cutout-clean" 
                  alt="{{ $rawProfileName }}" 
-                 class="hero-photo-soft-entrance w-full h-full object-contain object-top sm:object-bottom drop-shadow-[0_18px_36px_rgba(0,0,0,0.85)] select-none pointer-events-auto transition-transform duration-700 hover:scale-[1.01]"
-                 style="mask-image: linear-gradient(to bottom, black 55%, rgba(0,0,0,0.85) 70%, transparent 92%); -webkit-mask-image: linear-gradient(to bottom, black 55%, rgba(0,0,0,0.85) 70%, transparent 92%);">
+                 class="hero-photo-soft-entrance w-full h-full object-contain object-top sm:object-bottom select-none pointer-events-auto transition-transform duration-700 hover:scale-[1.01]"
+                 style="mask-image: linear-gradient(to bottom, black 40%, rgba(0,0,0,0.7) 60%, transparent 88%); -webkit-mask-image: linear-gradient(to bottom, black 40%, rgba(0,0,0,0.7) 60%, transparent 88%);">
         </div>
 
         {{-- SPLIT TYPOGRAPHY STAGE (BOON GLOBAL STYLE, z-10 DI BALIK FOTO) --}}
@@ -188,7 +177,7 @@
     {{-- 2. ABOUT SECTION (#about) — EDITORIAL GALLERY & CLEAN NARRATIVE --}}
     {{-- Inspirasi Lookbook Editorial: Bebas Container AI & Clean        --}}
     {{-- ============================================================== --}}
-    <section id="about" class="about-section relative w-full py-20 sm:py-28 lg:py-36 px-4 sm:px-6 lg:px-8 bg-[#0c0e0c] overflow-hidden">
+    <section id="about" class="about-section relative w-full py-20 sm:py-28 lg:py-36 px-4 sm:px-6 lg:px-8 bg-[#080a08] overflow-hidden">
         
         {{-- GIANT WATERMARK TYPOGRAPHY (TENTANG) --}}
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0">
