@@ -57,6 +57,24 @@
   pointer-events: none;
 }
 
+/* Masking Foto Cutout:
+   - Mobile (< 640px): Bagian bawah kemeja melebur lembut tanpa garis patah.
+   - Desktop (>= 640px): Tubuh & kemeja 100% solid opak (85%) agar teks YUKINATA di baliknya tertutup kemeja (Boon Global 3D Effect).
+*/
+@media (max-width: 639px) {
+  .hero-photo-cutout-mask {
+    -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 92%);
+    mask-image: linear-gradient(to bottom, black 65%, transparent 92%);
+  }
+}
+
+@media (min-width: 640px) {
+  .hero-photo-cutout-mask {
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  }
+}
+
 /* About Section: Mengalir alami tanpa terpotong */
 .about-section {
   position: relative;

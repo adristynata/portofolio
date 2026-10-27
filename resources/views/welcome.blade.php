@@ -56,16 +56,7 @@
              style="background: radial-gradient(ellipse 120% 85% at 50% 30%, #1a2619 0%, #121a11 38%, #0d120d 68%, #080a08 100%);">
         </div>
 
-
-        {{-- FOTO CUTOUT TRANSPARAN ADRISTY (STAY DI TENGAH, TIDAK KEBELAH, z-20 DI DEPAN TEKS) --}}
-        <div class="hero-stay-photo absolute left-1/2 -translate-x-1/2 top-[18vh] sm:top-auto bottom-0 z-20 flex justify-center items-start sm:items-end pointer-events-none w-full max-w-[300px] min-[390px]:max-w-[325px] sm:max-w-[460px] md:max-w-[500px] lg:max-w-[540px] sm:h-full sm:max-h-[86vh]">
-            <img src="{{ asset('images/adristy_cutout.png') }}?v=cutout-clean" 
-                 alt="{{ $rawProfileName }}" 
-                 class="hero-photo-soft-entrance w-full h-full object-contain object-top sm:object-bottom select-none pointer-events-auto transition-transform duration-700 hover:scale-[1.01]"
-                 style="mask-image: linear-gradient(to bottom, black 40%, rgba(0,0,0,0.7) 60%, transparent 88%); -webkit-mask-image: linear-gradient(to bottom, black 40%, rgba(0,0,0,0.7) 60%, transparent 88%);">
-        </div>
-
-        {{-- SPLIT TYPOGRAPHY STAGE (BOON GLOBAL STYLE, z-10 DI BALIK FOTO) --}}
+        {{-- 1. SPLIT TYPOGRAPHY STAGE (BOON GLOBAL STYLE, z-10 DI BALIK FOTO) --}}
         <div class="relative z-10 w-full max-w-[1440px] mx-auto px-4 sm:px-10 lg:px-14 h-full flex flex-col justify-between pointer-events-none pt-24 sm:pt-24 pb-6 sm:pb-12">
             
             {{-- Spacer Top --}}
@@ -169,6 +160,13 @@
 
             </div>
 
+        </div>
+
+        {{-- 2. FOTO CUTOUT TRANSPARAN ADRISTY (STAY DI TENGAH, TIDAK KEBELAH, z-20 DI DEPAN TEKS) --}}
+        <div class="hero-stay-photo absolute left-1/2 -translate-x-1/2 top-[18vh] sm:top-auto bottom-0 z-20 flex justify-center items-start sm:items-end pointer-events-none w-full max-w-[300px] min-[390px]:max-w-[325px] sm:max-w-[460px] md:max-w-[520px] lg:max-w-[560px] xl:max-w-[600px] sm:h-full sm:max-h-[88vh]">
+            <img src="{{ asset('images/adristy_cutout.png') }}?v=cutout-clean" 
+                 alt="{{ $rawProfileName }}" 
+                 class="hero-photo-soft-entrance hero-photo-cutout-mask w-full h-full object-contain object-top sm:object-bottom select-none pointer-events-auto transition-transform duration-700 hover:scale-[1.01]">
         </div>
 
     </section>
